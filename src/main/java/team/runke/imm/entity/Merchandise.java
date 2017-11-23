@@ -11,7 +11,7 @@ public class Merchandise {
      */
     private Integer merchandiseId;
     /**
-     * 商品编码
+     * 商品编码；
      */
     private String productCode;
     /**
