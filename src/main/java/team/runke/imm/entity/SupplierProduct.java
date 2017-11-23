@@ -1,10 +1,25 @@
 package team.runke.imm.entity;
-import java.math.BigDecimal;
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class SupplierProduct {
+    /**
+     * 编号
+     */
     private int supplierProductId;
-    private int merchandiseId;
-    private int supplierId;
-    private BigDecimal supplierProductPrice;
+    /**
+     * 商品编号
+     */
+    private Merchandise merchandise;
+    /**
+     * 供应商编号
+     */
+    private Supplier supplier;
+    /**
+     * 供应商报价
+     */
 
     public int getSupplierProductId() {
         return supplierProductId;
@@ -14,27 +29,19 @@ public class SupplierProduct {
         this.supplierProductId = supplierProductId;
     }
 
-    public int getMerchandiseId() {
-        return merchandiseId;
+    public Merchandise getMerchandise() {
+        return merchandise;
     }
 
-    public void setMerchandiseId(int merchandiseId) {
-        this.merchandiseId = merchandiseId;
+    public void setMerchandise(Merchandise merchandise) {
+        this.merchandise = merchandise;
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public BigDecimal getSupplierProductPrice() {
-        return supplierProductPrice;
-    }
-
-    public void setSupplierProductPrice(BigDecimal supplierProductPrice) {
-        this.supplierProductPrice = supplierProductPrice;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 }

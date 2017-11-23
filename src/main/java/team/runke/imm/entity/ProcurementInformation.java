@@ -1,81 +1,58 @@
 package team.runke.imm.entity;
 import java.math.BigDecimal;
-/**
- *　@author 索志文
- *　@versrion 1.0
- * 采购订单详情
- */
 public class ProcurementInformation {
-    /**
-     * 采购编号
-     */
-    private Integer piId;
-    /**
-     * 采购单号
-     */
-    private Procurement procurement;
-    /**
-     * 商品编号
-     */
-    private Merchandise merchandise;
-    /**
-     * 采购价格
-     */
-    private double piActualPrice;
-    /**
-     * 采购数量
-     */
-    private Integer piVolume;
-    /**
-     * 单位
-     */
-    private Units units;
+    private int piId;
+    private String procurementId;
+    private int merchandiseId;
+    private BigDecimal piActualPrice;
+    private int piVolume;
+    private int unitsId;
 
-    public Integer getPiId() {
+    public int getPiId() {
         return piId;
     }
 
-    public void setPiId(Integer piId) {
+    public void setPiId(int piId) {
         this.piId = piId;
     }
 
-    public Procurement getProcurementId() {
+    public String getProcurementId() {
         return procurementId;
     }
 
-    public void setProcurementId(Procurement procurementId) {
+    public void setProcurementId(String procurementId) {
         this.procurementId = procurementId;
     }
 
-    public Merchandise getMerchandiseId() {
+    public int getMerchandiseId() {
         return merchandiseId;
     }
 
-    public void setMerchandiseId(Merchandise merchandiseId) {
+    public void setMerchandiseId(int merchandiseId) {
         this.merchandiseId = merchandiseId;
     }
 
-    public double getPiActualPrice() {
+    public BigDecimal getPiActualPrice() {
         return piActualPrice;
     }
 
-    public void setPiActualPrice(double piActualPrice) {
+    public void setPiActualPrice(BigDecimal piActualPrice) {
         this.piActualPrice = piActualPrice;
     }
 
-    public Integer getPiVolume() {
+    public int getPiVolume() {
         return piVolume;
     }
 
-    public void setPiVolume(Integer piVolume) {
+    public void setPiVolume(int piVolume) {
         this.piVolume = piVolume;
     }
 
-    public Units getUnitsId() {
+    public int getUnitsId() {
         return unitsId;
     }
 
-    public void setUnitsId(Units unitsId) {
+    public void setUnitsId(int unitsId) {
         this.unitsId = unitsId;
     }
 }

@@ -1,20 +1,63 @@
 package team.runke.imm.entity;
+
+import java.util.List;
+
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class Supplier {
-    private int supplierId;
+    /**
+     * 供应商编号
+     */
+    private Integer supplierId;
+    /**
+     * 供应商名称
+     */
     private String supplierName;
+    /**
+     * 负责人名称
+     */
     private String supplierPersonInCharge;
+    /**
+     * 负责人职称
+     */
     private String supplierPost;
+    /**
+     * 电话
+     */
     private String supplierPhone;
+    /**
+     * 移动电话
+     */
     private String supplierMobilePhone;
+    /**
+     * 传真
+     */
     private String supplierFax;
+    /**
+     * 供应商地址
+     */
     private String supplierAddress;
+    /**
+     * 工厂地址
+     */
     private String supplierFactoryAddress;
 
-    public int getSupplierId() {
+
+
+    /**
+     * 供应商产品表
+
+     */
+    private List<SupplierProduct> supplierProduct;
+
+    public Integer getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(Integer supplierId) {
         this.supplierId = supplierId;
     }
 
@@ -80,5 +123,12 @@ public class Supplier {
 
     public void setSupplierFactoryAddress(String supplierFactoryAddress) {
         this.supplierFactoryAddress = supplierFactoryAddress;
+    }
+    public List<SupplierProduct> getSupplierProduct() {
+        return supplierProduct;
+    }
+
+    public void setSupplierProduct(List<SupplierProduct> supplierProduct) {
+        this.supplierProduct = supplierProduct;
     }
 }

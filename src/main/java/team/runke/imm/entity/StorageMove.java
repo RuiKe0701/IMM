@@ -1,58 +1,57 @@
 package team.runke.imm.entity;
 import java.util.Date;
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class StorageMove {
-    private int warehousingId;
-    private int warehousingBuyer;
-    private String salesId;
+    /**
+     * 入库编号
+     */
+    private Integer warehousingId;
+    /**
+     * 出库人
+     */
+    private Employee employee;
+    /**
+     * 售货单号
+     */
+    private Sales sales;
+    /**
+     * 出库日期
+     */
     private Date warehousingDate;
+    /**
+     * 出库备注
+     */
     private String warehousingRemarks;
-    private int warehousingEmployeeId;
+    /**
+     * 经办人
+     */
+    private Integer warehousingEmployeeId;
 
-    public int getWarehousingId() {
-        return warehousingId;
-    }
-
-    public void setWarehousingId(int warehousingId) {
+    public void setWarehousingId(Integer warehousingId) {
         this.warehousingId = warehousingId;
     }
 
-    public int getWarehousingBuyer() {
-        return warehousingBuyer;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setWarehousingBuyer(int warehousingBuyer) {
-        this.warehousingBuyer = warehousingBuyer;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public String getSalesId() {
-        return salesId;
+    public Sales getSales() {
+        return sales;
     }
 
-    public void setSalesId(String salesId) {
-        this.salesId = salesId;
+    public void setSales(Sales sales) {
+        this.sales = sales;
     }
 
-    public Date getWarehousingDate() {
-        return warehousingDate;
-    }
-
-    public void setWarehousingDate(Date warehousingDate) {
-        this.warehousingDate = warehousingDate;
-    }
-
-    public String getWarehousingRemarks() {
-        return warehousingRemarks;
-    }
-
-    public void setWarehousingRemarks(String warehousingRemarks) {
-        this.warehousingRemarks = warehousingRemarks;
-    }
-
-    public int getWarehousingEmployeeId() {
-        return warehousingEmployeeId;
-    }
-
-    public void setWarehousingEmployeeId(int warehousingEmployeeId) {
+    public void setWarehousingEmployeeId(Integer warehousingEmployeeId) {
         this.warehousingEmployeeId = warehousingEmployeeId;
     }
 }

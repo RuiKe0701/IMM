@@ -1,18 +1,51 @@
 package team.runke.imm.entity;
 import java.math.BigDecimal;
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class SalesInformation {
-    private int siId;
+    /**
+     * 销售编号
+     */
+    private Integer siId;
+    /**
+     * 订单编号
+     */
     private String salesId;
-    private int merchandiseId;
-    private int siVolume;
-    private int unitsId;
-    private BigDecimal siActualPrice;
+    /**
+     * 药品编号
+     */
+    private Merchandise merchandise;
+    /**
+     * 销售数量
+     */
+    private Integer siVolume;
+    /**
+     * 单位
+     */
+    private Units units;
+    /**
+     * 售价
+     */
+    private double siActualPrice;
 
-    public int getSiId() {
+    private Sales sales;
+
+    public Sales getSales() {
+        return sales;
+    }
+
+    public void setSales(Sales sales) {
+        this.sales = sales;
+    }
+
+    public Integer getSiId() {
         return siId;
     }
 
-    public void setSiId(int siId) {
+    public void setSiId(Integer siId) {
         this.siId = siId;
     }
 
@@ -24,35 +57,35 @@ public class SalesInformation {
         this.salesId = salesId;
     }
 
-    public int getMerchandiseId() {
-        return merchandiseId;
+    public Merchandise getMerchandise() {
+        return merchandise;
     }
 
-    public void setMerchandiseId(int merchandiseId) {
-        this.merchandiseId = merchandiseId;
+    public void setMerchandise(Merchandise merchandise) {
+        this.merchandise = merchandise;
     }
 
-    public int getSiVolume() {
+    public Integer getSiVolume() {
         return siVolume;
     }
 
-    public void setSiVolume(int siVolume) {
+    public void setSiVolume(Integer siVolume) {
         this.siVolume = siVolume;
     }
 
-    public int getUnitsId() {
-        return unitsId;
+    public Units getUnits() {
+        return units;
     }
 
-    public void setUnitsId(int unitsId) {
-        this.unitsId = unitsId;
+    public void setUnits(Units units) {
+        this.units = units;
     }
 
-    public BigDecimal getSiActualPrice() {
+    public double getSiActualPrice() {
         return siActualPrice;
     }
 
-    public void setSiActualPrice(BigDecimal siActualPrice) {
+    public void setSiActualPrice(double siActualPrice) {
         this.siActualPrice = siActualPrice;
     }
 }

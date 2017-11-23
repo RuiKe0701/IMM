@@ -1,13 +1,40 @@
 package team.runke.imm.entity;
+
+import java.util.List;
+
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class ProductType {
-    private int productTypeId;
+    /**
+     *  种类编号
+     */
+    private Integer productTypeId;
+    /**
+     * 种类名称
+     */
     private String productTypeName;
 
-    public int getProductTypeId() {
+    /**
+     * 供应商信息表
+     */
+    private List<Supplier>supplier;
+
+    public List<Supplier> getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(List<Supplier> supplier) {
+        this.supplier = supplier;
+    }
+
+    public Integer getProductTypeId() {
         return productTypeId;
     }
 
-    public void setProductTypeId(int productTypeId) {
+    public void setProductTypeId(Integer productTypeId) {
         this.productTypeId = productTypeId;
     }
 

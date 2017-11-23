@@ -1,44 +1,71 @@
 package team.runke.imm.entity;
 import java.util.Date;
+
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class Warehousing {
-    private int warehousingId;
-    private int warehousingBatchNumber;
-    private int warehousingBuyer;
-    private String procurementId;
+    /**
+     * 入库编号
+     */
+    private Integer warehousingId;
+    /**
+     * 批号
+     */
+    private Integer warehousingBatchNumber;
+    /**
+     * 入库人
+     */
+    private Integer warehousingBuyer;
+    /**
+     * 采购单号
+     */
+    private Procurement procurement;
+    /**
+     * 入库日期
+     */
     private Date warehousingDate;
+    /**
+     * 入库备注
+     */
     private String warehousingRemarks;
+    /**
+     * 经办人
+     */
     private int warehousingEmployeeId;
 
-    public int getWarehousingId() {
+    public Integer getWarehousingId() {
         return warehousingId;
     }
 
-    public void setWarehousingId(int warehousingId) {
+    public void setWarehousingId(Integer warehousingId) {
         this.warehousingId = warehousingId;
     }
 
-    public int getWarehousingBatchNumber() {
+    public Integer getWarehousingBatchNumber() {
         return warehousingBatchNumber;
     }
 
-    public void setWarehousingBatchNumber(int warehousingBatchNumber) {
+    public void setWarehousingBatchNumber(Integer warehousingBatchNumber) {
         this.warehousingBatchNumber = warehousingBatchNumber;
     }
 
-    public int getWarehousingBuyer() {
+    public Integer getWarehousingBuyer() {
         return warehousingBuyer;
     }
 
-    public void setWarehousingBuyer(int warehousingBuyer) {
+    public void setWarehousingBuyer(Integer warehousingBuyer) {
         this.warehousingBuyer = warehousingBuyer;
     }
 
-    public String getProcurementId() {
-        return procurementId;
+    public Procurement getProcurement() {
+        return procurement;
     }
 
-    public void setProcurementId(String procurementId) {
-        this.procurementId = procurementId;
+    public void setProcurement(Procurement procurement) {
+        this.procurement = procurement;
     }
 
     public Date getWarehousingDate() {

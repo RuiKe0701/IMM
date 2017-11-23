@@ -1,16 +1,49 @@
 package team.runke.imm.entity;
 
-public class User {
-    private int userId;
-    private String userName;
-    private String userPassword;
-    private int employeeId;
+import java.util.List;
 
-    public int getUserId() {
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
+public class User {
+    /**
+     * 用户编号
+     */
+    private Integer userId;
+    /**
+     * 用户名称
+     */
+    private String userName;
+    /**
+     * 用户密码
+     */
+    private String userPassword;
+    /**
+     * 员工编号
+     */
+    private Employee employee;
+
+    public List<RolePermissions> getRolePermissions() {
+        return rolePermissions;
+    }
+
+    public void setRolePermissions(List<RolePermissions> rolePermissions) {
+        this.rolePermissions = rolePermissions;
+    }
+
+    /**
+     * 角色权限表
+
+     */
+    private List<RolePermissions> rolePermissions;
+
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -30,11 +63,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

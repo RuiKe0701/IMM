@@ -1,13 +1,41 @@
 package team.runke.imm.entity;
 import java.util.Date;
+import java.util.List;
+
+/**
+ * @author 闫琛昊
+ * @version 1.0
+ *
+ */
 public class Sales {
+    /**
+     *  订单编号
+     */
     private String salesId;
+    /**
+     *  销售日期
+     */
     private Date salesDate;
-    private int clientId;
-    private int employeeId;
-    private int salesState;
-    private int eventDetailsId;
-    private int salesActivities;
+    /**
+     * 客户编号
+     */
+    private Client client;
+    /**
+     * 业务员编号
+     */
+    private Employee employee;
+    /**
+     * 状态
+     */
+    private Integer salesState;
+    /**
+     * 活动编号
+     */
+    private EventDetails eventDetails;
+    /**
+     *
+     */
+    private List<SalesInformation> salesInformations;
 
     public String getSalesId() {
         return salesId;
@@ -25,43 +53,43 @@ public class Sales {
         this.salesDate = salesDate;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public int getSalesState() {
+    public Integer getSalesState() {
         return salesState;
     }
 
-    public void setSalesState(int salesState) {
+    public void setSalesState(Integer salesState) {
         this.salesState = salesState;
     }
 
-    public int getEventDetailsId() {
-        return eventDetailsId;
+    public EventDetails getEventDetails() {
+        return eventDetails;
     }
 
-    public void setEventDetailsId(int eventDetailsId) {
-        this.eventDetailsId = eventDetailsId;
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
     }
 
-    public int getSalesActivities() {
-        return salesActivities;
+    public List<SalesInformation> getSalesInformations() {
+        return salesInformations;
     }
 
-    public void setSalesActivities(int salesActivities) {
-        this.salesActivities = salesActivities;
+    public void setSalesInformations(List<SalesInformation> salesInformations) {
+        this.salesInformations = salesInformations;
     }
 }
