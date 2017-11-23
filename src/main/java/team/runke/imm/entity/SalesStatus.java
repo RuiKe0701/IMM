@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author 闫琛昊
  * @version 1.0
- *
+ *销售状态
  */
 public class SalesStatus {
     /**

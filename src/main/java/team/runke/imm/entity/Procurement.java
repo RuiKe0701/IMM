@@ -1,11 +1,32 @@
 package team.runke.imm.entity;
 import java.util.Date;
+
+/**
+ * @author 索志文
+ * @version 1.0
+ * 采购订单
+ */
 public class Procurement {
+    /**
+     * 采购单号
+     */
     private String procurementId;
+    /**
+     * 采购日期
+     */
     private Date procurementDate;
-    private int supplierId;
-    private int procurementEmployeeId;
-    private int procurementAccomplish;
+    /**
+     * 供应商编号
+     */
+    private Supplier supplier;
+    /**
+     * 采购人
+     */
+    private Employee procurementEmployee;
+    /**
+     * 状态
+     */
+    private Integer procurementAccomplish;
 
     public String getProcurementId() {
         return procurementId;
@@ -23,27 +44,27 @@ public class Procurement {
         this.procurementDate = procurementDate;
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
-    public int getProcurementEmployeeId() {
-        return procurementEmployeeId;
+    public Employee getProcurementEmployee() {
+        return procurementEmployee;
     }
 
-    public void setProcurementEmployeeId(int procurementEmployeeId) {
-        this.procurementEmployeeId = procurementEmployeeId;
+    public void setProcurementEmployee(Employee procurementEmployee) {
+        this.procurementEmployee = procurementEmployee;
     }
 
-    public int getProcurementAccomplish() {
+    public Integer getProcurementAccomplish() {
         return procurementAccomplish;
     }
 
-    public void setProcurementAccomplish(int procurementAccomplish) {
+    public void setProcurementAccomplish(Integer procurementAccomplish) {
         this.procurementAccomplish = procurementAccomplish;
     }
 }

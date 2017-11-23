@@ -1,9 +1,8 @@
 package team.runke.imm.entity;
-import java.math.BigDecimal;
 /**
  * @author 闫琛昊
  * @version 1.0
- *
+ *销售订单详情
  */
 public class SalesInformation {
     /**

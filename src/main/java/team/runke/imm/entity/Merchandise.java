@@ -1,5 +1,5 @@
 package team.runke.imm.entity;
-import java.math.BigDecimal;
+
 /**
  *　@author 索志文
  *　@versrion 1.0
@@ -83,20 +83,32 @@ public class Merchandise {
         this.merchandiseSpecification = merchandiseSpecification;
     }
 
-    public ProductType getProductTypeId() {
-        return productTypeId;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setProductTypeId(ProductType productTypeId) {
-        this.productTypeId = productTypeId;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
-    public Units getUnitsId() {
-        return unitsId;
+    public Units getUnits() {
+        return units;
     }
 
-    public void setUnitsId(Units unitsId) {
-        this.unitsId = unitsId;
+    public void setUnits(Units units) {
+        this.units = units;
+    }
+
+    public void setMerchandiseSalsePrice(double merchandiseSalsePrice) {
+        this.merchandiseSalsePrice = merchandiseSalsePrice;
+    }
+
+    public SalesStatus getSalesStatus() {
+        return salesStatus;
+    }
+
+    public void setSalesStatus(SalesStatus salesStatus) {
+        this.salesStatus = salesStatus;
     }
 
     public String getMerchandisePlaceOfOrigin() {
@@ -125,17 +137,5 @@ public class Merchandise {
 
     public double getMerchandiseSalsePrice() {
         return merchandiseSalsePrice;
-    }
-
-    public void setMerchandiseSalsePrice(double merchandiseSalsePrice) {
-        this.merchandiseSalsePrice = merchandiseSalsePrice;
-    }
-
-    public SalesStatus getSalesStatusId() {
-        return salesStatusId;
-    }
-
-    public void setSalesStatusId(SalesStatus salesStatusId) {
-        this.salesStatusId = salesStatusId;
     }
 }

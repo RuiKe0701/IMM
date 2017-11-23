@@ -1,11 +1,5 @@
 package team.runke.imm.entity;
 import java.util.Date;
-
-/**
- *　@author 索志文
- *　@versrion 1.0
- * 客户关系维护记录
- */
 public class Crm {
     /**
      * 记录编号
@@ -40,35 +34,35 @@ public class Crm {
         this.crmId = crmId;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public Integer getClientId() {
-        return clientId;
+    public Integer getClient() {
+        return client;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setClient(Integer client) {
+        this.client = client;
     }
 
-    public Integer getCrmDemand() {
+    public int getCrmDemand() {
         return crmDemand;
     }
 
-    public void setCrmDemand(Integer crmDemand) {
+    public void setCrmDemand(int crmDemand) {
         this.crmDemand = crmDemand;
     }
 
-    public Integer getCrmAsk() {
+    public int getCrmAsk() {
         return crmAsk;
     }
 
-    public void setCrmAsk(Integer crmAsk) {
+    public void setCrmAsk(int crmAsk) {
         this.crmAsk = crmAsk;
     }
 

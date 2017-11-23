@@ -1,17 +1,6 @@
 package team.runke.imm.entity;
-/**
- *　@author 索志文
- *　@versrion 1.0
- * 员工信息
- */
 public class Employee {
-    /**
-     * 员工编号
-     */
-    private Integer employeeId;
-    /**
-     * 员工名称
-     */
+    private int employeeId;
     private String employeeName;
     /**
      * 职位编号
@@ -50,12 +39,12 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public Position getPositionId() {
-        return positionId;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositionId(Position positionId) {
-        this.positionId = positionId;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public String getEmployeeIdNumber() {

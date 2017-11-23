@@ -1,13 +1,14 @@
 package team.runke.imm.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author 闫琛昊
  * @version 1.0
- *
+ *用户信息
  */
-public class User {
+public class User implements Serializable{
     /**
      * 用户编号
      */
@@ -24,15 +25,6 @@ public class User {
      * 员工编号
      */
     private Employee employee;
-
-    public List<RolePermissions> getRolePermissions() {
-        return rolePermissions;
-    }
-
-    public void setRolePermissions(List<RolePermissions> rolePermissions) {
-        this.rolePermissions = rolePermissions;
-    }
-
     /**
      * 角色权限表
 
@@ -69,5 +61,13 @@ public class User {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public List<RolePermissions> getRolePermissions() {
+        return rolePermissions;
+    }
+
+    public void setRolePermissions(List<RolePermissions> rolePermissions) {
+        this.rolePermissions = rolePermissions;
     }
 }

@@ -1,58 +1,81 @@
 package team.runke.imm.entity;
-import java.math.BigDecimal;
-public class ProcurementInformation {
-    private int piId;
-    private String procurementId;
-    private int merchandiseId;
-    private BigDecimal piActualPrice;
-    private int piVolume;
-    private int unitsId;
 
-    public int getPiId() {
+/**
+ * @author 索志文
+ * @version 1.0
+ * 采购订单详情
+ */
+public class ProcurementInformation {
+    /**
+     * 采购编号
+     */
+    private Integer piId;
+    /**
+     * 采购单号
+     */
+    private Procurement procurementId;
+    /**
+     * 商品编号
+     */
+    private Merchandise merchandiseId;
+    /**
+     * 采购价格
+     */
+    private double piActualPrice;
+    /**
+     * 采购数量
+     */
+    private Integer piVolume;
+    /**
+     * 单位
+     */
+    private Units unitsId;
+
+    public Integer getPiId() {
         return piId;
     }
 
-    public void setPiId(int piId) {
+    public void setPiId(Integer piId) {
         this.piId = piId;
     }
 
-    public String getProcurementId() {
+    public Procurement getProcurementId() {
         return procurementId;
     }
 
-    public void setProcurementId(String procurementId) {
+    public void setProcurementId(Procurement procurementId) {
         this.procurementId = procurementId;
     }
 
-    public int getMerchandiseId() {
+    public Merchandise getMerchandiseId() {
         return merchandiseId;
     }
 
-    public void setMerchandiseId(int merchandiseId) {
+    public void setMerchandiseId(Merchandise merchandiseId) {
         this.merchandiseId = merchandiseId;
     }
 
-    public BigDecimal getPiActualPrice() {
+    public double getPiActualPrice() {
         return piActualPrice;
     }
 
-    public void setPiActualPrice(BigDecimal piActualPrice) {
+    public void setPiActualPrice(double piActualPrice) {
         this.piActualPrice = piActualPrice;
     }
 
-    public int getPiVolume() {
+    public Integer getPiVolume() {
         return piVolume;
     }
 
-    public void setPiVolume(int piVolume) {
+    public void setPiVolume(Integer piVolume) {
         this.piVolume = piVolume;
     }
 
-    public int getUnitsId() {
+    public Units getUnitsId() {
         return unitsId;
     }
 
-    public void setUnitsId(int unitsId) {
+    public void setUnitsId(Units unitsId) {
         this.unitsId = unitsId;
     }
 }

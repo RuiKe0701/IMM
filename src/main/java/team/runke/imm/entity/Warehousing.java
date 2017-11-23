@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * @author 闫琛昊
  * @version 1.0
- *
+ *入库记录
  */
 public class Warehousing {
     /**

@@ -2,7 +2,7 @@ package team.runke.imm.entity;
 /**
  * @author 闫琛昊
  * @version 1.0
- *
+ *角色权限
  */
 public class RolePermissions {
     /**
