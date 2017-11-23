@@ -18,27 +18,12 @@
     <!--配置SqlSessionFactoryBean start-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="typeAliasesPackage" value="cn.vote.pojo"/>-->
-        <!--<property name="mapperLocations">-->
-            <!--<list>-->
-                <!--<value>classpath:cn/vote/dao/**/*.xml</value>-->
-            <!--</list>-->
-        <!--</property>-->
+        <property name="typeAliasesPackage" value="team.runke.imm.entity"/>
     </bean>
-    <!--<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
-    <!--<tx:advice id="tx" transaction-manager="txManager">-->
-        <!--<tx:attributes>-->
-            <!--<tx:method name="*"/>-->
-        <!--</tx:attributes>-->
-    <!--</tx:advice>-->
-    <!--<aop:config>-->
-        <!--<aop:pointcut id="ser" expression="execution(* cn.vote.service.*.*(..))"/>-->
-        <!--<aop:advisor advice-ref="tx" pointcut-ref="ser"/>-->
-    <!--</aop:config>-->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="cn.vote.dao"/>-->
-    <!--</bean>-->
-    <!--<context:component-scan base-package="cn.vote.service.impl"/>-->
+    <!-- 扫描地址下所有文件-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="team.runke.imm.dao"/>
+    </bean>
+    <!-- 扫描地址下所有文件  单元测试里context.getBean("首字母小写后面不变");-->
+    <context:component-scan base-package="team.runke.imm.service.impl" />
 </beans>

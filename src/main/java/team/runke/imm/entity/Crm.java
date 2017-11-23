@@ -1,5 +1,11 @@
 package team.runke.imm.entity;
 import java.util.Date;
+
+/**
+ * @author 索志文
+ * @version 1.0
+ * 客户关系维护记录
+ */
 public class Crm {
     /**
      * 记录编号

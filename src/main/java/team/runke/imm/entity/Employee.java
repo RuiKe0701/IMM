@@ -1,6 +1,18 @@
 package team.runke.imm.entity;
+
+/**
+ *@author 索志文
+ * @version 1.0
+ * 员工信息
+ */
 public class Employee {
+    /**
+     * 员工编号
+     */
     private int employeeId;
+    /**
+     * 员工名称
+     */
     private String employeeName;
     /**
      * 职位编号
