@@ -7,7 +7,7 @@ package team.runke.imm.entity;
  */
 public class Client {
     /**
-     * 客户编号
+     * 客户编号s
      */
     private Integer clientId;
     /**
