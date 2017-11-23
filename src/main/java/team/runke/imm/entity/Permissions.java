@@ -1,13 +1,25 @@
 package team.runke.imm.entity;
+
+/**
+ *　@author 索志文
+ *　@versrion 1.0
+ * 权限
+ */
 public class Permissions {
-    private int permissionsId;
+    /**
+     * 权限编号
+     */
+    private Integer permissionsId;
+    /**
+     * 权限名字
+     */
     private String permissionsName;
 
-    public int getPermissionsId() {
+    public Integer getPermissionsId() {
         return permissionsId;
     }
 
-    public void setPermissionsId(int permissionsId) {
+    public void setPermissionsId(Integer permissionsId) {
         this.permissionsId = permissionsId;
     }
 

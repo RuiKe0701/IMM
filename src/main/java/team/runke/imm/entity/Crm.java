@@ -1,50 +1,74 @@
 package team.runke.imm.entity;
 import java.util.Date;
+
+/**
+ *　@author 索志文
+ *　@versrion 1.0
+ * 客户关系维护记录
+ */
 public class Crm {
-    private int crmId;
-    private int employeeId;
-    private int clientId;
-    private int crmDemand;
-    private int crmAsk;
+    /**
+     * 记录编号
+     */
+    private Integer crmId;
+    /**
+     * 员工编号
+     */
+    private Employee employee;
+    /**
+     * 客户编号
+     */
+    private Integer client;
+    /**
+     * 是否需求
+     */
+    private Integer crmDemand;
+    /**
+     * 是否询问
+     */
+    private Integer crmAsk;
+    /**
+     * 记录时间
+     */
     private Date crmDate;
 
-    public int getCrmId() {
+    public Integer getCrmId() {
         return crmId;
     }
 
-    public void setCrmId(int crmId) {
+    public void setCrmId(Integer crmId) {
         this.crmId = crmId;
     }
 
-    public int getEmployeeId() {
+    public Employee getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Employee employeeId) {
         this.employeeId = employeeId;
     }
 
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
-    public int getCrmDemand() {
+    public Integer getCrmDemand() {
         return crmDemand;
     }
 
-    public void setCrmDemand(int crmDemand) {
+    public void setCrmDemand(Integer crmDemand) {
         this.crmDemand = crmDemand;
     }
 
-    public int getCrmAsk() {
+    public Integer getCrmAsk() {
         return crmAsk;
     }
 
-    public void setCrmAsk(int crmAsk) {
+    public void setCrmAsk(Integer crmAsk) {
         this.crmAsk = crmAsk;
     }
 

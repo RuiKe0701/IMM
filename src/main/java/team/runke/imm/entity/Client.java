@@ -1,20 +1,53 @@
 package team.runke.imm.entity;
+
+/**
+ * @author 索志文
+ * @versrion 1.0
+ * 客户信息
+ */
 public class Client {
-    private int clientId;
+    /**
+     * 客户编号
+     */
+    private Integer clientId;
+    /**
+     * 客户名称
+     */
     private String clientName;
+    /**
+     * 负责人名称
+     */
     private String clientPersonInCharge;
+    /**
+     * 负责人职称
+     */
     private String clientPost;
+    /**
+     *电话
+     */
     private String clientPhone;
+    /**
+     *移动电话
+     */
     private String clientMobilePhone;
+    /**
+     * 传真
+     */
     private String clientFax;
+    /**
+     * 客户地址
+     */
     private String clientAddress;
+    /**
+     * 送货地址
+     */
     private String clientFactoryAddress;
 
     public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientIdntId) {
         this.clientId = clientId;
     }
 
