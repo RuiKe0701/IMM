@@ -18,7 +18,7 @@ public interface EmployeeDao {
     /**
      *指定条件修改员工信息
      * @param employee
-     * @return
+     * @return099
      */
     public int updateEmployee(Employee employee);
 
