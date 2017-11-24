@@ -1,9 +1,11 @@
 package team.runke.imm.entity;
+import com.sun.org.apache.bcel.internal.generic.INEG;
+
 import java.util.Date;
 
 /**
  * @author 索志文
- * @version 1.0
+ * @version 2.0
  * 客户关系维护记录
  */
 public class Crm {
@@ -31,6 +33,26 @@ public class Crm {
      * 记录时间
      */
     private Date crmDate;
+    /**
+     * 是否已删除
+     */
+    private Integer crmState;
+
+    public void setCrmDemand(Integer crmDemand) {
+        this.crmDemand = crmDemand;
+    }
+
+    public void setCrmAsk(Integer crmAsk) {
+        this.crmAsk = crmAsk;
+    }
+
+    public Integer getCrmState() {
+        return crmState;
+    }
+
+    public void setCrmState(Integer crmState) {
+        this.crmState = crmState;
+    }
 
     public Integer getCrmId() {
         return crmId;

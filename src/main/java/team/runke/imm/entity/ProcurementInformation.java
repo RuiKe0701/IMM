@@ -2,7 +2,7 @@ package team.runke.imm.entity;
 
 /**
  * @author 索志文
- * @version 1.0
+ * @version 2.0
  * 采购订单详情
  */
 public class ProcurementInformation {
@@ -30,6 +30,18 @@ public class ProcurementInformation {
      * 单位
      */
     private Units unitsId;
+    /**
+     * 是否已删除
+     */
+    private Integer piState;
+
+    public Integer getPiState() {
+        return piState;
+    }
+
+    public void setPiState(Integer piState) {
+        this.piState = piState;
+    }
 
     public Integer getPiId() {
         return piId;

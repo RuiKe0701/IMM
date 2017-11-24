@@ -3,7 +3,7 @@ import java.util.Date;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *入库记录
  */
 public class Warehousing {
@@ -35,6 +35,18 @@ public class Warehousing {
      * 经办人
      */
     private int warehousingEmployeeId;
+    /**
+     * 是否已删除
+     */
+    private Integer warehousing_state;
+
+    public Integer getWarehousing_state() {
+        return warehousing_state;
+    }
+
+    public void setWarehousing_state(Integer warehousing_state) {
+        this.warehousing_state = warehousing_state;
+    }
 
     public Integer getWarehousingId() {
         return warehousingId;

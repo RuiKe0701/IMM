@@ -1,0 +1,32 @@
+package team.runke.imm.dao;
+
+import team.runke.imm.entity.EventDetails;
+import team.runke.imm.entity.Merchandise;
+
+import java.util.List;
+/**
+ * @author 索志文
+ * @version 1.0
+ */
+public interface MerchandiseDao {
+    /**
+     * 指定条件查询商品信息
+     * @param merchandise 商品信息
+     * @return
+     */
+    public List<Merchandise> selecrMerchandise(Merchandise merchandise);
+
+    /**
+     *指定条件修改商品信息
+     * @param merchandise
+     * @return
+     */
+    public int updateMerchandise(Merchandise merchandise);
+
+    /**
+     *增加商品信息
+     * @param merchandise
+     * @return
+     */
+    public int insertMerchandise(Merchandise merchandise);
+}

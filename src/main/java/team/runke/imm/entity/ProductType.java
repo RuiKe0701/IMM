@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  * 种类信息
  */
 public class ProductType {
@@ -21,6 +21,18 @@ public class ProductType {
      * 供应商信息表
      */
     private List<Supplier>supplier;
+    /**
+     * 是否已删除
+     */
+    private Integer productTypeState;
+
+    public Integer getProductTypeState() {
+        return productTypeState;
+    }
+
+    public void setProductTypeState(Integer productTypeState) {
+        this.productTypeState = productTypeState;
+    }
 
     public List<Supplier> getSupplier() {
         return supplier;

@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *单位信息
  */
 public class Units {
@@ -28,6 +28,11 @@ public class Units {
      * 采购订单详情表
      */
     private List<ProcurementInformation> procurementInformation;
+    /**
+     * 是否已删除
+     */
+    private Integer units_state;
+
     public int getUnitsId() {
         return unitsId;
     }
@@ -42,5 +47,37 @@ public class Units {
 
     public void setUnitsName(String unitsName) {
         this.unitsName = unitsName;
+    }
+
+    public List<Merchandise> getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(List<Merchandise> merchandise) {
+        this.merchandise = merchandise;
+    }
+
+    public List<SalesInformation> getSalesInformation() {
+        return salesInformation;
+    }
+
+    public void setSalesInformation(List<SalesInformation> salesInformation) {
+        this.salesInformation = salesInformation;
+    }
+
+    public List<ProcurementInformation> getProcurementInformation() {
+        return procurementInformation;
+    }
+
+    public void setProcurementInformation(List<ProcurementInformation> procurementInformation) {
+        this.procurementInformation = procurementInformation;
+    }
+
+    public Integer getUnits_state() {
+        return units_state;
+    }
+
+    public void setUnits_state(Integer units_state) {
+        this.units_state = units_state;
     }
 }

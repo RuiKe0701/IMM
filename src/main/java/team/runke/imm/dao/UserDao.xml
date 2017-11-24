@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="team.runke.imm.dao.UserDao">
+
+    <resultMap id="userMap" type="user">
+        <result column="user_id" property="userId" />
+        <result  column="user_name" property="userName" />
+        <result  column="user_password" property="userPassword" />
+        <collection property="employee" ofType="employee">
+            <result property="employeeId" column="employee_id" />
+        </collection>
+    </resultMap>
+
+
+    <select id="selecrUser" resultMap="userMap">
+        SELECT * FROM user u,employee e
+        <where>
+            u.user_id=e.employee_id
+            <if test="userId!=null and userId>0">
+              and  u.user_id=#{userId}
+            </if>
+            <if test="userName!=null">
+                and u.user_name=#{userName}
+            </if>
+        </where>
+    </select>
+</mapper>

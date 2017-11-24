@@ -2,7 +2,7 @@ package team.runke.imm.entity;
 
 /**
  *　@author 索志文
- *　@versrion 1.0
+ *　@versrion 2.0
  * 商品信息
  */
 public class Merchandise {
@@ -50,6 +50,18 @@ public class Merchandise {
      * 销售状态
      */
     private SalesStatus salesStatus;
+    /**
+     * 是否已删除
+     */
+    private  Integer merchandiseState;
+
+    public Integer getMerchandiseState() {
+        return merchandiseState;
+    }
+
+    public void setMerchandiseState(Integer merchandiseState) {
+        this.merchandiseState = merchandiseState;
+    }
 
     public Integer getMerchandiseId() {
         return merchandiseId;

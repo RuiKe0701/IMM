@@ -2,7 +2,7 @@ package team.runke.imm.entity;
 
 /**
  *@author 索志文
- * @version 1.0
+ * @version 2.0
  * 员工信息
  */
 public class Employee {
@@ -34,6 +34,22 @@ public class Employee {
      * 联络地址
      */
     private String employeeAddress;
+    /**
+     * 是否已删除
+     */
+    private  Integer employeeState;
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Integer getEmployeeState() {
+        return employeeState;
+    }
+
+    public void setEmployeeState(Integer employeeState) {
+        this.employeeState = employeeState;
+    }
 
     public Integer getEmployeeId() {
         return employeeId;

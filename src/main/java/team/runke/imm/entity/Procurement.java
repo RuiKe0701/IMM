@@ -3,7 +3,7 @@ import java.util.Date;
 
 /**
  * @author 索志文
- * @version 1.0
+ * @version 2.0
  * 采购订单
  */
 public class Procurement {
@@ -27,6 +27,18 @@ public class Procurement {
      * 状态
      */
     private Integer procurementAccomplish;
+    /**
+     * 是否已删除
+     */
+    private  Integer procurementState;
+
+    public Integer getProcurementState() {
+        return procurementState;
+    }
+
+    public void setProcurementState(Integer procurementState) {
+        this.procurementState = procurementState;
+    }
 
     public String getProcurementId() {
         return procurementId;

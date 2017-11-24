@@ -2,7 +2,7 @@ package team.runke.imm.entity;
 
 /**
  * @author 索志文
- * @versrion 1.0
+ * @versrion 2.0
  * 客户信息
  */
 public class Client {
@@ -42,6 +42,18 @@ public class Client {
      * 送货地址
      */
     private String clientFactoryAddress;
+    /**
+     * 是否已删除
+     */
+    private Integer clientState;
+
+    public Integer getClientState() {
+        return clientState;
+    }
+
+    public void setClientState(Integer clientState) {
+        this.clientState = clientState;
+    }
 
     public int getClientId() {
         return clientId;

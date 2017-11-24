@@ -2,37 +2,89 @@ package team.runke.imm.entity;
 import java.util.Date;
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *出库记录
  */
 public class StorageMove {
     /**
+     * 出库编号
+     */
+    private  Integer smId;
+    /**
      * 入库编号
      */
-    private Integer warehousingId;
+    private Warehousing warehousing;
     /**
      * 出库人
      */
-    private Employee employee;
+    private Integer smBuyer;
     /**
      * 售货单号
      */
-    private Sales sales;
+    private Sales salesId;
     /**
      * 出库日期
      */
-    private Date warehousingDate;
+    private Date smDate;
     /**
      * 出库备注
      */
-    private String warehousingRemarks;
+    private String smRemarks;
     /**
      * 经办人
      */
-    private Integer warehousingEmployeeId;
+    private Employee employee;
+    /**
+     * 是否已删除
+     */
+    private Integer smState;
 
-    public void setWarehousingId(Integer warehousingId) {
-        this.warehousingId = warehousingId;
+    public Integer getSmId() {
+        return smId;
+    }
+
+    public void setSmId(Integer smId) {
+        this.smId = smId;
+    }
+
+    public Warehousing getWarehousing() {
+        return warehousing;
+    }
+
+    public void setWarehousing(Warehousing warehousing) {
+        this.warehousing = warehousing;
+    }
+
+    public Integer getSmBuyer() {
+        return smBuyer;
+    }
+
+    public void setSmBuyer(Integer smBuyer) {
+        this.smBuyer = smBuyer;
+    }
+
+    public Sales getSalesId() {
+        return salesId;
+    }
+
+    public void setSalesId(Sales salesId) {
+        this.salesId = salesId;
+    }
+
+    public Date getSmDate() {
+        return smDate;
+    }
+
+    public void setSmDate(Date smDate) {
+        this.smDate = smDate;
+    }
+
+    public String getSmRemarks() {
+        return smRemarks;
+    }
+
+    public void setSmRemarks(String smRemarks) {
+        this.smRemarks = smRemarks;
     }
 
     public Employee getEmployee() {
@@ -43,15 +95,11 @@ public class StorageMove {
         this.employee = employee;
     }
 
-    public Sales getSales() {
-        return sales;
+    public Integer getSmState() {
+        return smState;
     }
 
-    public void setSales(Sales sales) {
-        this.sales = sales;
-    }
-
-    public void setWarehousingEmployeeId(Integer warehousingEmployeeId) {
-        this.warehousingEmployeeId = warehousingEmployeeId;
+    public void setSmState(Integer smState) {
+        this.smState = smState;
     }
 }
