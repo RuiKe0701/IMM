@@ -18,11 +18,11 @@ public class Warehousing {
     /**
      * 入库人
      */
-    private Integer warehousingBuyer;
+    private Integer warehousing_buyer;
     /**
      * 采购单号
      */
-    private Procurement procurement;
+    private Integer procurementId;
     /**
      * 入库日期
      */
@@ -38,15 +38,15 @@ public class Warehousing {
     /**
      * 是否已删除
      */
-    private Integer warehousing_state;
-
-    public Integer getWarehousing_state() {
-        return warehousing_state;
-    }
-
-    public void setWarehousing_state(Integer warehousing_state) {
-        this.warehousing_state = warehousing_state;
-    }
+    private Integer warehousingState;
+    /**
+     * 员工信息
+     */
+    private Employee employee;
+    /**
+     * 采购单号
+     */
+    private Procurement procurement;
 
     public Integer getWarehousingId() {
         return warehousingId;
@@ -64,20 +64,20 @@ public class Warehousing {
         this.warehousingBatchNumber = warehousingBatchNumber;
     }
 
-    public Integer getWarehousingBuyer() {
-        return warehousingBuyer;
+    public Integer getWarehousing_buyer() {
+        return warehousing_buyer;
     }
 
-    public void setWarehousingBuyer(Integer warehousingBuyer) {
-        this.warehousingBuyer = warehousingBuyer;
+    public void setWarehousing_buyer(Integer warehousing_buyer) {
+        this.warehousing_buyer = warehousing_buyer;
     }
 
-    public Procurement getProcurement() {
-        return procurement;
+    public Integer getProcurementId() {
+        return procurementId;
     }
 
-    public void setProcurement(Procurement procurement) {
-        this.procurement = procurement;
+    public void setProcurementId(Integer procurementId) {
+        this.procurementId = procurementId;
     }
 
     public Date getWarehousingDate() {
@@ -103,4 +103,29 @@ public class Warehousing {
     public void setWarehousingEmployeeId(int warehousingEmployeeId) {
         this.warehousingEmployeeId = warehousingEmployeeId;
     }
+
+    public Integer getWarehousingState() {
+        return warehousingState;
+    }
+
+    public void setWarehousingState(Integer warehousingState) {
+        this.warehousingState = warehousingState;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Procurement getProcurement() {
+        return procurement;
+    }
+
+    public void setProcurement(Procurement procurement) {
+        this.procurement = procurement;
+    }
+    //aaa
 }

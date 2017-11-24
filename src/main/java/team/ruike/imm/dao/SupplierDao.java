@@ -1,7 +1,5 @@
 package team.ruike.imm.dao;
 
-import team.ruike.imm.entity.Supplier;
-
 import java.util.List;
 
 /**

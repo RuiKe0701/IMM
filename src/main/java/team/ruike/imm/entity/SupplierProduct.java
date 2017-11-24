@@ -8,34 +8,70 @@ public class SupplierProduct {
     /**
      * 编号
      */
-    private int supplierProductId;
+    private Integer supplierProductId;
+    /**
+     * 商品编号
+     */
+    private Integer merchandiseId;
+    /**
+     * 供应商编号
+     */
+    private Integer supplierId;
+    /**
+     * 供应商报价
+     */
+    private double supplierProductPrice;
+    /**
+     * 是否已删除
+     */
+    private Integer supplierProductState;
     /**
      * 商品编号
      */
     private Merchandise merchandise;
     /**
-     * 供应商
+     * 供应商编号
      */
     private Supplier supplier;
-    /**
-     * 是否已删除
-     */
-    private Integer supplier_product_state;
 
-    public Integer getSupplier_product_state() {
-        return supplier_product_state;
-    }
-
-    public void setSupplier_product_state(Integer supplier_product_state) {
-        this.supplier_product_state = supplier_product_state;
-    }
-
-    public int getSupplierProductId() {
+    public Integer getSupplierProductId() {
         return supplierProductId;
     }
 
-    public void setSupplierProductId(int supplierProductId) {
+    public void setSupplierProductId(Integer supplierProductId) {
         this.supplierProductId = supplierProductId;
+    }
+
+    public Integer getMerchandiseId() {
+        return merchandiseId;
+    }
+
+    public void setMerchandiseId(Integer merchandiseId) {
+        this.merchandiseId = merchandiseId;
+    }
+
+    public Integer getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public double getSupplierProductPrice() {
+        return supplierProductPrice;
+    }
+
+    public void setSupplierProductPrice(double supplierProductPrice) {
+        this.supplierProductPrice = supplierProductPrice;
+    }
+
+    public Integer getSupplierProductState() {
+        return supplierProductState;
+    }
+
+    public void setSupplierProductState(Integer supplierProductState) {
+        this.supplierProductState = supplierProductState;
     }
 
     public Merchandise getMerchandise() {

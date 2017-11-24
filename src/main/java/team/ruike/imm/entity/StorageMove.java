@@ -13,7 +13,7 @@ public class StorageMove {
     /**
      * 入库编号
      */
-    private Warehousing warehousing;
+    private Integer warehousingId;
     /**
      * 出库人
      */
@@ -21,7 +21,7 @@ public class StorageMove {
     /**
      * 售货单号
      */
-    private Sales salesId;
+    private String salesId;
     /**
      * 出库日期
      */
@@ -33,11 +33,23 @@ public class StorageMove {
     /**
      * 经办人
      */
-    private Employee employee;
+    private Integer employeeId;
     /**
      * 是否已删除
      */
     private Integer smState;
+    /**
+     * 入库记录表
+     */
+    private Warehousing warehousing;
+    /**
+     * 员工信息表
+     */
+    private Employee employee;
+    /**
+     * 销售订单表
+     */
+    private Sales sales;
 
     public Integer getSmId() {
         return smId;
@@ -47,12 +59,12 @@ public class StorageMove {
         this.smId = smId;
     }
 
-    public Warehousing getWarehousing() {
-        return warehousing;
+    public Integer getWarehousingId() {
+        return warehousingId;
     }
 
-    public void setWarehousing(Warehousing warehousing) {
-        this.warehousing = warehousing;
+    public void setWarehousingId(Integer warehousingId) {
+        this.warehousingId = warehousingId;
     }
 
     public Integer getSmBuyer() {
@@ -63,11 +75,11 @@ public class StorageMove {
         this.smBuyer = smBuyer;
     }
 
-    public Sales getSalesId() {
+    public String getSalesId() {
         return salesId;
     }
 
-    public void setSalesId(Sales salesId) {
+    public void setSalesId(String salesId) {
         this.salesId = salesId;
     }
 
@@ -87,12 +99,12 @@ public class StorageMove {
         this.smRemarks = smRemarks;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public Integer getSmState() {
@@ -101,5 +113,29 @@ public class StorageMove {
 
     public void setSmState(Integer smState) {
         this.smState = smState;
+    }
+
+    public Warehousing getWarehousing() {
+        return warehousing;
+    }
+
+    public void setWarehousing(Warehousing warehousing) {
+        this.warehousing = warehousing;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Sales getSales() {
+        return sales;
+    }
+
+    public void setSales(Sales sales) {
+        this.sales = sales;
     }
 }
