@@ -7,6 +7,11 @@ import team.ruike.imm.service.UserService;
 
 import javax.annotation.Resource;
 import java.util.List;
+
+/**
+ * @author  @author 索志文
+ * 测试
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Resource
