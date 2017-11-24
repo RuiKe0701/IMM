@@ -16,7 +16,7 @@ public class SalesInformation {
     /**
      * 药品编号
      */
-    private Merchandise merchandise;
+    private Integer merchandiseId;
     /**
      * 销售数量
      */
@@ -24,7 +24,7 @@ public class SalesInformation {
     /**
      * 单位
      */
-    private Units units;
+    private Integer unitsId;
     /**
      * 售价
      */
@@ -34,25 +34,17 @@ public class SalesInformation {
      */
     private Integer siState;
     /**
-     * 销售订单
+     * 销售订单表
      */
     private Sales sales;
-
-    public Integer getSiState() {
-        return siState;
-    }
-
-    public void setSiState(Integer siState) {
-        this.siState = siState;
-    }
-
-    public Sales getSales() {
-        return sales;
-    }
-
-    public void setSales(Sales sales) {
-        this.sales = sales;
-    }
+    /**
+     * 销售订单详情
+     */
+    private Merchandise merchandise;
+    /**
+     * 单位
+     */
+    private Units units;
 
     public Integer getSiId() {
         return siId;
@@ -70,12 +62,12 @@ public class SalesInformation {
         this.salesId = salesId;
     }
 
-    public Merchandise getMerchandise() {
-        return merchandise;
+    public Integer getMerchandiseId() {
+        return merchandiseId;
     }
 
-    public void setMerchandise(Merchandise merchandise) {
-        this.merchandise = merchandise;
+    public void setMerchandiseId(Integer merchandiseId) {
+        this.merchandiseId = merchandiseId;
     }
 
     public Integer getSiVolume() {
@@ -86,12 +78,12 @@ public class SalesInformation {
         this.siVolume = siVolume;
     }
 
-    public Units getUnits() {
-        return units;
+    public Integer getUnitsId() {
+        return unitsId;
     }
 
-    public void setUnits(Units units) {
-        this.units = units;
+    public void setUnitsId(Integer unitsId) {
+        this.unitsId = unitsId;
     }
 
     public double getSiActualPrice() {
@@ -100,5 +92,37 @@ public class SalesInformation {
 
     public void setSiActualPrice(double siActualPrice) {
         this.siActualPrice = siActualPrice;
+    }
+
+    public Integer getSiState() {
+        return siState;
+    }
+
+    public void setSiState(Integer siState) {
+        this.siState = siState;
+    }
+
+    public Sales getSales() {
+        return sales;
+    }
+
+    public void setSales(Sales sales) {
+        this.sales = sales;
+    }
+
+    public Merchandise getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(Merchandise merchandise) {
+        this.merchandise = merchandise;
+    }
+
+    public Units getUnits() {
+        return units;
+    }
+
+    public void setUnits(Units units) {
+        this.units = units;
     }
 }

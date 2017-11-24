@@ -1,7 +1,5 @@
 package team.ruike.imm.dao;
 
-import team.ruike.imm.entity.Warehousing;
-
 import java.util.List;
 
 /**
