@@ -9,7 +9,7 @@ public class Employee {
     /**
      * 员工编号
      */
-    private int employeeId;
+    private Integer employeeId;
     /**
      * 员工名称
      */
@@ -17,7 +17,7 @@ public class Employee {
     /**
      * 职位编号
      */
-    private Position position;
+    private Integer positionId;
     /**
      *身份证号
      */
@@ -38,18 +38,10 @@ public class Employee {
      * 是否已删除
      */
     private  Integer employeeState;
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Integer getEmployeeState() {
-        return employeeState;
-    }
-
-    public void setEmployeeState(Integer employeeState) {
-        this.employeeState = employeeState;
-    }
+    /**
+     * 职位信息
+     */
+    private Position position;
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -67,12 +59,12 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public Position getPosition() {
-        return position;
+    public Integer getPositionId() {
+        return positionId;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
     }
 
     public String getEmployeeIdNumber() {
@@ -105,5 +97,21 @@ public class Employee {
 
     public void setEmployeeAddress(String employeeAddress) {
         this.employeeAddress = employeeAddress;
+    }
+
+    public Integer getEmployeeState() {
+        return employeeState;
+    }
+
+    public void setEmployeeState(Integer employeeState) {
+        this.employeeState = employeeState;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

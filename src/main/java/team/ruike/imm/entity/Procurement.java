@@ -18,11 +18,12 @@ public class Procurement {
     /**
      * 供应商编号
      */
-    private Supplier supplier;
+    private  Integer supplierId;
+
     /**
-     * 采购人
+     * 员工编号
      */
-    private Employee procurementEmployee;
+    private Integer procurementEmployeeId;
     /**
      * 状态
      */
@@ -31,14 +32,14 @@ public class Procurement {
      * 是否已删除
      */
     private  Integer procurementState;
-
-    public Integer getProcurementState() {
-        return procurementState;
-    }
-
-    public void setProcurementState(Integer procurementState) {
-        this.procurementState = procurementState;
-    }
+    /**
+     * 采购人 =员工信息
+     */
+    private Employee procurementEmployee;
+    /**
+     * 供应商信息
+     */
+    private Supplier supplier;
 
     public String getProcurementId() {
         return procurementId;
@@ -56,12 +57,36 @@ public class Procurement {
         this.procurementDate = procurementDate;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Integer getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public Integer getProcurementEmployeeId() {
+        return procurementEmployeeId;
+    }
+
+    public void setProcurementEmployeeId(Integer procurementEmployeeId) {
+        this.procurementEmployeeId = procurementEmployeeId;
+    }
+
+    public Integer getProcurementAccomplish() {
+        return procurementAccomplish;
+    }
+
+    public void setProcurementAccomplish(Integer procurementAccomplish) {
+        this.procurementAccomplish = procurementAccomplish;
+    }
+
+    public Integer getProcurementState() {
+        return procurementState;
+    }
+
+    public void setProcurementState(Integer procurementState) {
+        this.procurementState = procurementState;
     }
 
     public Employee getProcurementEmployee() {
@@ -72,11 +97,11 @@ public class Procurement {
         this.procurementEmployee = procurementEmployee;
     }
 
-    public Integer getProcurementAccomplish() {
-        return procurementAccomplish;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setProcurementAccomplish(Integer procurementAccomplish) {
-        this.procurementAccomplish = procurementAccomplish;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 }

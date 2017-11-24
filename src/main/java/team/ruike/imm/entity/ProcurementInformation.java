@@ -11,13 +11,14 @@ public class ProcurementInformation {
      */
     private Integer piId;
     /**
-     * 采购单号
+     * 采购订单编号
      */
-    private Procurement procurementId;
+    private Integer procurementId;
     /**
      * 商品编号
      */
-    private Merchandise merchandiseId;
+    private Integer merchandiseId;
+
     /**
      * 采购价格
      */
@@ -26,23 +27,27 @@ public class ProcurementInformation {
      * 采购数量
      */
     private Integer piVolume;
+
     /**
-     * 单位
+     * 单位编号
      */
-    private Units unitsId;
+    private Integer unitsId;
     /**
      * 是否已删除
      */
     private Integer piState;
-
-    public Integer getPiState() {
-        return piState;
-    }
-
-    public void setPiState(Integer piState) {
-        this.piState = piState;
-    }
-
+    /**
+     * 单位信息
+     */
+    private Units units;
+    /**
+     * 商品信息
+     */
+    private Merchandise merchandise;
+    /**
+     * 采购订单信息
+     */
+    private Procurement procurement;
     public Integer getPiId() {
         return piId;
     }
@@ -51,20 +56,36 @@ public class ProcurementInformation {
         this.piId = piId;
     }
 
-    public Procurement getProcurementId() {
+    public Integer getProcurementId() {
         return procurementId;
     }
 
-    public void setProcurementId(Procurement procurementId) {
+    public void setProcurementId(Integer procurementId) {
         this.procurementId = procurementId;
     }
 
-    public Merchandise getMerchandiseId() {
+    public Procurement getProcurement() {
+        return procurement;
+    }
+
+    public void setProcurement(Procurement procurement) {
+        this.procurement = procurement;
+    }
+
+    public Integer getMerchandiseId() {
         return merchandiseId;
     }
 
-    public void setMerchandiseId(Merchandise merchandiseId) {
+    public void setMerchandiseId(Integer merchandiseId) {
         this.merchandiseId = merchandiseId;
+    }
+
+    public Merchandise getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(Merchandise merchandise) {
+        this.merchandise = merchandise;
     }
 
     public double getPiActualPrice() {
@@ -83,11 +104,27 @@ public class ProcurementInformation {
         this.piVolume = piVolume;
     }
 
-    public Units getUnitsId() {
+    public Units getUnits() {
+        return units;
+    }
+
+    public void setUnits(Units units) {
+        this.units = units;
+    }
+
+    public Integer getUnitsId() {
         return unitsId;
     }
 
-    public void setUnitsId(Units unitsId) {
+    public void setUnitsId(Integer unitsId) {
         this.unitsId = unitsId;
+    }
+
+    public Integer getPiState() {
+        return piState;
+    }
+
+    public void setPiState(Integer piState) {
+        this.piState = piState;
     }
 }

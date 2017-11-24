@@ -26,22 +26,6 @@ public class ProductType {
      */
     private Integer productTypeState;
 
-    public Integer getProductTypeState() {
-        return productTypeState;
-    }
-
-    public void setProductTypeState(Integer productTypeState) {
-        this.productTypeState = productTypeState;
-    }
-
-    public List<Supplier> getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(List<Supplier> supplier) {
-        this.supplier = supplier;
-    }
-
     public Integer getProductTypeId() {
         return productTypeId;
     }
@@ -56,5 +40,21 @@ public class ProductType {
 
     public void setProductTypeName(String productTypeName) {
         this.productTypeName = productTypeName;
+    }
+
+    public List<Supplier> getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(List<Supplier> supplier) {
+        this.supplier = supplier;
+    }
+
+    public Integer getProductTypeState() {
+        return productTypeState;
+    }
+
+    public void setProductTypeState(Integer productTypeState) {
+        this.productTypeState = productTypeState;
     }
 }

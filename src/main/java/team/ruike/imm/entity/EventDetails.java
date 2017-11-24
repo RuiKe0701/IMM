@@ -18,14 +18,6 @@ public class EventDetails {
      */
     private  Integer eventDetailsState;
 
-    public Integer getEventDetailsState() {
-        return eventDetailsState;
-    }
-
-    public void setEventDetailsState(Integer eventDetailsState) {
-        this.eventDetailsState = eventDetailsState;
-    }
-
     public Integer getEventDetailsId() {
         return eventDetailsId;
     }
@@ -40,5 +32,13 @@ public class EventDetails {
 
     public void setEventDetailsName(String eventDetailsName) {
         this.eventDetailsName = eventDetailsName;
+    }
+
+    public Integer getEventDetailsState() {
+        return eventDetailsState;
+    }
+
+    public void setEventDetailsState(Integer eventDetailsState) {
+        this.eventDetailsState = eventDetailsState;
     }
 }

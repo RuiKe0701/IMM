@@ -38,14 +38,14 @@ public class Warehousing {
     /**
      * 是否已删除
      */
-    private Integer warehousing_state;
+    private Integer warehousingState;
 
-    public Integer getWarehousing_state() {
-        return warehousing_state;
+    public Integer getWarehousingState() {
+        return warehousingState;
     }
 
-    public void setWarehousing_state(Integer warehousing_state) {
-        this.warehousing_state = warehousing_state;
+    public void setWarehousingState(Integer warehousingState) {
+        this.warehousingState = warehousingState;
     }
 
     public Integer getWarehousingId() {

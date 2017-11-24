@@ -31,7 +31,7 @@ public class Units {
     /**
      * 是否已删除
      */
-    private Integer units_state;
+    private Integer unitsState;
 
     public int getUnitsId() {
         return unitsId;
@@ -73,11 +73,11 @@ public class Units {
         this.procurementInformation = procurementInformation;
     }
 
-    public Integer getUnits_state() {
-        return units_state;
+    public Integer getUnitsState() {
+        return unitsState;
     }
 
-    public void setUnits_state(Integer units_state) {
-        this.units_state = units_state;
+    public void setUnitsState(Integer unitsState) {
+        this.unitsState = unitsState;
     }
 }
