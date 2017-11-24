@@ -51,14 +51,14 @@ public class Supplier {
     /**
      * 是否已删除
      */
-    private Integer supplier_state;
+    private Integer supplierState;
 
-    public Integer getSupplier_state() {
-        return supplier_state;
+    public Integer getSupplierState() {
+        return supplierState;
     }
 
-    public void setSupplier_state(Integer supplier_state) {
-        this.supplier_state = supplier_state;
+    public void setSupplierState(Integer supplierState) {
+        this.supplierState = supplierState;
     }
 
     public Integer getSupplierId() {

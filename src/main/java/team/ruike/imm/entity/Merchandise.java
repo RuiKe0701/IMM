@@ -22,14 +22,15 @@ public class Merchandise {
      * 商品规格
      */
     private String merchandiseSpecification;
+
     /**
-     * 商品类型
+     * 商品类型编号
      */
-    private ProductType productType;
+    private Integer productTypeId;
     /**
-     * 商品单位
+     * 商品单位信息
      */
-    private Units units;
+    private Integer unitsId;
     /**
      * 产地
      */
@@ -49,19 +50,23 @@ public class Merchandise {
     /**
      * 销售状态
      */
-    private SalesStatus salesStatus;
+    private Integer salesStatusId;
     /**
      * 是否已删除
      */
     private  Integer merchandiseState;
-
-    public Integer getMerchandiseState() {
-        return merchandiseState;
-    }
-
-    public void setMerchandiseState(Integer merchandiseState) {
-        this.merchandiseState = merchandiseState;
-    }
+    /**
+     * 商品单位信息
+     */
+    private Units units;
+    /**
+     * 商品类型
+     */
+    private ProductType productType;
+    /**
+     * 销售状态
+     */
+    private SalesStatus salesStatus;
 
     public Integer getMerchandiseId() {
         return merchandiseId;
@@ -95,32 +100,20 @@ public class Merchandise {
         this.merchandiseSpecification = merchandiseSpecification;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public Integer getProductTypeId() {
+        return productTypeId;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductTypeId(Integer productTypeId) {
+        this.productTypeId = productTypeId;
     }
 
-    public Units getUnits() {
-        return units;
+    public Integer getUnitsId() {
+        return unitsId;
     }
 
-    public void setUnits(Units units) {
-        this.units = units;
-    }
-
-    public void setMerchandiseSalsePrice(double merchandiseSalsePrice) {
-        this.merchandiseSalsePrice = merchandiseSalsePrice;
-    }
-
-    public SalesStatus getSalesStatus() {
-        return salesStatus;
-    }
-
-    public void setSalesStatus(SalesStatus salesStatus) {
-        this.salesStatus = salesStatus;
+    public void setUnitsId(Integer unitsId) {
+        this.unitsId = unitsId;
     }
 
     public String getMerchandisePlaceOfOrigin() {
@@ -149,5 +142,49 @@ public class Merchandise {
 
     public double getMerchandiseSalsePrice() {
         return merchandiseSalsePrice;
+    }
+
+    public void setMerchandiseSalsePrice(double merchandiseSalsePrice) {
+        this.merchandiseSalsePrice = merchandiseSalsePrice;
+    }
+
+    public Integer getSalesStatusId() {
+        return salesStatusId;
+    }
+
+    public void setSalesStatusId(Integer salesStatusId) {
+        this.salesStatusId = salesStatusId;
+    }
+
+    public Integer getMerchandiseState() {
+        return merchandiseState;
+    }
+
+    public void setMerchandiseState(Integer merchandiseState) {
+        this.merchandiseState = merchandiseState;
+    }
+
+    public Units getUnits() {
+        return units;
+    }
+
+    public void setUnits(Units units) {
+        this.units = units;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public SalesStatus getSalesStatus() {
+        return salesStatus;
+    }
+
+    public void setSalesStatus(SalesStatus salesStatus) {
+        this.salesStatus = salesStatus;
     }
 }

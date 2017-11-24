@@ -20,14 +20,14 @@ public class SupplierProduct {
     /**
      * 是否已删除
      */
-    private Integer supplier_product_state;
+    private Integer supplierProductState;
 
-    public Integer getSupplier_product_state() {
-        return supplier_product_state;
+    public Integer getSupplierProductState() {
+        return supplierProductState;
     }
 
-    public void setSupplier_product_state(Integer supplier_product_state) {
-        this.supplier_product_state = supplier_product_state;
+    public void setSupplierProductState(Integer supplierProductState) {
+        this.supplierProductState = supplierProductState;
     }
 
     public int getSupplierProductId() {

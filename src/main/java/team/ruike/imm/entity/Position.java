@@ -25,22 +25,6 @@ public class Position {
      */
     private  Integer positionState;
 
-    public List<team.ruike.imm.entity.Employee> getEmployee() {
-        return Employee;
-    }
-
-    public void setEmployee(List<team.ruike.imm.entity.Employee> employee) {
-        Employee = employee;
-    }
-
-    public Integer getPositionState() {
-        return positionState;
-    }
-
-    public void setPositionState(Integer positionState) {
-        this.positionState = positionState;
-    }
-
     public Integer getPositionId() {
         return positionId;
     }
@@ -55,5 +39,21 @@ public class Position {
 
     public void setPositionName(String positionName) {
         this.positionName = positionName;
+    }
+
+    public List<team.ruike.imm.entity.Employee> getEmployee() {
+        return Employee;
+    }
+
+    public void setEmployee(List<team.ruike.imm.entity.Employee> employee) {
+        Employee = employee;
+    }
+
+    public Integer getPositionState() {
+        return positionState;
+    }
+
+    public void setPositionState(Integer positionState) {
+        this.positionState = positionState;
     }
 }

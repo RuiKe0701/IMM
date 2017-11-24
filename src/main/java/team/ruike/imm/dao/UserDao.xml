@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="team.ruike.imm.dao.UserDao">
-
+    <!-- 索志文
+        1.0
+     -->
     <resultMap id="userMap" type="user">
         <result column="user_id" property="userId" />
         <result  column="user_name" property="userName" />
         <result  column="user_password" property="userPassword" />
+        <result  column="user_state" property="userState"/>
         <collection property="employee" ofType="employee">
             <result property="employeeId" column="employee_id" />
         </collection>
     </resultMap>
 
-
-    <select id="selecrUser" resultMap="userMap">
+    <!-- 指定条件查询用户信息 -->
+    <select id="selecrUser" resultMap="userMap" parameterType="user">
         SELECT * FROM user u,employee e
         <where>
             u.user_id=e.employee_id
             <if test="userId!=null and userId>0">
-              and  u.user_id=#{userId}
+                 and  u.user_id=#{userId}
             </if>
-            <if test="userName!=null">
+            <if test="userName!=null and userName=''">
                 and u.user_name=#{userName}
+            </if>
+            <if test="userPassword!=null and userPassword=''">
+                and u.user_password=#{userPassword}
+            </if>
+            <if test="userState!=null and userState!=''">
+                and u.user_state=#{userState}
             </if>
         </where>
     </select>
+    <!-- 指定条件修改用户信息 -->
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+            <if test="userName!=null and userName!=''">
+                user_name=#{userName},
+            </if>
+            <if test="userPassword!=null and userPassword!=''">
+                user_password=#{userName},
+            </if>
+            <if test="userState!=null and userState!=''">
+                user_state=#{userState},
+            </if>
+        </set>
+        where user_id=#{userId}
+    </update>
+
+    <insert id="insertUser" parameterType="user">
+        insert into user (user_name,user_password,employee_id,user_state)
+        VALUES (#{userName},#{userPassword},#{employeeId},#{userState});
+    </insert>
 </mapper>

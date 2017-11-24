@@ -24,23 +24,34 @@ public class User implements Serializable{
     /**
      * 员工编号
      */
+    private Integer employeeId;
+    /**
+     * 员工信息集合
+     */
     private Employee employee;
     /**
      * 角色权限表
-
      */
     private List<RolePermissions> rolePermissions;
     /**
      * 当前和删除
      */
-    private  Integer user_state;
+    private  Integer userState;
 
-    public Integer getUser_state() {
-        return user_state;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setUser_state(Integer user_state) {
-        this.user_state = user_state;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Integer getUserState() {
+        return userState;
+    }
+
+    public void setUserState(Integer userState) {
+        this.userState = userState;
     }
 
     public Integer getUserId() {

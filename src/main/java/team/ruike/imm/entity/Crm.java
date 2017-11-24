@@ -15,6 +15,10 @@ public class Crm {
     /**
      * 员工编号
      */
+    private Integer employeeId;
+    /**
+     * 员工编号
+     */
     private Employee employee;
     /**
      * 客户编号
@@ -37,28 +41,20 @@ public class Crm {
      */
     private Integer crmState;
 
-    public void setCrmDemand(Integer crmDemand) {
-        this.crmDemand = crmDemand;
-    }
-
-    public void setCrmAsk(Integer crmAsk) {
-        this.crmAsk = crmAsk;
-    }
-
-    public Integer getCrmState() {
-        return crmState;
-    }
-
-    public void setCrmState(Integer crmState) {
-        this.crmState = crmState;
-    }
-
     public Integer getCrmId() {
         return crmId;
     }
 
     public void setCrmId(Integer crmId) {
         this.crmId = crmId;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public Employee getEmployee() {
@@ -77,19 +73,19 @@ public class Crm {
         this.client = client;
     }
 
-    public int getCrmDemand() {
+    public Integer getCrmDemand() {
         return crmDemand;
     }
 
-    public void setCrmDemand(int crmDemand) {
+    public void setCrmDemand(Integer crmDemand) {
         this.crmDemand = crmDemand;
     }
 
-    public int getCrmAsk() {
+    public Integer getCrmAsk() {
         return crmAsk;
     }
 
-    public void setCrmAsk(int crmAsk) {
+    public void setCrmAsk(Integer crmAsk) {
         this.crmAsk = crmAsk;
     }
 
@@ -99,5 +95,13 @@ public class Crm {
 
     public void setCrmDate(Date crmDate) {
         this.crmDate = crmDate;
+    }
+
+    public Integer getCrmState() {
+        return crmState;
+    }
+
+    public void setCrmState(Integer crmState) {
+        this.crmState = crmState;
     }
 }
