@@ -15,6 +15,7 @@
         <result column="client_state" property="clientState" />
     </resultMap>
 
+    <!--指定条件查询客户信息-->
     <select id="selecrClient" resultMap="clientMap">
         select * from client
         <where>
@@ -52,4 +53,44 @@
         </where>
     </select>
 
+
+    <!--指定条件修改客户信息-->
+    <update id="updateClient" parameterType="client">
+        update client
+        <set>
+            <if test="clientName!=null and  clientName!=''">
+                client_name=#{clientName},
+            </if>
+            <if test="clientPersonInCharge!=null and  clientPersonInCharge!=''">
+                client_person_in_charge=#{clientPersonInCharge},
+            </if>
+            <if test="clientPost!=null and  clientPost!=''">
+                client_post=#{clientPost},
+            </if>
+            <if test="clientPhone!=null and  clientPhone!=''">
+                client_phone=#{clientPhone},
+            </if>
+            <if test="clientMobilePhone!=null and  clientMobilePhone!=''">
+                client_mobile_phone=#{clientMobilePhone},
+            </if>
+            <if test="clientFax!=null and  clientFax!=''">
+                client_fax=#{clientFax},
+            </if>
+            <if test="clientAddress!=null and  clientAddress!=''">
+                client_address=#{clientAddress},
+            </if>
+            <if test="clientFactoryAddress!=null and  clientFactoryAddress!=''">
+                client_factory_address=#{clientFactoryAddress},
+            </if>
+            <if test="clientState!=null and  clientState>0">
+                client_state=#{clientState},
+            </if>
+        </set>
+    </update>
+
+    <!--添加客户信息-->
+    <insert id="insertClient" parameterType="client">
+        insert into client (client_name,client_person_in_charge,client_post,client_phone,client_mobile_phone,client_fax,client_address,client_factory_address,client_state)
+         values(#{clientName},#{clientPersonInCharge},#{clientPost},#{clientPhone},#{clientMobilePhone},#{clientFax},#{clientAddress},#{clientFactoryAddress},#{clientState});
+    </insert>
 </mapper>
