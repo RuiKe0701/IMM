@@ -48,6 +48,8 @@ public class Warehousing {
      */
     private Procurement procurement;
 
+
+
     public Integer getWarehousingId() {
         return warehousingId;
     }
