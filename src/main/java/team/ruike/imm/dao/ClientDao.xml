@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.ClientDao">
+    <resultMap id="clientMap" type="client">
+        <result column="client_id" property="clientId" />
+        <result column="client_name" property="clientName" />
+        <result column="client_person_in_charge" property="clientPersonInCharge" />
+        <result column="client_post" property="clientPost" />
+        <result column="client_phone" property="clientPhone" />
+        <result column="client_mobile_phone" property="clientMobilePhone" />
+        <result column="client_fax" property="clientFax" />
+        <result column="client_address" property="clientAddress" />
+        <result column="client_factory_address" property="clientFactoryAddress" />
+        <result column="client_state" property="clientState" />
+    </resultMap>
+
+    <select id="selecrClient" resultMap="clientMap">
+        select * from client
+        <where>
+            1=1
+            <if test="clientId!=null and  clientId>0">
+                 and client_id=#{clientId}
+            </if>
+            <if test="clientName!=null and  clientName!=''">
+                and client_name=#{clientName}
+            </if>
+            <if test="clientPersonInCharge!=null and  clientPersonInCharge!=''">
+                and client_person_in_charge=#{clientPersonInCharge}
+            </if>
+            <if test="clientPost!=null and  clientPost!=''">
+                and client_post=#{clientPost}
+            </if>
+            <if test="clientPhone!=null and  clientPhone!=''">
+                and client_phone=#{clientPhone}
+            </if>
+            <if test="clientMobilePhone!=null and  clientMobilePhone!=''">
+                and client_mobile_phone=#{clientMobilePhone}
+            </if>
+            <if test="clientFax!=null and  clientFax!=''">
+                and client_fax=#{clientFax}
+            </if>
+            <if test="clientAddress!=null and  clientAddress!=''">
+                and client_address=#{clientAddress}
+            </if>
+            <if test="clientFactoryAddress!=null and  clientFactoryAddress!=''">
+                and client_factory_address=#{clientFactoryAddress}
+            </if>
+            <if test="clientState!=null and  clientState>0">
+                and client_state=#{clientState}
+            </if>
+        </where>
+    </select>
+
+</mapper>
