@@ -19,12 +19,12 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 配置实体类全局变量-->
-        <property name="typeAliasesPackage" value="team.runke.imm.entity"/>
+        <property name="typeAliasesPackage" value="team.ruike.imm.entity"/>
     </bean>
     <!-- 扫描地址下所有文件-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="team.runke.imm.dao"/>
+        <property name="basePackage" value="team.ruike.imm.dao"/>
     </bean>
     <!-- 扫描地址下所有文件  单元测试里context.getBean("首字母小写后面不变");-->
-    <context:component-scan base-package="team.runke.imm.service.impl" />
+    <context:component-scan base-package="team.ruike.imm.service.impl" />
 </beans>
