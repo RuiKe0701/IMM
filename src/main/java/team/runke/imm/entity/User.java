@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *用户信息
  */
 public class User implements Serializable{
@@ -30,6 +30,18 @@ public class User implements Serializable{
 
      */
     private List<RolePermissions> rolePermissions;
+    /**
+     * 当前和删除
+     */
+    private  Integer user_state;
+
+    public Integer getUser_state() {
+        return user_state;
+    }
+
+    public void setUser_state(Integer user_state) {
+        this.user_state = user_state;
+    }
 
     public Integer getUserId() {
         return userId;

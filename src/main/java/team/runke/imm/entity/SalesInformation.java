@@ -1,7 +1,7 @@
 package team.runke.imm.entity;
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *销售订单详情
  */
 public class SalesInformation {
@@ -29,8 +29,22 @@ public class SalesInformation {
      * 售价
      */
     private double siActualPrice;
-
+    /**
+     * 是否已删除
+     */
+    private Integer siState;
+    /**
+     * 销售订单
+     */
     private Sales sales;
+
+    public Integer getSiState() {
+        return siState;
+    }
+
+    public void setSiState(Integer siState) {
+        this.siState = siState;
+    }
 
     public Sales getSales() {
         return sales;

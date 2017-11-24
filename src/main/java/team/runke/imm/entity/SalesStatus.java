@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *销售状态
  */
 public class SalesStatus {
@@ -21,6 +21,26 @@ public class SalesStatus {
      * 商品信息表
      */
     private List<Merchandise> merchandise;
+    /**
+     * 是否已删除
+     */
+    private  Integer salesStatusState;
+
+    public List<Merchandise> getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(List<Merchandise> merchandise) {
+        this.merchandise = merchandise;
+    }
+
+    public Integer getSalesStatusState() {
+        return salesStatusState;
+    }
+
+    public void setSalesStatusState(Integer salesStatusState) {
+        this.salesStatusState = salesStatusState;
+    }
 
     public Integer getSalesStatusId() {
         return salesStatusId;

@@ -1,7 +1,7 @@
 package team.runke.imm.entity;
 /**
  *　@author 索志文
- *　@versrion 1.0
+ *　@versrion 2.0
  * 活动详情
  */
 public class EventDetails {
@@ -13,6 +13,18 @@ public class EventDetails {
      * 活动详情
      */
     private String eventDetailsName;
+    /**
+     * 是否已删除
+     */
+    private  Integer eventDetailsState;
+
+    public Integer getEventDetailsState() {
+        return eventDetailsState;
+    }
+
+    public void setEventDetailsState(Integer eventDetailsState) {
+        this.eventDetailsState = eventDetailsState;
+    }
 
     public Integer getEventDetailsId() {
         return eventDetailsId;

@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  *　@author 索志文
- *　@versrion 1.0
+ *　@versrion 2.0
  * 职位信息
  */
 public class Position {
@@ -20,6 +20,26 @@ public class Position {
      * 员工信息
      */
     private List<Employee> Employee;
+    /**
+     * 是否已删除
+     */
+    private  Integer positionState;
+
+    public List<team.runke.imm.entity.Employee> getEmployee() {
+        return Employee;
+    }
+
+    public void setEmployee(List<team.runke.imm.entity.Employee> employee) {
+        Employee = employee;
+    }
+
+    public Integer getPositionState() {
+        return positionState;
+    }
+
+    public void setPositionState(Integer positionState) {
+        this.positionState = positionState;
+    }
 
     public Integer getPositionId() {
         return positionId;

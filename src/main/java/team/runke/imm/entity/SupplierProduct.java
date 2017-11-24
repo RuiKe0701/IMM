@@ -1,7 +1,7 @@
 package team.runke.imm.entity;
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *供应商产品
  */
 public class SupplierProduct {
@@ -14,12 +14,21 @@ public class SupplierProduct {
      */
     private Merchandise merchandise;
     /**
-     * 供应商编号
+     * 供应商
      */
     private Supplier supplier;
     /**
-     * 供应商报价
+     * 是否已删除
      */
+    private Integer supplier_product_state;
+
+    public Integer getSupplier_product_state() {
+        return supplier_product_state;
+    }
+
+    public void setSupplier_product_state(Integer supplier_product_state) {
+        this.supplier_product_state = supplier_product_state;
+    }
 
     public int getSupplierProductId() {
         return supplierProductId;

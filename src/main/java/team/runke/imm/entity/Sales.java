@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *销售订单
  */
 public class Sales {
@@ -25,7 +25,7 @@ public class Sales {
      */
     private Employee employee;
     /**
-     * 状态
+     * 是否已删除
      */
     private Integer salesState;
     /**
@@ -33,7 +33,7 @@ public class Sales {
      */
     private EventDetails eventDetails;
     /**
-     *
+     *销售订单详情
      */
     private List<SalesInformation> salesInformations;
 

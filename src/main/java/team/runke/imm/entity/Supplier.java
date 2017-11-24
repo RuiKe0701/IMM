@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author 闫琛昊
- * @version 1.0
+ * @version 2.0
  *供应商信息
  */
 public class Supplier {
@@ -44,14 +44,22 @@ public class Supplier {
      * 工厂地址
      */
     private String supplierFactoryAddress;
-
-
-
     /**
      * 供应商产品表
-
      */
     private List<SupplierProduct> supplierProduct;
+    /**
+     * 是否已删除
+     */
+    private Integer supplier_state;
+
+    public Integer getSupplier_state() {
+        return supplier_state;
+    }
+
+    public void setSupplier_state(Integer supplier_state) {
+        this.supplier_state = supplier_state;
+    }
 
     public Integer getSupplierId() {
         return supplierId;
