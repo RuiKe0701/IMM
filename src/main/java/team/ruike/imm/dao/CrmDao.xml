@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.CrmDao">
+    <resultMap id="crmMap" type="crm">
+        <result column="crm_id" property="crmId" />
+        <result column="crm_demand" property="crmDemand" />
+        <result column="crm_ask" property="crmAsk" />
+        <result column="crm_date" property="crmDate" />
+        <result column="crm_state" property="crmState" />
+        <collection property="employee" ofType="employee">
+            <result property="employeeId" column="employee_id" />
+        </collection>
+        <collection property="client" ofType="client">
+            <result property="clientid" column="client_id" />
+        </collection>
+    </resultMap>
+
+    <!--指定条件查询客户关系维护记录信息-->
+    <select id="selecrCrm" resultMap="crmMap">
+        select * from crm c,employee e,client cl
+        <where>
+            c.employee_id=e.employee_id and c.client_id=cl.client_id
+            <if test="crmId!=null and crmId>0">
+                and c.crm_id=#{crmId}
+            </if>
+            <if test="employeeId!=null and employeeId>0'">
+                and c.employee_id=#{employeeId}
+            </if>
+            <if test="clientid!=null and clientid>0">
+                and c.client_id=#{clientid}
+            </if>
+            <if test="crmDemand!=null and crmDemand>0">
+                and c.crm_demand=#{crmDemand}
+            </if>
+            <if test="crmAsk!=null and crmAsk>0">
+                and c.crm_ask=#{crmAsk}
+            </if>
+            <if test="crmDate!=null and crmDate!=''">
+                and c.crm_date=#{crmDate}
+            </if>
+            <if test="crmState!=null and crmState>0">
+                and c.crm_state=#{crmState}
+            </if>
+        </where>
+    </select>
+
+
+    <!--指定条件修改客户关系维护记录-->
+    <update id="updateCrm" parameterType="crm">
+        update crm
+        <set>
+            <if test="employeeId!=null and employeeId>0'">
+                c.employee_id=#{employeeId},
+            </if>
+            <if test="clientid!=null and clientid>0">
+                c.client_id=#{clientid},
+            </if>
+            <if test="crmDemand!=null and crmDemand>0">
+                c.crm_demand=#{crmDemand},
+            </if>
+            <if test="crmAsk!=null and crmAsk>0">
+                c.crm_ask=#{crmAsk},
+            </if>
+            <if test="crmDate!=null and crmDate!=''">
+                c.crm_date=#{crmDate},
+            </if>
+            <if test="crmState!=null and crmState>0">
+                c.crm_state=#{crmState}
+            </if>
+        </set>
+    </update>
+
+
+    <!--增加客户关系维护记录-->
+    <insert id="insertCrm" parameterType="crm">
+        insert into crm (employee_id,client_id,crm_demand,crm_ask,crm_date,crm_state)
+        values (#{employeeId},#{clientid},#{crmDemand},#{crmAsk},#{crmDate},#{crmState});
+    </insert>
+</mapper>

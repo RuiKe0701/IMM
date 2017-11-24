@@ -83,7 +83,7 @@
                 client_factory_address=#{clientFactoryAddress},
             </if>
             <if test="clientState!=null and  clientState>0">
-                client_state=#{clientState},
+                client_state=#{clientState}
             </if>
         </set>
     </update>

@@ -18,7 +18,7 @@
     <select id="selecrUser" resultMap="userMap" parameterType="user">
         SELECT * FROM user u,employee e
         <where>
-            u.user_id=e.employee_id
+            u.employee_id=e.employee_id
             <if test="userId!=null and userId>0">
                  and  u.user_id=#{userId}
             </if>

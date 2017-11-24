@@ -23,7 +23,7 @@ public class Crm {
     /**
      * 客户编号
      */
-    private Integer client;
+    private Integer clientid;
     /**
      * 是否需求
      */
@@ -40,6 +40,19 @@ public class Crm {
      * 是否已删除
      */
     private Integer crmState;
+
+    /**
+     * 客户信息表
+     */
+    private Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public Integer getCrmId() {
         return crmId;
@@ -65,12 +78,12 @@ public class Crm {
         this.employee = employee;
     }
 
-    public Integer getClient() {
-        return client;
+    public Integer getClientid() {
+        return clientid;
     }
 
-    public void setClient(Integer client) {
-        this.client = client;
+    public void setClientid(Integer clientid) {
+        this.clientid = clientid;
     }
 
     public Integer getCrmDemand() {
