@@ -9,7 +9,14 @@
         <result column="crm_date" property="crmDate" />
         <result column="crm_state" property="crmState" />
         <collection property="employee" ofType="employee">
-            <result property="employeeId" column="employee_id" />
+            <result column="employee_id" property="employeeId" />
+            <result column="employee_name" property="employeeName" />
+            <result column="position_id" property="positionId" />
+            <result column="employee_id_number" property="employeeIdNumber" />
+            <result column="employee_mobile_phone" property="employeeMobilePhone" />
+            <result column="employee_email" property="employeeEmail" />
+            <result column="employee_address" property="employeeAddress" />
+            <result column="employee_state" property="employeeState" />
         </collection>
         <collection property="client" ofType="client">
             <result property="clientid" column="client_id" />
@@ -51,24 +58,25 @@
         update crm
         <set>
             <if test="employeeId!=null and employeeId>0'">
-                c.employee_id=#{employeeId},
+                employee_id=#{employeeId},
             </if>
             <if test="clientid!=null and clientid>0">
-                c.client_id=#{clientid},
+                client_id=#{clientid},
             </if>
             <if test="crmDemand!=null and crmDemand>0">
-                c.crm_demand=#{crmDemand},
+                crm_demand=#{crmDemand},
             </if>
             <if test="crmAsk!=null and crmAsk>0">
-                c.crm_ask=#{crmAsk},
+                crm_ask=#{crmAsk},
             </if>
             <if test="crmDate!=null and crmDate!=''">
-                c.crm_date=#{crmDate},
+                crm_date=#{crmDate},
             </if>
             <if test="crmState!=null and crmState>0">
-                c.crm_state=#{crmState}
+                crm_state=#{crmState},
             </if>
         </set>
+                where crm_id=#{crmId}
     </update>
 
 
