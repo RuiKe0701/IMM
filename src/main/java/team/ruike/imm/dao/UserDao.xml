@@ -9,16 +9,23 @@
         <result  column="user_name" property="userName" />
         <result  column="user_password" property="userPassword" />
         <result  column="user_state" property="userState"/>
-        <collection property="employee" ofType="employee">
-            <result property="employeeId" column="employee_id" />
-        </collection>
+            <collection property="employee" ofType="employee">
+            <result column="employee_id" property="employeeId" />
+            <result column="employee_name" property="employeeName" />
+            <result column="position_id" property="positionId" />
+            <result column="employee_id_number" property="employeeIdNumber" />
+            <result column="employee_mobile_phone" property="employeeMobilePhone" />
+            <result column="employee_email" property="employeeEmail" />
+            <result column="employee_address" property="employeeAddress" />
+            <result column="employee_state" property="employeeState" />
+            </collection>
     </resultMap>
 
     <!-- 指定条件查询用户信息 -->
     <select id="selecrUser" resultMap="userMap" parameterType="user">
         SELECT * FROM user u,employee e
         <where>
-            u.employee_id=e.employee_id
+            u.employee_id=e.employee_id and 1=1
             <if test="userId!=null and userId>0">
                  and  u.user_id=#{userId}
             </if>
@@ -27,6 +34,9 @@
             </if>
             <if test="userPassword!=null and userPassword=''">
                 and u.user_password=#{userPassword}
+            </if>
+            <if test="employeeId!=null and employeeId>0">
+                and u.employee_id=#{employeeId}
             </if>
             <if test="userState!=null and userState!=''">
                 and u.user_state=#{userState}
@@ -42,6 +52,9 @@
             </if>
             <if test="userPassword!=null and userPassword!=''">
                 user_password=#{userName},
+            </if>
+            <if test="employeeId!=null and employeeId>0">
+                employee_id=#{employeeId},
             </if>
             <if test="userState!=null and userState!=''">
                 user_state=#{userState},

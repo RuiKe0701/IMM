@@ -33,7 +33,7 @@ public class StorageMove {
     /**
      * 经办人
      */
-    private Integer employeeId;
+    private Integer smUserId;
     /**
      * 是否已删除
      */
@@ -46,6 +46,10 @@ public class StorageMove {
      * 员工信息表
      */
     private Employee employee;
+    /**
+     * 用户信息
+     */
+    private  User user;
     /**
      * 销售订单表
      */
@@ -99,12 +103,12 @@ public class StorageMove {
         this.smRemarks = smRemarks;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
+    public Integer getSmUserId() {
+        return smUserId;
     }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setSmUserId(Integer smUserId) {
+        this.smUserId = smUserId;
     }
 
     public Integer getSmState() {
@@ -129,6 +133,14 @@ public class StorageMove {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Sales getSales() {

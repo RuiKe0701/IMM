@@ -18,11 +18,11 @@ public class Warehousing {
     /**
      * 入库人
      */
-    private Integer warehousing_buyer;
+    private Integer warehousingBuyer;
     /**
      * 采购单号
      */
-    private Integer procurementId;
+    private String procurementId;
     /**
      * 入库日期
      */
@@ -34,7 +34,7 @@ public class Warehousing {
     /**
      * 经办人
      */
-    private int warehousingEmployeeId;
+    private Integer warehousingUserId;
     /**
      * 是否已删除
      */
@@ -44,11 +44,13 @@ public class Warehousing {
      */
     private Employee employee;
     /**
+     * 用户信息
+     */
+    private  User user;
+    /**
      * 采购单号
      */
     private Procurement procurement;
-
-
 
     public Integer getWarehousingId() {
         return warehousingId;
@@ -66,19 +68,19 @@ public class Warehousing {
         this.warehousingBatchNumber = warehousingBatchNumber;
     }
 
-    public Integer getWarehousing_buyer() {
-        return warehousing_buyer;
+    public Integer getWarehousingBuyer() {
+        return warehousingBuyer;
     }
 
-    public void setWarehousing_buyer(Integer warehousing_buyer) {
-        this.warehousing_buyer = warehousing_buyer;
+    public void setWarehousingBuyer(Integer warehousingBuyer) {
+        this.warehousingBuyer = warehousingBuyer;
     }
 
-    public Integer getProcurementId() {
+    public String getProcurementId() {
         return procurementId;
     }
 
-    public void setProcurementId(Integer procurementId) {
+    public void setProcurementId(String procurementId) {
         this.procurementId = procurementId;
     }
 
@@ -98,12 +100,12 @@ public class Warehousing {
         this.warehousingRemarks = warehousingRemarks;
     }
 
-    public int getWarehousingEmployeeId() {
-        return warehousingEmployeeId;
+    public Integer getWarehousingUserId() {
+        return warehousingUserId;
     }
 
-    public void setWarehousingEmployeeId(int warehousingEmployeeId) {
-        this.warehousingEmployeeId = warehousingEmployeeId;
+    public void setWarehousingUserId(Integer warehousingUserId) {
+        this.warehousingUserId = warehousingUserId;
     }
 
     public Integer getWarehousingState() {
@@ -122,6 +124,14 @@ public class Warehousing {
         this.employee = employee;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Procurement getProcurement() {
         return procurement;
     }
@@ -129,5 +139,4 @@ public class Warehousing {
     public void setProcurement(Procurement procurement) {
         this.procurement = procurement;
     }
-    //aaa
 }
