@@ -15,9 +15,9 @@
             <result property="supplierPhone" column="supplier_phone" />
             <result property="supplierMobilePhone;" column="supplier_mobile_phone" />
             <result property="supplierFax" column="supplier_fax" />
-            <result property="supplierAddress;" column="supplier_address" />
-            <result property="supplierFactoryAddress;" column="supplier_factory_address" />
-            <result property="supplierState;" column="supplier_state" />
+            <result property="supplierAddress" column="supplier_address" />
+            <result property="supplierFactoryAddress" column="supplier_factory_address" />
+            <result property="supplierState" column="supplier_state" />
         </collection>
         <!-- 商品信息-->
         <collection property="merchandise" ofType="merchandise">
