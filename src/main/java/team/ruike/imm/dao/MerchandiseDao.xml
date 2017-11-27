@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="team.ruike.imm.dao.MerchandiseDao">
     <resultMap id="merchandiseMap" type="merchandise">
         <result column="merchandise_id" property="merchandiseId" />
         <result column="merchandise_code" property="productCode" />
@@ -67,7 +67,7 @@
             <if test="salesStatusId!=null and salesStatusId>0">
                 and m.sales_status_id=#{salesStatusId}
             </if>
-            <if test="merchandiseState!=null and merchandiseState>0">
+            <if test="merchandiseState!=null">
                 and m.merchandise_state=#{merchandiseState}
             </if>
         </where>
@@ -107,7 +107,7 @@
             <if test="salesStatusId!=null and salesStatusId>0">
                 sales_status_id=#{salesStatusId},
             </if>
-            <if test="merchandiseState!=null and merchandiseState>0">
+            <if test="merchandiseState!=null">
                 merchandise_state=#{merchandiseState},
             </if>
         </set>

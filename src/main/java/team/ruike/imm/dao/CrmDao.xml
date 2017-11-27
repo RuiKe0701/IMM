@@ -46,7 +46,7 @@
             <if test="crmDate!=null and crmDate!=''">
                 and c.crm_date=#{crmDate}
             </if>
-            <if test="crmState!=null and crmState>0">
+            <if test="crmState!=null">
                 and c.crm_state=#{crmState}
             </if>
         </where>
@@ -72,7 +72,7 @@
             <if test="crmDate!=null and crmDate!=''">
                 crm_date=#{crmDate},
             </if>
-            <if test="crmState!=null and crmState>0">
+            <if test="crmState!=null">
                 crm_state=#{crmState},
             </if>
         </set>

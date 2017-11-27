@@ -32,6 +32,11 @@ public class ProcurementInformation {
      * 单位编号
      */
     private Integer unitsId;
+
+    /**
+     * 售价
+     */
+    private double siActualPrice;
     /**
      * 是否已删除
      */
@@ -48,6 +53,7 @@ public class ProcurementInformation {
      * 采购订单信息
      */
     private Procurement procurement;
+
     public Integer getPiId() {
         return piId;
     }
@@ -126,5 +132,13 @@ public class ProcurementInformation {
 
     public void setPiState(Integer piState) {
         this.piState = piState;
+    }
+
+    public double getSiActualPrice() {
+        return siActualPrice;
+    }
+
+    public void setSiActualPrice(double siActualPrice) {
+        this.siActualPrice = siActualPrice;
     }
 }

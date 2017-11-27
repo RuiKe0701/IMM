@@ -20,7 +20,7 @@
             <if test="eventDetailsName!=null and eventDetailsName!=''">
                 and event_details_name=#{eventDetailsName}
             </if>
-            <if test="eventDetailsState!=null and eventDetailsState!=''">
+            <if test="eventDetailsState!=null">
                 and event_details_state=#{eventDetailsState}
             </if>
         </where>
@@ -32,7 +32,7 @@
             <if test="eventDetailsName!=null and eventDetailsName!=''">
                 event_details_name=#{eventDetailsName},
             </if>
-            <if test="eventDetailsState!=null and eventDetailsState!=''">
+            <if test="eventDetailsState!=null">
                 event_details_state=#{eventDetailsState},
             </if>
         </set>

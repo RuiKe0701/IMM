@@ -47,7 +47,7 @@
             <if test="clientFactoryAddress!=null and  clientFactoryAddress!=''">
                 and client_factory_address=#{clientFactoryAddress}
             </if>
-            <if test="clientState!=null and  clientState>0">
+            <if test="clientState!=null">
                 and client_state=#{clientState}
             </if>
         </where>
@@ -82,7 +82,7 @@
             <if test="clientFactoryAddress!=null and  clientFactoryAddress!=''">
                 client_factory_address=#{clientFactoryAddress},
             </if>
-            <if test="clientState!=null and  clientState>0">
+            <if test="clientState!=null">
                 client_state=#{clientState},
             </if>
         </set>

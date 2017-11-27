@@ -45,7 +45,7 @@
             <if test="employeeAddress!=null and employeeAddress!=''">
                 and e.employee_address=#{employeeAddress}
             </if>
-            <if test="employeeState!=null and employeeState>0">
+            <if test="employeeState!=null">
                 and e.employee_state=#{employeeState}
             </if>
         </where>
@@ -76,7 +76,7 @@
             <if test="employeeAddress!=null and employeeAddress!=''">
                 employee_address=#{employeeAddress},
             </if>
-            <if test="employeeState!=null and employeeState>0">
+            <if test="employeeState!=null">
                 employee_state=#{employeeState},
             </if>
         </set>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.ProcurementInformationDao">
+    <resultMap id="procurementInformationMap" type="procurementInformation">
+        <result column="pi_id" property="piId" />
+        <result column="merchandise_id" property="merchandiseId" />
+        <result column="pi_actual_price" property="piActualPrice" />
+        <result column="pi_volume" property="piVolume" />
+        <result column="si_actual_price" property="siActualPrice" />
+        <result column="si_state" property="piState" />
+        <association property="procurement" javaType="procurement">
+            <result column="procurement_id" property="procurementId" />
+            <result column="procurement_date" property="procurementDate" />
+            <result column="supplier_id" property="supplierId" />
+            <result column="procurement_employee_id" property="procurementEmployeeId" />
+            <result column="procurement_accomplish" property="procurementAccomplish" />
+            <result column="procurement_state" property="procurementState" />
+        </association>
+        <association property="units" javaType="units">
+            <result column="units_id" property="unitsId" />
+            <result column="units_name" property="unitsName" />
+            <result column="units_state" property="unitsState" />
+        </association>
+    </resultMap>
+
+    <!--指定条件查询采购订单详情-->
+    <select id="selecrProcurementInformation" resultMap="procurementInformationMap">
+        select * from procurement_information pi,procurement p,units u
+        <where>
+            pi.procurement_id=p.procurement_id and pi.units_id=u.units_id
+            <if test="piId!=null and piId>0">
+                and pi.pi_id=#{piId}
+            </if>
+            <if test="procurementId!=null and procurementId!=''">
+                and pi.procurement_id=#{procurementId}
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                and pi.merchandise_id=#{merchandiseId}
+            </if>
+            <if test="piActualPrice!=null and piActualPrice>0">
+                and pi.pi_actual_price=#{piActualPrice}
+            </if>
+            <if test="piVolume!=null and piVolume>0">
+                and pi.pi_volume=#{piVolume}
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                and pi.units_id=#{unitsId}
+            </if>
+            <if test="piState!=null">
+                and pi.pi_state=#{piState}
+            </if>
+        </where>
+    </select>
+
+    <!--指定条件修改采购订单详情-->
+
+    <update id="updateProcurementInformation">
+        update procurement_information
+        <set>
+            <if test="procurementId!=null and procurementId!=''">
+                procurement_id=#{procurementId},
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                merchandise_id=#{merchandiseId},
+            </if>
+            <if test="piActualPrice!=null and piActualPrice>0">
+                pi_actual_price=#{piActualPrice},
+            </if>
+            <if test="piVolume!=null and piVolume>0">
+                pi_volume=#{piVolume},
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                units_id=#{unitsId},
+            </if>
+            <if test="piState!=null">
+               pi_state=#{piState},
+            </if>
+        </set>
+        where pi_id=#{piId}
+    </update>
+
+    <!--添加采购订单详情-->
+    <insert id="insertProcurementInformation">
+        insert into procurement_information (procurement_id,merchandise_id,pi_actual_price,pi_volume,units_id,pi_state)
+        values (#{procurementId},#{merchandiseId},#{piActualPrice},#{piVolume},#{unitsId},#{piState});
+    </insert>
+</mapper>
