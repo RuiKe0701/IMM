@@ -74,9 +74,6 @@
     <!-- 指定条件修改入库记录信息-->
     <update id="updateWarehousing" parameterType="warehousing">
         <set>
-            <if test="warehousingId!=null and warehousingId>0">
-                 warehousing_id=#{warehousingId},
-            </if>
             <if test="warehousingBatchNumber !=null and warehousingBatchNumber>0">
                  warehousing_batch_number =#{warehousingBatchNumber},
             </if>
@@ -103,7 +100,7 @@
     </update>
     <!--增加入库记录信息 -->
     <insert id="insertWarehousing" parameterType="warehousing">
-        INSERT into warehousing VALUES(#{warehousingBatchNumber},
+        INSERT into warehousing VALUES(default,
         #{warehousingBatchNumber},#{warehousing_buyer},
         #{procurementId},#{warehousingDate},#{warehousingRemarks},#{warehousingUserId},#{warehousingState});
     </insert>

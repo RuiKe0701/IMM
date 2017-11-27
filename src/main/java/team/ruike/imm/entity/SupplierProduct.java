@@ -26,11 +26,11 @@ public class SupplierProduct {
      */
     private Integer supplierProductState;
     /**
-     * 商品编号
+     * 商品信息
      */
     private Merchandise merchandise;
     /**
-     * 供应商编号
+     * 供应商信息
      */
     private Supplier supplier;
 
