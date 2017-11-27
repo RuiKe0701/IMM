@@ -15,4 +15,18 @@ public interface UserService {
      * @return
      */
     public List<User> selectUser(User user);
+
+    /**
+     * 指定条件修改用户信息
+     * @param user
+     * @return
+     */
+    public int updateUser(User user);
+
+    /**
+     * 添加用户信息
+     * @param user
+     * @return
+     */
+    public int insertUser(User user);
 }

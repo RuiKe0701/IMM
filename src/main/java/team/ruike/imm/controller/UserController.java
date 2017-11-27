@@ -1,7 +1,6 @@
 package team.ruike.imm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/sd.do")
     public String dd(){
-        return "index";
+        return "indexa";
     }
 
     @RequestMapping(value="/login.do")
@@ -38,7 +37,7 @@ public class UserController {
                     return "crr";
                 }else {
                     System.out.println("2");
-                    return "index";
+                    return "indexa";
                 }
             }
 
@@ -46,7 +45,7 @@ public class UserController {
             e.printStackTrace();
         }
         System.out.println("3");
-        return "index";
+        return "indexa";
 
     }
 }
