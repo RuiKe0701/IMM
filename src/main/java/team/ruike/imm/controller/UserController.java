@@ -27,9 +27,12 @@ public class UserController {
     public  String login(User user, Model model, HttpSession session){
         System.out.println(user.getUserName());
         try {
-            if (user!=null){
+            if (user.getUserName()!=null ){
                 List<User> userList=userService.selectUser(user);
                 if (userList!=null){
+                    for (User user1 : userList) {
+                        System.out.println(user1.getUserName());
+                    }
                     session.setAttribute("user",userList);
                     System.out.println("1");
                     return "crr";
