@@ -1,70 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="team.ruike.imm.dao.UserDao">
-    <!-- 索志文
-        1.0
-     -->
+
     <resultMap id="userMap" type="user">
         <result column="user_id" property="userId" />
         <result  column="user_name" property="userName" />
         <result  column="user_password" property="userPassword" />
-        <result  column="user_state" property="userState"/>
-            <collection property="employee" ofType="employee">
-            <result column="employee_id" property="employeeId" />
-            <result column="employee_name" property="employeeName" />
-            <result column="position_id" property="positionId" />
-            <result column="employee_id_number" property="employeeIdNumber" />
-            <result column="employee_mobile_phone" property="employeeMobilePhone" />
-            <result column="employee_email" property="employeeEmail" />
-            <result column="employee_address" property="employeeAddress" />
-            <result column="employee_state" property="employeeState" />
-            </collection>
+        <collection property="employee" ofType="employee">
+            <result property="employeeId" column="employee_id" />
+        </collection>
     </resultMap>
 
-    <!-- 指定条件查询用户信息 -->
-    <select id="selecrUser" resultMap="userMap" parameterType="user">
+
+    <select id="selectUser" resultMap="userMap">
         SELECT * FROM user u,employee e
         <where>
-            u.employee_id=e.employee_id and 1=1
+            u.user_id=e.employee_id
             <if test="userId!=null and userId>0">
-                 and  u.user_id=#{userId}
+              and  u.user_id=#{userId}
             </if>
-            <if test="userName!=null and userName=''">
+            <if test="userName!=null">
                 and u.user_name=#{userName}
-            </if>
-            <if test="userPassword!=null and userPassword=''">
-                and u.user_password=#{userPassword}
-            </if>
-            <if test="employeeId!=null and employeeId>0">
-                and u.employee_id=#{employeeId}
-            </if>
-            <if test="userState!=null and userState!=''">
-                and u.user_state=#{userState}
             </if>
         </where>
     </select>
-    <!-- 指定条件修改用户信息 -->
-    <update id="updateUser" parameterType="user">
-        update user
-        <set>
-            <if test="userName!=null and userName!=''">
-                user_name=#{userName},
-            </if>
-            <if test="userPassword!=null and userPassword!=''">
-                user_password=#{userName},
-            </if>
-            <if test="employeeId!=null and employeeId>0">
-                employee_id=#{employeeId},
-            </if>
-            <if test="userState!=null and userState!=''">
-                user_state=#{userState},
-            </if>
-        </set>
-        where user_id=#{userId}
-    </update>
-
-    <insert id="insertUser" parameterType="user">
-        insert into user (user_name,user_password,employee_id,user_state)
-        VALUES (#{userName},#{userPassword},#{employeeId},#{userState});
-    </insert>
 </mapper>

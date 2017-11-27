@@ -14,7 +14,7 @@ public interface UserDao {
      * @param user 用户信息
      * @return
      */
-    public List<User> selecrUser(User user);
+    public List<User> selectUser(User user);
 
     /**
      * 指定条件修改用户信息
