@@ -1,5 +1,6 @@
 package team.ruike.imm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.UserDao;
 import team.ruike.imm.entity.User;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Autowired
     UserDao userDao;
 
 
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> selectUser(User user) {
-        return userDao.selectUser(user);
+        System.out.println(user.getUserName()+"/UserServiceImpl");
+        List<User> users=userDao.selectUser(user);
+        return users;
     }
 }

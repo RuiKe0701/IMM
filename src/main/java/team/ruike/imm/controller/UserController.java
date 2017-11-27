@@ -25,11 +25,11 @@ public class UserController {
 
     @RequestMapping(value="/login.do")
     public  String login(User user, Model model, HttpSession session){
-        System.out.println(user.getUserName());
+        System.out.println(user.getUserName()+"/+");
         try {
             if (user.getUserName()!=null ){
                 List<User> userList=userService.selectUser(user);
-                if (userList!=null){
+                if (userList.size()>0){
                     for (User user1 : userList) {
                         System.out.println(user1.getUserName());
                     }
