@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<!-- 索志文-->
 <mapper namespace="team.ruike.imm.dao.SupplierProductDao">
     <resultMap id="supplierProductMap" type="supplierProduct">
         <result property="supplierProductId" column="supplier_product_id" />
         <result property="supplierProductPrice" column="supplier_product_price" />
         <result property="supplierProductState" column="supplier_product_state" />
-        <!-- 供应商信息-->
         <collection property="supplier" ofType="supplier">
             <result property="supplierId;" column="supplier_id" />
             <result property="supplierName;" column="supplier_name" />
@@ -19,7 +17,7 @@
             <result property="supplierFactoryAddress" column="supplier_factory_address" />
             <result property="supplierState" column="supplier_state" />
         </collection>
-        <!-- 商品信息-->
+
         <collection property="merchandise" ofType="merchandise">
             <result column="merchandise_id" property="merchandiseId" />
             <result column="merchandise_code" property="productCode" />
@@ -36,15 +34,50 @@
         </collection>
     </resultMap>
 
-    <select id="" resultMap="" parameterType="">
-
+    <select id="selectSupplierProduct" resultMap="supplierProductMap" parameterType="supplierProduct">
+        select * from supplier_product
+        <where>
+             1=1
+            <if test="supplierProductId!=null and supplierProductId>0">
+                  and supplier_product_id=#{supplierProductId}
+            </if>
+            <if test="merchandise_id!=null and merchandise_id>0">
+                    and merchandise_id=#{merchandiseId}
+            </if>
+            <if test="supplier_id!=null and supplier_id>0">
+                    and supplier_id=#{supplierId}
+            </if>
+            <if test="supplierProductPrice !=null and supplierProductPrice>=0">
+                 and supplier_product_price=#{supplierProductPrice}
+            </if>
+            <if test="supplierProductState !=null">
+                 and supplier_product_state=#{supplierProductState}
+            </if>
+        </where>
     </select>
 
-    <update id="" parameterType="">
-
+    <update id="updateSupplierProduct" parameterType="supplierProduct">
+        supplier_product
+        <set>
+            <if test="merchandise_id!=null and merchandise_id>0">
+                 merchandise_id=#{merchandiseId}
+            </if>
+            <if test="supplier_id!=null and supplier_id>0">
+                  supplier_id=#{supplierId}
+            </if>
+            <if test="supplierProductPrice !=null and supplierProductPrice>=0">
+                  supplier_product_price=#{supplierProductPrice}
+            </if>
+            <if test="supplierProductState !=null">
+                  supplier_product_state=#{supplierProductState}
+            </if>
+            <where>
+                 supplier_product_id=#{supplierProductId}
+            </where>
+        </set>
     </update>
-    <insert id="" parameterType="">
-
+    <insert id="insertSupplierProduct" parameterType="supplierProduct">
+        into supplier_product values(default,#{},,#{supplierProductPrice},#{supplierProductState})
     </insert>
 </mapper>
 
