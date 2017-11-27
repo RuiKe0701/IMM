@@ -5,13 +5,13 @@
     <resultMap id="employeeMap" type="employee">
         <result column="employee_id" property="employeeId" />
         <result column="employee_name" property="employeeName" />
-        <!--<result column="position_id" property="employeeId" />-->
+
         <result column="employee_id_number" property="employeeIdNumber" />
         <result column="employee_mobile_phone" property="employeeMobilePhone" />
         <result column="employee_email" property="employeeEmail" />
         <result column="employee_address" property="employeeAddress" />
         <result column="employee_state" property="employeeState" />
-        <!--关联position表-->
+
         <collection property="position" ofType="position">
             <result property="positionId" column="position_id" />
             <result property="positionName" column="position_name" />
@@ -19,7 +19,7 @@
         </collection>
     </resultMap>
 
-    <!--指定条件查询员工信息-->
+
     <select id="selecrEmployee" resultMap="employeeMap">
         select * from employee e,position p
         <where>
@@ -51,7 +51,7 @@
         </where>
     </select>
 
-    <!--指定条件修改员工信息-->
+
     <update id="updateEmployee" parameterType="employee">
         update employee
         <set>
@@ -83,7 +83,7 @@
                 where employee_id=#{employeeId}
     </update>
 
-    <!--增加员工信息-->
+
     <insert id="insertEmployee" parameterType="employee">
         insert into employee (employee_name,position_id,employee_id_number,employee_mobile_phone,employee_email,employee_address,employee_state)
         values (#{employeeName},#{positionId},#{employeeIdNumber},#{employeeMobilePhone},#{employeeEmail},#{employeeAddress},#{employeeState});
