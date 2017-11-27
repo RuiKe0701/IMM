@@ -27,15 +27,18 @@ public class UserController {
     public  String login(User user, Model model, HttpSession session){
         System.out.println(user.getUserName());
         try {
-            List<User> userList=userService.selectUser(user);
-            if (userList!=null){
-                session.setAttribute("user",userList);
-                System.out.println("1");
-                return "crr";
-            }else {
-                System.out.println("2");
-                return "index";
+            if (user!=null){
+                List<User> userList=userService.selectUser(user);
+                if (userList!=null){
+                    session.setAttribute("user",userList);
+                    System.out.println("1");
+                    return "crr";
+                }else {
+                    System.out.println("2");
+                    return "index";
+                }
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }

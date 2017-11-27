@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<!-- 索志文-->
+
 <mapper namespace="team.ruike.imm.dao.UnitsDao">
     <resultMap id="unitsMap" type="units">
         <result property="unitsId" column="units_id" />
         <result property="unitsName" column="units_name" />
         <result property="unitsState" column="units_state" />
     </resultMap>
-        <!-- 指定条件查询单位信息-->
+
     <select id="selectUnits" resultMap="unitsMap" parameterType="units">
         select * from units
         <where>
@@ -24,7 +24,7 @@
         </where>
     </select>
 
-    <!-- 指定条件修改单位信息-->
+
     <update id="updateUnits" parameterType="units">
         update units
         <set>
@@ -37,7 +37,7 @@
         </set>
         where  units_id=#{unitsId}
     </update>
-    <!-- 新增单位信息-->
+
     <insert id="insertUnits" parameterType="units">
         INSERT units VALUES(default,#{unitsName},#{unitsState});
     </insert>
