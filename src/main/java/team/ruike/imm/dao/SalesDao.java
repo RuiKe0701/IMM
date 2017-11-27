@@ -29,5 +29,5 @@ public interface SalesDao {
      * @param sales 销售订单
      * @return
      */
-    public int insert(Sales sales);
+    public int insertSales(Sales sales);
 }

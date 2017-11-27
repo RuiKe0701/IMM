@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.SalesInformationDao">
+    <resultMap id="salesInformationMap" type="salesInformation">
+        <result column="si_id" property="siId" />
+        <result column="sales_id" property="salesId" />
+        <result column="merchandise_id"  property="merchandiseId"/>
+        <result column="si_volume" property="siVolume"/>
+        <result column="units_id" property="unitsId"/>
+        <result column="si_actual_price" property="si_actualPrice"/>
+        <result column="si_state" property="siState"/>
+
+        <collection property="merchandise" ofType="merchandise">
+            <result column="merchandise_id" property="merchandiseId" />
+            <result column="merchandise_code" property="productCode" />
+            <result column="merchandise_name" property="merchandiseName" />
+            <result column="merchandise_specification" property="merchandiseSpecification" />
+            <result column="product_type_id" property="productTypeId"></result>
+            <result column="units_id" property="unitsId"></result>
+            <result column="merchandise_place_of_origin" property="merchandisePlaceOfOrigin" />
+            <result column="merchandise_safety_stock" property="merchandiseSafetyStock" />
+            <result column="merchandise_actual_quntity" property="merchandiseActualQuntity" />
+            <result column="merchandise_salse_price" property="merchandiseSalsePrice" />
+            <result column="sales_status_id" property="salesStatusId"></result>
+            <result column="merchandise_state" property="merchandiseState" />
+        </collection>
+
+        <collection property="units" ofType="units">
+            <result column="units_id" property="unitsId"/>
+            <result column="units_name" property="unitsName"/>
+            <result column="units_state" property="unitsState"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectSalesInformation" resultMap="salesInformationMap" parameterType="salesInformation">
+        select * from sales_information
+        <where>
+             1=1
+            <if test="siId!=null and siId>0">
+                   and si_id=#{siId}
+            </if>
+            <if test="salesId !=null and salesId!=''">
+                   and sales_id=#{salesId}
+            </if>
+            <if test="merchandiseId !=null and merchandiseId>0">
+                   and merchandise_id =#{merchandiseId}
+            </if>
+            <if test="siVolume!=null and siVolume>0">
+                 and si_volume =#{siVolume}
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                 and units_id =#{unitsId}
+            </if>
+            <if test="si_actual_price!=null and si_actual_price>=0">
+                and si_actual_price =#{si_actual_price}
+            </if>
+            <if test="siState!=null">
+                and si_state=#{siState}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateSalesInformation" parameterType="salesInformation">
+        supplier
+        <set>
+            <if test="salesId !=null and salesId!=''">
+                  sales_id=#{salesId}
+            </if>
+            <if test="merchandiseId !=null and merchandiseId>0">
+                  merchandise_id =#{merchandiseId}
+            </if>
+            <if test="siVolume!=null and siVolume>0">
+                  si_volume =#{siVolume}
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                  units_id =#{unitsId}
+            </if>
+            <if test="siActualPrice!=null and siActualPrice>=0">
+                  si_actual_price =#{siActualPrice}
+            </if>
+            <if test="siState!=null">
+                  si_state=#{siState}
+            </if>
+            <where>
+                si_id=#{siId}
+            </where>
+        </set>
+    </update>
+
+    <insert id="insertSalesInformation" parameterType="salesInformation">
+        into sales_information values(default,#{salesId},#{merchandiseId},#{siVolume},#{unitsId},#{siActualPrice},#{siState})
+    </insert>
+</mapper>
+

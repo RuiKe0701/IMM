@@ -7,25 +7,25 @@ import java.util.List;
  * @version 1.0
  * 种类信息
  */
-public interface ProductType {
+public interface ProductTypeDao {
     /**
      * 指定条件查询种类信息
      * @param productType 种类信息
      * @return
      */
-    public List<ProductType> selectProductType(ProductType productType);
+    public List<ProductTypeDao> selectProductType(ProductTypeDao productType);
 
     /**
      * 指定条件修改种类信息
      * @param productType 种类信息
      * @return
      */
-    public int updateProductType(ProductType productType);
+    public int updateProductType(ProductTypeDao productType);
 
     /**
      *  新增种类信息
      * @param productType 种类信息
      * @return
      */
-    public int insertProductType(ProductType productType);
+    public int insertProductType(ProductTypeDao productType);
 }
