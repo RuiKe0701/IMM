@@ -1,13 +1,10 @@
-package team.ruike.imm.dao;
+package team.ruike.imm.service;
 
 import team.ruike.imm.entity.Crm;
 
 import java.util.List;
-/**
- * @author 索志文
- * @version 1.0
- */
-public interface CrmDao {
+
+public interface CrmService {
     /**
      * 指定条件查询客户关系维护记录信息
      * @param crm 客户关系维护记录信息
@@ -28,4 +25,5 @@ public interface CrmDao {
      * @return
      */
     public int insertCrm(Crm crm);
+
 }
