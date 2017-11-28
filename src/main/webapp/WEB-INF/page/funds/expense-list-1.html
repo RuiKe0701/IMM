@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)http://vip2-gd.youshang.com/money/expense-list.jsp?beginDate=2017-11-01&endDate=2017-11-21 -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <title>精斗云云进销存</title>
+
+    <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
+    <link href="../../css/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/print.css" rel="stylesheet" type="text/css">
+
+    <link href="../../css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="../../js/vds.js"></script>
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/json3.min.js"></script>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/grid.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <script src="../../js/jquery.dialog.js"></script>
+    <script type="text/javascript">
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = 'https://dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+    </script>
+
+    <script type="text/javascript">
+        var DOMAIN = document.domain;
+        var WDURL = "";
+        var SCHEME = "blue";
+        try {
+            var host = window.location.host;
+            var domainDot = host.indexOf('.');
+            var domain = host.substring(domainDot + 1, host.length);
+            document.domain = domain;
+        } catch (e) {
+        }
+        //ctrl+F5 增加版本号来清空iframe的缓存的
+        $(document).keydown(function (event) {
+            /* Act on the event */
+            if (event.keyCode === 116 && event.ctrlKey) {
+                var defaultPage = Public.getDefaultPage();
+                var href = defaultPage.location.href.split('?')[0] + '?';
+                var params = Public.urlParam();
+                params['version'] = Date.parse((new Date()));
+                for (i in params) {
+                    if (i && typeof i != 'function') {
+                        href += i + '=' + params[i] + '&';
+                    }
+                }
+                defaultPage.location.href = href;
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</head>
+
+<body style="">
+<div class="wrapper">
+    <div class="mod-search cf">
+        <div class="fl">
+            <ul class="ul-inline">
+                <li id="goods" style="display: list-item;">
+                    <label>供应商:</label>
+                    <span class="ui-combo-wrap ui-combo-active" id="customer" style="width: 198px;">
+	        			<i class="ui-icon-ellipsis"></i>
+	        			
+	        		<input type="text" name="" class="input-txt" autocomplete="off" value="" data-ref="date"
+                           id="supplierAuto" style="width: 188px;"></span>
+                </li>
+                <li style="display: list-item;">
+                    <div id="expenseType" class="">
+	        			<span class="ui-combo-wrap ui-combo-active">
+	        				
+	        				
+	        			<input type="text" class="input-txt" autocomplete="off" readonly="readonly"
+                               style="cursor: default;"><span class="trigger"></span></span>
+                    </div>
+                </li>
+                <li>
+                    <label>日期:</label>
+                    <input type="text" id="beginDate" value="" class="ui-input ui-datepicker-input">
+                    <i>-</i>
+                    <input type="text" id="endDate" value="" class="ui-input ui-datepicker-input">
+                </li>
+                <li style="line-height: 30px;">
+                    <label>付款状态:</label>
+                    <input type="checkbox" name="billStatus" id="noPay" value="1" class="vm">未付款
+                    <input type="checkbox" name="billStatus" id="allPay" value="2" class="vm">已付款
+                    <input type="checkbox" name="billStatus" id="somePay" value="3" class="vm">部分付款
+                </li>
+                <li>
+                    <a class="ui-btn" id="search">查询</a>
+                    <a class="ui-btn mrb" id="export" target="_blank" href="javascript:void(0);">导出</a>
+                    <a class="ui-btn mrb" id="toPay">支付费用</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-wrap" id="grid-wrap">
+        <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
+             style="width: 1298px;">
+            <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
+            <div class="loading ui-state-default ui-state-active" id="load_grid" style="display: none;">读取中...</div>
+            <div class="ui-jqgrid-view" id="gview_grid" style="width: 1298px;">
+                <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
+                     style="display: none;"><a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
+                                               style="right: 0px;"><span
+                        class="ui-icon ui-icon-circle-triangle-n"></span></a><span class="ui-jqgrid-title"></span></div>
+                <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1298px;">
+                    <div class="ui-jqgrid-hbox">
+                        <table class="ui-jqgrid-htable" style="width:1375px" role="grid" aria-labelledby="gbox_grid"
+                               cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                            <tr class="ui-jqgrid-labels" role="rowheader">
+                                <th id="grid_cb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 20px;">
+                                    <div id="jqgh_grid_cb"><input role="checkbox" id="cb_grid" class="cbox"
+                                                                  type="checkbox"><span class="s-ico"
+                                                                                        style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_billId" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 150px; display: none;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_billId" class="ui-jqgrid-sortable">费用单id<span class="s-ico"
+                                                                                                     style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_contactName" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_contactName" class="ui-jqgrid-sortable">供应商<span class="s-ico"
+                                                                                                        style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_buId" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 150px; display: none;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_buId" class="ui-jqgrid-sortable">供应商id<span class="s-ico"
+                                                                                                   style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_assistName" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_assistName" class="ui-jqgrid-sortable">支出类别<span class="s-ico"
+                                                                                                        style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_accountId" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 150px; display: none;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_accountId" class="ui-jqgrid-sortable">支出类别id<span class="s-ico"
+                                                                                                         style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_amount" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 80px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                               style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_amount" class="ui-jqgrid-sortable">金额<span class="s-ico"
+                                                                                                  style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_rAmount" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_rAmount" class="ui-jqgrid-sortable">未付费用<span class="s-ico"
+                                                                                                     style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_srcOrderNo" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_srcOrderNo" class="ui-jqgrid-sortable">源单号<span class="s-ico"
+                                                                                                       style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_srcOrderId" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 150px; display: none;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_srcOrderId" class="ui-jqgrid-sortable">源单号id<span class="s-ico"
+                                                                                                         style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_srcContactName" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_srcContactName" class="ui-jqgrid-sortable">源单往来单位<span
+                                            class="s-ico" style="display:none"><span sort="asc"
+                                                                                     class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_qtzc" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 150px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_qtzc" class="ui-jqgrid-sortable">其他支出单编号<span class="s-ico"
+                                                                                                     style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_date" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 120px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_date" class="ui-jqgrid-sortable">源单日期<span class="s-ico"
+                                                                                                  style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_des" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_des" class="ui-jqgrid-sortable">备注<span class="s-ico"
+                                                                                               style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_payType" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_payType" class="ui-jqgrid-sortable">付款状态<span class="s-ico"
+                                                                                                     style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="ui-jqgrid-bdiv" style="height: auto; width: 1298px;">
+                    <div style="position:relative;">
+                        <div></div>
+                        <table id="grid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid"
+                               aria-multiselectable="true" aria-labelledby="gbox_grid" class="ui-jqgrid-btable"
+                               style="width: 1375px;">
+                            <tbody>
+                            <tr class="jqgfirstrow" role="row" style="height:auto">
+                                <td role="gridcell" style="height:0px;width:20px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+                                <td role="gridcell" style="height:0px;width:120px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+                                <td role="gridcell" style="height:0px;width:80px;"></td>
+                                <td role="gridcell" style="height:0px;width:80px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;"></td>
+                                <td role="gridcell" style="height:0px;width:150px;"></td>
+                                <td role="gridcell" style="height:0px;width:120px;"></td>
+                                <td role="gridcell" style="height:0px;width:200px;"></td>
+                                <td role="gridcell" style="height:0px;width:100px;"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ui-jqgrid-sdiv" style="width: 1298px;">
+                    <div class="ui-jqgrid-hbox">
+                        <table role="grid" style="width:1375px" class="ui-jqgrid-ftable" cellspacing="0" cellpadding="0"
+                               border="0">
+                            <tbody>
+                            <tr role="row" class="ui-widget-content footrow footrow-ltr">
+                                <td role="gridcell" style="text-align:center;width: 20px;" aria-describedby="grid_cb">
+                                    &nbsp;</td>
+                                <td role="gridcell" style="display:none;width: 150px;" aria-describedby="grid_billId">
+                                    &nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 150px;"
+                                    aria-describedby="grid_contactName">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;display:none;width: 150px;"
+                                    aria-describedby="grid_buId">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 120px;"
+                                    aria-describedby="grid_assistName">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;display:none;width: 150px;"
+                                    aria-describedby="grid_accountId">&nbsp;</td>
+                                <td role="gridcell" style="text-align:right;width: 80px;"
+                                    aria-describedby="grid_amount">&nbsp;</td>
+                                <td role="gridcell" style="text-align:right;width: 80px;"
+                                    aria-describedby="grid_rAmount">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 150px;"
+                                    aria-describedby="grid_srcOrderNo">&nbsp;</td>
+                                <td role="gridcell" style="display:none;width: 150px;"
+                                    aria-describedby="grid_srcOrderId">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 150px;"
+                                    aria-describedby="grid_srcContactName">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 150px;"
+                                    aria-describedby="grid_qtzc">&nbsp;</td>
+                                <td role="gridcell" style="width: 120px;" aria-describedby="grid_date">&nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 200px;" aria-describedby="grid_des">
+                                    &nbsp;</td>
+                                <td role="gridcell" style="text-align:center;width: 100px;"
+                                    aria-describedby="grid_payType">&nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
+            <div id="page" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1298px;">
+                <div id="pg_page" class="ui-pager-control" role="group">
+                    <table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table"
+                           style="width:100%;table-layout:fixed;height:100%;" role="row">
+                        <tbody>
+                        <tr>
+                            <td id="page_left" align="left">
+                                <table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table navtable"
+                                       style="float:left;table-layout:auto;">
+                                    <tbody>
+                                    <tr>
+                                        <td class="ui-pg-button ui-corner-all" title="">
+                                            <div class="ui-pg-div"><span class="ui-icon-expenseTips"><span
+                                                    class="ui-icon-config">列设置</span><span class="ui-icon-expense"><span
+                                                    style="color:red">√</span>表示这笔费用已分摊入商品购货成本</span></span></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="page_center" align="center" style="white-space: pre; width: 282px;">
+                                <table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;"
+                                       class="ui-pg-table">
+                                    <tbody>
+                                    <tr>
+                                        <td id="first_page" class="ui-pg-button ui-corner-all ui-state-disabled"
+                                            style="cursor: default;"><span class="ui-icon ui-icon-seek-first"></span>
+                                        </td>
+                                        <td id="prev_page" class="ui-pg-button ui-corner-all ui-state-disabled"><span
+                                                class="ui-icon ui-icon-seek-prev"></span></td>
+                                        <td class="ui-pg-button ui-state-disabled" style="width:4px;"><span
+                                                class="ui-separator"></span></td>
+                                        <td dir="ltr"><input class="ui-pg-input" type="text" size="2" maxlength="7"
+                                                             value="0" role="textbox"> 共 <span id="sp_1_page">0</span> 页
+                                        </td>
+                                        <td class="ui-pg-button ui-state-disabled" style="width:4px;"><span
+                                                class="ui-separator"></span></td>
+                                        <td id="next_page" class="ui-pg-button ui-corner-all"><span
+                                                class="ui-icon ui-icon-seek-next"></span></td>
+                                        <td id="last_page" class="ui-pg-button ui-corner-all"><span
+                                                class="ui-icon ui-icon-seek-end"></span></td>
+                                        <td dir="ltr"><select class="ui-pg-selbox" role="listbox">
+                                            <option role="option" value="100" selected="selected">100</option>
+                                            <option role="option" value="200">200</option>
+                                            <option role="option" value="500">500</option>
+                                        </select></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="page_right" align="right">
+                                <div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../../js/judgment/expenseList.js"></script>
+
+<div id="COMBO_WRAP">
+    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
+        <div class="droplist" style="position: relative; overflow: auto;"></div>
+        <div class="extra-list-ctn"><a href="javascript:void(0);" id="quickAddVendor" class="quick-add-link"><i
+                class="ui-icon-add"></i>新增供应商</a></div>
+    </div>
+    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 180px; display: none;">
+        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
+            <div class="list-item" data-value="">所有支出项目</div>
+        </div>
+    </div>
+</div>
+<div class="pika-single is-hidden is-bound" style=""></div>
+<div class="pika-single is-hidden is-bound" style=""></div>
+<div class="ui-widget ui-widget-content ui-corner-all ui-jqdialog" id="alertmod_grid" dir="ltr" tabindex="-1"
+     role="dialog" aria-labelledby="alerthd_grid" aria-hidden="true"
+     style="width: 200px; height: auto; z-index: 950; overflow: hidden; left: 603.5px; top: 293.5px;">
+    <div class="ui-jqdialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="alerthd_grid"
+         style="cursor: move;"><span class="ui-jqdialog-title" style="float: left;">注意</span><a
+            href="javascript:void(0)" class="ui-jqdialog-titlebar-close ui-corner-all" style="right: 0.3em;"><span
+            class="ui-icon ui-icon-closethick"></span></a></div>
+    <div class="ui-jqdialog-content ui-widget-content" id="alertcnt_grid">
+        <div>请选择记录</div>
+        <span tabindex="0"><span tabindex="-1" id="jqg_alrt"></span></span></div>
+</div>
+<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
+    <table class="ui_border">
+        <tbody>
+        <tr>
+            <td class="ui_lt"></td>
+            <td class="ui_t"></td>
+            <td class="ui_rt"></td>
+        </tr>
+        <tr>
+            <td class="ui_l"></td>
+            <td class="ui_c">
+                <div class="ui_inner">
+                    <table class="ui_dialog">
+                        <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="ui_title_bar">
+                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
+                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
+                                                                     title="最小化" style="display: none;"><b
+                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
+                                                                        title="最大化" style="display: none;"><b
+                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
+                                                                        title="还原"><b class="ui_res_b"></b><b
+                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
+                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ui_icon" style="display: none;"></td>
+                            <td class="ui_main" style="width: auto; height: auto;">
+                                <div class="ui_content" style="padding: 10px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="ui_buttons" style="display: none;"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="ui_r"></td>
+        </tr>
+        <tr>
+            <td class="ui_lb"></td>
+            <td class="ui_b"></td>
+            <td class="ui_rb" style="cursor: auto;"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
