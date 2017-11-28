@@ -9,6 +9,7 @@
             <result property="warehousingRemarks" column="warehousing_remarks" />
             <result property="warehousingState" column="warehousing_state" />
 
+
             <collection property="procurement" ofType="procurement">
                 <result property="procurementId" column="procurement_id"/>
                 <result property="procurementDate" column="procurement_date"/>
@@ -39,67 +40,71 @@
         </resultMap>
 
     <select id="selectWarehousing" resultMap="WarehousingMap" parameterType="warehousing">
-        select * from warehousing
+        select * from warehousing w,procurement p,employee e,user u
         <where>
-            1=1
+            w.warehousing_buyer=u.user_id and w.procurement_id=p.procurement_id and w.warehousing_employee_id=e.employee_id
             <if test="warehousingId!=null and warehousingId>0">
-                and warehousing_id=#{warehousingId}
+                and w.warehousing_id=#{warehousingId}
             </if>
             <if test="warehousingBatchNumber !=null and warehousingBatchNumber>0">
-                and warehousing_batch_number =#{warehousingBatchNumber}
+                and w.warehousing_batch_number =#{warehousingBatchNumber}
             </if>
             <if test="warehousingBuyer!=null and warehousingBuyer>0">
-                and warehousing_buyer=#{warehousingBuyer}
+                and w.warehousing_buyer=#{warehousingBuyer}
             </if>
             <if test="procurementId !=null and procurementId>0">
-                and procurement_id=#{procurementId}
+                and w.procurement_id=#{procurementId}
             </if>
             <if test="warehousingDate!=null and warehousingDate!=''">
-                and warehousing_date=#{warehousingDate}
+                and w.warehousing_date=#{warehousingDate}
             </if>
             <if test="warehousingRemarks!=null and warehousingRemarks!=''">
-                and warehousing_remarks =#{warehousingRemarks}
+                and w.warehousing_remarks =#{warehousingRemarks}
             </if>
             <if test="warehousingUserId !=null and warehousingUserId>0">
-                and warehousing_user_id=#{warehousingUserId}
+                and w.warehousing_user_id=#{warehousingUserId}
             </if>
             <if test="warehousingState!=null and warehousingState>0">
-                and warehousing_state=#{warehousingState}
+                and w.warehousing_state=#{warehousingState}
             </if>
         </where>
     </select>
 
 
     <update id="updateWarehousing" parameterType="warehousing">
+        update warehousing
         <set>
-            <if test="warehousingBatchNumber !=null and warehousingBatchNumber>0">
-                 warehousing_batch_number =#{warehousingBatchNumber},
+            <if test="warehousingBatchNumber != null and warehousingBatchNumber>0">
+                  warehousing_batch_number = #{warehousingBatchNumber},
             </if>
-            <if test="warehousingBuyer!=null and warehousingBuyer>0">
-                 warehousing_buyer=#{warehousingBuyer},
+            <if test="warehousingBuyer != null and warehousingBuyer>0">
+                  warehousing_buyer = #{warehousingBuyer},
             </if>
             <if test="procurementId !=null and procurementId>0">
-                 procurement_id=#{procurementId},
+                  procurement_id = #{procurementId},
             </if>
             <if test="warehousingDate!=null and warehousingDate!=''">
-                 warehousing_date=#{warehousingDate},
+                  warehousing_date = #{warehousingDate},
             </if>
             <if test="warehousingRemarks!=null and warehousingRemarks!=''">
-                 warehousing_remarks =#{warehousingRemarks},
+                  warehousing_remarks = #{warehousingRemarks},
             </if>
             <if test="warehousingUserId !=null and warehousingUserId>0">
-                 warehousing_user_id=#{warehousingUserId},
+                  warehousing_user_id = #{warehousingUserId},
             </if>
             <if test="warehousingState!=null and warehousingState>0">
-                 warehousing_state=#{warehousingState},
+                  warehousing_state = #{warehousingState},
             </if>
         </set>
-        where warehousing_id=#{warehousingId}
+        <where>
+             warehousing_id=#{warehousingId}
+        </where>
+
     </update>
 
     <insert id="insertWarehousing" parameterType="warehousing">
         INSERT into warehousing VALUES(default,
-        #{warehousingBatchNumber},#{warehousing_buyer},
+        #{warehousingBatchNumber},#{warehousingBuyer},
         #{procurementId},#{warehousingDate},#{warehousingRemarks},#{warehousingUserId},#{warehousingState});
     </insert>
 </mapper>

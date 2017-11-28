@@ -28,22 +28,22 @@ public class test {
 
     @Autowired
     UserService userService;
-    @RequestMapping(value = "/updates.do")
-    public  String updates(Model model, User user){
-        int i=userService.updateUser(user);
-        if (i>0){
-            return "crr";
-        }
-        return "update";
-    }
+//    @RequestMapping(value = "/updates.do")
+//    public  String updates(Model model, User user){
+//        int i=userService.updateUser(user);
+//        if (i>0){
+//            return "crr";
+//        }
+//        return "update";
+//    }
 
 
-    @RequestMapping(value = "/indexs.do")
-    public  String indexs(Model model, User user){
-        int i=userService.insertUser(user);
-        if (i>0){
-            return "crr";
-        }
-        return "update";
-    }
+//    @RequestMapping(value = "/indexs.do")
+//    public  String indexs(Model model, User user){
+//        int i=userService.insertUser(user);
+//        if (i>0){
+//            return "crr";
+//        }
+//        return "index";
+//    }
 }

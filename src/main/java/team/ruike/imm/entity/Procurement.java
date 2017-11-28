@@ -1,4 +1,6 @@
 package team.ruike.imm.entity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ public class Procurement {
     /**
      * 采购日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date procurementDate;
     /**
      * 供应商编号

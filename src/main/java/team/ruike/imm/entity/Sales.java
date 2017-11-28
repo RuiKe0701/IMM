@@ -1,4 +1,6 @@
 package team.ruike.imm.entity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class Sales {
     /**
      *  销售日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date salesDate;
     /**
      * 客户编号

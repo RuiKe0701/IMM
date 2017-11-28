@@ -10,8 +10,8 @@
 <body>
 <h2>Hello World!</h2>
 </body>
-    <form method="post" action="/login.do" >
-        <input type="text" name="userName" id="userName" />
+    <form method="post" action="/warehousing.do" >
+        <input type="text" name="warehousingId" id="warehousingId" />
         <button type="submit" >提交</button>
     </form>
 </html>

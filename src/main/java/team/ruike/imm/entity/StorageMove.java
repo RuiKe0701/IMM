@@ -1,4 +1,6 @@
 package team.ruike.imm.entity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 /**
  * @author 闫琛昊
@@ -25,6 +27,7 @@ public class StorageMove {
     /**
      * 出库日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date smDate;
     /**
      * 出库备注
