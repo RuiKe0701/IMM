@@ -11,9 +11,9 @@
     <title>修改</title>
 </head>
 <body>
-<form method="post" action="/updates.do" >
-   id <input type="text" name="userId" id="userId" /><br>
-    name<input type="text" name="userName" id="userName" />
+<form method="post" action="/insertClient.do" >
+   id <input type="text" name="clientId" id="clientId" /><br>
+    name<input type="text" name="clientName" id="clientName" />
     <button type="submit" >提交</button>
 </form>
 </body>

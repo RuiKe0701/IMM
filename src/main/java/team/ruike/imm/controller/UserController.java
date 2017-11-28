@@ -17,10 +17,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/sd.do")
-    public String dd(){
-        return "indexa";
-    }
+
 
     @RequestMapping(value="/login.do")
     public  String login(User user, Model model, HttpSession session){

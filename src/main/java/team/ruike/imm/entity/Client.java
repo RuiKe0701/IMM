@@ -55,11 +55,11 @@ public class Client {
         this.clientState = clientState;
     }
 
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientIdntId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
