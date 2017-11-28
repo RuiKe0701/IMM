@@ -29,7 +29,7 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/a.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>encodingFilter</filter-name>
