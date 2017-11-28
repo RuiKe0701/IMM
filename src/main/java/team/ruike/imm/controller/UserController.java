@@ -16,15 +16,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @RequestMapping("/sd.do")
-    public String dd(){
-        return "indexa";
-    }
-
     @RequestMapping(value="/login.do")
     public  String login(User user, Model model, HttpSession session){
-        System.out.println(user.getUserName()+"/+");
         try {
             if (user.getUserName()!=null ){
                 List<User> userList=userService.selectUser(user);
@@ -32,20 +25,18 @@ public class UserController {
                     for (User user1 : userList) {
                         System.out.println(user1.getUserName());
                     }
-                    session.setAttribute("user",userList);
+                    session.setAttribute("user",userList.get(0).getUserName());
                     System.out.println("1");
-                    return "crr";
+                    return "index";
                 }else {
                     System.out.println("2");
-                    return "indexa";
+                    return "login";
                 }
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("3");
-        return "indexa";
-
+        return "login";
     }
 }
