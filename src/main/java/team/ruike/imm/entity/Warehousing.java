@@ -1,4 +1,6 @@
 package team.ruike.imm.entity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -26,6 +28,7 @@ public class Warehousing {
     /**
      * 入库日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date warehousingDate;
     /**
      * 入库备注

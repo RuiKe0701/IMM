@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -35,6 +37,7 @@ public class Crm {
     /**
      * 记录时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date crmDate;
     /**
      * 是否已删除
