@@ -14,7 +14,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    public List<User> selectUser(User user);
+    public User selectUser(User user);
 
     /**
      * 指定条件修改用户信息

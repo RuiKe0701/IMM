@@ -20,16 +20,16 @@
 
 
     <select id="selectUser" resultMap="userMap">
-        SELECT * FROM user u
+        SELECT * FROM user u,employee e
         <where>
-          1=1
+            u.employee_id=e.employee_id
             <if test="userId!=null and userId>0">
               and  u.user_id=#{userId}
             </if>
             <if test="userName!=null and userName!=''">
                 and u.user_name=#{userName}
             </if>
-            <if test="userState!=null and userState>=0">
+            <if test="userState!=null">
                 and u.user_state=#{userState}
             </if>
         </where>

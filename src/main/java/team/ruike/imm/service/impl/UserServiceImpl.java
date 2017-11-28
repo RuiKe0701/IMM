@@ -26,10 +26,18 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-    public List<User> selectUser(User user) {
-        System.out.println(user.getUserName()+"/UserServiceImpl");
-        List<User> users=userDao.selectUser(user);
-        return users;
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public User selectUser(User user) {
+        List<User> list=null;
+        if(user.getUserName()!=null && user.getUserPassword()!=null){
+           list=userDao.selectUser(user);
+            return  list.get(0);
+        }
+        return new User();
     }
 
     public int updateUser(User user) {

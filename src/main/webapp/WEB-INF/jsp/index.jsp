@@ -454,48 +454,44 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 52.9088px; left: 129px;">
                                 <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/customer-list.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="客户管理" tabid="information-customerList"
-                                                        data-right="BU_QUERY"> <span>客户管理<span
+                                                        data-right="BU_QUERY"> <span>1客户管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/vendor-list.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="供应商管理" tabid="information-vendorList"
-                                                        data-right="PUR_QUERY"> <span>供应商管理<span
+                                                        data-right="PUR_QUERY"> <span>2供应商管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/goods-list.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="商品管理" tabid="information-goodsList"
                                                         data-right="INVENTORY_QUERY"> <span>商品管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/storage-list.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="仓库管理" tabid="information-storageList"
                                                         data-right="INVLOCTION_QUERY"> <span>仓库管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/staff-list.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="职员管理" tabid="information-staffList"
                                                         data-right=""> <span>职员管理<span class="hide"></span></span> </a>
                                         </li>
                                         <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/settlement-account.jsp"
+                                                href=""
                                                 rel="pageTab" tabtxt="账户管理" tabid="information-settlementaccount"
                                                 data-right="SettAcct_QUERY"> <span>账户管理<span class="hide"></span></span>
                                         </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/commodity-brand.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="商品品牌" tabid="information-brand"
                                                         data-right="BRAND_QUERY"> <span>商品品牌<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/settings/store-list.jsp"
+                                        <li class="hide"><a href=""
                                                             rel="pageTab" tabtxt="门店管理" tabid="information-storeList"
                                                             data-right="STORE_QUERY"> <span>门店管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/shippingAddress.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="发货地址管理"
                                                         tabid="information-shippingAddress"
                                                         data-right="DELIVERYADDR_QUERY"> <span>发货地址管理<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/initAccount.jsp"
-                                                        rel="pageTab" tabtxt="新手导航" tabid="information-initAccount"
-                                                        data-right=""> <span>新手导航<span
-                                                class="newMenuIcon"></span></span> </a></li>
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>辅助资料</h3>
@@ -661,7 +657,7 @@
                             </li>
                             <li id="userName" class="default-userName cf" style="position: relative;"><span
                                     class="user left"></span>
-                                <a href="#" class="special left" id="user_name">zqk</a> <span
+                                <a href="#" class="special left" id="user_name">${userName}<%-- 显示登录的员工名字--%></a> <span
                                         class="triangle-bottom left"></span>
 
                                 <div class="drop-down-wrap" style="width: 200px; left: -48px;display: none"
@@ -763,7 +759,7 @@
                             </li>
                             <li class=""><a href="http://service.youshang.com/myservice/list_service.do"
                                             class=" icon-circle-arrow-left"></a></li>
-                            <li class=""><a href="http://vip2-gd.youshang.com/scm/logOut.do"
+                            <li class=""><a href="/retreat.do"  <%-- 退出按钮 --%>
                                             class=" icon-off"></a></li>
                         </ul>
                     </div>
