@@ -1,28 +1,36 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2017-11-28
+  Time: 15:20
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" class="">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>精斗云云进销存</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css">
-    <link href="css/print.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/ui.min.css" rel="stylesheet">
-    <link href="css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" charset="utf-8" async="" src="js/contains.js"></script>
-    <script type="text/javascript" charset="utf-8" async="" src="js/taskMgr.js"></script>
-    <script type="text/javascript" charset="utf-8" async="" src="js/views.js"></script>
-    <script type="text/javascript" async="" src="js/vds.js"></script>
-    <script type="text/javascript" async="" src="js/vds.js"></script>
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/json3.min.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/grid.js"></script>
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/shopping.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/jquery.dialog.js"></script>
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/contains.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/taskMgr.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/views.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.js"></script>
+    <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
     </script>
     <script type="text/javascript">
@@ -93,7 +101,7 @@
 </script>
 
 <title>äºè¿éå­</title>
-<link href="css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet">
 <div id="container" class="cf">
     <div class="layoutCls">
         <div class="left-menu left ">
@@ -140,8 +148,8 @@
                                 <div class="nav-item"><h3>销售单据</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="purchase8"><a href="#"
-                                                        rel="pageTab" tabtxt="销货订单" tabid="sales-salesOrder"
-                                                        data-right="SO_ADD"> <span class="hasList">销货订单<span
+                                                                       rel="pageTab" tabtxt="销货订单" tabid="sales-salesOrder"
+                                                                       data-right="SO_ADD"> <span class="hasList">销货订单<span
                                                 class="hide"></span></span> <i tabtxt="销货订单记录"
                                                                                tabid="sales-salesOrderList"
                                                                                rel="pageTab"
