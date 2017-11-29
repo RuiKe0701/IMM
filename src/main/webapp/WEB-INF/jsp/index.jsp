@@ -392,7 +392,7 @@
                                                                                rel="pageTab"
                                                                                href="/scm/ori.do?action=initExpList"
                                                                                data-right="QTZC_QUERY">查询</i> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/money/expense-list.jsp"
+                                        <li class=""><a href="../funds/expense-list-1.html"
                                                         rel="pageTab" tabtxt="采购销售费用清单" tabid="money-expenseList"
                                                         data-right="FEEBILL_QUERY"> <span>采购销售费用清单<span
                                                 class="hide"></span></span> </a></li>
