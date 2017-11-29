@@ -17,9 +17,7 @@ public class ClientServiceImpl implements ClientService {
     public void setClientDao(ClientDao clientDao) { this.clientDao = clientDao; }
 
     public List<Client> selecrClient(Client client) {
-        System.out.println(client.getClientName()+"/ClientServiceImpl");
-        List<Client> clients = clientDao.selecrClient(client);
-        return clients;
+        return clientDao.selecrClient(client);
     }
 
     public int updateClient(Client client) { return clientDao.updateClient(client); }

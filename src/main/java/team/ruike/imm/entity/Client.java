@@ -1,11 +1,13 @@
 package team.ruike.imm.entity;
 
+import team.ruike.imm.instrument.Pager;
+
 /**
  * @author 索志文
  * @versrion 2.0
  * 客户信息
  */
-public class Client {
+public class Client extends Pager {
     /**
      * 客户编号
      */

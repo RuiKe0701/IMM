@@ -15,32 +15,11 @@ import java.util.List;
 public class ClientController {
     @Autowired
     ClientService clientService;
+    //展示全部数据
+    @RequestMapping(value="/clientAll.do")
+    public  String clientAll(){
 
-    @RequestMapping(value="/selectClient.do")
-    public  String login(Client client, Model model, HttpSession session){
-        System.out.println(client.getClientName()+"/+");
-        try {
-            if (client.getClientName()!=null){
-                List<Client> clientList=clientService.selecrClient(client);
-                if (clientList.size()>0){
-                    for (Client client1 : clientList) {
-                        System.out.println(client1.getClientName());
-                    }
-                    session.setAttribute("client",clientList);
-                    System.out.println("1");
-                    return "crr";
-                }else {
-                    System.out.println("2");
-                    return "indexa";
-                }
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println("3");
-        return "indexa";
-
+        return "page/material/customer-list-1";
     }
 
     @RequestMapping(value = "/updatesClient.do")

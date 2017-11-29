@@ -17,6 +17,9 @@
     <link href="${pageContext.request.contextPath }/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet" type="text/css">
+    <%-- 跳转--%>
+    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/Client.js"></script>
+
     <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/contains.js"></script>
     <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/taskMgr.js"></script>
     <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/views.js"></script>
@@ -197,7 +200,7 @@
                                                         rel="pageTab" tabtxt="销售明细表" tabid="sales-salesDetail"
                                                         data-right="SAREPORTDETAIL_QUERY"> <span>销售明细表<span
                                                 class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/sales-summary.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="销售汇总表（按商品）" tabid="sales-salesSummary"
                                                         data-right="SAREPORTINV_QUERY"> <span>销售汇总表（按商品）<span
                                                 class="hide"></span></span> </a></li>
@@ -454,10 +457,12 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 52.9088px; left: 129px;">
                                 <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="客户管理" tabid="information-customerList"
-                                                        data-right="BU_QUERY"> <span>1客户管理<span
-                                                class="hide"></span></span> </a></li>
+                                        <li class="" id="customer">
+                                            <a href="javascript:void(0);">
+                                                <span>1客户管理<span class="hide"></span></span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                         <li class=""><a href=""
                                                         rel="pageTab" tabtxt="供应商管理" tabid="information-vendorList"
                                                         data-right="PUR_QUERY"> <span>2供应商管理<span
