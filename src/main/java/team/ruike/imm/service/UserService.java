@@ -1,6 +1,7 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.User;
+import team.ruike.imm.instrument.Pager;
 
 import java.util.List;
 
@@ -15,6 +16,16 @@ public interface UserService {
      * @return
      */
     public User selectUser(User user);
+
+    public List<User> userList(User user);
+    /**
+     * 分页
+     * @param user
+     * @return
+     */
+    public List<User> PagerUser(User user);
+
+    public Pager<User> getPager(int currentPage, int pageSize, List<User> user);
 
     /**
      * 指定条件修改用户信息

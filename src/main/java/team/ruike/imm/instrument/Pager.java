@@ -8,9 +8,9 @@ public class Pager<T> implements Serializable {
 
 
     //每页显示多少条记录
-    private int pageSize;
+    public int pageSize;
     //当前第几页数据
-    private int currentPage;
+    public int currentPage;
     //一共有多少条记录
     private int totalRecord;
     //一共多少页记录

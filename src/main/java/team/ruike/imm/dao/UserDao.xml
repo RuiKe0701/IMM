@@ -35,6 +35,25 @@
         </where>
     </select>
 
+
+    <!-- 分页查询用户信息 -->
+    <select id="PagerUser" parameterType="user" resultMap="userMap">
+        SELECT * FROM user u
+        <where>
+            1=1
+            <if test="userId!=null and userId>0">
+                and  u.user_id=#{userId}
+            </if>
+            <if test="userName!=null and userName!=''">
+                and u.user_name=#{userName}
+            </if>
+            <if test="userState!=null">
+                and u.user_state=#{userState}
+            </if>
+        </where>
+        LIMIT #{currentPage},#{pageSize}
+    </select>
+
     <update id="updateUser" parameterType="user">
         update user
         <set>

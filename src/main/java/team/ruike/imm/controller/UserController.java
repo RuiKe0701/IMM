@@ -27,12 +27,24 @@ public class UserController {
     @RequestMapping(value="/login.do")
     public  String login(User user,HttpSession session){
             User u=userService.selectUser(user);
-        if (u!=null){
+            if (u.getUserName()!=null){
             session.setAttribute("userName",u.getEmployee().getEmployeeName());
             return "index";
-        }
-        return "login";
+            }
+            session.setAttribute("hint","请输入正确的用户名和密码");
+            return "login";
     }
+
+    @RequestMapping(value = "/page.do")
+    public  String page(User user){//分页显示用户信息
+       List<User> pages= userService.PagerUser(user);
+        for (User u : pages) {
+            System.out.println(u.getUserName());
+        }
+        return null;
+    }
+
+
 
     /**
      * 退出到登录页面

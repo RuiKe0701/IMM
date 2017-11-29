@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import team.ruike.imm.instrument.Pager;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * @version 2.0
  *用户信息
  */
-public class User implements Serializable{
+public class User extends Pager implements Serializable{
     /**
      * 用户编号
      */
@@ -37,6 +39,26 @@ public class User implements Serializable{
      * 当前和删除
      */
     private  Integer userState;
+//    //当前第几页
+//    private int currentPage;
+//    //每页记录数
+//    private int pageSize;
+
+//    public int getCurrentPage() {
+//        return currentPage;
+//    }
+//
+//    public void setCurrentPage(int currentPage) {
+//        this.currentPage = currentPage;
+//    }
+//
+//    public int getPageSize() {
+//        return pageSize;
+//    }
+//
+//    public void setPageSize(int pageSize) {
+//        this.pageSize = pageSize;
+//    }
 
     public Integer getEmployeeId() {
         return employeeId;

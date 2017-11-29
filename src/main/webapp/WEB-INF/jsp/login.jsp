@@ -34,6 +34,19 @@
         }
     </style>
 
+   <%-- <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#bu").click(function(){
+                var user=$("#userName").val();
+
+                alert(user);
+                if(user.length==0 || user.value()==null){
+                  $("#hint").val("用户名不能为空");
+                }
+            })
+        })
+    </script>--%>
 </head>
 
 <body style="background:url(${pageContext.request.contextPath }/img/bg.jpg) no-repeat;">
@@ -53,10 +66,10 @@
             </div>
             <div class="checkbox mg-b25">
                 <label>
-                    <input type="checkbox" />记住我的登录信息
+                   <b id="hint">${hint}</b>
                 </label>
             </div>
-            <button type="submit" class="login_btn">登 录</button>
+            <button type="submit" id="bu" class="login_btn">登 录</button>
         </form>
     </div><!--row end-->
 </div><!--container end-->

@@ -1,6 +1,7 @@
 package team.ruike.imm.dao;
 
 import team.ruike.imm.entity.User;
+import team.ruike.imm.instrument.Pager;
 
 import java.util.List;
 
@@ -15,6 +16,12 @@ public interface UserDao {
      * @return
      */
     public List<User> selectUser(User user);
+
+    /**
+     * 分页
+     * @return
+     */
+    public List<User> PagerUser(User user);
 
     /**
      * 指定条件修改用户信息
