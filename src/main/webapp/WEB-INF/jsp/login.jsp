@@ -55,7 +55,7 @@
     <h2 class="mg-b20 text-center">某某公司登录页面</h2>
     <div class="col-sm-8 col-md-5 center-auto pd-sm-50 pd-xs-20 main_content">
         <p class="text-center font16">用户登录</p>
-        <form action="/login.do" method="post">
+        <form action="/user/login.do" method="post">
             <div class="form-group mg-t20">
                 <i class="icon-user icon_font"></i>
                 <input type="name" name="userName" class="login_input" id="userName" placeholder="请输入用户名" />

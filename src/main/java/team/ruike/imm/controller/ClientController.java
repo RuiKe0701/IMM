@@ -1,6 +1,7 @@
 package team.ruike.imm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,7 @@ import team.ruike.imm.service.ClientService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+@RequestMapping(value = "/client")
 @Controller
 public class ClientController {
     @Autowired
@@ -59,22 +60,5 @@ public class ClientController {
             return "crr";
         }
         return "update";
-    }
-
-
-
-    @RequestMapping(value = "/select.do")
-    public String select(){
-        return "indexa";
-    }
-
-    @RequestMapping(value = "/update.do")
-    public String update(){
-        return "update";
-    }
-
-    @RequestMapping(value = "/insert.do")
-    public String insert(){
-        return "insert";
     }
 }

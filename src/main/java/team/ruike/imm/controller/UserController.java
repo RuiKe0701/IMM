@@ -11,7 +11,7 @@ import team.ruike.imm.service.UserService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-
+@RequestMapping(value = "/user")
 @Controller
 public class UserController {
 
