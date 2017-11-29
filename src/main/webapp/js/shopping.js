@@ -1,5 +1,7 @@
 $(function () {
 
+
+
     $(".menu-item").mousemove(function () {
         $(this).children(".sub-nav-wrap").show();
     }).mouseout(function () {
@@ -11,30 +13,25 @@ $(function () {
         $("#user_info").hide();
     });
 
-    var i=1;
 
     $("#purchase").click(function () {
-        i++;
-        if(i==2){
             $("#tabManage").remove();
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
             $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>购货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-            document.getElementById("iff").src="page/purchase/purchaseOrder.html";
+            $("#iff").attr("src","/purchase/loginPurchaseOrder.do");
+
             $("#ons").css("display","none");
             $("#showiframe").css("display","block");
-
-        }
-
     });
 
-    $("#purchase2").click(function () {
+       $("#purchase2").click(function () {
         $("#tabManage").remove();
-        document.getElementById("iff").src="page/purchase/Purchase.html";
+        document.getElementById("iff").src="page/purchase/Purchase.jsp";
     });
     $("#purchase3").click(function () {
         $("#tabManage").remove();
-        document.getElementById("iff").src="page/purchase/purchaseSales.html";
+        document.getElementById("iff").src="page/purchase/purchaseSales.jsp";
     });
     $("#purchase4").click(function () {
         document.getElementById("iff").src="page/purchase/replenishment.html";

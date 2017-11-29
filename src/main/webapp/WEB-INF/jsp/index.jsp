@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HP
-  Date: 2017-11-28
-  Time: 15:20
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" class="">
@@ -16,10 +9,14 @@
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/contains.js"></script>
-    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/taskMgr.js"></script>
-    <script type="text/javascript" charset="utf-8" async="" src="${pageContext.request.contextPath }/js/views.js"></script>
+    <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet"
+          type="text/css">
+    <script type="text/javascript" charset="utf-8" async=""
+            src="${pageContext.request.contextPath }/js/contains.js"></script>
+    <script type="text/javascript" charset="utf-8" async=""
+            src="${pageContext.request.contextPath }/js/taskMgr.js"></script>
+    <script type="text/javascript" charset="utf-8" async=""
+            src="${pageContext.request.contextPath }/js/views.js"></script>
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
@@ -29,6 +26,7 @@
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.js"></script>
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
+    <script src="${pageContext.request.contextPath }/js/guoxu.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
@@ -119,19 +117,27 @@
                                 <div class="nav-item"><h3>采购单据</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="purchase"><a href="javascript:void(0);"> <span class="hasList">购货订单<span
-                                                class="hide"></span></span> <i href="javascript:void(0);">查询</i> </a></li>
+                                                class="hide"></span></span> <i href="javascript:void(0);">查询</i> </a>
+                                        </li>
                                         <li class="" id="purchase2">
-                                            <a href="javascript:void(0);"> <span class="hasList">购货单<span class="hide"></span></span>
-                                                <i  href="javascript:void(0);">查询</i> </a></li>
-                                        <li class="" id="purchase3"><a href="javascript:void(0);"> <span>以销定购看板<span class="hide"></span></span> <i href="javascript:void(0);">查询</i></a></li>
-                                        <li class="" id="purchase4"><a href="javascript:void(0);"> <span>智能补货<span class="newMenuIcon"></span></span><i href="javascript:void(0);">查询</i> </a></li>
+                                            <a href="javascript:void(0);"> <span class="hasList">购货单<span
+                                                    class="hide"></span></span>
+                                                <i href="javascript:void(0);">查询</i> </a></li>
+                                        <li class="" id="purchase3"><a href="javascript:void(0);"> <span>以销定购看板<span
+                                                class="hide"></span></span> <i href="javascript:void(0);">查询</i></a>
+                                        </li>
+                                        <li class="" id="purchase4"><a href="javascript:void(0);"> <span>智能补货<span
+                                                class="newMenuIcon"></span></span><i href="javascript:void(0);">查询</i>
+                                        </a></li>
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>采购报表</h3>
                                     <ul class="sub-nav">
-                                        <li class="" id="purchase5"><a href="#"> <span>采购明细表<span class="hide"></span></span>
+                                        <li class="" id="purchase5"><a href="#"> <span>采购明细表<span
+                                                class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
-                                        <li class="" id="purchase6"><a href="#"> <span>采购汇总表<span class="hide"></span></span>
+                                        <li class="" id="purchase6"><a href="#"> <span>采购汇总表<span
+                                                class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
                                         <li class="" id="purchase7"><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
@@ -147,14 +153,14 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 128.971px; left: 129px;">
                                 <div class="nav-item"><h3>销售单据</h3>
                                     <ul class="sub-nav">
-                                        <li class="" id="purchase8"><a href="#"
-                                                                       rel="pageTab" tabtxt="销货订单" tabid="sales-salesOrder"
-                                                                       data-right="SO_ADD"> <span class="hasList">销货订单<span
-                                                class="hide"></span></span> <i tabtxt="销货订单记录"
-                                                                               tabid="sales-salesOrderList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invSo.do?action=initSoList"
-                                                                               data-right="SO_QUERY">查询</i> </a></li>
+                                        <li class="" id="sales">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销货订单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                         <li class=""><a href="http://vip2-gd.youshang.com/scm/invSa.do?action=initSale"
                                                         rel="pageTab" tabtxt="销货单" tabid="sales-sales"
                                                         data-right="SA_ADD"> <span class="hasList">销货单<span
@@ -780,7 +786,8 @@
                             <div class="l-tab-switch"></div>
                         </div>
                         <div class="l-tab-content" style="height: 632px;">
-                            <div id="ons" class="l-tab-content-item" tabid="index" style="height: 632px;display: block;">
+                            <div id="ons" class="l-tab-content-item" tabid="index"
+                                 style="height: 632px;display: block;">
                                 <div class="home cf">
                                     <div class="home-main-item left">
                                         <div class="home-main">
@@ -1002,7 +1009,8 @@
                             </div>
                             <div class="l-tab-content-item" tabid="purchase-purchaseOrder"
                                  style="height: 632px; display: none;" id="showiframe">
-                                <iframe frameborder="0" name="purchase-purchaseOrder" id="iff" src="" style="height: 800px"></iframe>
+                                <iframe frameborder="0" name="purchase-purchaseOrder" id="iff" src=""
+                                        style="height: 800px"></iframe>
                             </div>
                         </div>
 
@@ -1015,49 +1023,8 @@
 </div>
 <script type="text/javascript" src="js/vendor.0a7be9f.dll.js"></script>
 <script type="text/javascript" src="js/vendor.501f514.dll.js"></script>
-<script type="text/javascript">// window.onload =function(){
-//   // // alert(222)
-//   // console.log(document.querySelector('default-main')[0])
-//   // document.querySelector('default-main')[0].left = 0
-// }</script>
 <script type="text/javascript" src="js/app.ea26dd00a5823b52da4f.js"></script>
-<script type="text/javascript">
-    if ($('html').length > 0 && $('html')[0].className == 'ie8') {
-        var sUserAgent = navigator.userAgent;
-        var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1;
-        var href = isWinXP ? 'http://downloads.youshang.com/ys/yunwei/chrome37.exe' : 'http://downloads.youshang.com/ys/yunwei/chrome55.exe'; // xp系统用低版本的
-
-        $('#container').hide();
-
-        var content = [
-            '<div id="ie8Tips" class="ie8-tips-wrap">',
-            '<div class="ie8-tips-left"></div>',
-            '<div class="ie8-tips-right">',
-            '<p>您当前使用的浏览器内核版本过低，为避免存在安全隐患，建议您将浏览器升级到IE9及以上版本；同时，为了让您获得更佳的浏览体验，推荐您使用谷歌浏览器</p>',
-            '<a class="google-download" href="' + href + '" target="_blank"></a>',
-            '</div></div>'
-        ];
-        $('body').append(content.join(''));
-    }
-    (function () {
-        var _vds = _vds || [];
-        window._vds = _vds;
-        _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
-        // console.log(window.SYSTEM.DBID)
-        // _vds.push(['setCS1', 'user_id', window.SYSTEM.userInfo.filter(function(i){return i.userName==window.SYSTEM.userName})[0].userId]);
-        _vds.push(['setCS1', 'dbid', window.SYSTEM.DBID]);
-        _vds.push(['setCS2', 'user_name', window.SYSTEM.userName]);
-        _vds.push(['setCS3', 'company_name', window.SYSTEM.companyName]);
-        (function () {
-            var vds = document.createElement('script');
-            vds.type = 'text/javascript';
-            vds.async = true;
-            vds.src = 'https://dn-growing.qbox.me/vds.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(vds, s);
-        })();
-    })();
-</script>
+<script type="text/javascript"></script>
 <div class="l-menu" style="display: none; top: 0px; left: 0px; width: 100px;" ligeruiid="Menu1001">
     <div class="l-menu-yline"></div>
     <div class="l-menu-over">
