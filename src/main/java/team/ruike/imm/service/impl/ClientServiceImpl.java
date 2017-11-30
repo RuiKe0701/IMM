@@ -17,9 +17,18 @@ public class ClientServiceImpl implements ClientService {
     public void setClientDao(ClientDao clientDao) { this.clientDao = clientDao; }
 
     public List<Client> selecrClient(Client client) {
-        System.out.println(client.getClientName()+"/ClientServiceImpl");
-        List<Client> clients = clientDao.selecrClient(client);
-        return clients;
+        return clientDao.selecrClient(client);
+    }
+
+    /**
+     * 分页展示
+     * @param client
+     * @return
+     */
+    public List<Client> pagerClient(Client client) {
+        client.setPageSize(2); //设置每页显示数据数
+        client.setCurrentPage((3-1)*2);  //设置第几页 （页数-1*显示数据数）
+        return clientDao.pagerClient(client);
     }
 
     public int updateClient(Client client) { return clientDao.updateClient(client); }

@@ -51,6 +51,9 @@
                 and client_state=#{clientState}
             </if>
         </where>
+        <if test="currentPage!=null and currentPage>0 and pageSize>0 and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
 

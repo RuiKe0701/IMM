@@ -1,7 +1,5 @@
 package team.ruike.imm.dao;
-
 import team.ruike.imm.entity.Client;
-
 import java.util.List;
 /**
  * @author 索志文
@@ -14,7 +12,11 @@ public interface ClientDao {
      * @return
      */
     public List<Client> selecrClient(Client client);
-
+    /**
+     * 分页
+     * @return
+     */
+    public List<Client> pagerClient(Client client);
     /**
      * 指定条件修改客户信息
      * @param client

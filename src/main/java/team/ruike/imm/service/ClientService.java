@@ -1,6 +1,7 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.Client;
+import team.ruike.imm.entity.User;
 
 import java.util.List;
 
@@ -11,6 +12,12 @@ public interface ClientService {
      * @return
      */
     public List<Client> selecrClient(Client client);
+    /**
+     * 分页
+     * @param client
+     * @return
+     */
+    public List<Client> pagerClient(Client client);
 
     /**
      * 指定条件修改客户信息

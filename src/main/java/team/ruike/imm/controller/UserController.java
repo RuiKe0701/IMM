@@ -37,7 +37,7 @@ public class UserController {
 
     @RequestMapping(value = "/page.do")
     public  String page(User user){//分页显示用户信息
-       List<User> pages= userService.PagerUser(user);
+       List<User> pages= userService.pagerUser(user);
         for (User u : pages) {
             System.out.println(u.getUserName());
         }

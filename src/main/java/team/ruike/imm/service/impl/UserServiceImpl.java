@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
-    public List<User> PagerUser(User user) {
+    public List<User> pagerUser(User user) {
         user.setPageSize(2); //设置每页显示数据数
         user.setCurrentPage((3-1)*2);  //设置第几页 （页数-1*显示数据数）
         return userDao.PagerUser(user);
