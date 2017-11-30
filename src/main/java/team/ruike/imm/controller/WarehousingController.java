@@ -25,15 +25,15 @@ public class WarehousingController {
     public String select(Warehousing warehousing, Model model,HttpSession session){
         try{
             if(warehousing.getWarehousingId()!=null){
-                List<Warehousing> warehousingList=warehousingService.selectWarehousing(warehousing);
-                if(warehousingList!=null){
-                    for (Warehousing w1 :warehousingList){
-                        System.out.println(w1.getUser().getUserName());
-                    }
-                    session.setAttribute("ware",warehousingList);
-                    return "crr";
-                }else{
-                    return "indexa";
+                    List<Warehousing> warehousingList=warehousingService.selectWarehousing(warehousing);
+                    if(warehousingList!=null){
+                        for (Warehousing w1 :warehousingList){
+                            System.out.println(w1.getUser().getUserName());
+                        }
+                        session.setAttribute("ware",warehousingList);
+                        return "crr";
+                    }else{
+                        return "indexa";
                 }
             }
         }catch (Exception e){

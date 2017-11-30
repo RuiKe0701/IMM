@@ -1,5 +1,11 @@
-<!DOCTYPE html>
-<!-- saved from url=(0097)http://vip2-gd.youshang.com/report/goods-flow-summary.jsp?beginDate=2017-11-01&endDate=2017-11-21 -->
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2017/11/30
+  Time: 9:04
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

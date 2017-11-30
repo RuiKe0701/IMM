@@ -16,4 +16,11 @@ public class SalesController {
     public String loginsalesOrders(Model model){
         return "page/Sales/salesOrders";
     }
+
+    @RequestMapping("/loginsalesOrdersForAbout.do")
+    public String loginsalesOrdersForAbout(Model model){
+        return "page/Sales/invPu";
+    }
+
+
 }
