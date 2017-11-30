@@ -11,109 +11,88 @@ $(function () {
         $("#user_info").hide();
     });
 
-    $("#sales").click(function () {
-            $("#tabManage").remove();
-            $("li").removeClass("l-selected");
-            $("div").removeClass("l-tab-links-item-close");
-           // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-            $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
-            $("#ons").css("display", "none");
-            $("#showiframe").css("display", "block");
 
-    });
-
-    $("#salesForAbout").click(function () {
-        alert("asd");
-        $("#tabManage").remove();
-        $("li").removeClass("l-selected");
-        $("div").removeClass("l-tab-links-item-close");
-       // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
-
-        $("#ons").css("display", "none");
-        $("#showiframe").css("display", "block");
-
-    });
-
-    $("#Original-document").click(function () {
-        alert("asd");
+    //采购销售费用清单
+    $("#Purchase-sales-expense-list").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
 
-
-    $("#Sales-details").click(function () {
-        alert("asd");
+    //应付账款明细表
+    $("#Accounts-payabl-details").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
 
-    $("#Sales-summary-commodity").click(function () {
-        alert("asd");
+    //应收账款明细表
+    $("#Accounts-receivable-details").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
 
-    $("#Sales-summary-client").click(function () {
-        alert("asd");
+    //客户对账单
+    $("#Customer-statement").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
 
-    $("#Sales-summary-salesperson").click(function () {
-        alert("asd");
+    //供应商对账单
+    $("#Supplier-statement").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
 
-    $("#Sales-ranking").click(function () {
-        alert("asd");
+    //利润表
+    $("#Income-Statement").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/sales/loginsalesOrders.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
 
     });
+
+
+
 
 
     $("body").on("click","#aaa",function(){
