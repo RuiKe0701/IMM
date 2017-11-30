@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Client;
+import team.ruike.imm.entity.User;
 import team.ruike.imm.service.ClientService;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,14 @@ public class ClientController {
 
         return "page/material/customer-list-1";
     }
-
+    @RequestMapping(value = "/page.do")
+    public  String page(Client client){//分页显示用户信息
+        List<Client> pages= clientService.pagerClient(client);
+        for (Client c : pages) {
+            System.out.println(c.getClientName());
+        }
+        return null;
+    }
     @RequestMapping(value = "/updatesClient.do")
     public  String updates(Model model, Client client){
         int i=clientService.updateClient(client);

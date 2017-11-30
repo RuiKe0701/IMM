@@ -23,7 +23,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    public List<User> PagerUser(User user);
+    public List<User> pagerUser(User user);
 
     public Pager<User> getPager(int currentPage, int pageSize, List<User> user);
 

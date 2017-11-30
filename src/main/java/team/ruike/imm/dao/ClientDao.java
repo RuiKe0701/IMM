@@ -16,7 +16,7 @@ public interface ClientDao {
      * 分页
      * @return
      */
-    public List<Client> PagerUser(Client client);
+    public List<Client> pagerClient(Client client);
     /**
      * 指定条件修改客户信息
      * @param client
