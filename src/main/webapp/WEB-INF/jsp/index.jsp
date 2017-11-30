@@ -161,79 +161,85 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/scm/invSa.do?action=initSale"
-                                                        rel="pageTab" tabtxt="销货单" tabid="sales-sales"
-                                                        data-right="SA_ADD"> <span class="hasList">销货单<span
-                                                class="hide"></span></span> <i tabtxt="销货单记录" tabid="sales-salesList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invSa.do?action=initSaleList"
-                                                                               data-right="SA_QUERY">查询</i> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invSa.do?action=initSale&amp;transType=150602"
-                                                rel="pageTab" tabtxt="销货退货单" tabid="sales-salesBack"
-                                                data-right="SABACK_ADD"> <span class="hasList">销货退货单<span
-                                                class="hide"></span></span> <i tabtxt="销货退货单记录"
-                                                                               tabid="sales-salesBackList" rel="pageTab"
-                                                                               href="/scm/invSa.do?action=initSaleList&amp;transType=150602"
-                                                                               data-right="SABACK_QUERY">查询</i> </a>
+                                        <li class="" id="salesForAbout">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销货单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
                                         </li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/sales/originalSales-list.jsp"
-                                                        rel="pageTab" tabtxt="原始单据" tabid="sales-salesOriginal"
-                                                        data-right="SA_QUERY"> <span>原始单据<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/sales/salesBilling.jsp"
-                                                        rel="pageTab" tabtxt="销售开票" tabid="sales-salesBill"
-                                                        data-right="SABILLING_ADD"> <span class="hasList">销售开票<span
-                                                class="newMenuIcon"></span></span> <i tabtxt="销售开票记录"
-                                                                                      tabid="sales-salesBillList"
-                                                                                      rel="pageTab"
-                                                                                      href="/sales/salesBilling-list.jsp"
-                                                                                      data-right="SABILLING_QUERY">查询</i>
-                                        </a></li>
+                                        <li class="" id="Original-document">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">原始单据
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>销售报表</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/sales-order-tracking.jsp"
-                                                rel="pageTab" tabtxt="销售订单跟踪表" tabid="sales-salesOrderTracking"
-                                                data-right="SALESORDER_QUERY"> <span>销售订单跟踪表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/sales-detail.jsp"
-                                                        rel="pageTab" tabtxt="销售明细表" tabid="sales-salesDetail"
-                                                        data-right="SAREPORTDETAIL_QUERY"> <span>销售明细表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/sales-summary.jsp"
-                                                        rel="pageTab" tabtxt="销售汇总表（按商品）" tabid="sales-salesSummary"
-                                                        data-right="SAREPORTINV_QUERY"> <span>销售汇总表（按商品）<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/sales-summary-customer-new.jsp"
-                                                rel="pageTab" tabtxt="销售汇总表（按客户）" tabid="sales-salesSummaryCustomer"
-                                                data-right="SAREPORTBU_QUERY"> <span>销售汇总表（按客户）<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/sales-summary-sales.jsp"
-                                                rel="pageTab" tabtxt="销售汇总表（按销售人员）" tabid="sales-salesSummarySales"
-                                                data-right="SAREPORSALER_QUERY"> <span>销售汇总表（按销售人员）<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/sale-receipt-detail.jsp"
-                                                rel="pageTab" tabtxt="销售收款一览表" tabid="sales-saleAndReceiptDetail"
-                                                data-right="SALERECEIPTDETAIL_QUERY"> <span>销售收款一览表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/contact-debt-new.jsp"
-                                                        rel="pageTab" tabtxt="往来单位欠款表" tabid="sales-contactDebt"
-                                                        data-right="ContactDebtReport_QUERY"> <span>往来单位欠款表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/sale-profit-detail.jsp"
-                                                        rel="pageTab" tabtxt="销售利润表" tabid="sales-salePrifitDetail"
-                                                        data-right="SALESPROFIT_QUERY"> <span>销售利润表<span
-                                                class="newMenuIcon"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/sale-rank-detail.jsp"
-                                                        rel="pageTab" tabtxt="销售排行表" tabid="sales-saleRankDetail"
-                                                        data-right="APPREPORTSALE_QUERY"> <span>销售排行表<span
-                                                class="newMenuIcon"></span></span> </a></li>
+
+
+                                        <li class="" id="Sales-details">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售明细表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Sales-summary-commodity">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售汇总表（按商品）
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Sales-summary-client">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售汇总表（按客户）
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Sales-summary-salesperson">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售汇总表（按销售人员）
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Sales-receipt-list">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售收款一览表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="sales-profit">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售利润表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Sales-ranking">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售排行表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -246,103 +252,50 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 72.9505px; left: 129px;">
                                 <div class="nav-item"><h3>仓库单据</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href="http://vip2-gd.youshang.com/scm/invTf.do?action=initTf"
-                                                        rel="pageTab" tabtxt="调拨单" tabid="storage-transfers"
-                                                        data-right="TF_ADD"> <span class="hasList">调拨单<span
-                                                class="hide"></span></span> <i tabtxt="调拨单记录"
-                                                                               tabid="storage-transfersList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invTf.do?action=initTfList"
-                                                                               data-right="TF_QUERY">查询</i> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/storage/inventory.jsp"
-                                                        rel="pageTab" tabtxt="盘点" tabid="storage-inventory"
-                                                        data-right="PD_GENPD"> <span>盘点<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/storage/inventory-list.jsp"
-                                                        rel="pageTab" tabtxt="盘点记录" tabid="storage-inventoryList"
-                                                        data-right=""> <span>盘点记录<span class="hide"></span></span> </a>
+                                        <li class="" id="Requisition">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">调拨单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
                                         </li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/storage/inventorySN.jsp"
-                                                            rel="pageTab" tabtxt="序列号盘点" tabid="storage-inventorySN"
-                                                            data-right="PD_GENPD"> <span>序列号盘点<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invOi.do?action=initOi&amp;type=in"
-                                                rel="pageTab" tabtxt="其他入库单" tabid="storage-otherWarehouse"
-                                                data-right="IO_ADD"> <span class="hasList">其他入库单<span
-                                                class="hide"></span></span> <i tabtxt="其他入库单记录"
-                                                                               tabid="storage-otherWarehouseList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invOi.do?action=initOiList&amp;type=in"
-                                                                               data-right="IO_QUERY">查询</i> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invOi.do?action=initOi&amp;type=out"
-                                                rel="pageTab" tabtxt="其他出库单" tabid="storage-otherOutbound"
-                                                data-right="OO_ADD"> <span class="hasList">其他出库单<span
-                                                class="hide"></span></span> <i tabtxt="其他出库单记录"
-                                                                               tabid="storage-otherOutboundList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invOi.do?action=initOiList&amp;type=out"
-                                                                               data-right="OO_QUERY">查询</i> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invOi.do?action=initOi&amp;type=cbtz"
-                                                rel="pageTab" tabtxt="成本调整单" tabid="storage-adjustment"
-                                                data-right="CADJ_ADD"> <span class="hasList">成本调整单<span
-                                                class="hide"></span></span> <i tabtxt="成本调整单记录"
-                                                                               tabid="storage-adjustmentList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invOi.do?action=initOiList&amp;type=cbtz"
-                                                                               data-right="CADJ_QUERY">查询</i> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invOi.do?action=initOi&amp;type=zz"
-                                                rel="pageTab" tabtxt="组装单" tabid="storage-assemble"
-                                                data-right="ZZD_ADD"> <span class="hasList">组装单<span
-                                                class="hide"></span></span> <i tabtxt="组装单记录"
-                                                                               tabid="storage-assembleList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invOi.do?action=initOiList&amp;type=zz"
-                                                                               data-right="ZZD_QUERY">查询</i> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/invOi.do?action=initOi&amp;type=cx"
-                                                rel="pageTab" tabtxt="拆卸单" tabid="storage-disassemble"
-                                                data-right="CXD_ADD"> <span class="hasList">拆卸单<span
-                                                class="hide"></span></span> <i tabtxt="拆卸单记录"
-                                                                               tabid="storage-disassembleList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/invOi.do?action=initOiList&amp;type=cx"
-                                                                               data-right="CXD_QUERY">查询</i> </a></li>
+                                        <li class="" id="Count-records">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">盘点记录
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>仓库报表</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/goods-balance.jsp"
-                                                        rel="pageTab" tabtxt="商品库存余额表" tabid="storage-initialBalance"
-                                                        data-right="InvBalanceReport_QUERY"> <span>商品库存余额表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/goods-flow-detail.jsp"
-                                                        rel="pageTab" tabtxt="商品收发明细表" tabid="storage-goodsFlowDetail"
-                                                        data-right="DeliverDetailReport_QUERY"> <span>商品收发明细表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/goods-flow-summary.jsp"
-                                                        rel="pageTab" tabtxt="商品收发汇总表" tabid="storage-goodsFlowSummary"
-                                                        data-right="DeliverSummaryReport_QUERY"> <span>商品收发汇总表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/report/serNum-tracer.jsp"
-                                                            rel="pageTab" tabtxt="序列号跟踪表" tabid="storage-serNumTracer"
-                                                            data-right="INVSERNUMDETAIL_QUERY"> <span>序列号跟踪表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/report/serNum-status.jsp"
-                                                            rel="pageTab" tabtxt="序列号状态表" tabid="storage-serNumStatus"
-                                                            data-right="INVSERNUM_QUERY"> <span>序列号状态表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/report/batch-list.jsp"
-                                                            rel="pageTab" tabtxt="批次保质期清单" tabid="storage-batchList"
-                                                            data-right="WARRANTY_QUERY"> <span>批次保质期清单<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href="http://vip2-gd.youshang.com/report/batch-tracer.jsp"
-                                                            rel="pageTab" tabtxt="批次跟踪表" tabid="storage-batchTracer"
-                                                            data-right="BATCHTRACER_QUERY"> <span>批次跟踪表<span
-                                                class="hide"></span></span> </a></li>
+                                        <li class="" id="Goods-inventory-balance">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">商品库存余额表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Goods-receipt-details">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">商品收发明细表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Send-and-receive-goods-summary">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">商品收发汇总表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -355,99 +308,58 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 155.93px; left: 129px;">
                                 <div class="nav-item"><h3>资金单据</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/receipt.do?action=initReceipt"
-                                                rel="pageTab" tabtxt="收款单" tabid="money-receipt"
-                                                data-right="RECEIPT_ADD"> <span class="hasList">收款单<span
-                                                class="hide"></span></span> <i tabtxt="收款单记录" tabid="money-receiptList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/receipt.do?action=initReceiptList"
-                                                                               data-right="RECEIPT_QUERY">查询</i> </a>
+                                        <li class="" id="Purchase-sales-expense-list">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">采购销售费用清单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
                                         </li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/scm/payment.do?action=initPay"
-                                                        rel="pageTab" tabtxt="付款单" tabid="money-payment"
-                                                        data-right="PAYMENT_ADD"> <span class="hasList">付款单<span
-                                                class="hide"></span></span> <i tabtxt="付款单记录" tabid="money-paymentList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/payment.do?action=initPayList"
-                                                                               data-right="PAYMENT_QUERY">查询</i> </a>
-                                        </li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/verifica.do?action=initVerifica"
-                                                rel="pageTab" tabtxt="核销单" tabid="money-verification"
-                                                data-right="VERIFICA_ADD"> <span class="hasList">核销单<span
-                                                class="hide"></span></span> <i tabtxt="核销单记录"
-                                                                               tabid="money-verificationList"
-                                                                               rel="pageTab"
-                                                                               href="/money/verification-list.jsp"
-                                                                               data-right="VERIFICA_QUERY">查询</i> </a>
-                                        </li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/scm/ori.do?action=initInc"
-                                                        rel="pageTab" tabtxt="其他收入单" tabid="money-otherIncome"
-                                                        data-right="QTSR_ADD"> <span class="hasList">其他收入单<span
-                                                class="hide"></span></span> <i tabtxt="其他收入单记录"
-                                                                               tabid="money-otherIncomeList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/ori.do?action=initIncList"
-                                                                               data-right="QTSR_QUERY">查询</i> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/scm/ori.do?action=initExp"
-                                                        rel="pageTab" tabtxt="其他支出单" tabid="money-otherExpense"
-                                                        data-right="QTZC_ADD"> <span class="hasList">其他支出单<span
-                                                class="hide"></span></span> <i tabtxt="其他支出单记录"
-                                                                               tabid="money-otherExpenseList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/ori.do?action=initExpList"
-                                                                               data-right="QTZC_QUERY">查询</i> </a></li>
-                                        <li class=""><a href="../funds/expense-list-1.html"
-                                                        rel="pageTab" tabtxt="采购销售费用清单" tabid="money-expenseList"
-                                                        data-right="FEEBILL_QUERY"> <span>采购销售费用清单<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/scm/fundTf.do?action=initFundTf"
-                                                rel="pageTab" tabtxt="资金转账单" tabid="money-accountTransfer"
-                                                data-right="ZJZZ_ADD"> <span class="hasList">资金转账单<span
-                                                class="hide"></span></span> <i tabtxt="资金转账单记录"
-                                                                               tabid="money-accountTransferList"
-                                                                               rel="pageTab"
-                                                                               href="/scm/fundTf.do?action=initFundTfList"
-                                                                               data-right="ZJZZ_QUERY">查询</i> </a></li>
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>资金报表</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/cash-bank-journal-new.jsp"
-                                                rel="pageTab" tabtxt="现金银行报表" tabid="money-cashBankJournal"
-                                                data-right="SettAcctReport_QUERY"> <span>现金银行报表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/account-pay-detail-new.jsp"
-                                                rel="pageTab" tabtxt="应付账款明细表" tabid="money-accountPayDetail"
-                                                data-right="PAYMENTDETAIL_QUERY"> <span>应付账款明细表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/account-proceeds-detail-new.jsp"
-                                                rel="pageTab" tabtxt="应收账款明细表" tabid="money-accountProceedsDetail"
-                                                data-right="RECEIPTDETAIL_QUERY"> <span>应收账款明细表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/customers-reconciliation-new.jsp"
-                                                rel="pageTab" tabtxt="客户对账单" tabid="money-customersReconciliation"
-                                                data-right="CUSTOMERBALANCE_QUERY"> <span>客户对账单<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/suppliers-reconciliation-new.jsp"
-                                                rel="pageTab" tabtxt="供应商对账单" tabid="money-suppliersReconciliation"
-                                                data-right="SUPPLIERBALANCE_QUERY"> <span>供应商对账单<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/report/other-income-expense-detail.jsp"
-                                                rel="pageTab" tabtxt="其他收支明细表" tabid="money-otherIncomeExpenseDetail"
-                                                data-right="ORIDETAIL_QUERY"> <span>其他收支明细表<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/report/profit-detail.jsp"
-                                                        rel="pageTab" tabtxt="利润表" tabid="money-profit" data-right="">
-                                            <span>利润表<span class="hide"></span></span> </a></li>
+                                        <li class="" id="Accounts-payabl-details">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">应付账款明细表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Accounts-receivable-details">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">应收账款明细表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Customer-statement">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">客户对账单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Supplier-statement">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">供应商对账单
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Income-Statement">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">利润表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -460,96 +372,109 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 52.9088px; left: 129px;">
                                 <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="客户管理" tabid="information-customerList"
-                                                        data-right="BU_QUERY"> <span>1客户管理<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="供应商管理" tabid="information-vendorList"
-                                                        data-right="PUR_QUERY"> <span>2供应商管理<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="商品管理" tabid="information-goodsList"
-                                                        data-right="INVENTORY_QUERY"> <span>商品管理<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="仓库管理" tabid="information-storageList"
-                                                        data-right="INVLOCTION_QUERY"> <span>仓库管理<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="职员管理" tabid="information-staffList"
-                                                        data-right=""> <span>职员管理<span class="hide"></span></span> </a>
+                                        <li class="" id="Customer-management">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">客户管理
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
                                         </li>
-                                        <li class=""><a
-                                                href=""
-                                                rel="pageTab" tabtxt="账户管理" tabid="information-settlementaccount"
-                                                data-right="SettAcct_QUERY"> <span>账户管理<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="商品品牌" tabid="information-brand"
-                                                        data-right="BRAND_QUERY"> <span>商品品牌<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class="hide"><a href=""
-                                                            rel="pageTab" tabtxt="门店管理" tabid="information-storeList"
-                                                            data-right="STORE_QUERY"> <span>门店管理<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href=""
-                                                        rel="pageTab" tabtxt="发货地址管理"
-                                                        tabid="information-shippingAddress"
-                                                        data-right="DELIVERYADDR_QUERY"> <span>发货地址管理<span
-                                                class="hide"></span></span> </a></li>
+                                        <li class="" id="Supplier-management">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">供应商管理
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Commodity-management">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">职员管理
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="product-brand">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">商品品牌
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Shipping-address-management">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">发货地址管理
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="nav-item"><h3>辅助资料</h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=customertype"
-                                                rel="pageTab" tabtxt="客户类别" tabid="information-customerCategoryList"
-                                                data-right="BUTYPE_QUERY"> <span>客户类别<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=supplytype"
-                                                rel="pageTab" tabtxt="供应商类别" tabid="information-vendorCategoryList"
-                                                data-right="SUPPLYTYPE_QUERY"> <span>供应商类别<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=trade"
-                                                rel="pageTab" tabtxt="商品类别" tabid="information-goodsCategoryList"
-                                                data-right="TRADETYPE_QUERY"> <span>商品类别<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=paccttype"
-                                                rel="pageTab" tabtxt="支出类别" tabid="information-payCategoryList"
-                                                data-right="PACCTTYPE_QUERY"> <span>支出类别<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=raccttype"
-                                                rel="pageTab" tabtxt="收入类别" tabid="information-recCategoryList"
-                                                data-right="RACCTTYPE_QUERY"> <span>收入类别<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/unit-list-new.jsp"
-                                                        rel="pageTab" tabtxt="计量单位" tabid="information-unitList"
-                                                        data-right="UNIT_QUERY"> <span>计量单位<span
-                                                class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/settlement-category-list.jsp"
-                                                rel="pageTab" tabtxt="结算方式" tabid="information-settlementCL"
-                                                data-right="Assist_QUERY"> <span>结算方式<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class="hide"><a
-                                                href="http://vip2-gd.youshang.com/settings/assistingProp.jsp"
-                                                rel="pageTab" tabtxt="辅助属性" tabid="information-assistingProp"
-                                                data-right="FZSX_QUERY"> <span>辅助属性<span class="hide"></span></span>
-                                        </a></li>
-                                        <li class="hide"><a
-                                                href="http://vip2-gd.youshang.com/settings/assistingPropGuide.jsp"
-                                                rel="pageTab" tabtxt="辅助属性向导" tabid="information-assistingPropGuide"
-                                                data-right=""> <span>辅助属性向导<span class="hide"></span></span> </a></li>
-                                        <li class=""><a
-                                                href="http://vip2-gd.youshang.com/settings/customerInvNumber.jsp"
-                                                rel="pageTab" tabtxt="客户物料编码" tabid="information-customerInvNumber"
-                                                data-right="CUSTOMERINVNUMBER_QUERY"> <span>客户物料编码<span
-                                                class="hide"></span></span> </a></li>
+                                        <li class="" id="client-categories">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">客户类别
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Supplier-category">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">供应商类别
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Product-category">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">商品类别
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Expenditure-category">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">支出类别
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Income-category">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">收入类别
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="unit-of-measurement">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">计量单位
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="Document-coding-rules">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">单据编码规则
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+
+
+
                                         <li class=""><a href="http://vip2-gd.youshang.com/settings/coderule-list.jsp"
                                                         rel="pageTab" tabtxt="单据编码规则" tabid="information-coderuleList"
                                                         data-right="DOCNO_QUERY"> <span>单据编码规则<span
