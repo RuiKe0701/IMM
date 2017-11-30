@@ -4,6 +4,9 @@ import team.ruike.imm.entity.Warehousing;
 
 import java.util.List;
 
+/**
+ * 闫琛昊
+ */
 public interface WarehousingService {
     /**
      * 查询指定条件的入库记录信息

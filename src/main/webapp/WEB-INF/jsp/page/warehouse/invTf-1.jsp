@@ -1,5 +1,12 @@
-<!DOCTYPE html>
-<!-- saved from url=(0095)http://vip2-gd.youshang.com/scm/invTf.do?action=initTf&beginDate=2017-11-01&endDate=2017-11-21# -->
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2017/11/30
+  Time: 9:04
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,7 +115,9 @@
             <dl class="cf">
                 <dd>
                     <label>单据日期：</label>
-                    <input type="text" id="date" class="ui-input ui-datepicker-input" value="2017-11-21">
+                    <input type="text" id="date" class="ui-input ui-datepicker-input"
+                           value= <jsp:useBean id="now" class="java.util.Date" scope="page"/>
+                           <fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />>
                 </dd>
 
                 <!-- <dd style="margin-left: 100px;" class="linkToCheck"><span>&nbsp;&nbsp;历史单据 </span><a id="linkToCheck" href="">查询</a></dd> -->
