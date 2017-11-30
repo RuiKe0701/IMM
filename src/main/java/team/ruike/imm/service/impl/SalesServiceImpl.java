@@ -10,9 +10,8 @@ import java.util.List;
 
 @Service("salesService")
 public class SalesServiceImpl implements SalesService{
-
     @Autowired
-    private SalesDao salesDao;
+    SalesDao salesDao;
 
     public SalesDao getSalesDao() {
         return salesDao;
@@ -23,7 +22,14 @@ public class SalesServiceImpl implements SalesService{
     }
 
     public List<Sales> selectSales(Sales sales) {
-        List<Sales> list = salesDao.selectSales(sales);
-        return list;
+        return salesDao.selectSales(sales);
+    }
+
+    public int updateSales(Sales sales) {
+        return salesDao.updateSales(sales);
+    }
+
+    public int insertSales(Sales sales) {
+        return salesDao.insertSales(sales);
     }
 }

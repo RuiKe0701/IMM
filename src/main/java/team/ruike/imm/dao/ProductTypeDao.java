@@ -1,5 +1,7 @@
 package team.ruike.imm.dao;
 
+import team.ruike.imm.entity.ProductType;
+
 import java.util.List;
 
 /**
@@ -13,19 +15,19 @@ public interface ProductTypeDao {
      * @param productType 种类信息
      * @return
      */
-    public List<ProductTypeDao> selectProductType(ProductTypeDao productType);
+    public List<ProductType> selectProductType(ProductType productType);
 
     /**
      * 指定条件修改种类信息
      * @param productType 种类信息
      * @return
      */
-    public int updateProductType(ProductTypeDao productType);
+    public int updateProductType(ProductType productType);
 
     /**
      *  新增种类信息
      * @param productType 种类信息
      * @return
      */
-    public int insertProductType(ProductTypeDao productType);
+    public int insertProductType(ProductType productType);
 }

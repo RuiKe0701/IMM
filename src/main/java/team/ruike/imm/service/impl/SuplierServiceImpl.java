@@ -24,9 +24,16 @@ public class SuplierServiceImpl implements SupplierService {
         this.supplierDao = supplierDao;
     }
 
-
     public List<Supplier> selectSuplier(Supplier supplier) {
         List<Supplier> list=supplierDao.selectSuplier(supplier);
         return list;
+    }
+
+    public int updateSupplier(Supplier supplier) {
+        return supplierDao.updateSuplier(supplier);
+    }
+
+    public int insertSupplier(Supplier supplier) {
+        return supplierDao.insertSuplier(supplier);
     }
 }
