@@ -40,9 +40,10 @@ public class UserController {
     public  String page(User user,Model model){//分页显示用户信息
 //    public  String page(Model model){//分页显示用户信息
        List<User> pages= userService.pagerUser(user);
-       int i=((3-1)*2);
-
+        //查询全部
         List<User> userList=userService.userList(null);
+        int i=((3-1)*2);//页数
+        //计算总页数之类的详细看Pager类
         Pager<User> pagerss=userService.getPager(i,2,userList);
         ;
      int TotalRecord=pagerss.getTotalRecord();
