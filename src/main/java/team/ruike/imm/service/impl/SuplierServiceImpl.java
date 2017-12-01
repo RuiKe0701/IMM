@@ -29,4 +29,12 @@ public class SuplierServiceImpl implements SupplierService {
         List<Supplier> list=supplierDao.selectSuplier(supplier);
         return list;
     }
+
+    public int updateSupplier(Supplier supplier) {
+        return 0;
+    }
+
+    public int insertSupplier(Supplier supplier) {
+        return 0;
+    }
 }

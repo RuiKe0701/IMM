@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.User;
+import team.ruike.imm.instrument.Pager;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -32,16 +33,29 @@ public class UserController {
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-            return "login";
+            return "redirect:/user/page.do";
     }
 
     @RequestMapping(value = "/page.do")
-    public  String page(User user){//分页显示用户信息
+    public  String page(User user,Model model){//分页显示用户信息
+//    public  String page(Model model){//分页显示用户信息
        List<User> pages= userService.pagerUser(user);
-        for (User u : pages) {
-            System.out.println(u.getUserName());
-        }
-        return null;
+       int i=((3-1)*2);
+
+        List<User> userList=userService.userList(null);
+        Pager<User> pagerss=userService.getPager(i,2,userList);
+        ;
+     int TotalRecord=pagerss.getTotalRecord();
+     int TotalPage=pagerss.getTotalPage();
+        System.out.println("TotalRecord:"+TotalRecord+"。TotalPage："+TotalPage);
+       if(pages!=null){
+           model.addAttribute("pages",pages);
+           for (User u : pages) {
+               System.out.println(u.getUserName());
+           }
+       }
+
+        return "adsa";
     }
 
 
