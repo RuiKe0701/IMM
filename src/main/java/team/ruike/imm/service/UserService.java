@@ -25,7 +25,7 @@ public interface UserService {
      */
     public List<User> pagerUser(User user);
 
-    public Pager<User> getPager(int currentPage, int pageSize, List<User> user);
+    public Pager<User> getPager(int currentPage);
 
     /**
      * 指定条件修改用户信息

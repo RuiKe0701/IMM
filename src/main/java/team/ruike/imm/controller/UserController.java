@@ -38,24 +38,16 @@ public class UserController {
 
     @RequestMapping(value = "/page.do")
     public  String page(User user,Model model){//分页显示用户信息
-//    public  String page(Model model){//分页显示用户信息
+        int currentPage=1;
+        user.setCurrentPage(currentPage);
+       //分页显示用户信息
        List<User> pages= userService.pagerUser(user);
-        //查询全部
-        List<User> userList=userService.userList(null);
-        int i=((3-1)*2);//页数
-        //计算总页数之类的详细看Pager类
-        Pager<User> pagerss=userService.getPager(i,2,userList);
-        ;
-     int TotalRecord=pagerss.getTotalRecord();
-     int TotalPage=pagerss.getTotalPage();
-        System.out.println("TotalRecord:"+TotalRecord+"。TotalPage："+TotalPage);
        if(pages!=null){
+           //计算总页数之类的详细看Pager类
+           Pager<User> pagerss=userService.getPager(currentPage);
            model.addAttribute("pages",pages);
-           for (User u : pages) {
-               System.out.println(u.getUserName());
-           }
+           model.addAttribute("pagesList",pagerss);
        }
-
         return "adsa";
     }
 
