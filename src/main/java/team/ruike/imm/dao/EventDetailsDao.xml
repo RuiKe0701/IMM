@@ -24,6 +24,9 @@
                 and event_details_state=#{eventDetailsState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
     <!--指定条件修改活动详情-->
     <update id="updateEventDetails" parameterType="eventDetails">

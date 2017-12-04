@@ -49,6 +49,9 @@
                 and e.employee_state=#{employeeState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
 

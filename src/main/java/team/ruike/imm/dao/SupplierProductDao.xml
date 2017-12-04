@@ -54,6 +54,9 @@
                  and supplier_product_state=#{supplierProductState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <update id="updateSupplierProduct" parameterType="supplierProduct">

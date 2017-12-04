@@ -22,6 +22,9 @@
                    and product_type_state =#{productTypeState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <update id="updateProductType" parameterType="productType">

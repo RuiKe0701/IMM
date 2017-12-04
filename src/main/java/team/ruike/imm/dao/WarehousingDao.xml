@@ -68,6 +68,9 @@
                 and w.warehousing_state=#{warehousingState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
 

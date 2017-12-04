@@ -23,6 +23,9 @@
                 and position_state=#{positionState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <!--指定条件修改职位信息-->

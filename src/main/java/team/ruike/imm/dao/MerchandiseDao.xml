@@ -71,6 +71,9 @@
                 and m.merchandise_state=#{merchandiseState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <!--指定条件修改商品信息-->

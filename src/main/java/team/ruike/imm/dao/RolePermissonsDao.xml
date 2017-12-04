@@ -37,6 +37,9 @@
                     and role_give =#{roleGive}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <update id="updateRolePermissions" parameterType="rolePermissions">
