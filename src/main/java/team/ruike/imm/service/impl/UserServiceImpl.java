@@ -49,22 +49,21 @@ public class UserServiceImpl implements UserService {
     }
 
     int pageSize=2;//设置每页显示数据数
-    int  currentPage=1;  //默认显示第一页
+    int  currentPage=0;  //默认显示第一页
     /**
      * 分页查询进入SQL语句
-     * @param user
      * @return
      */
-    public List<User> pagerUser(User user) {
+    public List<User> pagerUser(Integer currentPage) {
+        User user=new User();
+        user.setCurrentPage(currentPage);
         //设置每页显示数据数
         user.setPageSize(pageSize);
-        //判断入参页数
-        if(user.getCurrentPage()==1){
-            user.setCurrentPage(currentPage);
-            return userDao.PagerUser(user);
-        }
+        if (currentPage!=1){
         //根据输入的页数查询
         user.setCurrentPage((user.getCurrentPage()-1)*pageSize);
+        return userDao.PagerUser(user);
+        }
         return userDao.PagerUser(user);
     }
     /**
@@ -75,16 +74,7 @@ public class UserServiceImpl implements UserService {
         //查询全部信息
         List<User> userList=userDao.selectUser(null);
         //接收分页数据
-        Pager<User> pager=null;
-        if(currentPage==1){
-            //入参分页条件
-           pager=new Pager<User>(this.currentPage,pageSize,userList);
-            return pager;
-        }
-        //计算第当前页数的值
-        int page=(currentPage-1)*pageSize;
-        //入参分页条件
-        pager=new Pager<User>(page,pageSize,userList);
+        Pager<User> pager=new Pager<User>(currentPage,pageSize,userList);
         return pager;
     }
 

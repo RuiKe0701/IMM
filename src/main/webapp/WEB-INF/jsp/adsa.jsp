@@ -21,11 +21,11 @@
     <div >
         <td >共${pagesList.totalPage}页,共${pagesList.totalRecord}条数据</td>
     </div>
-    <td ><a href="#">首页</a></td>
-    <td ><a href="#">上一页</a></td>
-    <td >当前第${pagesList.currentPage}页</td>
-    <td ><a href="#">下一页</a></td>
-    <td><a href="#">尾页</a></td>
+    <td ><a href="/user/page.do?currentPage=1">首页</a></td>
+    <td><a href="/user/page.do?currentPage=${pagesList.currentPage-1}">上一页</a></td>
+    <td>当前第${pagesList.currentPage}页</td>
+    <td><a href="/user/page.do?currentPage=${pagesList.currentPage+1}">下一页</a></td>
+    <td><a href="/user/page.do?currentPage=${pagesList.totalPage}">尾页</a></td>
 </div>
 </body>
 </html>

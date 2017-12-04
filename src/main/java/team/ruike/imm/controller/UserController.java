@@ -33,22 +33,21 @@ public class UserController {
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-            return "redirect:/user/page.do";
+            return "redirect:/user/page.do?currentPage=1";
     }
 
     @RequestMapping(value = "/page.do")
-    public  String page(User user,Model model){//分页显示用户信息
-        int currentPage=1;
-        user.setCurrentPage(currentPage);
+    public  String page(Integer currentPage,Model model){//分页显示用户信息
+
        //分页显示用户信息
-       List<User> pages= userService.pagerUser(user);
-       if(pages!=null){
-           //计算总页数之类的详细看Pager类
-           Pager<User> pagerss=userService.getPager(currentPage);
-           model.addAttribute("pages",pages);
-           model.addAttribute("pagesList",pagerss);
-       }
-        return "adsa";
+       List<User> pages= userService.pagerUser(currentPage);
+        if (pages.size()!=0){
+            model.addAttribute("pages",pages);
+            Pager<User> pagerss=userService.getPager(currentPage);
+            model.addAttribute("pagesList",pagerss);
+            return "adsa";
+        }
+        return "aaaa";
     }
 
 

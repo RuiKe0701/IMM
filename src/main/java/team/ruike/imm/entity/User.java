@@ -10,7 +10,7 @@ import java.util.List;
  * @version 2.0
  *用户信息
  */
-public class User extends Pager implements Serializable{
+public class User  implements Serializable{
     /**
      * 用户编号
      */
@@ -39,42 +39,10 @@ public class User extends Pager implements Serializable{
      * 当前和删除
      */
     private  Integer userState;
-//    //当前第几页
-//    private int currentPage;
-//    //每页记录数
-//    private int pageSize;
-
-//    public int getCurrentPage() {
-//        return currentPage;
-//    }
-//
-//    public void setCurrentPage(int currentPage) {
-//        this.currentPage = currentPage;
-//    }
-//
-//    public int getPageSize() {
-//        return pageSize;
-//    }
-//
-//    public void setPageSize(int pageSize) {
-//        this.pageSize = pageSize;
-//    }
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Integer getUserState() {
-        return userState;
-    }
-
-    public void setUserState(Integer userState) {
-        this.userState = userState;
-    }
+    //当前第几页
+    private Integer currentPage;
+    //每页记录数
+    private Integer pageSize;
 
     public Integer getUserId() {
         return userId;
@@ -100,6 +68,14 @@ public class User extends Pager implements Serializable{
         this.userPassword = userPassword;
     }
 
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -114,5 +90,29 @@ public class User extends Pager implements Serializable{
 
     public void setRolePermissions(List<RolePermissions> rolePermissions) {
         this.rolePermissions = rolePermissions;
+    }
+
+    public Integer getUserState() {
+        return userState;
+    }
+
+    public void setUserState(Integer userState) {
+        this.userState = userState;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }
