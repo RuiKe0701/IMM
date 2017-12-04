@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import team.ruike.imm.instrument.PagerParameter;
+
 import java.awt.print.Paper;
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
  * @version 2.0
  * 种类信息
  */
-public class ProductType extends Paper implements Serializable{
+public class ProductType extends PagerParameter implements Serializable{
     /**
      *  种类编号
      */

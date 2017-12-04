@@ -1,6 +1,7 @@
 package team.ruike.imm.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import team.ruike.imm.instrument.PagerParameter;
 
 import java.awt.print.Paper;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.util.Date;
  * @version 2.0
  * 客户关系维护记录
  */
-public class Crm extends Paper implements Serializable{
+public class Crm extends PagerParameter implements Serializable{
     /**
      * 记录编号
      */

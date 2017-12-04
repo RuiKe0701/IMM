@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import team.ruike.imm.instrument.PagerParameter;
+
 import java.awt.print.Paper;
 import java.io.Serializable;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
  *　@versrion 1.0
  * 权限
  */
-public class Permissions extends Paper implements Serializable{
+public class Permissions extends PagerParameter implements Serializable{
     /**
      * 权限编号
      */

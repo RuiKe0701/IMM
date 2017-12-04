@@ -1,6 +1,7 @@
 package team.ruike.imm.entity;
 
 import team.ruike.imm.instrument.Pager;
+import team.ruike.imm.instrument.PagerParameter;
 
 import java.io.Serializable;
 
@@ -9,7 +10,7 @@ import java.io.Serializable;
  * @versrion 2.0
  * 客户信息
  */
-public class Client extends Pager implements Serializable {
+public class Client extends PagerParameter implements Serializable {
     /**
      * 客户编号
      */

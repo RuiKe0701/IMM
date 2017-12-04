@@ -8,7 +8,7 @@ import team.ruike.imm.entity.RolePermissions;
 import java.util.List;
 
 @Service("RolePermissionsService")
-public class RolePermissionsServiceImpl implements RolePermissionsDao{
+public class RolePermissionsServiceImpl  implements RolePermissionsDao{
     @Autowired
     RolePermissionsDao rolePermissionsDao;
 
@@ -30,5 +30,9 @@ public class RolePermissionsServiceImpl implements RolePermissionsDao{
 
     public int insertRolePermissions(RolePermissions rolePermissions) {
         return rolePermissionsDao.insertRolePermissions(rolePermissions);
+    }
+
+    public List<RolePermissions> PagerRolePermissions(RolePermissions rolePermissions) {
+        return null;
     }
 }

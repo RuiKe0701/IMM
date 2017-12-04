@@ -31,4 +31,8 @@ public class SalesInformationServiceImpl implements SalesInformationDao {
     public int insertSalesInformation(SalesInformation salesInformation) {
         return salesInformationDao.insertSalesInformation(salesInformation);
     }
+
+    public List<SalesInformation> PagerSalesInformation(SalesInformation salesInformation) {
+        return null;
+    }
 }

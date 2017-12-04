@@ -1,6 +1,7 @@
 package team.ruike.imm.entity;
 
 import team.ruike.imm.instrument.Pager;
+import team.ruike.imm.instrument.PagerParameter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * @version 2.0
  *用户信息
  */
-public class User  implements Serializable{
+public class User extends PagerParameter implements Serializable{
     /**
      * 用户编号
      */
@@ -39,10 +40,7 @@ public class User  implements Serializable{
      * 当前和删除
      */
     private  Integer userState;
-    //当前第几页
-    private Integer currentPage;
-    //每页记录数
-    private Integer pageSize;
+
 
     public Integer getUserId() {
         return userId;
@@ -100,19 +98,19 @@ public class User  implements Serializable{
         this.userState = userState;
     }
 
-    public Integer getCurrentPage() {
-        return currentPage;
-    }
-
-    public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
+//    public Integer getCurrentPage() {
+//        return currentPage;
+//    }
+//
+//    public void setCurrentPage(Integer currentPage) {
+//        this.currentPage = currentPage;
+//    }
+//
+//    public Integer getPageSize() {
+//        return pageSize;
+//    }
+//
+//    public void setPageSize(Integer pageSize) {
+//        this.pageSize = pageSize;
+//    }
 }
