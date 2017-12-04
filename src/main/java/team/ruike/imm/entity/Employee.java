@@ -1,11 +1,14 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  *@author 索志文
  * @version 2.0
  * 员工信息
  */
-public class Employee {
+public class Employee extends Paper implements Serializable{
     /**
      * 员工编号
      */

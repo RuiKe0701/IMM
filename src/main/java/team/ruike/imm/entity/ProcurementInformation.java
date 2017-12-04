@@ -1,11 +1,14 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  * @author 索志文
  * @version 2.0
  * 采购订单详情
  */
-public class ProcurementInformation {
+public class ProcurementInformation extends Paper implements Serializable{
     /**
      * 采购编号
      */

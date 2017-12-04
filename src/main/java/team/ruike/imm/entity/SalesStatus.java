@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * @version 2.0
  *销售状态
  */
-public class SalesStatus {
+public class SalesStatus extends Paper implements Serializable{
     /**
      * 销售编号
      */

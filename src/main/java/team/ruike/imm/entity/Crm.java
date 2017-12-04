@@ -2,6 +2,8 @@ package team.ruike.imm.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Date;
  * @version 2.0
  * 客户关系维护记录
  */
-public class Crm {
+public class Crm extends Paper implements Serializable{
     /**
      * 记录编号
      */

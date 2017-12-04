@@ -2,12 +2,14 @@ package team.ruike.imm.entity;
 
 import team.ruike.imm.instrument.Pager;
 
+import java.io.Serializable;
+
 /**
  * @author 索志文
  * @versrion 2.0
  * 客户信息
  */
-public class Client extends Pager {
+public class Client extends Pager implements Serializable {
     /**
      * 客户编号
      */

@@ -30,4 +30,9 @@ public interface ClientDao {
      * @return
      */
     public int insertClient(Client client);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Client> PagerClient(Client client);
 }

@@ -28,4 +28,9 @@ public interface EmployeeDao {
      * @return
      */
     public int insertEmployee(Employee employee);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Employee> PagerEmployee(Employee employee);
 }

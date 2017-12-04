@@ -1,10 +1,14 @@
 package team.ruike.imm.entity;
+
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  * @author 闫琛昊
  * @version 1.0
  *角色权限
  */
-public class RolePermissions {
+public class RolePermissions extends Paper implements Serializable{
     /**
      * 编号
      */

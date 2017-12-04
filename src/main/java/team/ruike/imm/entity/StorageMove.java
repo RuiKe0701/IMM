@@ -1,13 +1,15 @@
 package team.ruike.imm.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.Date;
 /**
  * @author 闫琛昊
  * @version 2.0
  *出库记录
  */
-public class StorageMove {
+public class StorageMove extends Paper implements Serializable{
     /**
      * 出库编号
      */

@@ -1,11 +1,14 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  *　@author 索志文
  *　@versrion 1.0
  * 权限
  */
-public class Permissions {
+public class Permissions extends Paper implements Serializable{
     /**
      * 权限编号
      */

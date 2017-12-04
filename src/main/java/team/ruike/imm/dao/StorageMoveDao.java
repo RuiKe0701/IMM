@@ -30,4 +30,9 @@ public interface StorageMoveDao {
      * @return
      */
     public int insertStorageMove(StorageMove storageMove);
+    /**
+     * 分页
+     * @return
+     */
+    public List<StorageMove> PagerStorageMove(StorageMove storageMove);
 }

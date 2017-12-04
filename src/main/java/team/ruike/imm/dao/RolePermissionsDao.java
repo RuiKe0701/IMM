@@ -30,4 +30,10 @@ public interface RolePermissionsDao {
      * @return
      */
     public  int insertRolePermissions(RolePermissions rolePermissions);
+
+    /**
+     * 分页
+     * @return
+     */
+    public List<RolePermissions> PagerRolePermissions(RolePermissions rolePermissions);
 }
