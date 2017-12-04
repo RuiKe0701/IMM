@@ -28,4 +28,9 @@ public interface CrmDao {
      * @return
      */
     public int insertCrm(Crm crm);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Crm> PagerCrm(Crm crm);
 }

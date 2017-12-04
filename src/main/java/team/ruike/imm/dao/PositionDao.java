@@ -26,4 +26,9 @@ public interface PositionDao {
      * @return
      */
     public int insertPosition(Position position);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Position> PagerPosition(Position position);
 }

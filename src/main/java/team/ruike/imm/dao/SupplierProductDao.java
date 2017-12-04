@@ -30,4 +30,9 @@ public interface SupplierProductDao {
      * @return
      */
     public int insertSupplierProduct(SupplierProduct supplierProduct);
+    /**
+     * 分页
+     * @return
+     */
+    public List<SupplierProduct> PagerSupplierProduct(SupplierProduct supplierProduct);
 }

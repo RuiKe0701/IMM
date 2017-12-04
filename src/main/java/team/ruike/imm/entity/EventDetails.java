@@ -1,10 +1,14 @@
 package team.ruike.imm.entity;
+
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  *　@author 索志文
  *　@versrion 2.0
  * 活动详情
  */
-public class EventDetails {
+public class EventDetails extends Paper implements Serializable{
     /**
      * 活动编号
      */

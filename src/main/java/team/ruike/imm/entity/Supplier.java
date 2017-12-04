@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * @version 2.0
  *供应商信息
  */
-public class Supplier {
+public class Supplier extends Paper implements Serializable{
     /**
      * 供应商编号
      */

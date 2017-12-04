@@ -28,4 +28,9 @@ public interface PermissionsDao {
      * @return
      */
     public int insertPermissions(Permissions permissions);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Permissions> PagerPermissions(Permissions permissions);
 }

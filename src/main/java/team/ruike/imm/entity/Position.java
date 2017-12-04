@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  *　@versrion 2.0
  * 职位信息
  */
-public class Position {
+public class Position extends Paper implements Serializable{
     /**
      * 职位编号
      */

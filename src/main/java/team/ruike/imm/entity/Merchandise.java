@@ -1,11 +1,14 @@
 package team.ruike.imm.entity;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
+
 /**
  *　@author 索志文
  *　@versrion 2.0
  * 商品信息
  */
-public class Merchandise {
+public class Merchandise extends Paper implements Serializable{
     /**
      * 商品编号
      */

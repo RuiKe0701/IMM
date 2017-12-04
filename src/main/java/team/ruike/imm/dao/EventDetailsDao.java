@@ -28,4 +28,9 @@ public interface EventDetailsDao {
      * @return
      */
     public int insertEventDetails(EventDetails eventDetails);
+        /**
+     * 分页
+     * @return
+     */
+    public List<EventDetails> PagerEventDetails(EventDetails eventDetails);
 }

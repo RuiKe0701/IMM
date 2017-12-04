@@ -30,4 +30,10 @@ public interface ProductTypeDao {
      * @return
      */
     public int insertProductType(ProductType productType);
+
+    /**
+     * 分页
+     * @return
+     */
+    public List<ProductType> PagerProductType(ProductType productType);
 }

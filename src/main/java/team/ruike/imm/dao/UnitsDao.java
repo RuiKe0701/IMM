@@ -30,4 +30,9 @@ public interface UnitsDao {
      * @return
      */
     public int insertUnits(Units units);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Units> PagerUnits(Units units);
 }

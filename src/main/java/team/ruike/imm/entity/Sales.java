@@ -1,6 +1,8 @@
 package team.ruike.imm.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.awt.print.Paper;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @version 2.0
  *销售订单
  */
-public class Sales {
+public class Sales extends Paper implements Serializable{
     /**
      *  订单编号
      */

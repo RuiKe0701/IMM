@@ -30,4 +30,10 @@ public interface SalesInformationDao {
      * @return
      */
     public int insertSalesInformation(SalesInformation salesInformation);
+
+    /**
+     * 分页
+     * @return
+     */
+    public List<SalesInformation> PagerSalesInformation(SalesInformation salesInformation);
 }

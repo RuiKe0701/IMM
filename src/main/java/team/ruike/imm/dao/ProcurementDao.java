@@ -28,4 +28,9 @@ public interface ProcurementDao {
      * @return
      */
     public int insertProcurement(Procurement procurement);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Procurement> PagerProcurement(Procurement procurement);
 }

@@ -30,4 +30,10 @@ public interface WarehousingDao {
      * @return
      */
     public int insertWarehousing(Warehousing warehousing);
+
+    /**
+     * 分页
+     * @return
+     */
+    public List<Warehousing> PagerWarehousing(Warehousing warehousing);
 }

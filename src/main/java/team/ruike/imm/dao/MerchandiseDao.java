@@ -28,4 +28,9 @@ public interface MerchandiseDao {
      * @return
      */
     public int insertMerchandise(Merchandise merchandise);
+    /**
+     * 分页
+     * @return
+     */
+    public List<Merchandise> PagerMerchandise(Merchandise merchandise);
 }
