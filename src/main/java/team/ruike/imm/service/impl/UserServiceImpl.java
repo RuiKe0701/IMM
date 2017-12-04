@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         user.setCurrentPage(currentPage);
         //设置每页显示数据数
         user.setPageSize(pageSize);
-        if (currentPage!=1){
+        if (currentPage>0){
         //根据输入的页数查询
         user.setCurrentPage((user.getCurrentPage()-1)*pageSize);
         return userDao.PagerUser(user);

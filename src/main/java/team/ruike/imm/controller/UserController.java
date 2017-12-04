@@ -33,7 +33,7 @@ public class UserController {
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-            return "redirect:/user/page.do?currentPage=1";
+            return "redirect:/user/page.do?currentPage=0";
     }
 
     @RequestMapping(value = "/page.do")
@@ -41,9 +41,14 @@ public class UserController {
 
        //分页显示用户信息
        List<User> pages= userService.pagerUser(currentPage);
+        Pager<User> pagerss=null;
         if (pages.size()!=0){
             model.addAttribute("pages",pages);
-            Pager<User> pagerss=userService.getPager(currentPage);
+            if(currentPage==0){
+                pagerss=userService.getPager(1);
+            }else {
+                pagerss=userService.getPager(currentPage);
+            }
             model.addAttribute("pagesList",pagerss);
             return "adsa";
         }
