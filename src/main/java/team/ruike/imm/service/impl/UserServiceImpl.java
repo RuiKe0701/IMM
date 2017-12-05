@@ -33,15 +33,14 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User selectUser(User user) {
+        User u=new User();
         List<User> list=null;
-        if(user.getUserName()==null || user.getUserName()=="" || user.getUserPassword()==null || user.getUserPassword()==""){
-            return new User();
-        }
         list=userDao.selectUser(user);
-        if (list.size()>0&&list.size()<=1){
+        if (list.size()>0 && list!=null ){
             return  list.get(0);
         }
-        return new User();
+        u.setUserName("无");
+        return u;
     }
 
     public List<User> userList(User user) {
@@ -62,9 +61,9 @@ public class UserServiceImpl implements UserService {
         if (currentPage>0){
         //根据输入的页数查询
         user.setCurrentPage((user.getCurrentPage()-1)*pageSize);
-        return userDao.PagerUser(user);
+        return userDao.selectUser(user);
         }
-        return userDao.PagerUser(user);
+        return userDao.selectUser(user);
     }
     /**
      * 分页信息进入Pager类
@@ -76,6 +75,10 @@ public class UserServiceImpl implements UserService {
         //接收分页数据
         Pager<User> pager=new Pager<User>(currentPage,pageSize,userList);
         return pager;
+    }
+
+    public int insertAdd(List<User> users) {
+        return userDao.insertAdd(users);
     }
 
     public int updateUser(User user) {
