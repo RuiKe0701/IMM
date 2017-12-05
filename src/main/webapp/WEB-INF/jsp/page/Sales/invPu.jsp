@@ -15,18 +15,18 @@
     <title>精斗云云进销存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
 
-    <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
         var _vds = _vds || [];
         window._vds = _vds;
@@ -73,7 +73,7 @@
         });
     </script>
 
-    <link href="../../css/bills.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
     <style>
         /*#barCodeInsert{margin-left: 10px;font-weight: 100;font-size: 12px;color: #fff;background-color: #B1B1B1;padding: 0 5px;border-radius: 2px;line-height: 19px;height: 20px;display: inline-block;}*/
         /*#barCodeInsert.active{background-color: #23B317;}*/
@@ -1436,7 +1436,7 @@
         </ul>
     </div>
 </div>
-<script src="../../js/judgment/purchase.js"></script>
+<script src="${pageContext.request.contextPath }/js/judgment/purchase.js"></script>
 
 <div id="COMBO_WRAP">
     <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
