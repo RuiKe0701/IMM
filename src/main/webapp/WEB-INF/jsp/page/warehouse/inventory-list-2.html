@@ -28,21 +28,20 @@
 <body style="">
 <div class="bill-ser-top">
     <ul class="ul-inline cf">
+
         <li>
-            <input type="text" id="matchCon"  placeholder="请输入商品编号/商品名称/规格/属性">
-        </li>
-        <li>
-            <label>交货日期:</label>
+            <label>盘点日期:</label>
             <input id="hello" class="">
             <i>-</i>
             <input id="end" class="">
         </li>
         <li>
-            <input type="text" id="saleOrderNumber"  placeholder="请输入销售订单号">
+            <label>仓库:</label>
+            <input type="text" id="saleOrderNumber">
         </li>
         <li>
-            <label>销售订单范围:</label>
-            <input type="checkbox" id="hasPurReady" checked="checked"><label> 已采购完订单不显示</label>
+            <label>商品:</label>
+            <input type="text" id="hasPurReady" />
             <a class="ui-btn ui-btn-search" id="search">查询</a>
         </li>
     </ul>
@@ -54,9 +53,6 @@
                 <span id="config" class="ui-config"><a
                         href="#"
                         class="ui-icon-config-new"></a>列设置</span>
-            </div>
-            <div class="fr">
-                <a class="ui-btn-bill" id="toPo">生成购货订单</a>
             </div>
         </div>
     </div>
@@ -77,14 +73,10 @@
                     <thead>
                     <tr>
                         <th style="display: none">商品id</th>
-                        <th>商品名称</th>
-                        <th>属性</th>
-                        <th>单位</th>
-                        <th>数量</th>
-                        <th>订单号</th>
-                        <th>订单日期</th>
-                        <th>库存</th>
-                        <th>购货日期</th>
+                        <th>盘点时间</th>
+                        <th>盘点编号</th>
+                        <th>盘点仓库</th>
+                        <th>盘点结果</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -95,10 +87,7 @@
                         <td>Bangalore</td>
                         <td>560001</td>
                         <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
+
                         <td style="width: 120px;text-align: center">
                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
@@ -107,10 +96,7 @@
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
+
                         <td>Bangalore</td>
                         <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
                             <button type="button" class="btn btn-warning btn-sm">删除</button></td>
@@ -119,10 +105,7 @@
                         <td>Tanmay</td>
                         <td>Bangalore</td>
                         <td>560001</td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
+
                         <td>Bangalore</td>
                         <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
                             <button type="button" class="btn btn-warning btn-sm">删除</button></td>
@@ -220,13 +203,13 @@
                         &times;
                     </button>
                     <h4 class="modal-title" >
-                       确定删除吗
+                        确定删除吗
                     </h4>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                       确定
+                        确定
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>

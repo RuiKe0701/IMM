@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0095)http://vip2-gd.youshang.com/scm/invPu.do?action=initPur&beginDate=2017-11-01&endDate=2017-11-21 -->
+<!-- saved from url=(0094)http://vip2-gd.youshang.com/scm/invSo.do?action=initSo&beginDate=2017-11-01&endDate=2017-11-21 -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,8 +11,26 @@
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="../../css/common.css" rel="stylesheet" type="text/css">
     <link href="../../css/print.css" rel="stylesheet" type="text/css">
-
+    <link href="../../css/bootstrap.min.css">
     <link href="../../css/ui.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.min.css" rel="stylesheet">
+    <link href="../../css/animate.min.css" rel="stylesheet">
+    <link href="../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link type="text/css" rel="stylesheet"
+          href="../../js/plugins/layer/laydate/need/laydate.css">
+    <link type="text/css" rel="stylesheet"
+          href="../../js/plugins/layer/laydate/skins/default/laydate.css"
+          id="LayDateSkin">
+    <link href="../../css/animate.min.css" rel="stylesheet">
+    <link href="../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/plugins/suggest/bootstrap-suggest.min.js"></script>
     <script type="text/javascript" async="" src="../../js/vds.js"></script>
     <script src="../../js/jquery-1.10.2.min.js"></script>
     <script src="../../js/json3.min.js"></script>
@@ -68,213 +86,93 @@
     </script>
 
     <link href="../../css/bills.css" rel="stylesheet" type="text/css">
-    <style>
-        /*#barCodeInsert{margin-left: 10px;font-weight: 100;font-size: 12px;color: #fff;background-color: #B1B1B1;padding: 0 5px;border-radius: 2px;line-height: 19px;height: 20px;display: inline-block;}*/
-        /*#barCodeInsert.active{background-color: #23B317;}*/
-        #editBills {
-            background: url(/css/img/edit.png);
-            display: inline-block;
-            width: 13px;
-            height: 12px;
-        }
 
-        .qtyInsert {
-            margin-left: 8px;
-            font-weight: 100;
-            font-size: 12px;
-            color: #fff;
-            background-color: #B1B1B1;
-            padding: 0 5px;
-            border-radius: 2px;
-            line-height: 19px;
-            height: 20px;
-            display: inline-block;
-        }
-
-        .qtyInsertAfter {
-            margin-right: 8px;
-            font-weight: 100;
-            font-size: 12px;
-            color: #fff;
-            background-color: #23B317;
-            padding: 0 5px;
-            border-radius: 2px;
-            line-height: 19px;
-            height: 20px;
-            display: inline-block;
-        }
-
-        /* .operating{z-index:999;position:absolute;margin-left:-60px; display: none}
-        #grid tr:hover .operating{ display: block; color: }
-        #grid tr:hover td[aria-describedby=grid_rn]{ text-indent: -9999px;}
-        #grid #grid_operating, #grid td[aria-describedby=grid_operating]{ width:0;padding: 0; font-size: 0} */
-    </style>
 </head>
 <body style="">
 <div class="wrapper">
-    <!-- <span id="config" class="ui-icon ui-state-default ui-icon-config"></span> -->
     <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
     <div class="bills cf">
         <div class="con-header">
             <dl class="cf">
                 <dd class="mr20">
-                    <label><span class="red">*</span>供应商:</label>
-                    <span class="ui-combo-wrap" id="customer" style="width: 198px;">
-          
-          <i class="ui-icon-ellipsis"></i><input type="text" name="" class="input-txt" autocomplete="off" value=""
-                                                 data-ref="date" style="width: 188px;"></span></dd>
+                    <label><span class="red">*</span>客户:</label>
+                    <span class="ui-combo-wrap" id="customer" style="width: 198.009px;">
+
+          <i class="ui-icon-ellipsis"></i><input type="text" name="" class="input-txt" autocomplete="off" value="" data-ref="date" style="width: 188.009px;"></span></dd>
+                <dd id="identifier" class="mr20 tc">
+                    <label>销售人员:</label>
+                    <span class="ui-combo-wrap" id="sales" style="width: 118.009px;">
+
+          <input type="text" class="input-txt" autocomplete="off" style="width: 92.0093px;"><i class="trigger"></i></span>
+                </dd>
                 <dd class="mr20 tc">
                     <label>单据日期:</label>
-                    <input type="text" id="date" class="ui-input ui-datepicker-input" value="2017-11-21">
+                    <input type="text" id="hello" >
                 </dd>
-                <!-- <dd id="identifier" style="float:right">
-                  <label>单据编号:</label>
-                  <span id="number">GH20171121001</span>
-                  <span id="numberAuto"></span>
-                  <i id="editBills"></i>
-                </dd> -->
-                <dd id="identifier" style="float:right">
+
+                <dd id="identifiers" style="float:right">
                     <label>单据编号:</label>
-                    <span id="number">GH20171121001</span>
+                    <span id="number">XS20171204001</span>
                     <i id="editBills"></i>
                     <span class="ui-combo-wrap" id="numberAuto" style="display: none;">
-              <i class="trigger"></i>
-            </span>
+            <i class="trigger"></i>
+          </span>
                 </dd>
-                <!-- <dd class="linkToCheck"><span>&nbsp;历史单据 </span><a id="linkToCheck" href="">查询</a></dd> -->
             </dl>
             <hr class="hrcls">
         </div>
-
         <div class="wrapper_con">
-            <!-- <div class="cf mb10">
-               <div class="fl">
-                 <span  id="config" class="ui-config"><a href="#" class="ui-icon-config-new mr5"></a></span>
-                 <span><label>扫描枪录入</label><span id="barCodeInsert" class="close"><span class="ui-icon-circle"></span></span></span>
-               </div>
-               <div class="fr">
-                 <span class="circle-link-order linkToCheck"><a href="#" class="icon-link-order"></a>历史单据</span>
-               </div>
-            </div> -->
-            <span id="config" class="ui-config"><a
-                    href="http://vip2-gd.youshang.com/scm/invPu.do?action=initPur&amp;beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                    class="ui-icon-config-new"></a></span>
 
             <div class="grid-wrap">
-                <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-                     style="width: 1307px;">
-                    <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
-                    <div class="loading ui-state-default ui-state-active" id="load_grid" style="display: none;">读取中...
-                    </div>
-                    <div class="ui-jqgrid-view" id="gview_grid" style="width: 1307px;">
-                        <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                             style="display: none;"><a role="link"
-                                                       class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
-                                                       style="right: 0px;"><span
-                                class="ui-icon ui-icon-circle-triangle-n"></span></a><span
-                                class="ui-jqgrid-title"></span></div>
+                <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" style="width: 1307px;">
+
+                    <div class="ui-jqgrid-view" id="gview_grid" style="width: 1550px;">
                         <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1307px;">
                             <div class="ui-jqgrid-hbox">
-                                <table class="ui-jqgrid-htable" style="width:1497px" role="grid"
-                                       aria-labelledby="gbox_grid" cellspacing="0" cellpadding="0" border="0">
+                                <table class="ui-jqgrid-htable" style="width:1392px" role="grid" aria-labelledby="gbox_grid" cellspacing="0" cellpadding="0" border="0">
                                     <thead>
                                     <tr class="ui-jqgrid-labels" role="rowheader">
                                         <th id="grid_rn" role="columnheader"
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 25px;">
-                                            <div id="jqgh_grid_rn"><span class="s-ico" style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+
+                                        </th>
+                                        <th id="grid_operating" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 0px;">
+                                            <span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
+                                            <div id="jqgh_grid_operating" class="ui-jqgrid-sortable">
+                                                <span class="s-ico" style="display:none"><span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span>
+                                                    <span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
-                                        <th id="grid_operating" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 0px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_operating" class="ui-jqgrid-sortable"><span class="s-ico"
-                                                                                                           style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                        <th id="grid_goodId" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 1px; display: none;">
+                                            <span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
+                                            <div id="jqgh_grid_goodId" class="ui-jqgrid-sortable">
+                                                <span class="s-ico" style="display:none">
+                                                    <span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span>
+                                                    <span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
-                                        <th id="grid_goodId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 1px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_goodId" class="ui-jqgrid-sortable"><span class="s-ico"
-                                                                                                        style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                        <th id="grid_goods" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 300px;">
+                                            <span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
+                                            <div id="jqgh_grid_goods" class="ui-jqgrid-sortable">
+                                                <span class="red">*</span>商品<label> -- 扫描枪录入</label>
+                                                <span id="barCodeInsert" class="close">
+                                                    <span class="ui-icon-circle"></span>
+                                                </span>
+                                                <span class="s-ico" style="display:none">
+                                                    <span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span>
+                                                    <span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr">
+                                                    </span>
+                                                </span>
                                             </div>
                                         </th>
-                                        <th id="grid_goods" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 300px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_goods" class="ui-jqgrid-sortable"><span
-                                                    class="red">*</span>商品<label> -- 扫描枪录入</label><span
-                                                    id="barCodeInsert" class="close"><span
-                                                    class="ui-icon-circle"></span></span><span class="s-ico"
-                                                                                               style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_barCode" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 120px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_barCode" class="ui-jqgrid-sortable">商品条码<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_skuId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_skuId" class="ui-jqgrid-sortable">属性ID<span class="s-ico"
-                                                                                                           style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_skuName" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 100px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_skuName" class="ui-jqgrid-sortable">属性<span class="s-ico"
-                                                                                                           style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_mainUnit" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_mainUnit" class="ui-jqgrid-sortable">单位<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+
+                                        <th id="grid_mainUnit" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;">
+                                            <span class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
+                                            <div id="jqgh_grid_mainUnit" class="ui-jqgrid-sortable">单位
+                                                <span class="s-ico" style="display:none">
+                                                    <span sort="asc" class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr">
+                                                    </span>
+                                                    <span sort="desc" class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
                                         <th id="grid_unitId" role="columnheader"
@@ -314,103 +212,6 @@
                                                         class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
-                                        <th id="grid_srcQty" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 80px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcQty" class="ui-jqgrid-sortable">可退数量<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_batch" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_batch" class="ui-jqgrid-sortable">批次
-                                                <small id="batchBatch">批量</small>
-                                                <span class="s-ico" style="display:none"><span sort="asc"
-                                                                                               class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                        sort="desc"
-                                                        class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_prodDate" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_prodDate" class="ui-jqgrid-sortable">生产日期<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_safeDays" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_safeDays" class="ui-jqgrid-sortable">保质期(天)<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_validDate" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_validDate" class="ui-jqgrid-sortable">有效期至<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_producer" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_producer" class="ui-jqgrid-sortable">产地<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_registrationNo" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_registrationNo" class="ui-jqgrid-sortable">注册证号<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_proLicense" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 90px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_proLicense" class="ui-jqgrid-sortable">生产许可证<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
                                         <th id="grid_qty" role="columnheader"
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
@@ -427,7 +228,7 @@
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
                                                 style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_price" class="ui-jqgrid-sortable">购货单价<span class="s-ico"
+                                            <div id="jqgh_grid_price" class="ui-jqgrid-sortable">销货单价<span class="s-ico"
                                                                                                            style="display:none"><span
                                                     sort="asc"
                                                     class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
@@ -472,18 +273,6 @@
                                                         class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
-                                        <th id="grid_isSerNum" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_isSerNum" class="ui-jqgrid-sortable">是否有序列号<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
                                         <th id="grid_prices" role="columnheader"
                                             class="ui-state-default ui-th-column ui-th-ltr"
                                             style="width: 150px; display: none;"><span
@@ -500,18 +289,7 @@
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
                                                 style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_amount" class="ui-jqgrid-sortable">购货金额<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_shareAmount" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_shareAmount" class="ui-jqgrid-sortable">采购费用<span
+                                            <div id="jqgh_grid_amount" class="ui-jqgrid-sortable">销货金额<span
                                                     class="s-ico" style="display:none"><span sort="asc"
                                                                                              class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
                                                     sort="desc"
@@ -522,78 +300,20 @@
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
                                                 style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_description" class="ui-jqgrid-sortable">备注<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
+                                            <div id="jqgh_grid_description" class="ui-jqgrid-sortable"
+                                                 style="text-align:left">备注<span class="s-ico"
+                                                                                 style="display:none"><span sort="asc"
+                                                                                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                                    ort="desc"
                                                     class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
                                             </div>
                                         </th>
-                                        <th id="grid_srcOrderEntryId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcOrderEntryId" class="ui-jqgrid-sortable">源单分录ID<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_srcOrderId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcOrderId" class="ui-jqgrid-sortable">源单ID<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
+
                                         <th id="grid_srcOrderNo" role="columnheader"
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
                                                 style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcOrderNo" class="ui-jqgrid-sortable">关联购货订单号<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_srcBillId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcBillId" class="ui-jqgrid-sortable">原购货单号id<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_srcBillEntryId" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcBillEntryId" class="ui-jqgrid-sortable">原购货单号体id<span
-                                                    class="s-ico" style="display:none"><span sort="asc"
-                                                                                             class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_srcBillNo" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr"
-                                            style="width: 150px; display: none;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_srcBillNo" class="ui-jqgrid-sortable">原购货单号<span
+                                            <div id="jqgh_grid_srcOrderNo" class="ui-jqgrid-sortable">关联销货订单号<span
                                                     class="s-ico" style="display:none"><span sort="asc"
                                                                                              class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
                                                     sort="desc"
@@ -610,7 +330,7 @@
                                 <div></div>
                                 <table id="grid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid"
                                        aria-multiselectable="false" aria-labelledby="gbox_grid" class="ui-jqgrid-btable"
-                                       style="width: 1497px;">
+                                       style="width: 1392px;">
                                     <tbody>
                                     <tr class="jqgfirstrow" role="row" style="height:auto">
                                         <td role="gridcell" style="height:0px;width:25px;"></td>
@@ -624,496 +344,349 @@
                                         <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
                                         <td role="gridcell" style="height:0px;width:20px;"></td>
                                         <td role="gridcell" style="height:0px;width:100px;"></td>
-                                        <td role="gridcell" style="height:0px;width:80px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:90px;display:none;"></td>
                                         <td role="gridcell" style="height:0px;width:80px;"></td>
                                         <td role="gridcell" style="height:0px;width:100px;"></td>
                                         <td role="gridcell" style="height:0px;width:126px;"></td>
                                         <td role="gridcell" style="height:0px;width:126px;display:none;"></td>
                                         <td role="gridcell" style="height:0px;width:126px;"></td>
                                         <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:100px;"></td>
                                         <td role="gridcell" style="height:0px;width:100px;"></td>
                                         <td role="gridcell" style="height:0px;width:150px;"></td>
                                         <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
                                         <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
                                         <td role="gridcell" style="height:0px;width:120px;"></td>
-                                        <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                        <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
                                     </tr>
-                                    <tr role="row" id="1" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
+                                    <tr role="row" id="1" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"
+                                        style="position:relative">
                                         <td role="gridcell" class="ui-state-default jqgrid-rownum"
-                                            style="text-align:center;width: 25px;" title="1" aria-describedby="grid_rn">
+                                            style="text-align:center;width: 28px;" title="1" aria-describedby="grid_rn">
                                             1
                                         </td>
-                                        <td role="gridcell" style="text-align:left;" aria-describedby="grid_operating">
-                                            <div class="eperatingCell" style="height: 44px;">
-                                                <div class="operating" data-id="1"><span class="ui-icon ui-icon-plusAdd"
-                                                                                         title="新增行"></span><span
-                                                        class="ui-icon ui-icon-trashDel" title="删除行"></span></div>
+                                        <td role="gridcell" style="text-align:left; z-index: 999"
+                                            aria-describedby="grid_operating">
+                                            <!--<input type="text"  id="baidu" class="textbox" style="width: 290px; border: none;text-align:center">-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group" style="width: 300px;">
+                                                        <input type="text" class="form-control" autocomplete="off">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-white dropdown-toggle"
+                                                                    data-toggle="">
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"
+                                                                style="padding-top: 0px; max-height: 375px; max-width: 800px; overflow: auto; width: auto; transition: 0.3s;">
+                                                            </ul>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_goodId"></td>
+
                                         <td role="gridcell" style="" class="goods" aria-describedby="grid_goods">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_barCode">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_skuId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" class="ui-ellipsis skuInfo"
-                                            aria-describedby="grid_skuName">&nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_unitId">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
+                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">
+                                            <input type="text" class="textbox"
+                                                   style="width: 69px;height:35px;border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:center;"
                                             aria-describedby="grid_inventory"><a
                                                 class="ui-icon-cart btn_query_inventory" style="display:none"></a></td>
-                                        <td role="gridcell" style="text-align:left;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prodDate">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_safeDays">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_price">
-                                            &nbsp;</td>
+                                        <td role="gridcell" style="" aria-describedby="grid_locationName">
+                                            <input type="text" class="textbox"
+                                                   style="width: 85px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
+                                            aria-describedby="grid_discountRate">
+                                            <input type="text" class="textbox"
+                                                   style="width: 70px;height:35px; border: none;text-align:center">&nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_deduction">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_isSerNum">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prices">
-                                            &nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_amount">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" title=""
-                                            aria-describedby="grid_shareAmount">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="" title="" aria-describedby="grid_description">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_srcOrderId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
                                     </tr>
-                                    <tr role="row" id="2" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
+
+                                    <tr role="row" id="2" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"
+                                        style="position:relative">
                                         <td role="gridcell" class="ui-state-default jqgrid-rownum"
-                                            style="text-align:center;" title="2" aria-describedby="grid_rn">2
+                                            style="text-align:center;width: 28px;" title="1" aria-describedby="grid_rn">
+                                            2
                                         </td>
                                         <td role="gridcell" style="text-align:left;" aria-describedby="grid_operating">
-                                            <div class="eperatingCell" style="height: 44px;">
-                                                <div class="operating" data-id="2"><span class="ui-icon ui-icon-plusAdd"
-                                                                                         title="新增行"></span><span
-                                                        class="ui-icon ui-icon-trashDel" title="删除行"></span></div>
+                                            <!--<input type="text"  id="baidu" class="textbox" style="width: 290px; border: none;text-align:center">-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group" style="width: 300px;">
+                                                        <input type="text" class="form-control" autocomplete="off">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-white dropdown-toggle"
+                                                                    data-toggle="">
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"
+                                                                style="padding-top: 0px; max-height: 375px; max-width: 800px; overflow: auto; width: auto; transition: 0.3s;">
+                                                            </ul>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_goodId"></td>
+
                                         <td role="gridcell" style="" class="goods" aria-describedby="grid_goods">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_barCode">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_skuId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" class="ui-ellipsis skuInfo"
-                                            aria-describedby="grid_skuName">&nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_unitId">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
+                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">
+                                            <input type="text" class="textbox"
+                                                   style="width: 69px;height:35px;border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:center;"
                                             aria-describedby="grid_inventory"><a
                                                 class="ui-icon-cart btn_query_inventory" style="display:none"></a></td>
-                                        <td role="gridcell" style="text-align:left;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prodDate">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_safeDays">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_price">
-                                            &nbsp;</td>
+                                        <td role="gridcell" style="" aria-describedby="grid_locationName">
+                                            <input type="text" class="textbox"
+                                                   style="width: 85px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
+                                            aria-describedby="grid_discountRate">
+                                            <input type="text" class="textbox"
+                                                   style="width: 70px;height:35px; border: none;text-align:center">&nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_deduction">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_isSerNum">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prices">
-                                            &nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_amount">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" title=""
-                                            aria-describedby="grid_shareAmount">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="" title="" aria-describedby="grid_description">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_srcOrderId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
                                     </tr>
-                                    <tr role="row" id="3" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
+
+
+                                    <tr role="row" id="3" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"
+                                        style="position:relative">
                                         <td role="gridcell" class="ui-state-default jqgrid-rownum"
-                                            style="text-align:center;" title="3" aria-describedby="grid_rn">3
+                                            style="text-align:center;width: 28px;" title="1" aria-describedby="grid_rn">
+                                            3
                                         </td>
                                         <td role="gridcell" style="text-align:left;" aria-describedby="grid_operating">
-                                            <div class="eperatingCell" style="height: 44px;">
-                                                <div class="operating" data-id="3"><span class="ui-icon ui-icon-plusAdd"
-                                                                                         title="新增行"></span><span
-                                                        class="ui-icon ui-icon-trashDel" title="删除行"></span></div>
+                                            <!--<input type="text"  id="baidu" class="textbox" style="width: 290px; border: none;text-align:center">-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-group" style="width: 300px;">
+                                                        <input type="text" class="form-control" autocomplete="off">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-white dropdown-toggle"
+                                                                    data-toggle="">
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"
+                                                                style="padding-top: 0px; max-height: 375px; max-width: 800px; overflow: auto; width: auto; transition: 0.3s;">
+                                                            </ul>
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_goodId"></td>
+
                                         <td role="gridcell" style="" class="goods" aria-describedby="grid_goods">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_barCode">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_skuId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" class="ui-ellipsis skuInfo"
-                                            aria-describedby="grid_skuName">&nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_unitId">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
+                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">
+                                            <input type="text" class="textbox"
+                                                   style="width: 69px;height:35px;border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:center;"
                                             aria-describedby="grid_inventory"><a
                                                 class="ui-icon-cart btn_query_inventory" style="display:none"></a></td>
-                                        <td role="gridcell" style="text-align:left;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prodDate">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_safeDays">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_price">
-                                            &nbsp;</td>
+                                        <td role="gridcell" style="" aria-describedby="grid_locationName">
+                                            <input type="text" class="textbox"
+                                                   style="width: 85px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
+                                            aria-describedby="grid_discountRate">
+                                            <input type="text" class="textbox"
+                                                   style="width: 70px;height:35px; border: none;text-align:center">&nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_deduction">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_isSerNum">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prices">
-                                            &nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+
                                         <td role="gridcell" style="text-align:right;" aria-describedby="grid_amount">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" title=""
-                                            aria-describedby="grid_shareAmount">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
                                         <td role="gridcell" style="" title="" aria-describedby="grid_description">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_srcOrderId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
+                                            <input type="text" class="textbox"
+                                                   style="width: 110px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
+
+                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">
+                                            <input type="text" class="textbox"
+                                                   style="width: 80px;height:35px; border: none;text-align:center">
+                                            &nbsp;
+                                        </td>
                                     </tr>
-                                    <tr role="row" id="4" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
-                                        <td role="gridcell" class="ui-state-default jqgrid-rownum"
-                                            style="text-align:center;" title="4" aria-describedby="grid_rn">4
-                                        </td>
-                                        <td role="gridcell" style="text-align:left;" aria-describedby="grid_operating">
-                                            <div class="eperatingCell" style="height: 44px;">
-                                                <div class="operating" data-id="4"><span class="ui-icon ui-icon-plusAdd"
-                                                                                         title="新增行"></span><span
-                                                        class="ui-icon ui-icon-trashDel" title="删除行"></span></div>
-                                            </div>
-                                        </td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_goodId"></td>
-                                        <td role="gridcell" style="" class="goods" aria-describedby="grid_goods">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_barCode">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_skuId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" class="ui-ellipsis skuInfo"
-                                            aria-describedby="grid_skuName">&nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_unitId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:center;"
-                                            aria-describedby="grid_inventory"><a
-                                                class="ui-icon-cart btn_query_inventory" style="display:none"></a></td>
-                                        <td role="gridcell" style="text-align:left;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prodDate">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_safeDays">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_price">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_deduction">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_isSerNum">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prices">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_amount">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" title=""
-                                            aria-describedby="grid_shareAmount">&nbsp;</td>
-                                        <td role="gridcell" style="" title="" aria-describedby="grid_description">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_srcOrderId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
-                                    </tr>
-                                    <tr role="row" id="5" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
-                                        <td role="gridcell" class="ui-state-default jqgrid-rownum"
-                                            style="text-align:center;" title="5" aria-describedby="grid_rn">5
-                                        </td>
-                                        <td role="gridcell" style="text-align:left;" aria-describedby="grid_operating">
-                                            <div class="eperatingCell" style="height: 44px;">
-                                                <div class="operating" data-id="5"><span class="ui-icon ui-icon-plusAdd"
-                                                                                         title="新增行"></span><span
-                                                        class="ui-icon ui-icon-trashDel" title="删除行"></span></div>
-                                            </div>
-                                        </td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_goodId"></td>
-                                        <td role="gridcell" style="" class="goods" aria-describedby="grid_goods">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_barCode">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_skuId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" class="ui-ellipsis skuInfo"
-                                            aria-describedby="grid_skuName">&nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_mainUnit">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_unitId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:center;"
-                                            aria-describedby="grid_inventory"><a
-                                                class="ui-icon-cart btn_query_inventory" style="display:none"></a></td>
-                                        <td role="gridcell" style="text-align:left;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prodDate">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_safeDays">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_price">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_deduction">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_isSerNum">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_prices">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" aria-describedby="grid_amount">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;" title=""
-                                            aria-describedby="grid_shareAmount">&nbsp;</td>
-                                        <td role="gridcell" style="" title="" aria-describedby="grid_description">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" aria-describedby="grid_srcOrderId">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="" aria-describedby="grid_srcOrderNo">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;" title=""
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="ui-jqgrid-sdiv" style="width: 1307px;">
                             <div class="ui-jqgrid-hbox">
-                                <table role="grid" style="width:1497px" class="ui-jqgrid-ftable" cellspacing="0"
+                                <table role="grid" style="width:1392px" class="ui-jqgrid-ftable" cellspacing="0"
                                        cellpadding="0" border="0">
                                     <tbody>
                                     <tr role="row" class="ui-widget-content footrow footrow-ltr">
                                         <td role="gridcell" style="text-align:center;width: 25px;"
                                             aria-describedby="grid_rn" class="ui-state-default jqgrid-rownum">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:left;width: 0px;"
-                                            aria-describedby="grid_operating">&nbsp;</td>
+                                            aria-describedby="grid_operating">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 1px;"
-                                            aria-describedby="grid_goodId">&nbsp;</td>
+                                            aria-describedby="grid_goodId">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="width: 300px;" class="goods"
                                             aria-describedby="grid_goods">合计：
                                         </td>
                                         <td role="gridcell" style="display:none;width: 120px;"
-                                            aria-describedby="grid_barCode">&nbsp;</td>
+                                            aria-describedby="grid_barCode">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_skuId">&nbsp;</td>
+                                            aria-describedby="grid_skuId">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 100px;"
-                                            class="ui-ellipsis skuInfo" aria-describedby="grid_skuName">&nbsp;</td>
+                                            class="ui-ellipsis skuInfo" aria-describedby="grid_skuName">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="width: 80px;" aria-describedby="grid_mainUnit">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_unitId">&nbsp;</td>
+                                            aria-describedby="grid_unitId">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:center;width: 20px;"
-                                            aria-describedby="grid_inventory">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;width: 100px;"
-                                            aria-describedby="grid_locationName">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;display:none;width: 80px;"
-                                            aria-describedby="grid_srcQty">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;width: 90px;"
-                                            class="ui-ellipsis batch" aria-describedby="grid_batch">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 90px;"
-                                            aria-describedby="grid_prodDate">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 90px;"
-                                            aria-describedby="grid_safeDays">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;width: 90px;"
-                                            aria-describedby="grid_validDate">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;width: 90px;"
-                                            aria-describedby="grid_producer">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;width: 90px;"
-                                            aria-describedby="grid_registrationNo">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:left;display:none;width: 90px;"
-                                            aria-describedby="grid_proLicense">&nbsp;</td>
-                                        <td role="gridcell" style="text-align:right;width: 80px;" class="right"
-                                            aria-describedby="grid_qty">&nbsp;</td>
+                                            aria-describedby="grid_inventory">&nbsp;
+                                        </td>
+                                        <td role="gridcell" style="width: 100px;" aria-describedby="grid_locationName">
+                                            &nbsp;
+                                        </td>
+                                        <td role="gridcell" style="text-align:right;width: 80px;"
+                                            aria-describedby="grid_qty">0
+                                        </td>
                                         <td role="gridcell" style="text-align:right;width: 100px;"
-                                            aria-describedby="grid_price">&nbsp;</td>
+                                            aria-describedby="grid_price">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:right;width: 126px;"
-                                            aria-describedby="grid_discountRate">&nbsp;</td>
+                                            aria-describedby="grid_discountRate">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:right;display:none;width: 126px;"
-                                            aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
+                                            aria-describedby="grid_goodsDiscountRate">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:right;width: 126px;"
                                             aria-describedby="grid_deduction">0.00
                                         </td>
                                         <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_isSerNum">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_prices">&nbsp;</td>
+                                            aria-describedby="grid_prices">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="text-align:right;width: 100px;"
                                             aria-describedby="grid_amount">0.00
                                         </td>
-                                        <td role="gridcell" style="text-align:right;width: 100px;"
-                                            aria-describedby="grid_shareAmount" title="">&nbsp;</td>
                                         <td role="gridcell" style="width: 150px;" aria-describedby="grid_description">
-                                            &nbsp;</td>
+                                            &nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
+                                            aria-describedby="grid_srcOrderEntryId">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_srcOrderId">&nbsp;</td>
+                                            aria-describedby="grid_srcOrderId">&nbsp;
+                                        </td>
                                         <td role="gridcell" style="width: 120px;" aria-describedby="grid_srcOrderNo">
-                                            &nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_srcBillId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_srcBillEntryId">&nbsp;</td>
-                                        <td role="gridcell" style="display:none;width: 150px;"
-                                            aria-describedby="grid_srcBillNo">&nbsp;</td>
+                                            &nbsp;
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1142,21 +715,23 @@
                     <input type="text" id="discountRate" class="ui-input" data-ref="deduction">%
                 </li>
                 <li>
-                    <label id="preferential">付款优惠:</label>
+                    <label>优惠金额:</label>
                     <input type="text" id="deduction" class="ui-input" data-ref="payment">
                 </li>
                 <li>
                     <label>优惠后金额:</label>
                     <input type="text" id="discount" class="ui-input ui-input-dis" data-ref="discountRate" disabled="">
                 </li>
+            </ul>
+            <ul class="dn">
                 <li>
-                    <label id="paymentTxt">本次付款:</label>
-                    <input type="text" id="payment" class="ui-input">
+                    <label id="paymentTxt">本次收款:</label>
+                    <input type="text" id="payment" class="ui-input"> 
                 </li>
                 <li id="accountWrap" class="dn" style="display: list-item;">
                     <label>结算账户:</label>
                     <span class="ui-combo-wrap" id="account" style="padding: 0px; width: 110px;">
-          
+
           <input type="text" class="input-txt" autocomplete="off" style="width: 84px;"><i class="trigger"></i></span><a
                         id="accountInfo" class="ui-icon ui-icon-folder-open" style="display:none;"></a>
                 </li>
@@ -1165,52 +740,22 @@
                     <input type="text" id="arrears" class="ui-input ui-input-dis" disabled="">
                 </li>
                 <li>
-                    <label>采购费用:</label>
-                    <input type="text" id="purExpense" class="ui-input ui-input-dis" disabled="">
-                    <a id="expenseInfo" class="ui-icon ui-icon-folder-open"></a>
-                </li>
-                <li>
-                    <a id="doExpense" class="ui-btn" style="height:27px;">分摊</a>
-                    <a id="expenseList"
-                       style="display:inline-block;height:27px;padding-top:7px;text-decoration:underline;">采购销售费用清单</a>
-                </li>
-                <li class="dn">
                     <label>累计欠款:</label>
                     <input type="text" id="totalArrears" class="ui-input ui-input-dis" disabled="">
                 </li>
             </ul>
-            <!-- <ul class="c999 cf">
-              <li>
-                <label>制单人:</label>
-                <span id="userName"></span>
-              </li>
-              <li>
-                <label>审核人:</label>
-                <span id="checkName"></span>
-              </li>
-              <li>
-                <label>录单时间:</label>
-                <span id="createTime"></span>
-              </li>
-              <li>
-                <label>最后修改时间:</label>
-                <span id="modifyTime"></span>
-              </li>
-            </ul> -->
+
             <div class="cf fr">
-                <a href="http://vip2-gd.youshang.com/scm/invPu.do?action=initPur&amp;beginDate=2017-11-01&amp;endDate=2017-11-21#"
+                <a href="http://vip2-gd.youshang.com/scm/invSo.do?action=initSo&amp;beginDate=2017-11-01&amp;endDate=2017-11-21#"
                    class="linkToCheck ui-btn-bill ui-btn-add mr20">历史单据</a>
-                <a href="http://vip2-gd.youshang.com/scm/invPu.do?action=initPur&amp;beginDate=2017-11-01&amp;endDate=2017-11-21#"
+                <a href="http://vip2-gd.youshang.com/scm/invSo.do?action=initSo&amp;beginDate=2017-11-01&amp;endDate=2017-11-21#"
                    id="operaLog" class="ui-btn">操作日志</a>
             </div>
         </div>
-
         <div id="initCombo" class="dn">
-            <input type="text" class="textbox goodsAuto" name="goods" autocomplete="off">
+
             <input type="text" class="textbox storageAuto" name="storage" autocomplete="off">
             <input type="text" class="textbox unitAuto" name="unit" autocomplete="off">
-            <input type="text" class="textbox batchAuto" name="batch" autocomplete="off">
-            <input type="text" class="textbox dateAuto" name="date" autocomplete="off">
             <input type="text" class="textbox priceAuto" name="price" autocomplete="off">
             <input type="text" class="textbox skuAuto" name="price" autocomplete="off">
         </div>
@@ -1253,13 +798,19 @@
         </ul>
     </div>
 </div>
-<script src="../../js/judgment/purchase.js"></script>
 
 <div id="COMBO_WRAP">
+    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 118px; display: none;">
+        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
+            <div class="list-item" data-value="0">(空)</div>
+        </div>
+        <div class="extra-list-ctn"><a href="javascript:void(0);" id="quickAddSales" class="quick-add-link"><i
+                class="ui-icon-add"></i>新增职员</a></div>
+    </div>
     <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
         <div class="droplist" style="position: relative; overflow: auto;"></div>
-        <div class="extra-list-ctn"><a href="javascript:void(0);" id="quickAddVendor" class="quick-add-link"><i
-                class="ui-icon-add"></i>新增供应商</a></div>
+        <div class="extra-list-ctn"><a href="javascript:void(0);" id="quickAddCustomer" class="quick-add-link"><i
+                class="ui-icon-add"></i>新增客户</a></div>
     </div>
     <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 110px; display: none;">
         <div class="droplist" style="position: relative; overflow: auto; height: 102px;">
@@ -1294,14 +845,11 @@
     <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
         <div class="droplist" style="position: relative; overflow: auto;"></div>
     </div>
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
 </div>
 <div class="pika-single is-hidden is-bound" style=""></div>
 <div class="pika-single is-hidden is-bound" style=""></div>
-<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
-    <table class="ui_border">
+<div style="position: absolute; left: -9999em; top: 208px; visibility: visible; width: auto; z-index: 1976;">
+    <table class="ui_border ui_state_visible ui_state_focus">
         <tbody>
         <tr>
             <td class="ui_lt"></td>
@@ -1317,7 +865,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
+                                    <div class="ui_title" unselectable="on" style="cursor: move;">视窗</div>
                                     <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
                                                                      title="最小化" style="display: none;"><b
                                             class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
@@ -1333,7 +881,9 @@
                         <tr>
                             <td class="ui_icon" style="display: none;"></td>
                             <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;"></div>
+                                <div class="ui_content" style="padding: 10px;">
+                                    <div class="ui_loading"><span>loading...</span></div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -1355,5 +905,65 @@
         </tbody>
     </table>
 </div>
+<script src="../../js/jquery.min.js?v=2.1.4"></script>
+<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../../js/content.min.js?v=1.0.0"></script>
+<script src="../../js/plugins/layer/laydate/laydate.js"></script>
+<script>
+    laydate({elem: "#hello", event: "focus"});
+    var start = {
+        elem: "#start",
+        format: "YYYY/MM/DD hh:mm:ss",
+        min: laydate.now(),
+        max: "2099-06-16 23:59:59",
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            end.min = datas;
+            end.start = datas
+        }
+    };
+    var end = {
+        elem: "#end",
+        format: "YYYY/MM/DD hh:mm:ss",
+        min: laydate.now(),
+        max: "2099-06-16 23:59:59",
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            start.max = datas
+        }
+    };
+    laydate(start);
+    laydate(end);
+</script>
+<script>
+    laydate({elem: "#end", event: "focus"});
+    var start = {
+        elem: "#start",
+        format: "YYYY/MM/DD hh:mm:ss",
+        min: laydate.now(),
+        max: "2099-06-16 23:59:59",
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            end.min = datas;
+            end.start = datas
+        }
+    };
+    var end = {
+        elem: "#end",
+        format: "YYYY/MM/DD hh:mm:ss",
+        min: laydate.now(),
+        max: "2099-06-16 23:59:59",
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            start.max = datas
+        }
+    };
+    laydate(start);
+    laydate(end);
+</script>
 </body>
 </html>

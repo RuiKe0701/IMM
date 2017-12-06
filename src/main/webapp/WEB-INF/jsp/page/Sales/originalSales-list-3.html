@@ -10,65 +10,15 @@
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
-
     <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
-    <script type="text/javascript">
-        var _vds = _vds || [];
-        window._vds = _vds;
-        (function () {
-            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
-            (function () {
-                var vds = document.createElement('script');
-                vds.type = 'text/javascript';
-                vds.async = true;
-                vds.src = 'https://dn-growing.qbox.me/vds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(vds, s);
-            })();
-        })();
-    </script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="../../css/demo/webuploader-demo.min.css">
+    <link href="../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
 
-    <script type="text/javascript">
-        var DOMAIN = document.domain;
-        var WDURL = "";
-        var SCHEME = "blue";
-        try {
-            var host = window.location.host;
-            var domainDot = host.indexOf('.');
-            var domain = host.substring(domainDot + 1, host.length);
-            document.domain = domain;
-        } catch (e) {
-        }
-        //ctrl+F5 增加版本号来清空iframe的缓存的
-        $(document).keydown(function (event) {
-            /* Act on the event */
-            if (event.keyCode === 116 && event.ctrlKey) {
-                var defaultPage = Public.getDefaultPage();
-                var href = defaultPage.location.href.split('?')[0] + '?';
-                var params = Public.urlParam();
-                params['version'] = Date.parse((new Date()));
-                for (i in params) {
-                    if (i && typeof i != 'function') {
-                        href += i + '=' + params[i] + '&';
-                    }
-                }
-                defaultPage.location.href = href;
-                event.preventDefault();
-            }
-        });
-    </script>
-
-    <script src="../../js/lightbox.min.js"></script>
-    <link href="../../css/lightbox.min.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         .mod-toolbar-top strong.txt, #period {
             font-size: 14px;
@@ -454,21 +404,36 @@
         </div>
         <div class="fr">
 
-            <a class="ui-btn" id="uploadAttachment">导入附件</a>
+            <button class="ui-btn" id="uploadAttachment"  data-toggle="modal" data-target="#del">导入附件</button>
 
             <a class="ui-btn ui-btn-sp" id="create">生成销货单</a>
-            <!--       <a class="modeBtn enable toPic"></a>
-                  <a class="modeBtn toList"></a> -->
+
         </div>
     </div>
     <div class="container">
 
         <div class="dataWrapper" id="picGridWrap">
+
             <p class="changeBtns">
                 <span class="cboxWrap chkAll" id="checkAll"><i class="cbox"></i>全选</span>
                 <span id="sortDate" class="desc">上传日期</span>
             </p>
-            <div id="picGrid" style="height: 511.4px;"></div>
+            <div id="picGrid" style="height: 511.4px;">
+                <div class="group"  data-toggle="modal" data-target="#myModal">
+                    <h3><span class="cboxWrap groupchk"><i class="cbox"></i>2017-09-22</span></h3>
+                    <ul class="list cf">
+                        <li class="picItem" id="88887792">
+                            <div class="itemInner"><span class="cboxWrap"><i class="cbox"></i></span><span
+                                    class="imgWrap" style="width: 93px; height: 140px;"><img class="img"
+                                                                                             src="http://pics.youshang.com/group1/M00/07/B4/CvQFsVnEeJ-AaecVAAD7gxAbzms648_200x200.jpg"
+                                                                                             href="http://pics.youshang.com/group1/M00/07/B4/CvQFsVnEeJ-AaecVAAD7gxAbzms648.jpg"></span><span
+                                    class="tools top"><a href="#" class="del btn" data-id="88887792"></a></span></div>
+                            <div class="tools bottom">狗</div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
         <div class="dataWrapper autoGrid grid-wrap dn" id="dataGrid">
             <table id="grid">
@@ -477,119 +442,128 @@
         </div>
     </div>
 </div>
-<script src="../../js/judgment/originalSalesList.js"></script>
+<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
 
-<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
-    <table class="ui_border">
-        <tbody>
-        <tr>
-            <td class="ui_lt"></td>
-            <td class="ui_t"></td>
-            <td class="ui_rt"></td>
-        </tr>
-        <tr>
-            <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
+    <div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        原始单据
+                    </h4>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    <img src="http://pics.youshang.com/group1/M00/07/B4/CvQFsVnEeJ-AaecVAAD7gxAbzms648_200x200.jpg  ">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div  class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" >
+                        上传原始单据
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="form_file_upload.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="form_file_upload.html#">选项1</a>
+                                        </li>
+                                        <li><a href="form_file_upload.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="page-container">
+                                    <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，来体验此demo.</p>
+                                    <div id="uploader" class="wu-example">
+                                        <div class="queueList">
+                                            <div id="dndArea" class="placeholder">
+                                                <div id="filePicker" class="webuploader-container">
+                                                    <div class="webuploader-pick">点击选择图片</div>
+                                                    <div id="rt_rt_1c0fp97fr12mc17cm1bgq13r21f231" style="position: absolute; top: 0px; left: 451.192px; width: 168px; height: 44px; overflow: hidden; bottom: auto; right: auto;">
+                                                        <input type="file" name="file" class="webuploader-element-invisible">
+                                                        <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                                    </div>
+                                                </div>
+                                                <p>或将照片拖到这里，单次最多可选300张</p>
+                                            </div>
+                                            <ul class="filelist" style="display: none;"></ul></div>
+                                        <div class="statusBar element-invisible" style="">
+                                            <div class="progress" style="display: none;">
+                                                <span class="text">0%</span>
+                                                <span class="percentage" style="width: 0%;"></span>
+                                            </div>
+                                            <div class="info">共0张（0B），已上传0张</div>
+                                            <div class="btns">
+                                                <div id="filePicker2" class="webuploader-container"><div class="webuploader-pick">继续添加</div><div id="rt_rt_1c0fp97fu8pnja6129d1p84opk6" style="position: absolute; top: 0px; left: 9.98846px; width: 94px; height: 41px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div>
+                                                <div class="uploadBtn state-pedding">开始上传</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </td>
-            <td class="ui_r"></td>
-        </tr>
-        <tr>
-            <td class="ui_lb"></td>
-            <td class="ui_b"></td>
-            <td class="ui_rb" style="cursor: auto;"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
-    <table class="ui_border">
-        <tbody>
-        <tr>
-            <td class="ui_lt"></td>
-            <td class="ui_t"></td>
-            <td class="ui_rt"></td>
-        </tr>
-        <tr>
-            <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: 432px; height: 143px;">
-                                <div class="ui_content" style="padding: 10px;"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        确定
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+
                 </div>
-            </td>
-            <td class="ui_r"></td>
-        </tr>
-        <tr>
-            <td class="ui_lb"></td>
-            <td class="ui_b"></td>
-            <td class="ui_rb" style="cursor: auto;"></td>
-        </tr>
-        </tbody>
-    </table>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
 </div>
 <div id="ldg_lockmask"
      style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; z-index: 1977; display: none;"></div>
+
+<script src="../../js/jquery.min.js?v=2.1.4"></script>
+
+<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../../js/content.min.js?v=1.0.0"></script>
+<script src="../../js/plugins/layer/laydate/laydate.js"></script>
+<script src="../../js/plugins/webuploader/webuploader.min.js"></script>
+<script src="../../js/demo/webuploader-demo.min.js"></script>
+<script type="text/javascript">
+    var BASE_URL = '../../js/plugins/webuploader/index.html';
+</script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </body>
 </html>

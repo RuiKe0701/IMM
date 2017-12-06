@@ -35,6 +35,7 @@
         #grid tr {
             cursor: pointer;
         }
+
         .no-query {
             background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
@@ -67,12 +68,17 @@
     <div class="mod-search cf" id="report-search">
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
-                <li id="date" style="display: list-item;"><label>日期:</label>
+                <li id="date" style="display: list-item;"><label>单据日期:</label>
                     <input id="hello" class="">
                     <span class="todate"> 至 </span>
                     <input id="end" class=""></li>
 
-                <li id="billNum" style="display: list-item;"><label>商品类型</label>
+
+                <li id="goods" style="display: list-item;"><label>仓库:</label>
+                    <span class="mod-choose-input" id="filter-goods">
+            <input type="text">
+            <span class="ui-icon-ellipsis"></span></span></li>
+                <li id="billNum" style="display: list-item;"><label>商品</label>
                     <input type="text" value="" style="width:115px;">
                 </li>
 
@@ -90,7 +96,7 @@
                 <span id="config" class="ui-config">
                   <a href="#" class="ui-icon-config-new"></a>列设置</span>
             </div>
-            <div class="grid-title flex">采购销售费用清单</div>
+            <div class="grid-title flex">商品收发明细表</div>
             <div class="fr">
                 <a href="http://vip2-gd.youshang.com/report/pu-detail-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
                    class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
@@ -114,14 +120,18 @@
                         <thead>
                         <tr>
                             <th style="display: none">商品id</th>
-                            <th>供应商</th>
-                            <th>支出类别</th>
-                            <th>金额</th>
-                            <th>单号</th>
-                            <th>来往单位</th>
-                            <th>单源日期</th>
-                            <th>付款状态</th>
+                            <th>商品类别</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>规格型号</th>
+                            <th>日期</th>
+                            <th>单据号</th>
+                            <th>业务类型</th>
+                            <th>往来单位</th>
+                            <th>仓库</th>
+                            <th>单位</th>
                             <th>备注</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -135,6 +145,12 @@
                             <td>Bangalore</td>
                             <td>560001</td>
                             <td>Tanmay</td>
+                            <td>560001</td>
+                            <td>560001</td>
+                            <td>Tanmay</td>
+                            <td style="width: 120px;text-align: center">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
                         </tr>
                         <tr>
                             <td style="display: none"></td>
@@ -143,9 +159,15 @@
                             <td>560001</td>
                             <td>Tanmay</td>
                             <td>Tanmay</td>
+                            <td>Bangalore</td>
+                            <td>560001</td>
+                            <td>Tanmay</td>
                             <td>560001</td>
                             <td>560001</td>
                             <td>Tanmay</td>
+                            <td style="width: 120px;text-align: center">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
                         </tr>
                         <tr>
                             <td style="display: none"></td>
@@ -154,10 +176,15 @@
                             <td>560001</td>
                             <td>Tanmay</td>
                             <td>Tanmay</td>
+                            <td>Bangalore</td>
+                            <td>560001</td>
+                            <td>Tanmay</td>
                             <td>560001</td>
                             <td>560001</td>
                             <td>Tanmay</td>
-
+                            <td style="width: 120px;text-align: center">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
                         </tr>
                         </tbody>
 
