@@ -50,6 +50,9 @@
                 and c.crm_state=#{crmState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
 

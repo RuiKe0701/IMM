@@ -51,6 +51,9 @@
                 and pi.pi_state=#{piState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <!--指定条件修改采购订单详情-->

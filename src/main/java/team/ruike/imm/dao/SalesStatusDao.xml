@@ -22,6 +22,9 @@
                    and sales_status_state =#{salesStatusState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <update id="updateSalesStatus" parameterType="salesStatus">

@@ -84,6 +84,9 @@
                   and supplier_state=#{supplierState}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
     </select>
 
     <update id="updateStorageMove" parameterType="storageMove">

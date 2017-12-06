@@ -15,7 +15,7 @@ public class Units extends PagerParameter implements Serializable{
     /**
      * 单位编号
      */
-    private int unitsId;
+    private Integer unitsId;
     /**
      * 单位名称
      */
