@@ -38,8 +38,9 @@
             <if test="positionState!=null">
                 position_state=#{positionState},
             </if>
-            where position_id=#{positionId}
+
         </set>
+        where position_id=#{positionId}
     </update>
 
     <!--添加职位信息-->

@@ -121,7 +121,7 @@
 
     <!--增加商品信息-->
     <insert id="insertMerchandise" parameterType="merchandise">
-        insert into merchandise (merchandise_code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
+        insert into merchandise (product_code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
          values (#{productCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
     </insert>
 
