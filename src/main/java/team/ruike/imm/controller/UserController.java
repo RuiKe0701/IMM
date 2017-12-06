@@ -1,7 +1,7 @@
 package team.ruike.imm.controller;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +10,8 @@ import team.ruike.imm.instrument.Pager;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping(value = "/user")
@@ -28,13 +30,15 @@ public class UserController {
     @RequestMapping(value="/login.do")
     public  String login(User user,HttpSession session){
             User u=userService.selectUser(user);
-            if (u.getUserName()!=null){
+            if (u.getUserName()!="无"){
             session.setAttribute("userName",u.getEmployee().getEmployeeName());
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-            return "redirect:/user/page.do?currentPage=0";
+//            return "redirect:/user/add.do";
+        return "adsa";
     }
+
 
     @RequestMapping(value = "/page.do")
     public  String page(Integer currentPage,Model model){//分页显示用户信息
@@ -55,8 +59,6 @@ public class UserController {
         return "aaaa";
     }
 
-
-
     /**
      * 退出到登录页面
      * @return
@@ -65,4 +67,29 @@ public class UserController {
     public String retreat(){
         return "login";
     }
+
+    /**
+     * 批量添加
+     * @return
+     */
+    @RequestMapping("/doinsetadt.do")
+    public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
+        System.out.println(stuattendancelists);
+        ArrayList<User> userArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<User>>(){});
+        for (User user : userArrayList) {
+            System.out.println(user.getUserName());
+            System.out.println(user.getUserPassword());
+        }
+      int i= userService.insertAdd(userArrayList);
+        System.out.println(i);
+        //返回值
+        String jsonString = JSON.toJSONString(i);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+
+    }
+
+
+
 }

@@ -18,12 +18,6 @@ public interface UserDao {
     public List<User> selectUser(User user);
 
     /**
-     * 分页
-     * @return
-     */
-    public List<User> PagerUser(User user);
-
-    /**
      * 指定条件修改用户信息
      * @param user
      * @return
@@ -36,4 +30,6 @@ public interface UserDao {
      * @return
      */
     public int insertUser(User user);
+
+    public int insertAdd(List<User> users);
 }

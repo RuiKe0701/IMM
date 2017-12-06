@@ -15,18 +15,18 @@
     <title>精斗云云进销存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
 
-    <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
         var _vds = _vds || [];
         window._vds = _vds;
@@ -73,8 +73,8 @@
         });
     </script>
 
-    <script src="../../js/lightbox.min.js"></script>
-    <link href="../../css/lightbox.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath }/js/lightbox.min.js"></script>
+    <link href="${pageContext.request.contextPath }/css/lightbox.min.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         .mod-toolbar-top strong.txt, #period {
             font-size: 14px;
@@ -482,7 +482,7 @@
         </div>
     </div>
 </div>
-<script src="../../js/judgment/originalSalesList.js"></script>
+<script src="${pageContext.request.contextPath }/js/judgment/originalSalesList.js"></script>
 
 <div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
     <table class="ui_border">

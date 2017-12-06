@@ -40,6 +40,17 @@ public class User extends PagerParameter implements Serializable{
      * 当前和删除
      */
     private  Integer userState;
+    public User(){
+    }
+    /**
+     * 构造函数用于批量添加
+     * @param userName
+     * @param userPassword
+     */
+    public User(String userName,String userPassword){
+        this.userName=userName;
+        this.userPassword=userPassword;
+    }
 
 
     public Integer getUserId() {

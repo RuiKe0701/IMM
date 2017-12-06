@@ -46,4 +46,10 @@ public interface UserService {
      * @return
      */
     public Pager<User> getPager(int currentPage );
+
+    /**
+     * 批量添加
+     * @return
+     */
+    public int insertAdd(List<User> users);
 }
