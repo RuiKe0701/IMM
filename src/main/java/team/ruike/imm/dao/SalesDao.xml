@@ -44,7 +44,7 @@
     </resultMap>
 
     <select id="selectSales" resultMap="salesMap" parameterType="sales">
-        select * from sales_information
+        select * from sales
         <where>
              1=1
             <if test="salesId!=null and salesId>0">
@@ -73,6 +73,42 @@
             </if>
         </where>
     </select>
+
+
+    <select id="selectSales" resultMap="salesMap" parameterType="sales">
+        select * from sales
+        <where>
+            1=1
+            <if test="salesId!=null and salesId>0">
+                and sales_id=#{salesId}
+            </if>
+            <if test="salesDate !=null and salesDate!=''">
+                and sales_date=#{salesDate}
+            </if>
+            <if test="clientId !=null and clientId>0">
+                and client_id =#{clientId}
+            </if>
+            <if test="employeeId!=null and employeeId>0">
+                and employee_id =#{employeeId}
+            </if>
+            <if test="salesAccomplish!=null and salesAccomplish>0">
+                and sales_accomplish =#{salesAccomplish}
+            </if>
+            <if test="eventDetailsId!=null and eventDetailsId>=0">
+                and event_details_id =#{eventDetailsId}
+            </if>
+            <if test="salesActivities!=null and salesActivities>=0">
+                and sales_activities=#{salesActivities}
+            </if>
+            <if test="salesState !=null">
+                and sales_state=#{salesState}
+            </if>
+        </where>
+    </select>
+
+
+
+
 
     <update id="updateSales" parameterType="sales">
         supplier
