@@ -3,7 +3,7 @@
 <mapper namespace="team.ruike.imm.dao.MerchandiseDao">
     <resultMap id="merchandiseMap" type="merchandise">
         <result column="merchandise_id" property="merchandiseId" />
-        <result column="merchandise_code" property="productCode" />
+        <result column="merchandise_code" property="merchandiseCode" />
         <result column="merchandise_name" property="merchandiseName" />
         <result column="merchandise_specification" property="merchandiseSpecification" />
         <result column="merchandise_place_of_origin" property="merchandisePlaceOfOrigin" />
@@ -11,7 +11,9 @@
         <result column="merchandise_actual_quntity" property="merchandiseActualQuntity" />
         <result column="merchandise_salse_price" property="merchandiseSalsePrice" />
         <result column="merchandise_state" property="merchandiseState" />
-        
+        <result column="units_id" property="unitsId"/>
+        <result column="sales_status_id" property="salesStatusId"/>
+        <result column="Product_type_id" property="productTypeId"/>
         <association property="productType" javaType="productType">
             <result column="Product_type_id" property="productTypeId" />
             <result column="Product_type_name" property="productTypeName" />
@@ -37,8 +39,8 @@
             <if test="merchandiseId!=null and merchandiseId>0">
                 and m.merchandise_id=#{merchandiseId}
             </if>
-            <if test="productCode!=null and productCode!=''">
-                and m.merchandise_code=#{productCode}
+            <if test="merchandiseCode!=null and merchandiseCode!=''">
+                and m.merchandise_code=#{merchandiseCode}
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
                 and m.merchandise_name=#{merchandiseName}
@@ -80,8 +82,8 @@
     <update id="updateMerchandise" parameterType="merchandise">
         update merchandise
         <set>
-            <if test="productCode!=null and productCode!=''">
-                merchandise_code=#{productCode},
+            <if test="merchandiseCode!=null and merchandiseCode!=''">
+                merchandise_code=#{merchandiseCode},
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
                 merchandise_name=#{merchandiseName},
@@ -104,7 +106,7 @@
             <if test="merchandiseActualQuntity!=null and merchandiseActualQuntity>0">
                 merchandise_actual_quntity=#{merchandiseActualQuntity},
             </if>
-            <if test="merchandiseSalsePrice!=null and merchandiseSalsePrice>0">
+            <if test="merchandiseSalsePrice!=null and merchandiseSalsePrice!=''  and merchandiseSalsePrice>0">
                 merchandise_salse_price=#{merchandiseSalsePrice},
             </if>
             <if test="salesStatusId!=null and salesStatusId>0">
@@ -121,8 +123,8 @@
 
     <!--增加商品信息-->
     <insert id="insertMerchandise" parameterType="merchandise">
-        insert into merchandise (merchandise_code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
-         values (#{productCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
+        insert into merchandise (merchandise-code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
+         values (#{merchandiseCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
     </insert>
 
 </mapper>

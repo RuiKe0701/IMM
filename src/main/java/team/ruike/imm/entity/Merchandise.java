@@ -18,7 +18,7 @@ public class Merchandise extends PagerParameter implements Serializable{
     /**
      * 商品编码；
      */
-    private String productCode;
+    private String merchandiseCode;
     /**
      *商品名称
      */
@@ -81,12 +81,12 @@ public class Merchandise extends PagerParameter implements Serializable{
         this.merchandiseId = merchandiseId;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getMerchandiseCode() {
+        return merchandiseCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setMerchandiseCode(String merchandiseCode) {
+        this.merchandiseCode = merchandiseCode;
     }
 
     public String getMerchandiseName() {
