@@ -1,5 +1,6 @@
 package team.ruike.imm.controller;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +65,7 @@ public class MerchandiseController {
         }
         return null;
     }
-    @RequestMapping(value = "uMerchandise.do")
+    @RequestMapping(value = "aa.do")
     public String updateMerchandise(Merchandise merchandise, Model model){
         int m=merchandiseService.updateMerchandise(merchandise);
         if(m>0){
@@ -73,8 +74,15 @@ public class MerchandiseController {
         return "fail";
     }
     @RequestMapping(value = "updateMerchandises.do")
-    public String updateMerchandises(int i,HttpSession session){
-        session.setAttribute("id",i);
-        return "uMerchandise";
+    public String updateMerchandises(Merchandise mer,HttpSession session){
+        session.setAttribute("m",mer);
+        List<Units> u = unitsService.selectUnits(null);
+        List<ProductType> t = productTypeService.selectProductType(null);
+        if(u!=null && t!=null) {
+            session.setAttribute("u", u);
+            session.setAttribute("type", t);
+            return "um";
+        }
+        return null;
     }
 }
