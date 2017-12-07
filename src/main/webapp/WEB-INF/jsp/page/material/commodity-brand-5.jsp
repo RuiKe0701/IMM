@@ -1,0 +1,377 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2017-12-06
+  Time: 11:13
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://vip2-gd.youshang.com/settings/commodity-brand.jsp -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <title>精斗云云进销存</title>
+
+    <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
+    <link href="../../css/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/print.css" rel="stylesheet" type="text/css">
+
+    <link href="../../css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="../../js/vds.js"></script>
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/json3.min.js"></script>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/grid.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <script src="../../js/jquery.dialog.js"></script>
+    <script type="text/javascript">
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = 'https://dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+    </script>
+
+    <script type="text/javascript">
+        var DOMAIN = document.domain;
+        var WDURL = "";
+        var SCHEME = "blue";
+        try {
+            var host = window.location.host;
+            var domainDot = host.indexOf('.');
+            var domain = host.substring(domainDot + 1, host.length);
+            document.domain = domain;
+        } catch (e) {
+        }
+        //ctrl+F5 增加版本号来清空iframe的缓存的
+        $(document).keydown(function (event) {
+            /* Act on the event */
+            if (event.keyCode === 116 && event.ctrlKey) {
+                var defaultPage = Public.getDefaultPage();
+                var href = defaultPage.location.href.split('?')[0] + '?';
+                var params = Public.urlParam();
+                params['version'] = Date.parse((new Date()));
+                for (i in params) {
+                    if (i && typeof i != 'function') {
+                        href += i + '=' + params[i] + '&';
+                    }
+                }
+                defaultPage.location.href = href;
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        .matchCon {
+            width: 280px;
+        }
+
+        .chk-list {
+            line-height: 28px;
+        }
+
+        li {
+            list-style: none;
+            margin-bottom: 15px
+        }
+
+        textarea {
+            resize: none;
+            height: 64px;
+            overflow: hidden;
+            width: 200px
+        }
+
+        .label-wrap {
+            width: 86px
+        }
+
+        textarea.ui-input {
+            width: 160px;
+            height: 50px;
+            vertical-align: inherit;
+        }
+    </style>
+</head>
+<body style="">
+<div class="bill-ser-top">
+    <ul class="ul-inline cf">
+
+        <li>
+            <input type="text" id="matchCon" class="ui-input ui-input-ph matchCon" value="按品牌编号，品牌名称查询">
+        </li>
+        <!-- <li class="chk-list" id="chk-ischecked" style="display: list-item;">
+        </li> -->
+        <li><a class="ui-btn mrb ui-btn-search" id="search">查询</a></li>
+    </ul>
+</div>
+
+<div class="wrapper btc">
+    <div class="ui-config-box">
+          <span id="config" class="ui-config">
+            <a href="http://vip2-gd.youshang.com/settings/commodity-brand.jsp#" class="ui-icon-config-new"></a>
+            列设置
+            </span>
+    </div>
+
+    <div class="bill-ser-botm cf">
+        <div class="fr">
+            <a href="http://vip2-gd.youshang.com/settings/commodity-brand.jsp#" class="ui-btn ui-btn-sp mrb ui-btn-add"
+               id="btn-add">新增</a>
+            <a class="ui-btn mrb ui-btn-normal" id="btn-disable">禁用</a>
+            <a class="ui-btn mrb ui-btn-normal" id="btn-enable">启用</a>
+            <!--<a href="#" class="ui-btn mrb" id="btn-print">打印</a>-->
+            <a href="http://vip2-gd.youshang.com/settings/commodity-brand.jsp#" class="ui-btn ui-btn-normal"
+               id="btn-batchDel">删除</a>
+        </div>
+    </div>
+
+    <div class="grid-wrap">
+        <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
+             style="width: 1371px;">
+            <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
+            <div class="loading ui-state-default ui-state-active" id="load_grid" style="display: none;">读取中...</div>
+            <div class="ui-jqgrid-view" id="gview_grid" style="width: 1371px;">
+                <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
+                     style="display: none;"><a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
+                                               style="right: 0px;"><span
+                        class="ui-icon ui-icon-circle-triangle-n"></span></a><span class="ui-jqgrid-title"></span></div>
+                <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1371px;">
+                    <div class="ui-jqgrid-hbox">
+                        <table class="ui-jqgrid-htable" style="width:490px" role="grid" aria-labelledby="gbox_grid"
+                               cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                            <tr class="ui-jqgrid-labels" role="rowheader">
+                                <th id="grid_cb" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 20px;">
+                                    <div id="jqgh_grid_cb"><input role="checkbox" id="cb_grid" class="cbox"
+                                                                  type="checkbox"><span class="s-ico"
+                                                                                        style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_operate" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 60px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_operate" class="ui-jqgrid-sortable">操作<span class="s-ico"
+                                                                                                   style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_number" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_number" class="ui-jqgrid-sortable">品牌编码<span class="s-ico"
+                                                                                                    style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_name" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_name" class="ui-jqgrid-sortable">品牌名称<span class="s-ico"
+                                                                                                  style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 100px; display: none;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_id" class="ui-jqgrid-sortable">id<span class="s-ico"
+                                                                                              style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_remark" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
+                                    style="width: 100px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                                                style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_remark" class="ui-jqgrid-sortable">备注<span class="s-ico"
+                                                                                                  style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                                <th id="grid_isdelete" role="columnheader"
+                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
+                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
+                                        style="cursor: col-resize;">&nbsp;</span>
+                                    <div id="jqgh_grid_isdelete" class="ui-jqgrid-sortable">状态<span class="s-ico"
+                                                                                                    style="display:none"><span
+                                            sort="asc"
+                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
+                                            sort="desc"
+                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="ui-jqgrid-bdiv" style="height: 450px; width: 1371px;">
+                    <div style="position:relative;">
+                        <div></div>
+                        <table id="grid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid"
+                               aria-multiselectable="true" aria-labelledby="gbox_grid" class="ui-jqgrid-btable"
+                               style="width: 490px;">
+                            <tbody>
+                            <tr class="jqgfirstrow" role="row" style="height:auto">
+                                <td role="gridcell" style="height:0px;width:20px;"></td>
+                                <td role="gridcell" style="height:0px;width:60px;"></td>
+                                <td role="gridcell" style="height:0px;width:100px;"></td>
+                                <td role="gridcell" style="height:0px;width:100px;"></td>
+                                <td role="gridcell" style="height:0px;width:100px;display:none;"></td>
+                                <td role="gridcell" style="height:0px;width:100px;"></td>
+                                <td role="gridcell" style="height:0px;width:80px;"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
+            <div id="page" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1371px;">
+                <div id="pg_page" class="ui-pager-control" role="group">
+                    <table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table"
+                           style="width:100%;table-layout:fixed;height:100%;" role="row">
+                        <tbody>
+                        <tr>
+                            <td id="page_left" align="left"></td>
+                            <td id="page_center" align="center" style="white-space: pre; width: 288px;">
+                                <table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;"
+                                       class="ui-pg-table">
+                                    <tbody>
+                                    <tr>
+                                        <td id="first_page" class="ui-pg-button ui-corner-all ui-state-disabled"><span
+                                                class="ui-icon ui-icon-seek-first"></span></td>
+                                        <td id="prev_page" class="ui-pg-button ui-corner-all ui-state-disabled"><span
+                                                class="ui-icon ui-icon-seek-prev"></span></td>
+                                        <td class="ui-pg-button ui-state-disabled" style="width:4px;"><span
+                                                class="ui-separator"></span></td>
+                                        <td dir="ltr"><input class="ui-pg-input" type="text" size="2" maxlength="7"
+                                                             value="0" role="textbox"> 共 <span id="sp_1_page">0</span> 页
+                                        </td>
+                                        <td class="ui-pg-button ui-state-disabled" style="width:4px;"><span
+                                                class="ui-separator"></span></td>
+                                        <td id="next_page" class="ui-pg-button ui-corner-all"><span
+                                                class="ui-icon ui-icon-seek-next"></span></td>
+                                        <td id="last_page" class="ui-pg-button ui-corner-all"><span
+                                                class="ui-icon ui-icon-seek-end"></span></td>
+                                        <td dir="ltr"><select class="ui-pg-selbox" role="listbox">
+                                            <option role="option" value="100" selected="selected">100</option>
+                                            <option role="option" value="200">200</option>
+                                            <option role="option" value="500">500</option>
+                                            <option role="option" value="1000">1000</option>
+                                        </select></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="page_right" align="right">
+                                <div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../js/judgment/commodityBrand.js"></script>
+
+</div>
+<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
+    <table class="ui_border">
+        <tbody>
+        <tr>
+            <td class="ui_lt"></td>
+            <td class="ui_t"></td>
+            <td class="ui_rt"></td>
+        </tr>
+        <tr>
+            <td class="ui_l"></td>
+            <td class="ui_c">
+                <div class="ui_inner">
+                    <table class="ui_dialog">
+                        <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="ui_title_bar">
+                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
+                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
+                                                                     title="最小化" style="display: none;"><b
+                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
+                                                                        title="最大化" style="display: none;"><b
+                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
+                                                                        title="还原"><b class="ui_res_b"></b><b
+                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
+                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ui_icon" style="display: none;"></td>
+                            <td class="ui_main" style="width: auto; height: auto;">
+                                <div class="ui_content" style="padding: 10px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="ui_buttons" style="display: none;"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="ui_r"></td>
+        </tr>
+        <tr>
+            <td class="ui_lb"></td>
+            <td class="ui_b"></td>
+            <td class="ui_rb" style="cursor: auto;"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

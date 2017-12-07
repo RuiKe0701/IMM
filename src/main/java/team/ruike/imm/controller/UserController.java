@@ -36,13 +36,12 @@ public class UserController {
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
 //            return "redirect:/user/add.do";
-        return "adsa";
+        return "redirect:/client/clientAll.do";
     }
 
 
     @RequestMapping(value = "/page.do")
     public  String page(Integer currentPage,Model model){//分页显示用户信息
-
        //分页显示用户信息
        List<User> pages= userService.pagerUser(currentPage);
         Pager<User> pagerss=null;
@@ -81,12 +80,14 @@ public class UserController {
             System.out.println(user.getUserPassword());
         }
       int i= userService.insertAdd(userArrayList);
-        System.out.println(i);
-        //返回值
-        String jsonString = JSON.toJSONString(i);
-        printWriter.write(jsonString);
-        printWriter.flush();
-        printWriter.close();
+        if(i>0){
+            //返回值
+            String jsonString = JSON.toJSONString(0);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
+
 
     }
 

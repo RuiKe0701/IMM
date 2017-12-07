@@ -1,5 +1,7 @@
 package team.ruike.imm.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,10 @@ import team.ruike.imm.entity.Client;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.ClientService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 @RequestMapping(value = "/client")
 @Controller
@@ -18,18 +23,24 @@ public class ClientController {
     ClientService clientService;
     //展示全部数据
     @RequestMapping(value="/clientAll.do")
-    public  String clientAll(){
-
+    public  String clientAll(HttpServletRequest request){
+      List<Client> clients=clientService.selecrClient(null);
+//        for (Client client : clients) {
+//            System.out.println(client.getClientName());
+//        }
+        request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
-    @RequestMapping(value = "/page.do")
-    public  String page(Client client){//分页显示用户信息
-        List<Client> pages= clientService.pagerClient(client);
-        for (Client c : pages) {
-            System.out.println(c.getClientName());
+    @RequestMapping(value = "/k.do")
+    public void a(Client client){
+        for (Object o : client.getKk()) {
+            System.out.println(o);
         }
-        return null;
+//        client.setClientState(1);\
+        int i=clientService.updateAdd(client.getKk());
+        System.out.println(i);
     }
+
     @RequestMapping(value = "/updatesClient.do")
     public  String updates(Model model, Client client){
         int i=clientService.updateClient(client);

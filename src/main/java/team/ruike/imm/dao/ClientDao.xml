@@ -51,7 +51,7 @@
                 and client_state=#{clientState}
             </if>
         </where>
-        <if test="currentPage!=null and currentPage>0 and pageSize>0 and pageSize!=null">
+        <if test="currentPage!=null and pageSize!=null">
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
@@ -91,6 +91,22 @@
         </set>
                where client_id=#{clientId}
     </update>
+
+
+
+    <!--指定条件修改客户信息-->
+    <update id="updateAdd" parameterType="java.util.List">
+            <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+                update client
+                <set>
+                    client_state=1
+                </set>
+                where client_id=#{client}
+            </foreach>
+
+    </update>
+
+
 
     <!--添加客户信息-->
     <insert id="insertClient" parameterType="client">
