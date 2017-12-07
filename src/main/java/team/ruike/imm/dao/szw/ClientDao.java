@@ -1,4 +1,4 @@
-package team.ruike.imm.dao;
+package team.ruike.imm.dao.szw;
 import team.ruike.imm.entity.Client;
 import team.ruike.imm.entity.User;
 

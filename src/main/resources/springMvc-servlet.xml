@@ -10,15 +10,15 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="team.ruike.imm.controller"/>
+    <context:component-scan base-package="team.ruike.imm.controller.*"/>
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-    <!--<bean name="/index.do" class="controller.IndexController"/>-->
+    <!--&lt;!&ndash;<bean name="/index.do" class="controller.IndexController"/>&ndash;&gt;-->
 
-    <context:component-scan base-package="team.ruike.imm.controller"/>
+    <!--<context:component-scan base-package="team.ruike.imm.controller"/>-->
 
     <mvc:annotation-driven>
         <mvc:message-converters>

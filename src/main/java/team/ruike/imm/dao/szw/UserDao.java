@@ -1,4 +1,4 @@
-package team.ruike.imm.dao;
+package team.ruike.imm.dao.szw;
 
 import team.ruike.imm.entity.User;
 import team.ruike.imm.instrument.Pager;

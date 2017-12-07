@@ -1,13 +1,12 @@
-package team.ruike.imm.service.impl;
+package team.ruike.imm.service.impl.szw;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.ruike.imm.dao.UserDao;
+import team.ruike.imm.dao.szw.UserDao;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.instrument.Pager;
-import team.ruike.imm.service.UserService;
+import team.ruike.imm.service.szw.UserService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

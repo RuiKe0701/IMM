@@ -1,4 +1,4 @@
-package team.ruike.imm.controller;
+package team.ruike.imm.controller.szw;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Client;
-import team.ruike.imm.entity.User;
-import team.ruike.imm.service.ClientService;
+import team.ruike.imm.service.szw.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package team.ruike.imm.controller;
+package team.ruike.imm.controller.szw;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.instrument.Pager;
-import team.ruike.imm.service.UserService;
+import team.ruike.imm.service.szw.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;

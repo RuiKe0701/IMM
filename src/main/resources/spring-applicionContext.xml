@@ -23,8 +23,8 @@
     </bean>
     <!-- 扫描地址下所有文件-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="team.ruike.imm.dao"/>
+        <property name="basePackage" value="team.ruike.imm.dao.*"/>
     </bean>
     <!-- 扫描地址下所有文件  单元测试里context.getBean("首字母小写后面不变");-->
-    <context:component-scan base-package="team.ruike.imm.service.impl" />
+    <context:component-scan base-package="team.ruike.imm.service.impl.*" />
 </beans>
