@@ -1,4 +1,4 @@
-package team.ruike.imm.service;
+package team.ruike.imm.service.szw;
 
 import team.ruike.imm.entity.Client;
 import team.ruike.imm.entity.User;

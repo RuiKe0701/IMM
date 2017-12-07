@@ -22,9 +22,6 @@ public class ClientController {
     @RequestMapping(value="/clientAll.do")
     public  String clientAll(HttpServletRequest request){
       List<Client> clients=clientService.selecrClient(null);
-//        for (Client client : clients) {
-//            System.out.println(client.getClientName());
-//        }
         request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
