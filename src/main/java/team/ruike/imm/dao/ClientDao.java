@@ -1,5 +1,7 @@
 package team.ruike.imm.dao;
 import team.ruike.imm.entity.Client;
+import team.ruike.imm.entity.User;
+
 import java.util.List;
 /**
  * @author 索志文
@@ -30,9 +32,7 @@ public interface ClientDao {
      * @return
      */
     public int insertClient(Client client);
-    /**
-     * 分页
-     * @return
-     */
-    public List<Client> PagerClient(Client client);
+
+
+    public int updateAdd(List client);
 }

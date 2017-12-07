@@ -4,6 +4,8 @@ import team.ruike.imm.instrument.Pager;
 import team.ruike.imm.instrument.PagerParameter;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author 索志文
@@ -11,6 +13,16 @@ import java.io.Serializable;
  * 客户信息
  */
 public class Client extends PagerParameter implements Serializable {
+    private List kk;
+
+    public List getKk() {
+        return kk;
+    }
+
+    public void setKk(List kk) {
+        this.kk = kk;
+    }
+
     /**
      * 客户编号
      */

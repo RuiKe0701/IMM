@@ -37,7 +37,10 @@ public class UserServiceImpl implements UserService {
         List<User> list=null;
         list=userDao.selectUser(user);
         if (list.size()>0 && list!=null ){
-            return  list.get(0);
+            if(list.get(0).getUserName().equals(user.getUserName())&&list.get(0).getUserPassword().equals(user.getUserPassword())){
+                return  list.get(0);
+            }
+            u.setUserName("无");
         }
         u.setUserName("无");
         return u;
@@ -48,7 +51,6 @@ public class UserServiceImpl implements UserService {
     }
 
     int pageSize=2;//设置每页显示数据数
-    int  currentPage=0;  //默认显示第一页
     /**
      * 分页查询进入SQL语句
      * @return
@@ -69,7 +71,7 @@ public class UserServiceImpl implements UserService {
      * 分页信息进入Pager类
      * @return
      */
-    public Pager<User> getPager(int currentPage){
+    public Pager<User> getPager(Integer currentPage){
         //查询全部信息
         List<User> userList=userDao.selectUser(null);
         //接收分页数据

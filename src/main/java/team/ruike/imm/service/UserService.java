@@ -45,7 +45,7 @@ public interface UserService {
      * @param currentPage
      * @return
      */
-    public Pager<User> getPager(int currentPage );
+    public Pager<User> getPager(Integer currentPage );
 
     /**
      * 批量添加
