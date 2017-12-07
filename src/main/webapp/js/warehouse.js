@@ -13,11 +13,26 @@ $(function () {
 
     //调拨单
     $("#Requisition").click(function () {
+        alert("1");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrders.do");
+        $("#iff").attr("src", "/requisition/RequisitionForSome.do");
+
+        $("#ons").css("display", "none");
+        $("#showiframe").css("display", "block");
+
+    });
+
+    //盘点记录
+    $("#Count-records").click(function () {
+        alert("2");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
+        $("#iff").attr("src", "/CountRecords/CountRecordsForSome.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -26,11 +41,12 @@ $(function () {
 
     //商品库存余额
     $("#Goods-inventory-balance").click(function () {
+        alert("3");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrders.do");
+        $("#iff").attr("src", "/warehouseReport/goods-balance.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -39,11 +55,12 @@ $(function () {
 
     //商品收发明细表
     $("#Goods-receipt-details").click(function () {
+        alert("4");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrders.do");
+        $("#iff").attr("src", "/warehouseReport/goods-flow-detail.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -52,11 +69,12 @@ $(function () {
 
     //商品收发汇总表
     $("#Send-and-receive-goods-summary").click(function () {
+        alert("5");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrders.do");
+        $("#iff").attr("src", "/warehouseReport/goods-flow-summary.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");

@@ -25,8 +25,14 @@
     <script src="${pageContext.request.contextPath }/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.js"></script>
+
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
     <script src="${pageContext.request.contextPath }/js/guoxu.js"></script>
+    <script src="${pageContext.request.contextPath }/js/warehouse.js"></script>
+    <script src="${pageContext.request.contextPath }/js/funds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/material.js"></script>
+
+
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
