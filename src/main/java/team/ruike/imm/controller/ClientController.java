@@ -3,7 +3,6 @@ package team.ruike.imm.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import team.ruike.imm.entity.User;
 import team.ruike.imm.service.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +29,43 @@ public class ClientController {
         request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
-    @RequestMapping(value = "/k.do")
-    public void a(Client client){
-        for (Object o : client.getKk()) {
-            System.out.println(o);
+//    @RequestMapping(value = "/k.do")
+//    public void a(Client client){
+//        for (Object o : client.getKk()) {
+//            System.out.println(o);
+//        }
+////        client.setClientState(1);\
+//        int i=ice.updateAdclientServd(client.getKk());
+//        System.out.println(i);
+//    }
+
+    @RequestMapping("/k.do")
+    public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
+        int i=0;
+        if (stuattendancelists.length()>0 ){
+            ArrayList<Client> userArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
+
+            for (Client client : userArrayList) {
+                System.out.println(client.getKk().size());
+                i= clientService.updateAdd(client.getKk());
+            }
+            if(i>0){
+                //返回值
+                String jsonString = JSON.toJSONString(0);
+                printWriter.write(jsonString);
+                printWriter.flush();
+                printWriter.close();
+            }
         }
-//        client.setClientState(1);\
-        int i=clientService.updateAdd(client.getKk());
-        System.out.println(i);
+        String jsonString = JSON.toJSONString(1);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+    }
+    @RequestMapping(value = "/bug.do")
+    public String bug(){
+
+        return "asdas";
     }
 
     @RequestMapping(value = "/updatesClient.do")

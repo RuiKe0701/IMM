@@ -70,7 +70,7 @@
                 type: "post",
                 url: "/user/doinsetadt.do",
                 data:{
-                    "stuattendancelists": stuattendancelists,
+                    "stuattendancelists": stuattendancelists
                 },
                   dataType: "json",
                  success: function (data) {

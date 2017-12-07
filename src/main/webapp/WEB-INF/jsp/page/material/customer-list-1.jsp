@@ -136,7 +136,7 @@
                     <tbody>
                     <tr>
                             <%--用于checked属性选中 checked--%>
-                        <td><input name="kk"  runat="server" type="checkbox" value="${c.clientId}" />${c.clientId}</td>
+                        <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
                         <td>${c.clientId}</td>
                         <td>${c.clientName}</td>
                         <td>${c.clientPersonInCharge}</td>
@@ -158,4 +158,37 @@
 </form>
 </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#btn-disable").click(function () {
+            var clientList = new Array();
+                $(".tablelist").each(function (index, date) {
+                var id = $(date).find(".k").val();
+                var object = new Object();
+                object.kk = id;
+                clientList.push(object);
+            });
+
+            var stuattendancelists = JSON.stringify(clientList);
+            $.ajax({
+                type: "post",
+                url: "/client/k.do",
+                data: {
+                    "stuattendancelists": stuattendancelists
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == 0) {
+                        alert("成功了")
+                    }else {
+                        alert("错误")
+                    }
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    })
+</script>
 </html>
