@@ -75,14 +75,14 @@
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips"   >帐号：</label>
                             <div class="inputOuter" id="uArea">
-                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="name" name="userName" class="inputstyle"  />
+                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="12323" type="name" name="userName" class="inputstyle"  />
                                 <span id="DivFname"></span>
                             </div>
                         </div>
                         <div class="pwdArea" id="pwdArea">
                             <label class="input-tips">密码：</label>
                             <div class="inputOuter" id="pArea">
-                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"  type="password" class="inputstyle" name="userPassword" id="p"  />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="4233"  type="password" class="inputstyle" name="userPassword" id="p"  />
                                 <span id="Divpwd"></span>
                             </div>
                         </div>

@@ -134,19 +134,19 @@
             <c:forEach items="${clients}" var="c">
                 <c:if test="${c.clientState==0}">
                     <tbody>
-                    <tr>
+                    <tr id="${c.clientId}">
                             <%--用于checked属性选中 checked--%>
-                        <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
-                        <td>${c.clientId}</td>
-                        <td>${c.clientName}</td>
-                        <td>${c.clientPersonInCharge}</td>
-                        <td>${c.clientPost}</td>
+                        <td ><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
+                        <td >${c.clientId}</td>
+                        <td >${c.clientName}</td>
+                        <td >${c.clientPersonInCharge}</td>
+                        <td >${c.clientPost}</td>
                         <td>${c.clientPhone}</td>
-                        <td>${c.clientMobilePhone}</td>
-                        <td>${c.clientFax}</td>
-                        <td>${c.clientAddress}</td>
-                        <td>${c.clientFactoryAddress}</td>
-                        <td style="display:none">${c.clientState}</td>
+                        <td >${c.clientMobilePhone}</td>
+                        <td >${c.clientFax}</td>
+                        <td >${c.clientAddress}</td>
+                        <td >${c.clientFactoryAddress}</td>
+                        <td  style="display:none">${c.clientState}</td>
                         <td><a href="/client/k.do" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
                     </tr>
                     </tbody>
@@ -178,11 +178,10 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    if (data == 0) {
                         alert("成功了")
-                    }else {
-                        alert("错误")
-                    }
+                        for(i in data){
+                            $("#"+data[i].clientId).remove();
+                  }
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");

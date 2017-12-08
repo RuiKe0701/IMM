@@ -46,8 +46,12 @@ public class ClientController {
                 i= clientService.updateAdd(client.getKk());
             }
             if(i>0){
+                Client c=new Client();
+                c.setClientState(1);
+                List<Client> clients=clientService.selecrClient(c);
+                System.out.println(clients.size());
                 //返回值
-                String jsonString = JSON.toJSONString(0);
+                String jsonString = JSON.toJSONString(clients);
                 printWriter.write(jsonString);
                 printWriter.flush();
                 printWriter.close();
