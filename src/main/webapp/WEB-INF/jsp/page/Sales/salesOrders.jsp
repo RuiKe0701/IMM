@@ -15,36 +15,36 @@
     <title>精斗云云进销存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
-    <link href="../../css/bootstrap.min.css">
-    <link href="../../css/ui.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="../../css/animate.min.css" rel="stylesheet">
-    <link href="../../css/animate.min.css" rel="stylesheet">
-    <link href="../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/style.min862f.css?v=4.1.0" rel="stylesheet">
     <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/need/laydate.css">
+          href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/skins/default/laydate.css"
+          href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
-    <link href="../../css/animate.min.css" rel="stylesheet">
-    <link href="../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
-    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/plugins/suggest/bootstrap-suggest.min.js"></script>
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
+    <link href="${pageContext.request.contextPath }/css/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/plugins/suggest/bootstrap-suggest.min.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
         var _vds = _vds || [];
         window._vds = _vds;
@@ -91,7 +91,7 @@
         });
     </script>
 
-    <link href="../../css/bills.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
 
 </head>
 <body style="">
@@ -930,10 +930,10 @@
         </tbody>
     </table>
 </div>
-<script src="../../js/jquery.min.js?v=2.1.4"></script>
-<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../../js/content.min.js?v=1.0.0"></script>
-<script src="../../js/plugins/layer/laydate/laydate.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {
