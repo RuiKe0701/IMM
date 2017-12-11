@@ -1,15 +1,15 @@
-package team.ruike.imm.service.impl;
+package team.ruike.imm.service.impl.szw;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.ruike.imm.dao.EmployeeDao;
+import team.ruike.imm.dao.szw.EmployeeDao;
 import team.ruike.imm.entity.Employee;
-import team.ruike.imm.service.EmployeeService;
+import team.ruike.imm.service.szw.EmployeeService;
 
 import java.util.List;
 
 
-@Service("EmployeeService")
+@Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeDao employeeDao;

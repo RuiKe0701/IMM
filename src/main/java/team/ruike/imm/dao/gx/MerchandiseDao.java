@@ -1,4 +1,4 @@
-package team.ruike.imm.dao;
+package team.ruike.imm.dao.gx;
 
 import team.ruike.imm.entity.Merchandise;
 

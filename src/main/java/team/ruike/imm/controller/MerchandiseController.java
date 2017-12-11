@@ -1,6 +1,5 @@
 package team.ruike.imm.controller;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProductType;
 import team.ruike.imm.entity.Units;
-import team.ruike.imm.service.MerchandiseService;
+import team.ruike.imm.service.gx.MerchandiseService;
 import team.ruike.imm.service.ProductTypeService;
 import team.ruike.imm.service.UnitsService;
 
-import javax.annotation.Resource;
-import javax.annotation.Resources;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
