@@ -1,4 +1,4 @@
-package team.ruike.imm.service;
+package team.ruike.imm.service.gx;
 
 import team.ruike.imm.entity.Sales;
 

@@ -1,10 +1,10 @@
-package team.ruike.imm.service.impl;
+package team.ruike.imm.service.impl.gx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import team.ruike.imm.dao.SalesDao;
+import team.ruike.imm.dao.gx.SalesDao;
 import team.ruike.imm.entity.Sales;
-import team.ruike.imm.service.SalesService;
+import team.ruike.imm.service.gx.SalesService;
 
 import java.util.List;
 
