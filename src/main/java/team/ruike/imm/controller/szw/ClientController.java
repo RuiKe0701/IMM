@@ -101,7 +101,6 @@ public class ClientController {
         for (Client client : clientArrayList) {
             i = clientService.insertClient(client);
         }
-
         if(i>0){
             //返回值
             String jsonString = JSON.toJSONString(0);

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function () {
     //修改客户是否联系
     $("#btn-disable").click(function () {
         var clientList = new Array();
@@ -32,6 +32,34 @@ $(document).ready(function() {
         });
     })
 
-
+    $("#insert").click(function () {
+        var clients = new Array();
+        var object =new Object();
+        object.clientName= $("#addname").val();
+        object.clientPersonInCharge= $("#addpersonInCharge").val();
+        object.clientPost= $("#addpost").val();
+        object.clientPhone= $("#addphone").val();
+        object.clientMobilePhone= $("#addmobilePhone").val();
+        object.clientFax= $("#addfax").val();
+        object.clientAddress= $("#addaddress").val();
+        object.clientFactoryAddress= $("#addfactoryAddress").val();
+        object.clientState= $("#addstate").val();
+        clients.push(object);
+        var clientList = JSON.stringify(clients);
+        $.ajax({
+            type: "post",
+            url: "/client/addClient.do",
+            data: {
+                "clientList": clientList
+            },
+            dataType: "json",
+            success: function (data) {
+                alert("成功了")
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+    })
 
 })
