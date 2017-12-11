@@ -15,23 +15,23 @@
     <title>精斗云云进销存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/need/laydate.css">
+          href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/skins/default/laydate.css"
+          href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
-    <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
-    <script src="../../js/shopping.js"></script>
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
+    <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
     <script type="text/javascript">
         var _vds = _vds || [];
         window._vds = _vds;
@@ -78,7 +78,7 @@
         });
     </script>
 
-    <link rel="stylesheet" href="../../css/report.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/report.css">
     <style>
         .ui-icon-ellipsis {
             right: 5px;
@@ -762,10 +762,10 @@
         </tbody>
     </table>
 </div>
-<script src="../../js/jquery.min.js?v=2.1.4"></script>
-<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../../js/content.min.js?v=1.0.0"></script>
-<script src="../../js/plugins/layer/laydate/laydate.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {
