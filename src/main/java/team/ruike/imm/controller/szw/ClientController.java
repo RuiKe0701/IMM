@@ -27,16 +27,30 @@ public class ClientController {
         request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
-//    @RequestMapping(value = "/k.do")
-//    public void a(Client client){
-//        for (Object o : client.getKk()) {
-//            System.out.println(o);
-//        }
-////        client.setClientState(1);\
-//        int i=ice.updateAdclientServd(client.getKk());
-//        System.out.println(i);
-//    }
+    @RequestMapping(value = "/clientId.do")
+    public void clientId(Client client,PrintWriter printWriter){
+        List<Client> clients=clientService.selecrClient(client);
+        for (Client client1 : clients) {
+            System.out.println(client1.getClientId());
+        }
+        if (clients.size()>0){
+            String jsonString = JSON.toJSONString(clients);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }else {
+            String jsonString = JSON.toJSONString(0);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
+    }
 
+    /**
+     * 修改是否删除客户
+     * @param stuattendancelists
+     * @param printWriter
+     */
     @RequestMapping("/k.do")
     public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
         int i=0;
@@ -78,17 +92,6 @@ public class ClientController {
         }
         return "update";
     }
-
-
-//    @RequestMapping(value = "/insertClient.do")
-//    public  String indexs(Model model, Client client){
-//        int i=clientService.insertClient(client);
-//        if (i>0){
-//            return "crr";
-//        }
-//        return "update";
-//    }
-
     /**
      * 添加
      * @return
