@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Client;
+import team.ruike.imm.entity.User;
 import team.ruike.imm.service.szw.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 @RequestMapping(value = "/client")
@@ -39,9 +41,9 @@ public class ClientController {
     public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
         int i=0;
         if (stuattendancelists.length()>0 ){
-            ArrayList<Client> userArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
+            ArrayList<Client> clientArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
 
-            for (Client client : userArrayList) {
+            for (Client client : clientArrayList) {
                 System.out.println(client.getKk().size());
                 i= clientService.updateAdd(client.getKk());
             }
@@ -78,12 +80,34 @@ public class ClientController {
     }
 
 
-    @RequestMapping(value = "/insertClient.do")
-    public  String indexs(Model model, Client client){
-        int i=clientService.insertClient(client);
-        if (i>0){
-            return "crr";
+//    @RequestMapping(value = "/insertClient.do")
+//    public  String indexs(Model model, Client client){
+//        int i=clientService.insertClient(client);
+//        if (i>0){
+//            return "crr";
+//        }
+//        return "update";
+//    }
+
+    /**
+     * 添加
+     * @return
+     */
+    @RequestMapping("/addClient.do")
+    public void addClient(String clientList,PrintWriter printWriter){
+        int i=0;
+        System.out.println(clientList.length());
+        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
+        for (Client client : clientArrayList) {
+            i = clientService.insertClient(client);
         }
-        return "update";
+
+        if(i>0){
+            //返回值
+            String jsonString = JSON.toJSONString(0);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
     }
 }

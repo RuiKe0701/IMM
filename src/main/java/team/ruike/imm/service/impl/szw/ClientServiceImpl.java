@@ -52,8 +52,9 @@ public class ClientServiceImpl implements ClientService{
         return 0;
     }
 
+
     public int insertClient(Client client) {
-        return 0;
+        return clientDao.insertClient(client);
     }
 
     public int updateAdd(List client) {

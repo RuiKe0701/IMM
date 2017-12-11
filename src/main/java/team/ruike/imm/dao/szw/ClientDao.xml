@@ -14,7 +14,6 @@
         <result column="client_factory_address" property="clientFactoryAddress" />
         <result column="client_state" property="clientState" />
     </resultMap>
-
     <!--指定条件查询客户信息-->
     <select id="selecrClient" resultMap="clientMap">
         select * from client
@@ -55,8 +54,6 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
-
-
     <!--指定条件修改客户信息-->
     <update id="updateClient" parameterType="client">
         update client
@@ -91,9 +88,6 @@
         </set>
                where client_id=#{clientId}
     </update>
-
-
-
     <!--指定条件修改客户信息-->
     <update id="updateAdd" parameterType="java.util.List">
             <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
@@ -105,12 +99,11 @@
             </foreach>
 
     </update>
-
-
-
-    <!--添加客户信息-->
-    <insert id="insertClient" parameterType="client">
-        insert into client (client_name,client_person_in_charge,client_post,client_phone,client_mobile_phone,client_fax,client_address,client_factory_address,client_state)
-         values(#{clientName},#{clientPersonInCharge},#{clientPost},#{clientPhone},#{clientMobilePhone},#{clientFax},#{clientAddress},#{clientFactoryAddress},#{clientState});
+    <insert id="insertClient">
+        insert into client(client_name,client_person_in_charge,client_post,client_phone,client_mobile_phone,
+        client_fax,client_address,client_factory_address,client_state)
+        values
+            (#{clientName},#{clientPersonInCharge},#{clientPost},#{clientPhone},#{clientMobilePhone},
+            #{clientFax},#{clientAddress},#{clientFactoryAddress},#{clientState})
     </insert>
 </mapper>

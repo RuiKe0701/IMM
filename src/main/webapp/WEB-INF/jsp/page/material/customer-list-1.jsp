@@ -11,7 +11,10 @@
 <!-- saved from url=(0054)http://vip2-gd.youshang.com/settings/customer-list.jsp -->
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" type="text/css">
+    <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
 
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,9 +24,7 @@
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
-
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/vue.js"></script>
@@ -31,33 +32,17 @@
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
-
-    <script>
-        $(document).ready(function(){
-            $("#add").hide();
-//             $("#search").toggle(
-//                     function(){$("#ta").hide();},
-//                     function(){$("#ta").show();}
-//             )
-
-            $("#btn-add").click(function(){
-                $("#add").show();
-            })
-        });
-
-    </script>
+    <script src="${pageContext.request.contextPath }/js/material/customer-list-1.js"></script>
     <style>
         .matchCon {
             width: 280px;
         }
-
         .chk-list {
             line-height: 28px;
         }
-
-        #clients{
-            width: 160px
+        .up{
+            position: relative;
+            top: -5px;
         }
     </style>
 </head>
@@ -67,30 +52,21 @@
         <li>
             <input type="text" id="matchCon" class="ui-input ui-input-ph matchCon" placeholder ="输入客户编号/ 名称/ 联系人/ 电话查询">
         </li>
-
         <li><a class="ui-btn mrb ui-btn-search" id="search">查询</a></li>
         <li class="chk-list" id="chk-ischecked" style="display: list-item;">
             <div>
                 <input style="width:20px;height: 30px" name="" type="checkbox" value="" checked="" />
                 <!--<span style="font-size: 20px;position: absolute;right:970px;top: 20px">显示失联客户</span>-->
             </div>
-
         </li>
     </ul>
-
-</div>
-<div id="add" style="z-index:100;width: 300px;height: 200px;background: black">
-    <form method="post" action="" >
-        <input type="text" value="名字" />
-    </form>
 </div>
 <div class="wrapper btc" style="z-index:0">
 
 
     <div class="bill-ser-botm cf">
         <div class="fr ml10">
-            <a class="ui-btn-bill ui-btn-add mrb"
-               id="btn-add">新增</a>
+            <button type="button"  class="ui-btn-bill ui-btn-add mrb" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
             <a class="ui-btn-bill mrb" id="btn-disable">禁用</a>
             <a class="ui-btn-bill mrb" id="btn-enable">启用</a>
         </div>
@@ -114,80 +90,208 @@
     </div>
     <%--/client/k.do--%>
 <form method="post" action="/client/k.do" >
-    <div>
-        <table class="tablelist" id="ta">
+    <div style="position: relative;left: 50px">
+        <table class="table table-striped" style="width: 1200px">
             <thead>
-            <tr id="clients">
-                <td></td>
-                <td>客户编号<i class="sort"></i></td>
-                <td >客户名称</td>
-                <td>负责人名称</td>
-                <td>负责人职称</td>
-                <td >电话</td>
-                <td>移动电话</td>
-                <td>传真</td>
-                <td>客户地址</td>
-                <td>送货地址</td>
-                <td>操作</td>
+            <tr>
+                <th></th>
+                <th style="display: none">商品id</th>
+                <th>商品名称</th>
+                <th>属性</th>
+                <th>单位</th>
+                <th>数量</th>
+                <th>订单号</th>
+                <th>订单日期</th>
+                <th>库存</th>
+                <th>购货日期</th>
+                <th>操作</th>
             </tr>
             </thead>
             <c:forEach items="${clients}" var="c">
-                <c:if test="${c.clientState==0}">
-                    <tbody>
-                    <tr id="${c.clientId}">
-                            <%--用于checked属性选中 checked--%>
-                        <td ><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
-                        <td >${c.clientId}</td>
-                        <td >${c.clientName}</td>
-                        <td >${c.clientPersonInCharge}</td>
-                        <td >${c.clientPost}</td>
-                        <td>${c.clientPhone}</td>
-                        <td >${c.clientMobilePhone}</td>
-                        <td >${c.clientFax}</td>
-                        <td >${c.clientAddress}</td>
-                        <td >${c.clientFactoryAddress}</td>
-                        <td  style="display:none">${c.clientState}</td>
-                        <td><a href="/client/k.do" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
-                    </tr>
-                    </tbody>
-                </c:if>
+            <c:if test="${c.clientState==0}">
+            <tbody>
+            <tr id="${c.clientId}"  class="clients">
+                <td ><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
+                <td >${c.clientId}</td>
+                <td >${c.clientName}</td>
+                <td >${c.clientPersonInCharge}</td>
+                <td >${c.clientPost}</td>
+                <td>${c.clientPhone}</td>
+                <td >${c.clientMobilePhone}</td>
+                <td >${c.clientFax}</td>
+                <td >${c.clientAddress}</td>
+                <td >${c.clientFactoryAddress}</td>
+                <td  style="display:none">${c.clientState}</td>
+                <td style="width: 120px;text-align: center">
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update" ><span class="up">修改</span></button>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" ><span  class="up">删除</span></button></td>
+            </tr>
+            </tbody>
+            </c:if>
             </c:forEach>
         </table>
-        <button id="su" type="submit">提交</button>
     </div>
 </form>
 </div>
-</body>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#btn-disable").click(function () {
-            var clientList = new Array();
-                $(".tablelist").each(function (index, date) {
-                var id = $(date).find(".k").val();
-                var object = new Object();
-                object.kk = id;
-                clientList.push(object);
-            });
+<!-- 新增 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModabel">
+                    新增用户信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 500px" >
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">客户名称</span>
+                        <input  id="addname" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">负责人名称</span>
+                        <input  id="addpersonInCharge" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">负责人职称</span>
+                        <input  id="addpost" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                     </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">电话</span>
+                    <input  id="addphone" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">移动电话</span>
+                    <input  id="addmobilePhone" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">传真</span>
+                    <input  id="addfax" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">客户地址</span>
+                    <input  id="addaddress" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">送货地址</span>
+                    <input  id="addfactoryAddress" type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon" style="width: 81px;">是否已删除</span>
+                    <input  id="addstate" type="text" value="0" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="insert" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+    <!-- 修改 -->
+    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改用户信息
+                    </h4>
+                </div>
+                <div class="modal-body" style="width: 300px;height: 500px" >
+                    <div class="input-group">
+                        <span class="input-group-addon">商品名称</span>
+                        <input  type="text" class="form-control" placeholder="twitterhandle">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">单位</span>
+                        <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">数量</span>
+                        <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">订单号</span>
+                        <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+  <div  class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" >
+                        确定删除吗
+                    </h4>
+                </div>
 
-            var stuattendancelists = JSON.stringify(clientList);
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        确定
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+</div>
+</body>
+<!-- 新增-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#insert").click(function () {
+            var clients = new Array();
+           var object =new Object();
+            object.clientName= $("#addname").val();
+            object.clientPersonInCharge= $("#addpersonInCharge").val();
+            object.clientPost= $("#addpost").val();
+            object.clientPhone= $("#addphone").val();
+            object.clientMobilePhone= $("#addmobilePhone").val();
+            object.clientFax= $("#addfax").val();
+            object.clientAddress= $("#addaddress").val();
+            object.clientFactoryAddress= $("#addfactoryAddress").val();
+            object.clientState= $("#addstate").val();
+            clients.push(object);
+            var clientList = JSON.stringify(clients);
             $.ajax({
                 type: "post",
-                url: "/client/k.do",
+                url: "/client/addClient.do",
                 data: {
-                    "stuattendancelists": stuattendancelists
+                    "clientList": clientList
                 },
                 dataType: "json",
                 success: function (data) {
-                        alert("成功了")
-                        for(i in data){
-                            $("#"+data[i].clientId).remove();
-                  }
+                    alert("成功了")
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
                 }
             })
+            })
         })
-    })
 </script>
 </html>
