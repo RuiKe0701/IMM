@@ -103,6 +103,7 @@
                 <th>订单日期</th>
                 <th>库存</th>
                 <th>购货日期</th>
+                <th>送货地址</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -110,20 +111,21 @@
             <c:if test="${c.clientState==0}">
             <tbody>
             <tr id="${c.clientId}"  class="clients">
-                <td ><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
-                <td >${c.clientId}</td>
-                <td >${c.clientName}</td>
-                <td >${c.clientPersonInCharge}</td>
-                <td >${c.clientPost}</td>
+                <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
+                <td>${c.clientId}</td>
+                <td>${c.clientName}</td>
+                <td>${c.clientPersonInCharge}</td>
+                <td>${c.clientPost}</td>
                 <td>${c.clientPhone}</td>
-                <td >${c.clientMobilePhone}</td>
-                <td >${c.clientFax}</td>
-                <td >${c.clientAddress}</td>
-                <td >${c.clientFactoryAddress}</td>
+                <td>${c.clientMobilePhone}</td>
+                <td>${c.clientFax}</td>
+                <td>${c.clientAddress}</td>
+                <td>${c.clientFactoryAddress}</td>
                 <td  style="display:none">${c.clientState}</td>
-                <td style="width: 120px;text-align: center">
-                    <button type="button" id="updateClient"  name="${c.clientId}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update" ><span class="up">修改</span></button>
-                    <button type="button"  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" ><span  class="up">删除</span></button></td>
+                <td style="width: 120px;text-align: center" class="taaa" id="clid1">
+                    <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                    <button type="button"  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" ><span  class="up">删除</span></button>
+                </td>
             </tr>
             </tbody>
             </c:if>
@@ -212,6 +214,7 @@
                 </h4>
             </div>
             <div class="modal-body" style="width: 300px;height: 500px" >
+                <input id="updateid" style="display: none"-/>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
@@ -251,6 +254,10 @@
                     <span class="input-group-addon" style="width: 81px;">传真</span>
                     <input  id="updatefax" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
                 </div>
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon">是否已删除</span>
+                    <input  id="updatestate" type="text" value="0" class="form-control"  style="width:487px;">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -262,15 +269,65 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<!-- 删除-->
+<div  class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" >
+                    确定删除吗
+                </h4>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
 </body>
-<!-- 新增-->
+<!-- 修改-->
 <script type="text/javascript">
+    function gainclient(val){
+       $.ajax({
+           type: "post",
+           url: "/client/clientId.do?clientId="+val,
+           dataType: "json",
+           success: function (data) {
+               if(data!=0){
+                   $.each(data, function(i,item){
+                       $("#updateid").val(item.clientId)
+                       $("#updatename").val(item.clientName)
+                       $("#updatepersonInCharge").val(item.clientPersonInCharge)
+                       $("#updatepost").val(item.clientPost)
+                       $("#updateaddress").val(item.clientAddress)
+                       $("#updatefactoryAddress").val(item.clientFactoryAddress)
+                       $("#updatemobilePhone").val(item.clientPhone)
+                       $("#updatephone").val(item.clientPhone)
+                       $("#updatefax").val(item.clientFax)
+                       $("#updatestate").val(item.clientState)
+//                       alert(item.clientId+","+item.clientName);
+                   });
+
+               }
+           },
+           error: function () {
+               alert("系统异常，请稍后重试！");
+           }
+       })
+    }
     $(function () {
-        $("#updateClient").click(function () {
-            alert("132");
-            alert($("#updateClient").attr('name'))
-//            $("#updatename").html($("#updateClient").val());
-        })
+
     })
 </script>
 </html>
