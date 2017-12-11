@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProductType;
 import team.ruike.imm.entity.Units;
-import team.ruike.imm.service.gx.MerchandiseService;
+import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.ProductTypeService;
 import team.ruike.imm.service.UnitsService;
 
