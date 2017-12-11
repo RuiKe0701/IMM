@@ -254,7 +254,7 @@
                     <span class="input-group-addon" style="width: 81px;">传真</span>
                     <input  id="updatefax" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
                 </div>
-                <div class="input-group" style="display: none">
+                <div class="input-group">
                     <span class="input-group-addon">是否已删除</span>
                     <input  id="updatestate" type="text" value="0" class="form-control"  style="width:487px;">
                 </div>
@@ -281,20 +281,16 @@
                     确定删除吗
                 </h4>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     确定
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
-
 </body>
 <!-- 修改-->
 <script type="text/javascript">
@@ -315,8 +311,12 @@
                        $("#updatemobilePhone").val(item.clientPhone)
                        $("#updatephone").val(item.clientPhone)
                        $("#updatefax").val(item.clientFax)
-                       $("#updatestate").val(item.clientState)
-//                       alert(item.clientId+","+item.clientName);
+//                       $("#updatestate").val(item.clientState)
+                       if(item.clientState==0){
+                           $("#updatestate").val("合作中")
+                       }else {
+                           $("#updatestate").val("已终止")
+                       }
                    });
 
                }
