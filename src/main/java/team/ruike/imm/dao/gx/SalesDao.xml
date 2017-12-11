@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 
-<mapper namespace="team.ruike.imm.dao.SalesDao">
+<mapper namespace="team.ruike.imm.dao.gx.SalesDao">
     <resultMap id="salesMap" type="sales">
         <result column="sales_id" property="salesId" />
         <result column="sales_date" property="salesDate" />
