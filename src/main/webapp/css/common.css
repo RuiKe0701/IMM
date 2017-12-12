@@ -1,20 +1,20 @@
 @charset "utf-8";
 /* CSS Document */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0; padding: 0; }
-body, button, input, select, textarea { font: 12px/1.5 arial, \5b8b\4f53; color:#555; }
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button,  textarea, th, td { margin: 0; padding: 0; }
+body, button,  textarea { font: 12px/1.5 arial, \5b8b\4f53; color:#555; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; }
 address, cite, dfn, em, var { font-style: normal; }
 code, kbd, pre, samp { font-family: courier new, courier, monospace; }
 small { font-size: 12px; }
 ul, ol { list-style: none; }
-a { text-decoration: none; color:#555; cursor:pointer; } 
+a { text-decoration: none; color:#555; cursor:pointer; }
 a:hover { text-decoration: none; color:#3B87B1; }
 sup { vertical-align: text-top; }
 sub { vertical-align: text-bottom; }
 legend { color: #000; }
 fieldset, img { border: 0; }
-button, input, select, textarea { font-size: 100%; }
+button, textarea { font-size: 100%; }
 /*table { border-collapse: collapse; border-spacing: 0; }*/
 
 
@@ -118,7 +118,7 @@ a{ outline:none; }
 /*#linkToCheck{display:inline-block; background: #63c963; color: #fff; border-radius: 9px; padding:0 4px; height:16px; line-height: 16px; text-indent: 0;}*/
 /* 表单样式 */
 .mod-form-rows{zoom:1;}
-.mod-form-rows input,.mod-form-rows select{vertical-align:middle;}
+.mod-form-rows input,.mod-form-rows {vertical-align:middle;}
 .mod-form-rows .row-item{margin-bottom:15px;zoom:1;}
 .mod-form-rows .row-item:after{clear: both; content: "."; display: block; height: 0; overflow: hidden; visibility: hidden; }
 .mod-form-rows .label-wrap{width:70px;float:left;display:inline;margin-right:10px;_margin-right:7px;line-height:30px;font-size:14px;}
@@ -228,7 +228,7 @@ input.valid-error,input.valid-error:hover,input.valid-error:focus{border-color:#
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
 	border: 1px solid #333;
 	position:absolute;
-} 
+}
 
 .float_doing_box {
 	border: 1px solid #F7CE39;
@@ -310,8 +310,8 @@ input.valid-error,input.valid-error:hover,input.valid-error:focus{border-color:#
 	background-repeat: no-repeat;
 }
 
-/* Icons 
- * create by guoliang_zou 
+/* Icons
+ * create by guoliang_zou
  * lastUpdate by guoliang_zou 2014-03-07
 ----------------------------------*/
 
@@ -385,7 +385,7 @@ input.valid-error,input.valid-error:hover,input.valid-error:focus{border-color:#
 .l-tree
 {
     margin:0; padding:0; list-style:none; overflow:hidden; position:relative; display:block; background:white;
-} 
+}
 .l-tree-loading
 {
     position: absolute;z-index: 91000;  top:40%; left:50%; overflow:hidden;
@@ -431,11 +431,11 @@ input.valid-error,input.valid-error:hover,input.valid-error:focus{border-color:#
 {
     text-decoration:underline;
 }
-.l-tree .l-selected
+.l-tree
 {
     background: none;
 }
-.l-tree .l-selected span{background: #D9E8FB; border:1px solid #B5CBEC; padding:0px 2px;height: 20px;
+.l-tree . span{background: #D9E8FB; border:1px solid #B5CBEC; padding:0px 2px;height: 20px;
 line-height: 20px;}
 
 .l-tree .l-line{background-position:0px -176px;}
@@ -443,13 +443,13 @@ line-height: 20px;}
 
 .l-tree .l-note{ background-position:0px -198px;}
 .l-tree .l-note-last{ background-position:0px -220px;}
-.l-tree .l-checkbox-unchecked{ background-position:-22px 0px;} 
-.l-tree .l-checkbox-checked{ background-position:-22px -22px;} 
-.l-tree .l-checkbox-incomplete{ background-position:-22px -44px;} 
+.l-tree .l-checkbox-unchecked{ background-position:-22px 0px;}
+.l-tree .l-checkbox-checked{ background-position:-22px -22px;}
+.l-tree .l-checkbox-incomplete{ background-position:-22px -44px;}
 
-.l-tree .l-over .l-checkbox-unchecked{ background-position:-44px 0px;} 
-.l-tree .l-over .l-checkbox-checked{ background-position:-44px -22px;} 
-.l-tree .l-over .l-checkbox-incomplete{ background-position:-44px -44px;} 
+.l-tree .l-over .l-checkbox-unchecked{ background-position:-44px 0px;}
+.l-tree .l-over .l-checkbox-checked{ background-position:-44px -22px;}
+.l-tree .l-over .l-checkbox-incomplete{ background-position:-44px -44px;}
 
 
 .l-tree .l-tree-icon-folder{ background-position:-22px -88px;}
@@ -746,7 +746,7 @@ line-height: 20px;}
 .ell{text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
 /* css3过渡动画效果 */
 .trans{
-	-webkit-transition:all 0.3s;	
+	-webkit-transition:all 0.3s;
 	        transition:all 0.3s;
 }
 /* 大小不定元素垂直居中 */
@@ -794,7 +794,7 @@ line-height: 20px;}
 .close{border-radius: 10px;display:inline-block;width: 33px;height: 14px;padding: 0;border: 1px solid #ccc;cursor: pointer;vertical-align:middle;background: #ffffff;}
 .open .ui-icon-circle{border-radius: 10px;width: 16px;display: inline-block;height: 14px;background: #ffffff;float: right;margin-right: 1px;box-shadow: 2px 0px 1px #ccc}
 .close .ui-icon-circle{border-radius: 10px;width: 16px;display: inline-block;height: 14px;background: #ffffff;float: left;margin-right: 1px;box-shadow: 2px 0px 1px #ccc}
-/* 历史单据联查 */	
+/* 历史单据联查 */
 .circle-link-order{border-radius: 10px;width: 90px;display: inline-block;height: 21px;background: #25cd86;color: #fff;line-height: 21px;cursor: pointer;}
 .icon-link-order{background: url(../img/yue_btn01.png);display: inline-block;width: 15px;height: 15px;margin-left: 10px;margin-right: 5px;vertical-align: middle;}
 
@@ -847,18 +847,18 @@ color: #707070; vertical-align: middle; cursor: pointer; font-weight: bold;}
 }
 
 .advancedSearch-div .ui-input-ph{
-  width: 220px !important;  
+  width: 220px !important;
 }
 
-.advancedSearch-div .ui-datepicker-input{
+.advancedSearch-div {
   width: 97px !important;
 }
 
-.advancedSearch-div .ui-input-search{
+.advancedSearch-div {
 	width: 220px !important;
 }
 
-.advancedSearch-div .ui-select-search{
+.advancedSearch-div {
 	width: 233px !important;
 }
 

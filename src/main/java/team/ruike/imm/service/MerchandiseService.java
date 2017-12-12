@@ -14,7 +14,7 @@ public interface MerchandiseService {
      * @return
      */
     public List<Merchandise> selectMerchandise(Merchandise merchandise);
-
+    Merchandise selectOne(Merchandise merchandise);
     /**
      * 按指定条件修改商品信息
      * @param merchandise

@@ -60,7 +60,9 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
-
+<select id="selectAll" resultMap="procurementMap">
+    select * from procurement
+</select>
     <!--指定条件修改采购订单-->
     <update id="updateProcurement" parameterType="procurement">
         update procurement
@@ -86,8 +88,8 @@
 
     <!--添加采购订单-->
     <insert id="insertProcurement" parameterType="procurement">
-        insert into procurement (procurement_date,supplier_id,procurement_employee_id,procurement_accomplish,procurement_state)
-        values (#{procurementDate},#{supplierId},#{procurementEmployeeId},#{procurementAccomplish},#{procurementState});
+        insert into procurement (procurement_id,procurement_date,supplier_id,procurement_employee_id)
+        values (#{procurementId},#{procurementDate},#{supplierId},#{procurementEmployeeId});
     </insert>
 
 </mapper>

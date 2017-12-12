@@ -14,7 +14,7 @@ public interface ProcurementDao {
      * @return
      */
     public List<Procurement> selecrProcurement(Procurement procurement);
-
+    List<Procurement> selectAll(Procurement procurement);
     /**
      * 指定条件修改采购订单
      * @param procurement

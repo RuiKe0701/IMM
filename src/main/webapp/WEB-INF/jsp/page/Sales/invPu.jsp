@@ -37,14 +37,14 @@
     <link href="${pageContext.request.contextPath }/css/style.min862f.css?v=4.1.0" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/plugins/suggest/bootstrap-suggest.min.js"></script>
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/vue.js"></script>
     <script src="${pageContext.request.contextPath }/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
-    <script src="${pageContext.request.contextPath }js/jquery.dialog.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
         var _vds = _vds || [];
         window._vds = _vds;

@@ -43,7 +43,7 @@
         }
 
         .no-query {
-            background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
+            background: url("${pageContext.request.contextPath }/img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
             border: 1px solid #ddd;
             border-top: none;

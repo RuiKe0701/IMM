@@ -8,7 +8,7 @@ import team.ruike.imm.service.MerchandiseService;
 
 import java.util.List;
 
-@Service("MerchandiseService")
+@Service("merchandiseService")
 public class MerchandiseServiceImpl implements MerchandiseService{
     @Autowired
     MerchandiseDao merchandiseDao;
@@ -22,7 +22,17 @@ public class MerchandiseServiceImpl implements MerchandiseService{
     }
 
     public List<Merchandise> selectMerchandise(Merchandise merchandise) {
-        return merchandiseDao.selecrMerchandise(merchandise);
+        List<Merchandise> list=merchandiseDao.selecrMerchandise(merchandise);
+        return list;
+    }
+    //根据id 查询一个类
+    public Merchandise selectOne(Merchandise merchandise){
+        List<Merchandise> list=merchandiseDao.selecrMerchandise(merchandise);
+        if(null!=list){
+            return list.get(0);
+        }else {
+            return  new Merchandise();
+        }
     }
 
     public int updateMerchandise(Merchandise merchandise) {

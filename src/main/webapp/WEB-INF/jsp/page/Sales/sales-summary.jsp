@@ -23,14 +23,14 @@
           href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/vue.js"></script>
     <script src="${pageContext.request.contextPath }/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
-    <script src=${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/report.css">
     <style>
@@ -43,7 +43,7 @@
         }
 
         .no-query {
-            background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
+            background: url("${pageContext.request.contextPath }/img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
             border: 1px solid #ddd;
             border-top: none;
