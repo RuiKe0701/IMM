@@ -14,6 +14,10 @@ import team.ruike.imm.service.MerchandiseService;
 
 import java.util.List;
 
+/**
+ * By GuoXu
+ * 郭旭
+ */
 @Controller
 @RequestMapping("sales")
 public class SalesController {
@@ -29,7 +33,11 @@ public class SalesController {
     @Autowired
     MerchandiseService merchandiseService;
 
-
+    /**
+     * 跳转到销货订单
+     * @param model
+     * @return
+     */
     @RequestMapping("/loginsalesOrders.do")
     public String loginsalesOrders(Model model){
         List<Client> clientList = clientService.selecrClient(null);
@@ -41,6 +49,12 @@ public class SalesController {
         return "page/Sales/salesOrders";
     }
 
+
+    /**
+     * 跳转到销货单
+     * @param model
+     * @return
+     */
     @RequestMapping("/loginsalesOrdersForAbout.do")
     public String loginsalesOrdersForAbout(Model model){
         return "page/Sales/invPu";
