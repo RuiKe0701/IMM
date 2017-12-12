@@ -6,13 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <title>精斗云云进销存</title>
+    <title>恒辉商品库存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="../../css/common.css" rel="stylesheet" type="text/css">
@@ -23,16 +24,10 @@
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
     <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
-    <script src="../../js/shopping.js"></script>
+
     <link rel="stylesheet" href="../../css/report.css">
+
+
     <style>
         .ui-icon-ellipsis {
             right: 5px;
@@ -43,7 +38,6 @@
         }
 
         .no-query {
-            background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
             border: 1px solid #ddd;
             border-top: none;
@@ -74,121 +68,153 @@
     <div class="mod-search cf" id="report-search">
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
-                <li id="date" style="display: list-item;"><label>库存日期:</label>
-                    <input id="hello" class=""></li>
-
-
-                <li id="goods" style="display: list-item;"><label>仓库:</label>
-                    <span class="mod-choose-input" id="filter-goods">
-            <input type="text">
-            <span class="ui-icon-ellipsis"></span></span></li>
-                <li id="billNum" style="display: list-item;"><label>商品</label>
+                <li id="billNum" style="display: list-item;"><label>商品关键字</label>
                     <input type="text" value="" style="width:115px;">
                 </li>
-
+                <li id="product" style="display: list-item;"><label>商品类型</label>
+                    <select name="productTypeId" style="width:115px;height: 32px">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${type}" var="t">
+                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+                        </c:forEach>
+                    </select><br></li>
+                <li id="units" style="display: list-item;"><label>单位</label>
+                    <select name="unitsId" style="width:115px;height: 32px">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${u}" var="units">
+                            <option value="${units.unitsId}" >${units.unitsName}</option>
+                        </c:forEach>
+                    </select><br>
+                </li>
                 <div class="btns"><a class="ui-btn mrb ui-btn-search" id="filter-submit">查询</a></div>
             </ul>
         </div>
     </div>
     <!-- no data -->
-    <div class="no-query"></div>
-    <!-- grid begin -->
-    <div class="ui-print" style="display: none;">
-        <!-- 列配置 -->
-        <div class="cf box-flex">
-            <div class="flex">
-                <span id="config" class="ui-config">
-                  <a href="#" class="ui-icon-config-new"></a>列设置</span>
-            </div>
-            <div class="grid-title flex">商品库存余额表</div>
-            <div class="fr">
-                <a href="http://vip2-gd.youshang.com/report/pu-detail-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                   class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
-                <a href="http://vip2-gd.youshang.com/report/pu-detail-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                   class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>
-            </div>
-        </div>
-        <div class="grid-wrap" id="grid-wrap" style="height: 1160px;">
-            <!-- <div class="grid-title">商品采购明细表</div> -->
-            <div class="grid-subtitle">日期: 2017-11-01 至 2017-11-27</div>
-            <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-                 style="width: 1170px;">
-                <div class="ui-jqgrid-view" id="gview_grid" style="width: 1354px;">
-                    <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                         style="display: none;">
-                        <a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton" style="right: 0px;">
-                            <span class="ui-icon ui-icon-circle-triangle-n"></span>
-                        </a><span class="ui-jqgrid-title"></span>
-                    </div>
-                    <table class="table table-striped" style="width: 1100px">
+    <%--<div class="no-query"></div>--%>
 
-                        <thead>
-                        <tr>
-                            <th style="display: none">商品id</th>
-                            <th>盘点时间</th>
-                            <th>盘点编号</th>
-                            <th>盘点仓库</th>
-                            <th>盘点结果</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="display: none"></td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
+    <table class="table table-striped" style="width: 1200px">
+        <thead>
+        <tr>
+            <th></th>
+            <th style="display: none">商品id</th>
+            <th>商品编码</th>
+            <th>商品名称</th>
+            <th>商品规格</th>
+            <th>商品类型</th>
+            <th>商品单位</th>
+            <th>商品产地</th>
+            <th>商品库存</th>
+            <th>商品售价（无税）</th>
+            <th>销售状态</th>
+            <th style="display: none">是否已删除</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
 
-                            <td style="width: 120px;text-align: center">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
-                        </tr>
-                        <tr>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-
-                            <td>Bangalore</td>
-                            <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
-                                <button type="button" class="btn btn-warning btn-sm">删除</button></td>
-                        </tr>
-                        <tr>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-
-                            <td>Bangalore</td>
-                            <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
-                                <button type="button" class="btn btn-warning btn-sm">删除</button></td>
-                        </tr>
-
-                        </tbody>
-
-
-                    </table>
-
-                    <div>
-                        <ul class="pagination" >
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- grid end -->
+        <c:forEach var="m" items="${merc}">
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td style="display: none">${m.merchandiseId}</td>
+                <td>${m.merchandiseCode}</td>
+                <td>${m.merchandiseName}</td>
+                <td>${m.merchandiseSpecification}</td>
+                <td>${m.productType.productTypeName}</td>
+                <td>${m.units.unitsName}</td>
+                <td>${m.merchandisePlaceOfOrigin}</td>
+                <td>${m.merchandiseActualQuntity}</td>
+                <td>${m.merchandiseSalsePrice}</td>
+                <td>${m.salesStatus.salesStatusName}</td>
+                <td style="display: none">${m.merchandiseState}</td>
+                <td style="width: 120px;text-align: center">
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#Update" ><span class="up">修改</span></button>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
-
-
+<!--新增-->
+<!--修改-->
+<div class="modal fade" id="Update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="updateTime">
+                    修改商品信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 500px" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品编码</span>
+                    <input  id="updatemerchandiseCode" type="text"  value="${m.merchandiseCode}" name="merchandiseCode" class="form-control" style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品名称</span>
+                    <input  id="updatemerchandiseName"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品规格</span>
+                    <input  id="updatemerchandiseSpecification" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品类型</span>
+                    <select id="updateproductTypeId" name="productTypeId" class="form-control"  style="width:487px;">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${type}" var="t">
+                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品单位</span>
+                    <select id="updateunitsId" name="productTypeId" class="form-control"  style="width:487px;">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${type}" var="t">
+                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品产地</span>
+                    <input  id="updatemerchandisePlaceOfOsrigin" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品库存</span>
+                    <input  id="updatemerchandiseActualQuntity" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品售价</span>
+                    <input  id="updatemerchandiseSalsePrice" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">销售状态</span>
+                    <input  id="updatesalesStatusId" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="updates" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!--删除-->
 <div id="COMBO_WRAP">
     <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
         <div class="droplist" style="position: relative; overflow: auto;"></div>
@@ -274,9 +300,6 @@
 </div>
 <script src="../../js/jquery.min.js?v=2.1.4"></script>
 <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../../js/content.min.js?v=1.0.0"></script>
-<script src="../../js/plugins/layer/laydate/laydate.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

@@ -24,15 +24,33 @@ public class MerchandiseController {
     @Autowired
     ProductTypeService productTypeService;
 
-    @RequestMapping(value = "selectMerchandise.do")
-    public String selectMerchandises(Merchandise merchandise, HttpSession session){
+    @RequestMapping(value = "/smerchandise.do")
+    public String select(Merchandise merchandise, HttpSession session){
         List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
-        if(merchandise!=null){
-            session.setAttribute("m",merchandises);
-            return "sMerchandise";
-        }
-        return "login";
+        session.setAttribute("merc", merchandises);
+        return "page/warehouse/goods-balance";
     }
+    @RequestMapping(value = "/umerchandise.do")
+    public String update(Merchandise merchandise,HttpSession session){
+        int i =merchandiseService.updateMerchandise(merchandise);
+        if(i>0){
+            return "page/warehouse/goods-balance" ;
+        }
+        return null;
+    }
+    @RequestMapping(value = "/dmerchandise.do")
+    public String delete(Merchandise merchandise,HttpSession session){
+        int i =merchandiseService.updateMerchandise(merchandise);
+        if(i>0){
+            return "page/warehouse/goods-balance" ;
+        }
+        return null;
+    }
+
+
+
+
+
     @RequestMapping(value = "iMerchandise.do")
     public String insertMerchandise(Merchandise merchandise,HttpSession session){
         System.out.println(merchandise.getSalesStatus());
