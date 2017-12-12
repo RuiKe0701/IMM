@@ -7,12 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Client;
-import team.ruike.imm.entity.User;
 import team.ruike.imm.service.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 @RequestMapping(value = "/client")
@@ -27,40 +25,24 @@ public class ClientController {
         request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
+//    @RequestMapping(value = "/k.do")
+//    public void a(Client client){
+//        for (Object o : client.getKk()) {
+//            System.out.println(o);
+//        }
+////        client.setClientState(1);\
+//        int i=ice.updateAdclientServd(client.getKk());
+//        System.out.println(i);
+//    }
 
-    /**
-     * 获取要修改的用户信息
-     * @param client
-     * @param printWriter
-     */
-    @RequestMapping(value = "/clientId.do")
-    public void clientId(Client client,PrintWriter printWriter){
-        List<Client> clients=clientService.selecrClient(client);
-        if (clients.size()>0){
-            String jsonString = JSON.toJSONString(clients);
-            printWriter.write(jsonString);
-            printWriter.flush();
-            printWriter.close();
-        }else {
-            String jsonString = JSON.toJSONString(0);
-            printWriter.write(jsonString);
-            printWriter.flush();
-            printWriter.close();
-        }
-    }
-
-    /**
-     * 修改客户是否合作
-     * @param stuattendancelists
-     * @param printWriter
-     */
     @RequestMapping("/k.do")
     public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
         int i=0;
         if (stuattendancelists.length()>0 ){
-            ArrayList<Client> clientArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
+            ArrayList<Client> userArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
 
-            for (Client client : clientArrayList) {
+            for (Client client : userArrayList) {
+                System.out.println(client.getKk().size());
                 i= clientService.updateAdd(client.getKk());
             }
             if(i>0){
@@ -80,53 +62,28 @@ public class ClientController {
         printWriter.flush();
         printWriter.close();
     }
+    @RequestMapping(value = "/bug.do")
+    public String bug(){
 
-    /**
-     * 修改用户信息
-     * @param clientList
-     * @param printWriter
-     */
+        return "asdas";
+    }
+
     @RequestMapping(value = "/updatesClient.do")
-    public  void updatesClient(String clientList,PrintWriter printWriter){
-        int i=0;
-        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-        for (Client client : clientArrayList) {
-            i = clientService.updateClient(client);
+    public  String updates(Model model, Client client){
+        int i=clientService.updateClient(client);
+        if (i>0){
+            return "crr";
         }
-        if(i>0){
-            List<Client> clients=clientService.selecrClient(null);
-            //返回值
-            String jsonString = JSON.toJSONString(clients);
-            printWriter.write(jsonString);
-            printWriter.flush();
-            printWriter.close();
-        }
-        //返回值
-        String jsonString = JSON.toJSONString(0);
-        printWriter.write(jsonString);
-        printWriter.flush();
-        printWriter.close();
+        return "update";
     }
 
 
-    /**
-     * 添加用户信息
-     * @return
-     */
-    @RequestMapping("/addClient.do")
-    public void addClient(String clientList,PrintWriter printWriter){
-        int i=0;
-        System.out.println(clientList.length());
-        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-        for (Client client : clientArrayList) {
-            i = clientService.insertClient(client);
+    @RequestMapping(value = "/insertClient.do")
+    public  String indexs(Model model, Client client){
+        int i=clientService.insertClient(client);
+        if (i>0){
+            return "crr";
         }
-        if(i>0){
-            //返回值
-            String jsonString = JSON.toJSONString(0);
-            printWriter.write(jsonString);
-            printWriter.flush();
-            printWriter.close();
-        }
+        return "update";
     }
 }

@@ -75,7 +75,7 @@
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips"   >帐号：</label>
                             <div class="inputOuter" id="uArea">
-                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="a" type="name" name="userName" class="inputstyle"  />
+                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="nisicheng" type="name" name="userName" class="inputstyle"  />
                                 <span id="DivFname"></span>
                             </div>
                         </div>

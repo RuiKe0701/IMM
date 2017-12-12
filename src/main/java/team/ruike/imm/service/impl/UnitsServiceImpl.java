@@ -8,7 +8,7 @@ import team.ruike.imm.service.UnitsService;
 
 import java.util.List;
 
-@Service("UnitsService")
+@Service("unitsService")
 public class UnitsServiceImpl implements UnitsService{
     @Autowired
     UnitsDao unitsDao;

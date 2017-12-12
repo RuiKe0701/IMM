@@ -15,25 +15,25 @@ public interface SalesInformationDao {
      * @param salesInformation 销售订单详情
      * @return
      */
-    public List<SalesInformation> selectSalesInformation(SalesInformation salesInformation);
+     List<SalesInformation> selectSalesInformation(SalesInformation salesInformation);
 
     /**
      * 指定条件修改销售订单详情
      * @param salesInformation 销售订单详情
      * @return
      */
-    public int updateSalesInformation(SalesInformation salesInformation);
+     int updateSalesInformation(SalesInformation salesInformation);
 
     /**
      * 新增销售订单详情
      * @param salesInformation 销售订单详情
      * @return
      */
-    public int insertSalesInformation(SalesInformation salesInformation);
+     int insertSalesInformation(SalesInformation salesInformation);
 
     /**
      * 分页
      * @return
      */
-    public List<SalesInformation> PagerSalesInformation(SalesInformation salesInformation);
+     List<SalesInformation> PagerSalesInformation(SalesInformation salesInformation);
 }

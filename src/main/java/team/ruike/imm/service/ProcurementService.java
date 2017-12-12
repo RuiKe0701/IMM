@@ -14,7 +14,6 @@ public interface ProcurementService {
      * @return
      */
     public List<Procurement> selectProcurement(Procurement procurement);
-
     /**
      * 按条件修改采购订单
      * @param procurement
@@ -28,4 +27,5 @@ public interface ProcurementService {
      * @return
      */
     public int insertProcurement(Procurement procurement);
+    String purchaseId();
 }

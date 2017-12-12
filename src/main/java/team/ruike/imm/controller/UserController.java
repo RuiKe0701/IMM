@@ -31,12 +31,12 @@ public class UserController {
     public  String login(User user,HttpSession session){
             User u=userService.selectUser(user);
             if (u.getUserName()!="无"){
-            session.setAttribute("userName",u.getEmployee().getEmployeeName());
+            session.setAttribute("user",u);
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
 //            return "index";
-        return "redirect:/client/clientAll.do";
+        return "redirect:/merchandise/smerchandise.do";
     }
 
 

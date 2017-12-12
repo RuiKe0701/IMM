@@ -9,7 +9,7 @@
     </resultMap>
 
     <select id="selectSalesStatus" resultMap="salesStatusMap" parameterType="salesStatus">
-        select * from supplier
+        select * from sales_status
         <where>
              1=1
             <if test="salesStatusId!=null and salesStatusId>0">
