@@ -27,12 +27,15 @@ public class ClientController {
         request.setAttribute("clients",clients);
         return "page/material/customer-list-1";
     }
+
+    /**
+     * 获取要修改的用户信息
+     * @param client
+     * @param printWriter
+     */
     @RequestMapping(value = "/clientId.do")
     public void clientId(Client client,PrintWriter printWriter){
         List<Client> clients=clientService.selecrClient(client);
-        for (Client client1 : clients) {
-            System.out.println(client1.getClientId());
-        }
         if (clients.size()>0){
             String jsonString = JSON.toJSONString(clients);
             printWriter.write(jsonString);
@@ -47,7 +50,7 @@ public class ClientController {
     }
 
     /**
-     * 修改是否删除客户
+     * 修改客户是否合作
      * @param stuattendancelists
      * @param printWriter
      */
@@ -58,7 +61,6 @@ public class ClientController {
             ArrayList<Client> clientArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<Client>>(){});
 
             for (Client client : clientArrayList) {
-                System.out.println(client.getKk().size());
                 i= clientService.updateAdd(client.getKk());
             }
             if(i>0){
@@ -78,22 +80,37 @@ public class ClientController {
         printWriter.flush();
         printWriter.close();
     }
-    @RequestMapping(value = "/bug.do")
-    public String bug(){
 
-        return "asdas";
-    }
-
-    @RequestMapping(value = "/updatesClient.do")
-    public  String updates(Model model, Client client){
-        int i=clientService.updateClient(client);
-        if (i>0){
-            return "crr";
-        }
-        return "update";
-    }
     /**
-     * 添加
+     * 修改用户信息
+     * @param clientList
+     * @param printWriter
+     */
+    @RequestMapping(value = "/updatesClient.do")
+    public  void updatesClient(String clientList,PrintWriter printWriter){
+        int i=0;
+        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
+        for (Client client : clientArrayList) {
+            i = clientService.updateClient(client);
+        }
+        if(i>0){
+            List<Client> clients=clientService.selecrClient(null);
+            //返回值
+            String jsonString = JSON.toJSONString(clients);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
+        //返回值
+        String jsonString = JSON.toJSONString(0);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+    }
+
+
+    /**
+     * 添加用户信息
      * @return
      */
     @RequestMapping("/addClient.do")

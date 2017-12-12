@@ -1,5 +1,5 @@
 $(function () {
-    //修改客户是否联系
+    //修改客户是否合作
     $("#btn-disable").click(function () {
         var clientList = new Array();
         $(".clients").each(function (index, date) {
@@ -19,7 +19,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
-                        alert("成功了")
+                        alert("修改合作关系成功")
                         for(i in data){
                             $("#"+data[i].clientId).remove();
                         }
@@ -32,6 +32,7 @@ $(function () {
         });
     })
 
+    //添加用户信息
     $("#insert").click(function () {
         var clients = new Array();
         var object =new Object();
@@ -54,7 +55,8 @@ $(function () {
             },
             dataType: "json",
             success: function (data) {
-                alert("成功了")
+                alert("添加成功")
+                window.location.reload();
             },
             error: function () {
                 alert("系统异常，请稍后重试！");
@@ -62,4 +64,66 @@ $(function () {
         })
     })
 
+
+    //修改用户信息
+    $("#updates").click(function () {
+        var clients = new Array();
+        var object =new Object();
+        object.clientId= $("#updateid").val();
+        object.clientName= $("#updatename").val();
+        object.clientPersonInCharge= $("#updatepersonInCharge").val();
+        object.clientPost= $("#updatepost").val();
+        object.clientAddress= $("#updateaddress").val();
+        object.clientFactoryAddress= $("#updatefactoryAddress").val();
+        object.clientMobilePhone= $("#updatemobilePhone").val();
+        object.clientPhone= $("#updatephone").val();
+        object.clientFax= $("#updatefax").val();
+        clients.push(object);
+        var clientList = JSON.stringify(clients);
+        $.ajax({
+            type: "post",
+            url: "/client/updatesClient.do",
+            data: {
+                "clientList": clientList
+            },
+            dataType: "json",
+            success: function (data) {
+                if(data!=0){
+                    alert("修改用户信息成功")
+                    window.location.reload();
+                }else {
+                    alert("修改用户信息失败")
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+    })
 })
+//获取要修改的信息
+function gainclient(val){
+    $.ajax({
+        type: "post",
+        url: "/client/clientId.do?clientId="+val,
+        dataType: "json",
+        success: function (data) {
+            if(data!=0){
+                $.each(data, function(i,item){
+                    $("#updateid").val(item.clientId)
+                    $("#updatename").val(item.clientName)
+                    $("#updatepersonInCharge").val(item.clientPersonInCharge)
+                    $("#updatepost").val(item.clientPost)
+                    $("#updateaddress").val(item.clientAddress)
+                    $("#updatefactoryAddress").val(item.clientFactoryAddress)
+                    $("#updatemobilePhone").val(item.clientMobilePhone)
+                    $("#updatephone").val(item.clientPhone)
+                    $("#updatefax").val(item.clientFax)
+                });
+            }
+        },
+        error: function () {
+            alert("系统异常，请稍后重试！");
+        }
+    })
+}

@@ -49,7 +49,7 @@ public class ClientServiceImpl implements ClientService{
     }
 
     public int updateClient(Client client) {
-        return 0;
+        return clientDao.updateClient(client);
     }
 
 

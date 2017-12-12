@@ -94,37 +94,35 @@
             <thead>
             <tr>
                 <th></th>
-                <th style="display: none">商品id</th>
-                <th>商品名称</th>
-                <th>属性</th>
-                <th>单位</th>
-                <th>数量</th>
-                <th>订单号</th>
-                <th>订单日期</th>
-                <th>库存</th>
-                <th>购货日期</th>
+                <th>客户名称</th>
+                <th>负责人</th>
+                <th>职位</th>
+                <th>电话</th>
+                <th>移动电话</th>
+                <th>传真</th>
+                <th>客户地址</th>
                 <th>送货地址</th>
                 <th>操作</th>
             </tr>
             </thead>
             <c:forEach items="${clients}" var="c">
             <c:if test="${c.clientState==0}">
-            <tbody>
+            <tbody class="tbod">
             <tr id="${c.clientId}"  class="clients">
                 <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
-                <td>${c.clientId}</td>
-                <td>${c.clientName}</td>
-                <td>${c.clientPersonInCharge}</td>
-                <td>${c.clientPost}</td>
-                <td>${c.clientPhone}</td>
-                <td>${c.clientMobilePhone}</td>
-                <td>${c.clientFax}</td>
-                <td>${c.clientAddress}</td>
-                <td>${c.clientFactoryAddress}</td>
-                <td  style="display:none">${c.clientState}</td>
-                <td style="width: 120px;text-align: center" class="taaa" id="clid1">
+                <td id="clientId" style="display: none">${c.clientId}</td>
+                <td id="clientName">${c.clientName}</td>
+                <td id="clientPersonInCharge">${c.clientPersonInCharge}</td>
+                <td id="clientPost">${c.clientPost}</td>
+                <td id="clientPhone">${c.clientPhone}</td>
+                <td id="clientMobilePhone">${c.clientMobilePhone}</td>
+                <td id="clientFax">${c.clientFax}</td>
+                <td id="clientAddress">${c.clientAddress}</td>
+                <td id="clientFactoryAddress">${c.clientFactoryAddress}</td>
+                <td  id="clientState" style="display:none">${c.clientState}</td>
+                <td style="width: 120px;text-align: center" >
                     <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
-                    <button type="button"  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" ><span  class="up">删除</span></button>
+                    <%--<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del"><span class="up">删除</span></button></td>--%>
                 </td>
             </tr>
             </tbody>
@@ -218,52 +216,41 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人名称</span>
                     <input  id="updatepersonInCharge"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人职称</span>
                     <input  id="updatepost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input  id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">送货地址</span>
                     <input  id="updatefactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
                     <input  id="updatemobilePhone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
                     <input  id="updatephone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div>
-                <br>
+                </div><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
                     <input  id="updatefax" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">是否已删除</span>
-                    <input  id="updatestate" type="text" value="0" class="form-control"  style="width:487px;">
-                </div>
+                </div><br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="button" id="updates" class="btn btn-primary">
-                    提交新增
+                    提交修改
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -292,40 +279,8 @@
     </div><!-- /.modal -->
 </div>
 </body>
-<!-- 修改-->
-<script type="text/javascript">
-    function gainclient(val){
-       $.ajax({
-           type: "post",
-           url: "/client/clientId.do?clientId="+val,
-           dataType: "json",
-           success: function (data) {
-               if(data!=0){
-                   $.each(data, function(i,item){
-                       $("#updateid").val(item.clientId)
-                       $("#updatename").val(item.clientName)
-                       $("#updatepersonInCharge").val(item.clientPersonInCharge)
-                       $("#updatepost").val(item.clientPost)
-                       $("#updateaddress").val(item.clientAddress)
-                       $("#updatefactoryAddress").val(item.clientFactoryAddress)
-                       $("#updatemobilePhone").val(item.clientPhone)
-                       $("#updatephone").val(item.clientPhone)
-                       $("#updatefax").val(item.clientFax)
-//                       $("#updatestate").val(item.clientState)
-                       if(item.clientState==0){
-                           $("#updatestate").val("合作中")
-                       }else {
-                           $("#updatestate").val("已终止")
-                       }
-                   });
 
-               }
-           },
-           error: function () {
-               alert("系统异常，请稍后重试！");
-           }
-       })
-    }
+<script type="text/javascript">
     $(function () {
 
     })
