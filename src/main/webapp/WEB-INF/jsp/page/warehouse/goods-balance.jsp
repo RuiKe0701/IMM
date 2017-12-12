@@ -104,6 +104,7 @@
             <th>商品类型</th>
             <th>商品单位</th>
             <th>商品产地</th>
+            <th>安全存量</th>
             <th>商品库存</th>
             <th>商品售价（无税）</th>
             <th>销售状态</th>
@@ -123,6 +124,7 @@
                 <td>${m.productType.productTypeName}</td>
                 <td>${m.units.unitsName}</td>
                 <td>${m.merchandisePlaceOfOrigin}</td>
+                <td>${m.merchandiseSafetyStock}</td>
                 <td>${m.merchandiseActualQuntity}</td>
                 <td>${m.merchandiseSalsePrice}</td>
                 <td>${m.salesStatus.salesStatusName}</td>
@@ -144,13 +146,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title" id="updateTime">
+                <h6 class="modal-title" id="updateTime">
                     修改商品信息
-                </h4>
+                </h6>
             </div>
             <input type="text" id="updatemerchandiseId" style="display: none" >
-            <div class="modal-body" style="width: 300px;height: 500px" >
-                <div class="input-group">
+            <div class="modal-body" style="width: 300px;height: 480px;" >
+                <div class="input-group" style="margin-top: 3px">
                     <span class="input-group-addon" style="width: 81px;">商品编码</span>
                     <input  id="updatemerchandiseCode" type="text"  class="form-control" style="width:487px;">
                 </div>
@@ -168,7 +170,6 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品类型</span>
                     <select id="updateproductTypeId" name="productTypeId" class="form-control"  style="width:487px;">
-
                         <c:forEach items="${prod}" var="p">
                             <option value="${p.productTypeId}">${p.productTypeName}</option>
                         </c:forEach>
@@ -191,8 +192,11 @@
                 </div>
                 <br>
                 <div class="input-group">
+                <span class="input-group-addon" style="width: 81px;">安全库存</span>
+                <input  id="updatemerchandiseSafetyStock" type="text" class="form-control"  style="width:200px;">
                     <span class="input-group-addon" style="width: 81px;">商品库存</span>
-                    <input  id="updatemerchandiseActualQuntity" type="text" class="form-control"  style="width:487px;">
+                    <input  id="updatemerchandiseActualQuntity" type="text" class="form-control"  style="width:200px;">
+
                 </div>
                 <br>
                 <div class="input-group">
@@ -202,14 +206,19 @@
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">销售状态</span>
-                    <input  id="updatesalesStatusId" type="text" class="form-control"   style="width:487px;">
+                    <select id="updatesalesStatusId"  class="form-control"  style="width:487px;">
+                        <c:forEach items="${sale}" var="s">
+                            <option value="${s.salesStatusId}">${s.salesStatusName}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
                 <button type="button" id="updates" class="btn btn-primary">
-                    提交新增
+                    提交修改
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -374,14 +383,52 @@
                         $("#updateproductTypeId").val(item.productTypeId);
                         $("#updateunitsId").val(item.unitsId)
                         $("#updatemerchandisePlaceOfOsrigin").val(item.merchandisePlaceOfOrigin)
+                        $("#updatemerchandiseSafetyStock").val(item.merchandiseSafetyStock)
                         $("#updatemerchandiseActualQuntity").val(item.merchandiseActualQuntity)
                         $("#updatemerchandiseSalsePrice").val(item.merchandiseSalsePrice)
-                        $("#updatesalesStatusId").val(item.salesStatus.salesStatusName)
+                        $("#updatesalesStatusId").val(item.salesStatusId)
                 }
             },
             error: function () {
                 alert("系统异常，请稍后重试！");
             }
+        })
+        //修改商品信息
+        $("#updates").click(function () {
+            var merchandise = new Array();
+            var object=new object();
+            object.merchandiseId=$("#updatemerchandiseId").val();
+            object.merchandiseCode=$("#updatemerchandiseCode").val()
+            object.merchandiseName=$("#updatemerchandiseName").val()
+            object.merchandiseSpecification=$("#updatemerchandiseSpecification").val()
+            object.productTypeId=$("#updateproductTypeId").val();
+            object.unitsId=$("#updateunitsId").val();
+            object.merchandisePlaceOfOsrigin=$("#updatemerchandisePlaceOfOsrigin").val();
+            object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock")
+            object.merchandiseActualQuntity=$("#updatemerchandiseActualQuntity").val();
+            object.merchandiseSalsePrice=$("#updatemerchandiseSalsePrice").val();
+            object.salesStatusId=$("#updatesalesStatusId").val();
+            merchandise.push(object);
+            var merchandiseList=JSON.stringify(merchandise);
+            $.ajax({
+                type:"post",
+                url:"/merchandise/updateMerchandise.do",
+                data:{
+                    "merchandiseList":merchandiseList
+                },
+                dataType:"json",
+                success:function (data) {
+                    if(data!=0){
+                        alert("商品信息修改成功！")
+                    }else{
+                        alert("商品信息修改失败！")
+                    }
+                },
+                error:function () {
+                    alert("系统出现异常！")
+                }
+            })
+
         })
     }
 

@@ -1,19 +1,23 @@
 package team.ruike.imm.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProductType;
+import team.ruike.imm.entity.SalesStatus;
 import team.ruike.imm.entity.Units;
 import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.ProductTypeService;
+import team.ruike.imm.service.SalesStatusService;
 import team.ruike.imm.service.UnitsService;
 
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,19 +29,34 @@ public class MerchandiseController {
     UnitsService unitsService;
     @Autowired
     ProductTypeService productTypeService;
+    @Autowired
+    SalesStatusService salesStatusService;
 
+    /**
+     * 查询商品信息
+     * @param merchandise
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/smerchandise.do")
     public String select(Merchandise merchandise, HttpSession session){
         List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
         List<Units> unitses = unitsService.selectUnits(null);
         List<ProductType> productTypes = productTypeService.selectProductType(null);
+        List<SalesStatus> salesStatuses=salesStatusService.selectSalesStatus(null);
         session.setAttribute("merc", merchandises);
         session.setAttribute("unis",unitses);
         session.setAttribute("prod",productTypes);
+        session.setAttribute("sale",salesStatuses);
         return "page/warehouse/goods-balance";
     }
+    /**
+     * 要被修改的商品信息
+     * @param merchandise
+     * @param printWriter
+     */
     @RequestMapping(value = "/merchandiseId.do")
-    public void updatemerchandiseId(Merchandise merchandise,Units units,ProductType productType, PrintWriter printWriter){
+    public void updatemerchandiseId(Merchandise merchandise,PrintWriter printWriter){
         List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
 
         if(merchandises.size()>0){
@@ -53,8 +72,29 @@ public class MerchandiseController {
             printWriter.close();
         }
     }
+    @RequestMapping(value = "/updateMerchandise.do")
+    public void  updateMerchandise(String merchandises,PrintWriter printWriter){
+        int i =0;
+        ArrayList<Merchandise>merchandiseList=JSON.parseObject(merchandises,new TypeReference<ArrayList<Merchandise>>(){});
+        for(Merchandise m :merchandiseList){
+            i=merchandiseService.updateMerchandise(m);
+        }
+        if(i>0){
+            List<Merchandise> merchandise =merchandiseService.selectMerchandise(null);
+            //返回值
+            String jsonString = JSON.toJSONString(merchandise);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
+        //返回值
+        String jsonString=JSON.toJSONString(0);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+    }
     @RequestMapping(value = "/dmerchandise.do")
-    public String delete(Merchandise merchandise,HttpSession session){
+    public String delete(Merchandise merchandise){
         int i =merchandiseService.updateMerchandise(merchandise);
         if(i>0){
             return "page/warehouse/goods-balance" ;
