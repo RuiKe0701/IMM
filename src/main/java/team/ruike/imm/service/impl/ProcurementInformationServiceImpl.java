@@ -8,8 +8,10 @@ import team.ruike.imm.service.ProcurementInformationService;
 
 import java.util.List;
 
-@Service("ProcurementInformationService")
+@Service("procurementInformationService")
 public class ProcurementInformationServiceImpl implements ProcurementInformationService{
+
+
     @Autowired
     ProcurementInformationDao procurementInformationDao;
 
@@ -31,5 +33,8 @@ public class ProcurementInformationServiceImpl implements ProcurementInformation
 
     public int insertProcurementInformation(ProcurementInformation procurementInformation) {
         return 0;
+    }
+    public void insertAll(List<ProcurementInformation> procurementInformations) {
+        procurementInformationDao.insertAll(procurementInformations);
     }
 }

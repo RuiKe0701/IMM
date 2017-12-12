@@ -3,7 +3,7 @@
 
 <mapper namespace="team.ruike.imm.dao.SupplierDao">
     <resultMap id="supplierMap" type="supplier">
-        <result property="supplierId" column="supplierId" />
+        <result property="supplierId" column="supplier_Id" />
         <result property="supplierName" column="supplier_name" />
         <result property="supplierPersonInCharge" column="supplier_person_in_charge" />
         <result property="supplierPost" column="supplier_post" />
@@ -16,7 +16,7 @@
 
     </resultMap>
 
-    <select id="selectSupplier" resultMap="supplierMap" parameterType="supplier">
+    <select id="selectSuplier" resultMap="supplierMap" parameterType="supplier">
         select * from supplier
         <where>
              1=1

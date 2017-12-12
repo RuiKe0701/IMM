@@ -15,10 +15,19 @@ public class ProcurementInformation extends PagerParameter implements Serializab
      * 采购编号
      */
     private Integer piId;
+
+    public String getProcurementId() {
+        return procurementId;
+    }
+
+    public void setProcurementId(String procurementId) {
+        this.procurementId = procurementId;
+    }
+
     /**
      * 采购订单编号
      */
-    private Integer procurementId;
+    private String procurementId;
     /**
      * 商品编号
      */
@@ -45,6 +54,25 @@ public class ProcurementInformation extends PagerParameter implements Serializab
     /**
      * 是否已删除
      */
+    private double piTotalPrice;
+    private String piRemarks;
+
+    public double getPiTotalPrice() {
+        return piTotalPrice;
+    }
+
+    public void setPiTotalPrice(double piTotalPrice) {
+        this.piTotalPrice = piTotalPrice;
+    }
+
+    public String getPiRemarks() {
+        return piRemarks;
+    }
+
+    public void setPiRemarks(String piRemarks) {
+        this.piRemarks = piRemarks;
+    }
+
     private Integer piState;
     /**
      * 单位信息
@@ -67,13 +95,7 @@ public class ProcurementInformation extends PagerParameter implements Serializab
         this.piId = piId;
     }
 
-    public Integer getProcurementId() {
-        return procurementId;
-    }
 
-    public void setProcurementId(Integer procurementId) {
-        this.procurementId = procurementId;
-    }
 
     public Procurement getProcurement() {
         return procurement;

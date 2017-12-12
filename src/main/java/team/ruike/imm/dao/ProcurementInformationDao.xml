@@ -9,6 +9,8 @@
         <result column="pi_volume" property="piVolume" />
         <result column="si_actual_price" property="siActualPrice" />
         <result column="si_state" property="piState" />
+        <result column="pi_totalPrice" property="piTotalPrice"/>
+        <result column="pi_remarks" property="piRemarks"/>
         <association property="procurement" javaType="procurement">
             <result column="procurement_id" property="procurementId" />
             <result column="procurement_date" property="procurementDate" />
@@ -76,6 +78,12 @@
             <if test="unitsId!=null and unitsId>0">
                 units_id=#{unitsId},
             </if>
+            <if test="piRemarks!=null and piRemarks!=''">
+                pi_remarks=#{piRemarks}
+            </if>
+            <if test="piTotalPrice!=null and piTotalPrice>0">
+                pi_totalPrice=#{piTotalPrice}
+            </if>
             <if test="piState!=null">
                pi_state=#{piState},
             </if>
@@ -85,7 +93,16 @@
 
     <!--添加采购订单详情-->
     <insert id="insertProcurementInformation">
-        insert into procurement_information (procurement_id,merchandise_id,pi_actual_price,pi_volume,units_id,pi_state)
-        values (#{procurementId},#{merchandiseId},#{piActualPrice},#{piVolume},#{unitsId},#{piState});
+        insert into procurement_information (procurement_id,merchandise_id,pi_actual_price,pi_volume,units_id,pi_state,pi_totalPrice,pi_remarks)
+        values (#{procurementId},#{merchandiseId},#{piActualPrice},#{piVolume},#{unitsId},#{piState},#{piTotalPrice},#{piRemarks});
+    </insert>
+    <!--批量添加 nsc-->
+    <insert id="insertAll" useGeneratedKeys="true"  parameterType="java.util.List">
+        insert into procurement_information (procurement_id,merchandise_id,pi_actual_price,pi_volume,units_id,pi_state,pi_remarks)
+        values
+        <foreach collection="list" item="procurementInformations" index="index" separator="," >
+            (#{procurementInformations.procurementId},#{procurementInformations.merchandiseId},#{procurementInformations.piActualPrice},#{procurementInformations.piVolume},#{procurementInformations.unitsId},0,#{procurementInformations.piRemarks});
+        </foreach>
+
     </insert>
 </mapper>

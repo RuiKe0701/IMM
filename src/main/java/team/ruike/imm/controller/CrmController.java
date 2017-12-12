@@ -23,4 +23,8 @@ public class CrmController {
         model.addAttribute("id",crms.get(0).getCrmState());
         return "page/test2";
     }
+    @RequestMapping(value = "/log.do")
+    public  String log(){
+        return "login";
+    }
 }

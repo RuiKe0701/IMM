@@ -1,7 +1,4 @@
 $(function () {
-
-
-
     $(".menu-item").mousemove(function () {
         $(this).children(".sub-nav-wrap").show();
     }).mouseout(function () {
@@ -15,19 +12,19 @@ $(function () {
 
 
     $("#purchase").click(function () {
+        $("#iff").attr("src","/purchases/loginPurchaseOrder.do");
             $("#tabManage").remove();
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
             $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>购货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-            $("#iff").attr("src","/purchase/loginPurchaseOrder.do");
 
             $("#ons").css("display","none");
             $("#showiframe").css("display","block");
     });
 
-       $("#purchase2").click(function () {
+    $("#purchase2").click(function () {
         $("#tabManage").remove();
-        document.getElementById("iff").src="page/purchase/Purchase.jsp";
+        $("#iff").attr("src","/purchases/loginPurchaseOrder.do");
     });
     $("#purchase3").click(function () {
         $("#tabManage").remove();

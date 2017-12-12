@@ -31,78 +31,17 @@
     <script src="${pageContext.request.contextPath }/js/warehouse.js"></script>
     <script src="${pageContext.request.contextPath }/js/funds.js"></script>
     <script src="${pageContext.request.contextPath }/js/material.js"></script>
-
-
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script type="text/javascript">
     </script>
-    <script type="text/javascript">
-        var _vds = _vds || [];
-        window._vds = _vds;
-        (function () {
-            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
-            (function () {
-                var vds = document.createElement('script');
-                vds.type = 'text/javascript';
-                vds.async = true;
-                vds.src = 'https://dn-growing.qbox.me/vds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(vds, s);
-            })();
-        })();
-    </script>
+    <script type="text/javascript"></script>
 
-    <script type="text/javascript">
-        var DOMAIN = document.domain;
-        var WDURL = "";
-        var SCHEME = "blue";
-        try {
-            var host = window.location.host;
-            var domainDot = host.indexOf('.');
-            var domain = host.substring(domainDot + 1, host.length);
-            document.domain = domain;
-        } catch (e) {
-        }
-        //ctrl+F5 增加版本号来清空iframe的缓存的
-        $(document).keydown(function (event) {
-            /* Act on the event */
-            if (event.keyCode === 116 && event.ctrlKey) {
-                var defaultPage = Public.getDefaultPage();
-                var href = defaultPage.location.href.split('?')[0] + '?';
-                var params = Public.urlParam();
-                params['version'] = Date.parse((new Date()));
-                for (i in params) {
-                    if (i && typeof i != 'function') {
-                        href += i + '=' + params[i] + '&';
-                    }
-                }
-                defaultPage.location.href = href;
-                event.preventDefault();
-            }
-        });
-    </script>
+    <script type="text/javascript"></script>
 </head>
 <body>
 
-<script type="text/javascript">
-
-    var SYSTEM = {
-        dist: "dist"
-    };
-    var WDURL = WDURL; // header里面的数据
-    var SCHEME = SCHEME;
-    var tab;
-    var listMenus;  // 缓存所有menu信息
-    var cacheView; // 缓存视图（只针对新功能，原来用jsp写的那些跳过）
-    var BizQQWPA = BizQQWPA; // 不写这一句在headerBar中用BizQQWPA时，webpack编译过不去
-    var CONFIG = {
-        DEFAULT_PAGE: true,
-        SERVICE_URL: 'http://online.youshang.com/onlinegd/'
-    };
-    var cacheList = {}; //缓存列表查询
-    var cachePurView = {}; //缓存以销定购的商品信息
-</script>
+<script type="text/javascript"></script>
 
 <title>äºè¿éå­</title>
 <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet">
@@ -135,14 +74,14 @@
                                         <li class="" id="purchase4"><a href="javascript:void(0);"> <span>智能补货<span
                                                 class="newMenuIcon"></span></span><i href="javascript:void(0);">查询</i>
                                         </a></li>
-                                        <li class="" id="purchase5"><a href="#"> <span>采购明细表<span
+                                        <li class="" id=""><a href="#"> <span>采购明细表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
-                                        <li class="" id="purchase6"><a href="#"> <span>采购汇总表<span
+                                        <li class="" id=""><a href="#"> <span>采购汇总表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
-                                        <li class="" id="purchase7"><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
+                                        <li class="" id=""><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
                                     </ul>
@@ -152,11 +91,11 @@
                                         <li class="" id="purchase5"><a href="#"> <span>采购明细表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
-                                        <li class="" id="purchase6"><a href="#"> <span>采购汇总表<span
+                                        <li class="" id=""><a href="#"> <span>采购汇总表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
-                                        <li class="" id="purchase7"><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
+                                        <li class="" id=""><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
                                     </ul>
                                 </div>
@@ -604,7 +543,7 @@
                             </li>
                             <li id="userName" class="default-userName cf" style="position: relative;"><span
                                     class="user left"></span>
-                                <a href="#" class="special left" id="user_name">${userName}<%-- 显示登录的员工名字--%></a> <span
+                                <a href="#" class="special left" id="user_name">${user.userName}<%-- 显示登录的员工名字--%></a> <span
                                         class="triangle-bottom left"></span>
 
                                 <div class="drop-down-wrap" style="width: 200px; left: -48px;display: none"

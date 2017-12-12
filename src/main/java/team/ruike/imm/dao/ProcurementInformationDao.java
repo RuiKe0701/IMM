@@ -1,5 +1,6 @@
 package team.ruike.imm.dao;
 
+import org.apache.ibatis.annotations.Param;
 import team.ruike.imm.entity.ProcurementInformation;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface ProcurementInformationDao {
      * @return
      */
     public List<ProcurementInformation> selecrProcurementInformation(ProcurementInformation procurementInformation);
+    public  void insertAll(List<ProcurementInformation> procurementInformations);
 
     /**
      * 指定条件修改采购订单详情

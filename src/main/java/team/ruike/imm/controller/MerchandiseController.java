@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProductType;
 import team.ruike.imm.entity.Units;
@@ -99,5 +101,13 @@ public class MerchandiseController {
             return "um";
         }
         return null;
+    }
+    //倪嗣承ajax根据id获取信息
+    @RequestMapping(value = "ajaxMerchand.do")
+    @ResponseBody
+    public void ajaxMerchand(@RequestParam(value = "id",required = false) Integer id){
+        System.out.println("11111111111111111111111111111111111111111111111");
+        System.out.println(id);
+        //JSON.toJSON();
     }
 }

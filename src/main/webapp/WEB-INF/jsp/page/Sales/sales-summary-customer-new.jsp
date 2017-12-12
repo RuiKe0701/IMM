@@ -23,7 +23,7 @@
           href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/vue.js"></script>
@@ -43,7 +43,7 @@
         }
 
         .no-query {
-            background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
+            background: url("${pageContext.request.contextPath }/img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
             border: 1px solid #ddd;
             border-top: none;
@@ -580,7 +580,7 @@
 <script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>
-<script src="${pageContext.request.contextPath }js/plugins/layer/laydate/laydate.js"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

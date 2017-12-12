@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.ProcurementDao;
 import team.ruike.imm.entity.Procurement;
+import team.ruike.imm.instrument.RandomUtil;
 import team.ruike.imm.service.ProcurementService;
 
 import java.util.List;
 
 @Service("ProcurementService")
 public class ProcurementServiceImpl implements ProcurementService {
+
+
     @Autowired
     ProcurementDao procurementDao;
 
@@ -22,14 +25,28 @@ public class ProcurementServiceImpl implements ProcurementService {
     }
 
     public List<Procurement> selectProcurement(Procurement procurement) {
-        return null;
+        List<Procurement> list=procurementDao.selectAll(procurement);
+        return list;
+    }
+    public  String purchaseId(){
+        String aa="GH";
+       List<Procurement> list= selectProcurement(null);
+       aa+=RandomUtil.getRandomFileName();
+      String size=String.valueOf(list.size()+1) ;
+      if(size.length()==1){
+          size="00"+size;
+      }else if(size.length()==2){
+          size="0"+size;
+      }
+      aa+=size;
+      return aa;
     }
 
     public int updateProcurement(Procurement procurement) {
-        return 0;
+        return procurementDao.updateProcurement(procurement);
     }
 
     public int insertProcurement(Procurement procurement) {
-        return 0;
+        return procurementDao.insertProcurement(procurement);
     }
 }
