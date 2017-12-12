@@ -26,7 +26,7 @@
     <link href="../../css/ui.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/report.css">
-
+    <script src="${pageContext.request.contextPath }/js/warehousing/warehouse.js"></script>
 
     <style>
         .ui-icon-ellipsis {
@@ -74,15 +74,15 @@
                 <li id="product" style="display: list-item;"><label>商品类型</label>
                     <select name="productTypeId" style="width:115px;height: 32px">
                         <option value="0">请选择</option>
-                        <c:forEach items="${type}" var="t">
-                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+                        <c:forEach items="${prod}" var="p">
+                            <option value="${p.productTypeId}">${p.productTypeName}</option>
                         </c:forEach>
                     </select><br></li>
                 <li id="units" style="display: list-item;"><label>单位</label>
                     <select name="unitsId" style="width:115px;height: 32px">
                         <option value="0">请选择</option>
-                        <c:forEach items="${u}" var="units">
-                            <option value="${units.unitsId}" >${units.unitsName}</option>
+                        <c:forEach items="${unis}" var="u">
+                            <option value="${u.unitsId}" >${u.unitsName}</option>
                         </c:forEach>
                     </select><br>
                 </li>
@@ -128,7 +128,7 @@
                 <td>${m.salesStatus.salesStatusName}</td>
                 <td style="display: none">${m.merchandiseState}</td>
                 <td style="width: 120px;text-align: center">
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#Update" ><span class="up">修改</span></button>
+                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#Update" ><span class="up">修改</span></button>
                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
@@ -148,28 +148,29 @@
                     修改商品信息
                 </h4>
             </div>
+            <input type="text" id="updatemerchandiseId" style="display: none" >
             <div class="modal-body" style="width: 300px;height: 500px" >
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品编码</span>
-                    <input  id="updatemerchandiseCode" type="text"  value="${m.merchandiseCode}" name="merchandiseCode" class="form-control" style="width:487px;">
+                    <input  id="updatemerchandiseCode" type="text"  class="form-control" style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品名称</span>
-                    <input  id="updatemerchandiseName"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
+                    <input  id="updatemerchandiseName" type="text" class="form-control"  style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品规格</span>
-                    <input  id="updatemerchandiseSpecification" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                    <input  id="updatemerchandiseSpecification" type="text" class="form-control" style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品类型</span>
                     <select id="updateproductTypeId" name="productTypeId" class="form-control"  style="width:487px;">
-                        <option value="0">请选择</option>
-                        <c:forEach items="${type}" var="t">
-                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+
+                        <c:forEach items="${prod}" var="p">
+                            <option value="${p.productTypeId}">${p.productTypeName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -177,31 +178,31 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品单位</span>
                     <select id="updateunitsId" name="productTypeId" class="form-control"  style="width:487px;">
-                        <option value="0">请选择</option>
-                        <c:forEach items="${type}" var="t">
-                            <option value="${t.productTypeId}">${t.productTypeName}</option>
+
+                        <c:forEach items="${unis}" var="u">
+                            <option value="${u.unitsId}" >${u.unitsName}</option>
                         </c:forEach>
                     </select>
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品产地</span>
-                    <input  id="updatemerchandisePlaceOfOsrigin" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input  id="updatemerchandisePlaceOfOsrigin" type="text" class="form-control"  style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品库存</span>
-                    <input  id="updatemerchandiseActualQuntity" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input  id="updatemerchandiseActualQuntity" type="text" class="form-control"  style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品售价</span>
-                    <input  id="updatemerchandiseSalsePrice" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                    <input  id="updatemerchandiseSalsePrice" type="text" class="form-control" style="width:487px;">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">销售状态</span>
-                    <input  id="updatesalesStatusId" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                    <input  id="updatesalesStatusId" type="text" class="form-control"   style="width:487px;">
                 </div>
             </div>
             <div class="modal-footer">
@@ -357,4 +358,35 @@
     laydate(end);
 </script>
 </body>
+<script>
+    //获取要修改的信息
+    function updatemerchandise(val){
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                        $("#updatemerchandiseId").val(item.merchandiseId)
+                        $("#updatemerchandiseCode").val(item.merchandiseCode)
+                        $("#updatemerchandiseName").val(item.merchandiseName)
+                        $("#updatemerchandiseSpecification").val(item.merchandiseSpecification)
+                        $("#updateproductTypeId").val(item.productTypeId);
+                        $("#updateunitsId").val(item.unitsId)
+                        $("#updatemerchandisePlaceOfOsrigin").val(item.merchandisePlaceOfOrigin)
+                        $("#updatemerchandiseActualQuntity").val(item.merchandiseActualQuntity)
+                        $("#updatemerchandiseSalsePrice").val(item.merchandiseSalsePrice)
+                        $("#updatesalesStatusId").val(item.salesStatus.salesStatusName)
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+    }
+
+</script>
+<script type="text/javascript">
+
+</script>
 </html>

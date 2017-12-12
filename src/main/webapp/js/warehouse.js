@@ -13,7 +13,6 @@ $(function () {
 
     //调拨单
     $("#Requisition").click(function () {
-        alert("1");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -27,7 +26,6 @@ $(function () {
 
     //盘点记录
     $("#Count-records").click(function () {
-        alert("2");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -41,7 +39,6 @@ $(function () {
 
     //商品库存余额
     $("#Goods-inventory-balance").click(function () {
-        alert("3");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -55,7 +52,6 @@ $(function () {
 
     //商品收发明细表
     $("#Goods-receipt-details").click(function () {
-        alert("4");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -69,7 +65,6 @@ $(function () {
 
     //商品收发汇总表
     $("#Send-and-receive-goods-summary").click(function () {
-        alert("5");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");

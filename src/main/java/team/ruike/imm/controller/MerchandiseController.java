@@ -1,5 +1,6 @@
 package team.ruike.imm.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import team.ruike.imm.service.ProductTypeService;
 import team.ruike.imm.service.UnitsService;
 
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -27,16 +29,29 @@ public class MerchandiseController {
     @RequestMapping(value = "/smerchandise.do")
     public String select(Merchandise merchandise, HttpSession session){
         List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
+        List<Units> unitses = unitsService.selectUnits(null);
+        List<ProductType> productTypes = productTypeService.selectProductType(null);
         session.setAttribute("merc", merchandises);
+        session.setAttribute("unis",unitses);
+        session.setAttribute("prod",productTypes);
         return "page/warehouse/goods-balance";
     }
-    @RequestMapping(value = "/umerchandise.do")
-    public String update(Merchandise merchandise,HttpSession session){
-        int i =merchandiseService.updateMerchandise(merchandise);
-        if(i>0){
-            return "page/warehouse/goods-balance" ;
+    @RequestMapping(value = "/merchandiseId.do")
+    public void updatemerchandiseId(Merchandise merchandise,Units units,ProductType productType, PrintWriter printWriter){
+        List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
+
+        if(merchandises.size()>0){
+            Merchandise m = merchandises.get(0);
+            String json= JSON.toJSONString(m);
+            printWriter.write(json);
+            printWriter.flush();
+            printWriter.close();
+        }else{
+            String json=JSON.toJSONString(0);
+            printWriter.write(json);
+            printWriter.flush();
+            printWriter.close();
         }
-        return null;
     }
     @RequestMapping(value = "/dmerchandise.do")
     public String delete(Merchandise merchandise,HttpSession session){
