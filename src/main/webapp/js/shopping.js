@@ -28,7 +28,7 @@ $(function () {
     });
     $("#purchase3").click(function () {
         $("#tabManage").remove();
-        document.getElementById("iff").src="page/purchase/purchaseSales.jsp";
+        $("#iff").attr("src","/purchases/showPurchaseSales.do");
     });
     $("#purchase4").click(function () {
         document.getElementById("iff").src="page/purchase/replenishment.html";

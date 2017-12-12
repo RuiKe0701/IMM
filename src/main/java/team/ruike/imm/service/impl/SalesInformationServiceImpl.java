@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.SalesInformationDao;
 import team.ruike.imm.entity.SalesInformation;
+import team.ruike.imm.service.SalesInformationService;
 
 import java.util.List;
 
-@Service("SalesInformationService")
-public class SalesInformationServiceImpl implements SalesInformationDao {
+@Service("salesInformationService")
+public class SalesInformationServiceImpl implements SalesInformationService {
+
     @Autowired
     SalesInformationDao salesInformationDao;
 

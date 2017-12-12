@@ -101,7 +101,7 @@
                     alert("请输入购货单价");
                     return false;
                 }
-                 mun=parseInt($(".piVolume").val());
+                 mun=parseInt($(this).parent('td').prev("td").find("input").val());
                  money=parseInt($(this).val());
                  totalPrice=mun*money;
                  $(this).parent('td').next("td").find("input").val(totalPrice);
@@ -255,11 +255,9 @@
         </div>
 
         <div class="con-footer cf">
-            <div class="mb10">
-                <textarea type="text" id="note" class="ui-input ui-input-ph">暂无备注信息</textarea>
-            </div>
+
             <div class="cf fr" style="float:right">
-               <input type="submit" id="operaLog" class="ui-btn"/>
+               <input type="submit" id="operaLog" class="ui-btn" value="提交"/>
             </div>
         </div>
     </div>

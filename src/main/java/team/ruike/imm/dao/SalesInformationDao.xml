@@ -8,36 +8,30 @@
         <result column="merchandise_id"  property="merchandiseId"/>
         <result column="si_volume" property="siVolume"/>
         <result column="units_id" property="unitsId"/>
-        <result column="si_actual_price" property="si_actualPrice"/>
+        <result column="si_actual_price" property="siActualPrice"/>
         <result column="si_state" property="siState"/>
+        <association property="sales" javaType="sales" >
+            <result column="sales_id" property="salesId"/>
+            <result column="sales_date" property="salesDate"/>
 
-        <collection property="merchandise" ofType="merchandise">
+        </association>
+        <association property="merchandise" javaType="merchandise">
             <result column="merchandise_id" property="merchandiseId" />
-            <result column="merchandise_code" property="productCode" />
             <result column="merchandise_name" property="merchandiseName" />
-            <result column="merchandise_specification" property="merchandiseSpecification" />
-            <result column="product_type_id" property="productTypeId"></result>
-            <result column="units_id" property="unitsId"></result>
-            <result column="merchandise_place_of_origin" property="merchandisePlaceOfOrigin" />
-            <result column="merchandise_safety_stock" property="merchandiseSafetyStock" />
-            <result column="merchandise_actual_quntity" property="merchandiseActualQuntity" />
-            <result column="merchandise_salse_price" property="merchandiseSalsePrice" />
-            <result column="sales_status_id" property="salesStatusId"></result>
-            <result column="merchandise_state" property="merchandiseState" />
-        </collection>
-
-        <collection property="units" ofType="units">
+        </association>
+        <association property="units" javaType="units">
             <result column="units_id" property="unitsId"/>
             <result column="units_name" property="unitsName"/>
-            <result column="units_state" property="unitsState"/>
-        </collection>
+        </association>
     </resultMap>
 
     <select id="selectSalesInformation" resultMap="salesInformationMap" parameterType="salesInformation">
-        select * from sales_information
+        SELECT si.*,m.merchandise_name,u.units_name,s.sales_date FROM sales_information si
+        INNER JOIN sales s ON si.sales_id=s.sales_id
+        INNER JOIN merchandise m ON m.merchandise_id=si.merchandise_id
+        INNER JOIN units u ON u.units_id=si.units_id
         <where>
-             1=1
-            <if test="siId!=null and siId>0">
+        <if test="siId!=null and siId>0">
                    and si_id=#{siId}
             </if>
             <if test="salesId !=null and salesId!=''">
@@ -58,10 +52,10 @@
             <if test="siState!=null">
                 and si_state=#{siState}
             </if>
-        </where>
         <if test="currentPage!=null and pageSize!=null">
             LIMIT #{currentPage},#{pageSize}
         </if>
+        </where>
     </select>
 
     <update id="updateSalesInformation" parameterType="salesInformation">

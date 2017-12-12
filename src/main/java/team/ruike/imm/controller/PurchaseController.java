@@ -8,10 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.*;
-import team.ruike.imm.service.MerchandiseService;
-import team.ruike.imm.service.ProcurementInformationService;
-import team.ruike.imm.service.ProcurementService;
-import team.ruike.imm.service.SupplierService;
+import team.ruike.imm.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +28,8 @@ public class PurchaseController {
     MerchandiseService merchandiseService;
     @Autowired
     ProcurementInformationService procurementInformationService;
+    @Autowired
+    SalesInformationService salesInformationService;
     @RequestMapping("/loginPurchaseOrder.do")
     public String loginPurchaseOrder(Model model) {
         List<Supplier> list = supplierService.selectSuplier(null);
@@ -59,5 +58,11 @@ public class PurchaseController {
         System.out.println(i);
         ArrayList<ProcurementInformation> procurementInformations =  JSON.parseObject(procurementInformationList, new TypeReference<ArrayList<ProcurementInformation>>(){});
        procurementInformationService.insertAll(procurementInformations);
+    }
+    @RequestMapping(value = "showPurchaseSales.do")
+    public  String showPurchaseSales(Model model){
+        List<SalesInformation> salesInformations= salesInformationService.selectSalesInformation(null);
+        model.addAttribute("salesInformations",salesInformations);
+        return "page/purchase/purchaseSales";
     }
 }
