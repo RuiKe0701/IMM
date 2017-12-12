@@ -88,8 +88,8 @@
         </set>
                where client_id=#{clientId}
     </update>
-    <!--指定条件修改客户信息-->
-    <update id="updateAdd" parameterType="java.util.List">
+    <!--修改为不合作客户-->
+    <update id="noncooperation" parameterType="java.util.List">
             <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
                 update client
                 <set>
@@ -97,7 +97,16 @@
                 </set>
                 where client_id=#{client}
             </foreach>
-
+    </update>
+    <!--修改为合作客户-->
+    <update id="cooperative" parameterType="java.util.List">
+        <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+            update client
+            <set>
+                client_state=0
+            </set>
+            where client_id=#{client}
+        </foreach>
     </update>
     <insert id="insertClient">
         insert into client(client_name,client_person_in_charge,client_post,client_phone,client_mobile_phone,

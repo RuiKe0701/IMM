@@ -604,7 +604,7 @@
                             </li>
                             <li id="userName" class="default-userName cf" style="position: relative;"><span
                                     class="user left"></span>
-                                <a href="#" class="special left" id="user_name">${userName}<%-- 显示登录的员工名字--%></a> <span
+                                <a href="#" class="special left" id="user_name">${user.userName}<%-- 显示登录的员工名字--%></a> <span
                                         class="triangle-bottom left"></span>
 
                                 <div class="drop-down-wrap" style="width: 200px; left: -48px;display: none"

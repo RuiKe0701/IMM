@@ -45,18 +45,26 @@
             top: -5px;
         }
     </style>
+    <script>
+        $(function () {
+        document.getElementById("btn-enable").setAttribute("disabled",true);
+        })
+    </script>
 </head>
 <body style="">
 <div class="bill-ser-top">
     <ul class="ul-inline cf">
         <li>
-            <input type="text" id="matchCon" class="ui-input ui-input-ph matchCon" placeholder ="输入客户编号/ 名称/ 联系人/ 电话查询">
+                <button type="submit" class="btn btn-info">查找</button>
+                <input placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
         </li>
-        <li><a class="ui-btn mrb ui-btn-search" id="search">查询</a></li>
-        <li class="chk-list" id="chk-ischecked" style="display: list-item;">
-            <div>
-                <input style="width:20px;height: 30px" name="" type="checkbox" value="" checked="" />
-                <!--<span style="font-size: 20px;position: absolute;right:970px;top: 20px">显示失联客户</span>-->
+
+        <li class="chk-list" id="chk-ischecked" style="display: list-item;position: relative;left: 60px;">
+            <div >
+                <button type="button" id="cooperation" name="0" class="btn btn-info" data-toggle="modal" >
+                    <span class="">合作中</span></button>
+                <button type="button" id="termination" name="1" class="btn btn-info" data-toggle="modal">
+                    <span class="">已终止</span></button>
             </div>
         </li>
     </ul>
@@ -66,9 +74,9 @@
 
     <div class="bill-ser-botm cf">
         <div class="fr ml10">
-            <button type="button"  class="ui-btn-bill ui-btn-add mrb" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
-            <a class="ui-btn-bill mrb" id="btn-disable">禁用</a>
-            <a class="ui-btn-bill mrb" id="btn-enable">启用</a>
+            <button type="button"  class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
+            <a class="btn btn-info"name="jin" id="btn-disable"><span class="">禁用</span></a>
+            <a class="btn btn-info" id="btn-enable"><span class="">启用</span></a>
         </div>
     </div>
     <div class="grid-wrap">
@@ -87,8 +95,7 @@
         </div>
 
     </div>
-    <%--/client/k.do--%>
-<form method="post" action="/client/k.do" >
+    <%--展示信息--%>
     <div style="position: relative;left: 50px">
         <table class="table table-striped" style="width: 1200px">
             <thead>
@@ -102,12 +109,13 @@
                 <th>传真</th>
                 <th>客户地址</th>
                 <th>送货地址</th>
+                <th>合作关系</th>
                 <th>操作</th>
             </tr>
             </thead>
+            <tbody id="tbod">
             <c:forEach items="${clients}" var="c">
             <c:if test="${c.clientState==0}">
-            <tbody class="tbod">
             <tr id="${c.clientId}"  class="clients">
                 <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
                 <td id="clientId" style="display: none">${c.clientId}</td>
@@ -119,18 +127,21 @@
                 <td id="clientFax">${c.clientFax}</td>
                 <td id="clientAddress">${c.clientAddress}</td>
                 <td id="clientFactoryAddress">${c.clientFactoryAddress}</td>
-                <td  id="clientState" style="display:none">${c.clientState}</td>
-                <td style="width: 120px;text-align: center" >
+                <c:if test="${c.clientState==0}">
+                    <td  id="clientState">合作中</td>
+                </c:if>
+                <c:if test="${c.clientState==1}">
+                    <td  id="clientState">已终止</td>
+                </c:if>
+                <td  >
                     <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
-                    <%--<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del"><span class="up">删除</span></button></td>--%>
                 </td>
             </tr>
-            </tbody>
             </c:if>
             </c:forEach>
+            </tbody>
         </table>
     </div>
-</form>
 </div>
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -190,7 +201,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="button" id="insert" class="btn btn-primary">
                     提交新增
@@ -247,7 +258,7 @@
                 </div><br>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                <button type="button" id="closeUpdate" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="button" id="updates" class="btn btn-primary">
                     提交修改
@@ -282,7 +293,64 @@
 
 <script type="text/javascript">
     $(function () {
-
+        //修改客户是否合作
+        $("#btn-enable").click(function () {
+            var clientList = new Array();
+            $(".clients").each(function (index, date) {
+                var checkbox = $(date).find(".k");
+                if(checkbox.is(':checked')){
+                    //选中了
+                    var id = $(date).find(".k").val();
+                    var object = new Object();
+                    object.kk = id;
+                    clientList.push(object);
+                    var cooperativeClients = JSON.stringify(clientList);
+                    $.ajax({
+                        type: "post",
+                        url: "/client/cooperativeClient.do",
+                        data: {
+                            "cooperativeClients": cooperativeClients
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if(data!=0){
+                                if(data!=0){
+                                    for(i in data){
+                                        $("#"+data[i].clientId).remove();
+                                    }
+                                }
+                                alert("修改合作关系成功")
+//                                var da = eval(data);
+//                                $("#tbod").html("");
+//                                $.each(da,function (i, item) {
+//                                    str+="<tr id="+item.clientId+" class='clients'>" +
+//                                        "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
+//                                        "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
+//                                        "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
+//                                        "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
+//                                        "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
+//                                        "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
+//                                        "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
+//                                        "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
+//                                        "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
+//                                        "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
+//                                        "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+//                                        "                <td  >\n" +
+//                                        "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+//                                        "                </td>\n" +
+//                                        "            </tr>";
+//                                })
+//                                $("#tbod").append(str);
+                            }
+                            alert("修改合作关系成功")
+                        },
+                        error: function () {
+                            alert("系统异常，请稍后重试！");
+                        }
+                    })
+                }
+            });
+        })
     })
 </script>
 </html>

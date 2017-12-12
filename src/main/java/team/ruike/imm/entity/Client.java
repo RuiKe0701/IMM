@@ -64,6 +64,17 @@ public class Client extends PagerParameter implements Serializable {
      */
     private Integer clientState;
 
+
+    private String State;
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
     public Integer getClientState() {
         return clientState;
     }

@@ -57,7 +57,11 @@ public class ClientServiceImpl implements ClientService{
         return clientDao.insertClient(client);
     }
 
-    public int updateAdd(List client) {
-        return clientDao.updateAdd(client);
+    public int noncooperation(List client) {
+        return clientDao.noncooperation(client);
+    }
+
+    public int cooperative(List client) {
+        return clientDao.cooperative(client);
     }
 }

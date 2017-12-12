@@ -44,5 +44,6 @@ public interface ClientService {
      * 批量修改
      * @return
      */
-    public int updateAdd(List client);
+    public int noncooperation(List client);
+    public int cooperative(List client);
 }
