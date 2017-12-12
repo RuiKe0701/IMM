@@ -33,9 +33,9 @@
 
     <!--指定条件查询商品信息-->
     <select id="selecrMerchandise" resultMap="merchandiseMap">
-        select * from merchandise m,product_Type p,units u,sales_Status s
+        select * from merchandise m,product_type p,units u,sales_status s
         <where>
-            m.Product_type_id=p.Product_type_id and m.units_id=u.units_id and m.sales_status_id=s.sales_status_id
+            m.product_type_id=p.product_type_id and m.units_id=u.units_id and m.sales_status_id=s.sales_status_id
             <if test="merchandiseId!=null and merchandiseId>0">
                 and m.merchandise_id=#{merchandiseId}
             </if>
@@ -116,7 +116,7 @@
                 merchandise_state=#{merchandiseState},
             </if>
         </set>
-                where merchandise_id=#{merchandiseId}
+        where merchandise_id=#{merchandiseId}
     </update>
 
 
@@ -124,7 +124,7 @@
     <!--增加商品信息-->
     <insert id="insertMerchandise" parameterType="merchandise">
         insert into merchandise (merchandise-code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
-         values (#{merchandiseCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
+        values (#{merchandiseCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
     </insert>
 
 </mapper>
