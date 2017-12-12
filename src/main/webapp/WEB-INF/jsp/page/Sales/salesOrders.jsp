@@ -159,11 +159,14 @@
                                             </div>
                                         </td>
 
-                                        <td ><input type="text" disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
-                                        <td><input type="text" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td><input type="text" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td style="font-size: 16px;"><input  type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white"></td>
-                                        <td><input type="text" name="piRemarks"/></td>
+                                        <td >
+                                            <input type="text"  disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
+                                            <input type="text" class="unitsId" style="display: none">
+                                        </td>
+                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piActualPrice" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                        <td style="font-size: 16px;"><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piTotalPrice" type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
+                                        <td><input type="text" class="piRemarks" name="piRemarks" style="border: 0px;height: 30px;font-size: 16px;"/></td>
                                     </tr>
                                 </c:forEach>
 
