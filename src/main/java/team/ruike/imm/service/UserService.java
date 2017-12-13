@@ -2,6 +2,7 @@ package team.ruike.imm.service;
 
 import team.ruike.imm.entity.User;
 import team.ruike.imm.instrument.Pager;
+import team.ruike.imm.instrument.Pages;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public interface UserService {
     public User selectUser(User user);
 
     public List<User> userList(User user);
-
-
+    public Pages queryOrderContract();
+    public Integer count();
     /**
      * 指定条件修改用户信息
      * @param user

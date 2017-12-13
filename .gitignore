@@ -11,3 +11,4 @@ gen
 .gitignore
 target/
 /.gitignore
+/src/main/resources/jdbc.properties

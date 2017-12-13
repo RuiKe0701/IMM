@@ -17,6 +17,9 @@ public interface UserDao {
      */
     public List<User> selectUser(User user);
 
+
+    public Integer count();
+
     /**
      * 指定条件修改用户信息
      * @param user

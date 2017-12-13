@@ -1,10 +1,20 @@
-
+<%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2017-11-30
+  Time: 14:20
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div>
@@ -21,29 +31,39 @@
             <LABEL>姓名：<input type="text" class="s" name="user.userName" /></LABEL>
             <label>密码：<input type="text" class="ss" name="user.userPassword" /></label>
         </div>
-
         <%--<button onclick="submit()">提交</button>--%>
     <button id="tijiao">提交</button>
 </div>
+<%--<c:if test="${pages!=null}">--%>
+<%--<c:forEach var="a" items="${pages}">--%>
+    <%--<tr>--%>
+    <%--<td>${a.userName}</td>--%>
+    <%--</tr>--%>
+<%--</c:forEach>--%>
+<%--</c:if>--%>
 
+<div>
+    <ul class="pagination" >
+        <li><a href="${page.startIndex}">&laquo;</a></li>
+        <c:forEach items="${page.pageBar}" var="pa">
+                <c:if test="${page.pageBar}">
 
-<c:if test="${pages!=null}">
-<c:forEach var="a" items="${pages}">
-    <tr>
-    <td>${a.userName}</td>
-    </tr>
-</c:forEach>
-</c:if>
-<div style="width: 300px;height: 400px;float:right">
-    <div >
-        <td >共${pagesList.totalPage}页,共${pagesList.totalRecord}条数据</td>
-    </div>
-    <td ><a href="/user/page.do?currentPage=1">首页</a></td>
-    <td><a href="/user/page.do?currentPage=${pagesList.currentPage-1}">上一页</a></td>
-    <td>当前第${pagesList.currentPage}页</td>
-    <td><a href="/user/page.do?currentPage=${pagesList.currentPage+1}">下一页</a></td>
-    <td><a href="/user/page.do?currentPage=${pagesList.totalPage}">尾页</a></td>
+                </c:if>
+                <li><a href="#">${pa}</a></li>
+        </c:forEach>
+        <li><a href="${page.endIndex}">&raquo;</a></li>
+    </ul>
 </div>
+<%--<div style="width: 300px;height: 400px;float:right">--%>
+    <%--<div >--%>
+        <%--<td >共${pagesList.totalPage}页,共${pagesList.totalRecord}条数据</td>--%>
+    <%--</div>--%>
+    <%--<td ><a href="/user/page.do?currentPage=1">首页</a></td>--%>
+    <%--<td><a href="/user/page.do?currentPage=${pagesList.currentPage-1}">上一页</a></td>--%>
+    <%--<td>当前第${pagesList.currentPage}页</td>--%>
+    <%--<td><a href="/user/page.do?currentPage=${pagesList.currentPage+1}">下一页</a></td>--%>
+    <%--<td><a href="/user/page.do?currentPage=${pagesList.totalPage}">尾页</a></td>--%>
+<%--</div>--%>
 </body>
 <script type="text/javascript">
     function tijiao() {
