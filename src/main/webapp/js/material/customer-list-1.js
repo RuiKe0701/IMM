@@ -1,3 +1,91 @@
+//验证客户名称
+function checkName() {
+    var $fname = $("#addname");
+    var $divID = $("#Divname");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("客户名称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证负责人名称
+function checkPersonInCharge() {
+    var $fname = $("#addpersonInCharge");
+    var $divID = $("#DivpersonInCharge");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("负责人名称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证负责人职称
+function checkPost() {
+    var $fname = $("#addpost");
+    var $divID = $("#Divpost");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("负责人职称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证客户地址
+function checkAddress() {
+    var $fname = $("#addaddress");
+    var $divID = $("#Divaddress");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("客户地址不能为空");
+        return false;
+    }
+    return true;
+}
+//验证送货地址
+function checkFactoryAddress() {
+    var $fname = $("#addfactoryAddress");
+    var $divID = $("#DivfactoryAddress");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("送货地址不能为空");
+        return false;
+    }
+    return true;
+}
+//验证移动电话
+function checkMobilePhone() {
+    var $fname = $("#addmobilePhone");
+    var $divID = $("#DivmobilePhone");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("移动电话不能为空");
+        return false;
+    }
+    return true;
+}
+//验证电话
+function checkPhone() {
+    var $fname = $("#addphone");
+    var $divID = $("#Divphone");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("电话不能为空");
+        return false;
+    }
+    return true;
+}
+//验证传真
+function checkFax() {
+    var $fname = $("#addfax");
+    var $divID = $("#Divfax");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("传真不能为空");
+        return false;
+    }
+    return true;
+}
 $(function () {
     //修改为不合作客户
     $("#btn-disable").click(function () {
@@ -33,71 +121,89 @@ $(function () {
             }
         });
     })
-
     //添加用户信息
     $("#insert").click(function () {
-        var clients = new Array();
-        var object =new Object();
-        object.clientName= $("#addname").val();
-        object.clientPersonInCharge= $("#addpersonInCharge").val();
-        object.clientPost= $("#addpost").val();
-        object.clientPhone= $("#addphone").val();
-        object.clientMobilePhone= $("#addmobilePhone").val();
-        object.clientFax= $("#addfax").val();
-        object.clientAddress= $("#addaddress").val();
-        object.clientFactoryAddress= $("#addfactoryAddress").val();
-        object.clientState= $("#addstate").val();
-        clients.push(object);
-        var clientList = JSON.stringify(clients);
-        $.ajax({
-            type: "post",
-            url: "/client/addClient.do",
-            data: {
-                "clientList": clientList
-            },
-            dataType: "json",
-            success: function (data) {
-                $("#closeAdd").click();
-                alert("添加成功")
-                var str = "";
-                if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.clientId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                            "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                            "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                            "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                            "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                            "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                            "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                            "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                            "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                            "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                            "                <td  id=\"clientState\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
-                }
-                $("#addname").val("");
-                $("#addpersonInCharge").val("");
-                $("#addpost").val("");
-                $("#addphone").val("");
-                $("#addmobilePhone").val("");
-                $("#addfax").val("");
-               $("#addaddress").val("");
-                $("#addfactoryAddress").val("");
-                $("#addstate").val("");
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
+        $("#addname").blur(checkName);
+        $("#addpersonInCharge").blur(checkPersonInCharge);
+        $("#addpost").blur(checkPost);
+        $("#addaddress").blur(checkAddress);
+        $("#addfactoryAddress").blur(checkFactoryAddress);
+        $("#addmobilePhone").blur(checkMobilePhone);
+        $("#addphone").blur(checkPhone);
+        $("#addfax").blur(checkFax);
+            var flag = true;
+            if (!checkName()) flag = false;
+            if (!checkPersonInCharge()) flag = false;
+        if (!checkPost()) flag = false;
+        if (!checkAddress()) flag = false;
+        if (!checkFactoryAddress()) flag = false;
+        if (!checkMobilePhone()) flag = false;
+        if (!checkPhone()) flag = false;
+        if (!checkFax()) flag = false;
+            if(flag != false){
+                var clients = new Array();
+                var object =new Object();
+                object.clientName= $("#addname").val();
+                object.clientPersonInCharge= $("#addpersonInCharge").val();
+                object.clientPost= $("#addpost").val();
+                object.clientPhone= $("#addphone").val();
+                object.clientMobilePhone= $("#addmobilePhone").val();
+                object.clientFax= $("#addfax").val();
+                object.clientAddress= $("#addaddress").val();
+                object.clientFactoryAddress= $("#addfactoryAddress").val();
+                object.clientState= $("#addstate").val();
+                clients.push(object);
+                var clientList = JSON.stringify(clients);
+                $.ajax({
+                    type: "post",
+                    url: "/client/addClient.do",
+                    data: {
+                        "clientList": clientList
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#closeAdd").click();
+                        alert("添加成功")
+                        var str = "";
+                        if(data!=0){
+                            var da = eval(data);
+                            $("#tbod").html("");
+                            $.each(da,function (i, item) {
+                                str+="<tr id="+item.clientId+" class='clients'>" +
+                                    "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
+                                    "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
+                                    "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
+                                    "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
+                                    "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
+                                    "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
+                                    "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
+                                    "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
+                                    "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
+                                    "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
+                                    "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+                                    "                <td  >\n" +
+                                    "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                                    "                </td>\n" +
+                                    "            </tr>";
+                            })
+                            $("#tbod").append(str);
+                        }
+                        $("#addname").val("");
+                        $("#addpersonInCharge").val("");
+                        $("#addpost").val("");
+                        $("#addphone").val("");
+                        $("#addmobilePhone").val("");
+                        $("#addfax").val("");
+                        $("#addaddress").val("");
+                        $("#addfactoryAddress").val("");
+                        $("#addstate").val("");
+                    },
+                    error: function () {
+                        alert("系统异常，请稍后重试！");
+                    }
+                })
             }
         })
-    })
 
 
     //修改用户信息
