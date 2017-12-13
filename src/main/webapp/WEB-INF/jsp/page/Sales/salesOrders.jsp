@@ -26,10 +26,9 @@
         $(function () {
             var i=7;
             $("#btnline").click(function () {
-
                 $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
                 i=i+1;
-            })
+            });
             $(".selectpicker").change(function () {
                 var id=$(this).val();
                 var name=$(this);
@@ -39,8 +38,73 @@
                     dataType:"JSON",
                     success:function (date) {
                         name.parent().parent('td').next("td").find("input").val(date.units.unitsName);
+                        name.parent().parent('td').next("td").find("input").eq(1).val(date.units.unitsId);
                     }
                 });
+            });
+            $("#operaLog").click(function () {
+                if($("#end").val()==""){
+                    alert("请选择日期");
+                    return false;
+                }
+                var procurementInformation=new  Array();
+                var procurements=new Array();
+                var supplierId=$("#supplierId").val();
+                var procurementId=$("#procurementId").val();
+                var procurementDate=$("#end").val();
+                var procurementEmployeeId=$("#procurementEmployeeId").val();
+                var procurementList=new Object();
+                procurementList.supplierId=supplierId;
+                procurementList.procurementId=procurementId;
+                procurementList.procurementDate=procurementDate;
+                procurementList.procurementEmployeeId=procurementEmployeeId;
+                procurements.push(procurementList);
+                var procurement=JSON.stringify(procurements);
+                $(".trParam").each(function (index,data) {
+                    if($(data).find(".piVolume").val()==""){
+                        return false;
+                    }
+                    var procurementId=$(".procurementId").val();
+                    var merchandiseId=$(data).find(".selectpicker").val();
+                    var piVolume =$(data).find(".piVolume").val();
+                    var piActualPrice =$(data).find(".piActualPrice").val();
+                    var piTotalPrice =$(data).find(".piTotalPrice").val();
+                    var piRemarks =$(data).find(".piRemarks").val();
+                    var unitsId=$(data).find(".unitsId").val();
+                    var object = new Object();
+                    object.piVolume = piVolume;
+                    object.piActualPrice=piActualPrice;
+                    object.piTotalPrice=piTotalPrice;
+                    object.piRemarks=piRemarks;
+                    object.merchandiseId=merchandiseId;
+                    object.procurementId=procurementId;
+                    object.unitsId=unitsId;
+                    procurementInformation.push(object);
+                    var procurementInformationList=JSON.stringify(procurementInformation);
+                    $.ajax({
+                        type: "post",
+                        url: "/purchases/saveProcurementInformationList.do",
+                        data:{
+                            "procurementInformationList":procurementInformationList,
+                            "procurementList":procurement
+                        },
+                        dataType: "json"
+                    })
+                });
+            });
+            $(".piActualPrice").blur(function () {
+                if( $(this).parent('td').prev("td").find("input").val()==""){
+                    alert("请输入数量");
+                    return false;
+                }
+                if($(this).val()==""){
+                    alert("请输入购货单价");
+                    return false;
+                }
+                mun=parseInt($(this).parent('td').prev("td").find("input").val());
+                money=parseInt($(this).val());
+                totalPrice=mun*money;
+                $(this).parent('td').next("td").find("input").val(totalPrice);
             })
         })
     </script>
