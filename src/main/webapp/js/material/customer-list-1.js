@@ -257,7 +257,7 @@ $(function () {
                         if(data!=0){
                             var da = eval(data);
                             $("#tbod").html("");
-                            $.each(da,function (i, item) {
+                            $.each(da,function (i,item) {
                                 str+="<tr id="+item.clientId+" class='clients'>" +
                                     "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
                                     "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
