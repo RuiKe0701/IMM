@@ -18,99 +18,116 @@
     <link href="${pageContext.request.contextPath }/css/animate.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/plugins/suggest/bootstrap-suggest.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/js/plugins/suggest/bootstrap-suggest.min.js"></script>
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
         $(function () {
-            var i=7;
+            var i = 7;
             $("#btnline").click(function () {
-                $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
-                i=i+1;
+                $("#addtr").append("<tr><td>" + i + "</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
+                i = i + 1;
             });
             $(".selectpicker").change(function () {
-                var id=$(this).val();
-                var name=$(this);
+                var id = $(this).val();
+                var name = $(this);
                 $.ajax({
-                    url:"/purchases/ajaxMerchand.do",
-                    data:{"merchandiseId":id},
-                    dataType:"JSON",
-                    success:function (date) {
+                    url: "/sales/ajaxMerchand.do",
+                    data: {"merchandiseId": id},
+                    dataType: "JSON",
+                    success: function (date) {
                         name.parent().parent('td').next("td").find("input").val(date.units.unitsName);
                         name.parent().parent('td').next("td").find("input").eq(1).val(date.units.unitsId);
                     }
                 });
             });
             $("#operaLog").click(function () {
-                if($("#end").val()==""){
+                if ($("#end").val() == "") {
                     alert("请选择日期");
                     return false;
                 }
-                var procurementInformation=new  Array();
-                var procurements=new Array();
-                var supplierId=$("#supplierId").val();
-                var procurementId=$("#procurementId").val();
-                var procurementDate=$("#end").val();
-                var procurementEmployeeId=$("#procurementEmployeeId").val();
-                var procurementList=new Object();
-                procurementList.supplierId=supplierId;
-                procurementList.procurementId=procurementId;
-                procurementList.procurementDate=procurementDate;
-                procurementList.procurementEmployeeId=procurementEmployeeId;
-                procurements.push(procurementList);
-                var procurement=JSON.stringify(procurements);
-                $(".trParam").each(function (index,data) {
-                    if($(data).find(".piVolume").val()==""){
+                var salesInformation = new Array();
+                var sales = new Array();
+                var clientId = $("#clientId").val();
+
+                var employeeId =$("#employeeId").val();
+                var salesDate = $("#end").val();
+                var salesId = $("#salesId").val();
+                var salesList=new Object();
+                salesList.clientId = clientId;
+                salesList.employeeIds = employeeId;
+                salesList.salesDate = salesDate;
+                salesList.salesId = salesId;
+                sales.push(salesList);
+
+                $(".trParam").each(function (index, data) {
+                    if ($(data).find(".siVolume").val() == "") {
                         return false;
                     }
-                    var procurementId=$(".procurementId").val();
+                    alert($(data).find(".selectpicker").val())
+                    var salesId = $(".salesId").val();
                     var merchandiseId=$(data).find(".selectpicker").val();
-                    var piVolume =$(data).find(".piVolume").val();
-                    var piActualPrice =$(data).find(".piActualPrice").val();
-                    var piTotalPrice =$(data).find(".piTotalPrice").val();
-                    var piRemarks =$(data).find(".piRemarks").val();
-                    var unitsId=$(data).find(".unitsId").val();
+                    var siVolume = $(data).find(".siVolume").val();
+                    var unitsId = $(data).find(".unitsId").val();
+                    var siActualPrice = $(data).find(".siActualPrice").val();
+                    var siTotalPrice = $(data).find(".siTotalPrice").val();
+                    var siRemarks = $(data).find(".siRemarks").val();
                     var object = new Object();
-                    object.piVolume = piVolume;
-                    object.piActualPrice=piActualPrice;
-                    object.piTotalPrice=piTotalPrice;
-                    object.piRemarks=piRemarks;
-                    object.merchandiseId=merchandiseId;
-                    object.procurementId=procurementId;
-                    object.unitsId=unitsId;
-                    procurementInformation.push(object);
-                    var procurementInformationList=JSON.stringify(procurementInformation);
+                    object.salesId = salesId;
+                    object.merchandiseId = merchandiseId;
+                    object.siVolume = siVolume;
+                    object.unitsId = unitsId;
+                    object.siActualPrice = siActualPrice;
+                    object.siTotalPrice = siTotalPrice;
+                    object.siRemarks = siRemarks;
+                    salesInformation.push(object);
+                    var salesInformationList = JSON.stringify(salesInformation);
+                    var sale = JSON.stringify(sales);
+                    alert(salesInformationList);
+                    alert(sale);
+                    var s="ss"
+                    var ss=1;
+
                     $.ajax({
                         type: "post",
-                        url: "/purchases/saveProcurementInformationList.do",
-                        data:{
-                            "procurementInformationList":procurementInformationList,
-                            "procurementList":procurement
+                        url: "/sales/saveSaveInformationList.do",
+                        data: {
+                            "saveInformationList": salesInformationList,
+                            "saveList": sale,
+                            "sss":s,
+                            "ss":ss
                         },
                         dataType: "json"
                     })
                 });
             });
-            $(".piActualPrice").blur(function () {
-                if( $(this).parent('td').prev("td").find("input").val()==""){
+            $(".siActualPrice").blur(function () {
+                if ($(this).parent('td').prev("td").find("input").val() == "") {
                     alert("请输入数量");
                     return false;
                 }
-                if($(this).val()==""){
+                if ($(this).val() == "") {
                     alert("请输入购货单价");
                     return false;
                 }
-                mun=parseInt($(this).parent('td').prev("td").find("input").val());
-                money=parseInt($(this).val());
-                totalPrice=mun*money;
+                mun = parseInt($(this).parent('td').prev("td").find("input").val());
+                money = parseInt($(this).val());
+                totalPrice = mun * money;
                 $(this).parent('td').next("td").find("input").val(totalPrice);
             })
         })
     </script>
     <style>
-        td{text-align: center}
-        th{text-align: center}
+        td {
+            text-align: center
+        }
+
+        th {
+            text-align: center
+        }
+
         #editBills {
             background: url(${pageContext.request.contextPath }/img/edit.png);
             display: inline-block;
@@ -137,7 +154,7 @@
 </head>
 
 <body style="">
-<form action="/purchases/saveSupplierorProcureMent.do" method="post">
+<form action="/sales/saveSaveInformationList.do" method="post">
 
     <div class="wrapper">
         <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
@@ -148,7 +165,9 @@
                         <input type="text" name="procurementEmployeeId" style="display:none;" value="${user.userId}"/>
                         <label><span class="red">*</span>客户:</label>
                         <div class="input-group" style="width: 200px;float: right">
-                            <select  class="selectpicker show-tick form-control" style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" name="supplierId">
+                            <select class="selectpicker show-tick form-control"
+                                    style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
+                                    data-live-search="true"   id="clientId" name="clientId">
                                 <c:forEach items="${clientss}" var="cl">
                                     <option value="${cl.clientId}">${cl.clientName}</option>
                                 </c:forEach>
@@ -158,21 +177,23 @@
                     <dd class="mr40" style="width: 240px">
                         <label><span class="red">*</span>销售人员:</label>
                         <div class="input-group" style="width: 170px;float: right">
-                            <select  class="selectpicker show-tick form-control" style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" name="supplierId">
-                            <c:forEach items="${employeess}" var="em">
-                                <option value="${em.employeeId}">${em.employeeName}</option>
-                            </c:forEach>
-                        </select>
+                            <select class="selectpicker show-tick form-control"
+                                    style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
+                                    data-live-search="true" id="employeeId" name="supplierId">
+                                <c:forEach items="${employeess}" var="em">
+                                    <option value="${em.employeeId}">${em.employeeName}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </dd>
 
                     <dd class="mr20 tc">
                         <label>单据日期:</label>
-                        <input id="hello" class="">
-                    </dd>
+                        <input id="end" name="procurementDate" class="">
+                    </dd>,
                     <dd id="identifier">
-                        <label >&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
-                        <input disabled="disabled" class="salesId" id="salesId" name="salesId" value="${purId}" />
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
+                        <input disabled="disabled" class="salesId" id="salesId" name="salesId" value="${salesId}"/>
                         <i id="editBills"></i>
                         <span class="ui-combo-wrap" id="numberAuto" style="display: none;">
               <i class="trigger"></i>
@@ -191,8 +212,10 @@
                         <div class="ui-jqgrid-view" id="gview_grid" style="width: 1200px;">
 
 
-                            <table class="table table-bordered" >
-                                <caption><button id="btnline" type="button" class="btn btn-primary ">添加行</button></caption>
+                            <table class="table table-bordered">
+                                <caption>
+                                    <button id="btnline" type="button" class="btn btn-primary ">添加行</button>
+                                </caption>
                                 <thead>
                                 <tr style="text-align: center">
                                     <th width="30px" style="text-align: center"></th>
@@ -206,27 +229,44 @@
                                 </thead>
                                 <tbody id="addtr">
                                 <c:forEach begin="1" end="6" varStatus="status">
-                                    <tr>
+                                    <tr class="trParam">
                                         <td style="width: 30px;">${status.index}</td>
                                         <td>
                                             <div style="width: 150px">
-                                                <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
+                                                <select class="selectpicker show-tick form-control"
+                                                        style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
+                                                        data-live-search="true" name="merchandiseId">
                                                     <option>请选择</option>
                                                     <c:forEach items="${merchandisess}" var="mer">
-                                                        <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                                                        <option class="aaa"
+                                                                value="${mer.merchandiseId}">${mer.merchandiseName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                         </td>
 
-                                        <td >
-                                            <input type="text"  disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
+                                        <td>
+                                            <input type="text" disabled="disabled"
+                                                   style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
                                             <input type="text" class="unitsId" style="display: none">
                                         </td>
-                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piActualPrice" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td style="font-size: 16px;"><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piTotalPrice" type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
-                                        <td><input type="text" class="piRemarks" name="piRemarks" style="border: 0px;height: 30px;font-size: 16px;"/></td>
+                                        <td><input type="text"
+                                                   onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"
+                                                   class="siVolume" name="siVolume"
+                                                   style="border: 0px;height: 30px;font-size: 16px;text-align: center">
+                                        </td>
+                                        <td><input type="text"
+                                                   onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"
+                                                   class="siActualPrice" name="siActualPrice"
+                                                   style="border: 0px;height: 30px;font-size: 16px;text-align: center">
+                                        </td>
+                                        <td style="font-size: 16px;"><input
+                                                onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"
+                                                class="siTotalPrice" type="text" name="siTotalPrice" disabled="disabled"
+                                                style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
+                                        </td>
+                                        <td><input type="text" class="siRemarks" name="siRemarks"
+                                                   style="border: 0px;height: 30px;font-size: 16px;"/></td>
                                     </tr>
                                 </c:forEach>
 
@@ -245,15 +285,11 @@
         </div>
 
         <div class="con-footer cf">
-            <div class="mb10">
-                <textarea type="text" id="note" class="ui-input ui-input-ph">暂无备注信息</textarea>
-            </div>
-            <div class="cf fr">
-                <input type="submit" id="operaLog" class="ui-btn"/>
+
+            <div class="cf fr" style="float:right">
+                <input type="submit" id="operaLog" class="ui-btn" value="提交"/>
             </div>
         </div>
-        <div id="initCombo" class="dn"></div>
-        <div id="storageBox" class="shadow target_box dn"></div>
     </div>
     </div>
 </form>
@@ -274,6 +310,7 @@
         istoday: false,
         choose: function (datas) {
             end.min = datas;
+            ti
             end.start = datas
         }
     };

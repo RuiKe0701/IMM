@@ -46,7 +46,7 @@ public class SalesController {
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
         String id=salesService.salesId();
-        model.addAttribute("purId",id);
+        model.addAttribute("salesId",id);
         model.addAttribute("clientss",clientList);
         model.addAttribute("employeess",employeeList);
         model.addAttribute("merchandisess",merchandiseList);
@@ -61,8 +61,12 @@ public class SalesController {
         return JSON.toJSONString(merchandises);
     }
 
-    @RequestMapping(value = "saveSaveInformationList.do",produces="text/html;charset=UTF-8")
-    public void saveProcurementInformationList(String saveInformationList,String saveList){
+    @RequestMapping("saveSaveInformationList.do")
+    public void saveProcurementInformationList(String saveInformationList,String saveList,String sss,Integer ss){
+        System.out.println(saveList);
+        System.out.println(sss);
+        System.out.println(ss);
+        System.out.println("ssss");
         ArrayList<Sales> sa =  JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
         Sales s=sa.get(0);
         int i = salesService.insertSales(s);
