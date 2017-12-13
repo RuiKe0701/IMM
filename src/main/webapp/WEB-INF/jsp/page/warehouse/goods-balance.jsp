@@ -10,33 +10,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <title>恒辉商品库存</title>
-
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="../../css/common.css" rel="stylesheet" type="text/css">
     <link href="../../css/print.css" rel="stylesheet" type="text/css">
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
     <link href="../../css/ui.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../../css/report.css">
     <script src="${pageContext.request.contextPath }/js/warehousing/warehouse.js"></script>
-
     <style>
         .ui-icon-ellipsis {
             right: 5px;
         }
-
         #grid tr {
             cursor: pointer;
         }
-
         .no-query {
             background-position: center;
             border: 1px solid #ddd;
@@ -44,17 +37,14 @@
             height: 402px;
             margin-right: 0;
         }
-
         .box-flex {
             overflow: hidden;
             zoom: 1;
         }
-
         .box-flex .flex {
             float: left;
             width: 33.3%;
         }
-
         .grid-title {
             font-size: 24px;
             text-align: center;
@@ -69,7 +59,7 @@
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
                 <li id="billNum" style="display: list-item;"><label>商品关键字</label>
-                    <input type="text" value="" style="width:115px;">
+                    <input type="text" placeholder="请输入" value="" style="width:115px;">
                 </li>
                 <li id="product" style="display: list-item;"><label>商品类型</label>
                     <select name="productTypeId" style="width:115px;height: 32px">
@@ -121,9 +111,8 @@
         </tr>
         </thead>
         <tbody>
-
         <c:forEach var="m" items="${merc}">
-            <tr>
+            <tr id="${m.merchandiseId}">
                 <td><input type="checkbox" /></td>
                 <td style="display: none">${m.merchandiseId}</td>
                 <td>${m.merchandiseCode}</td>
@@ -139,7 +128,7 @@
                 <td style="display: none">${m.merchandiseState}</td>
                 <td style="width: 120px;text-align: center">
                     <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
+                    <button type="button" id="${m.merchandiseId}" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -238,15 +227,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" >
-                            确定删除${merchandiseName}吗
-                    </h4>
+                    <h4 class="modal-title" id="as"></h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" id="deletes" class="btn btn-danger" data-dismiss="modal">
                         确定
                     </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -362,11 +350,90 @@
                 },
                 dataType: "json",
                 success: function (data) {
+                    $("#closeAdd").click();
+                    var str = "";
                     if(data!=0){
-                        alert("修改用户信息成功")
-                        window.location.reload();
+                        var da = eval(data);
+                        $("#tbod").html("");
+                        $.each(da,function (i,item) {
+                            str+="<tr id="+item.clientId+" class='clients'>" +
+                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
+                                "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
+                                "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
+                                "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
+                                "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
+                                "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
+                                "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
+                                "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
+                                "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
+                                "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
+                                "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+                                "                <td  >\n" +
+                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                                "                </td>\n" +
+                                "            </tr>";
+                        })
+                        $("#tbod").append(str);
+                    }
+                    $("#addname").val("");
+                    $("#addpersonInCharge").val("");
+                    $("#addpost").val("");
+                    $("#addphone").val("");
+                    $("#addmobilePhone").val("");
+                    $("#addfax").val("");
+                    $("#addaddress").val("");
+                    $("#addfactoryAddress").val("");
+                    $("#addstate").val("");
+                },
+
+//                success: function (data) {
+//                    if(data!=0){
+//                        alert("商品信息修改成功")
+//                        window.location.reload();
+//                    }else {
+//                        alert("商品信息修改失败")
+//                    }
+//                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
+    //获取删除的信息
+    function deletemerchandise(val) {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletes").click(function () {
+            var merchandiseId=val;
+            $.ajax({
+                type: "post",
+                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+//                data: {
+//                    "merchandises": merchandiseId
+//                },
+                dataType: "json",
+                success: function (data) {
+                    if(data!=0){
+                       $.each(data,function (i,time) {
+                           $("#"+time.merchandiseId).remove();
+                       })
+                        alert("商品信息删除成功")
+//                        window.location.reload();
                     }else {
-                        alert("修改用户信息失败")
+                        alert("商品信息删除失败")
                     }
                 },
                 error: function () {

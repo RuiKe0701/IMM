@@ -93,6 +93,29 @@ public class MerchandiseController {
         printWriter.flush();
         printWriter.close();
     }
+    /* 删除商品信息
+     */
+    @RequestMapping(value = "/deleteMerchandise.do")
+    public void  deleteMerchandise(Merchandise merchandises,PrintWriter printWriter){
+        int i =0;
+        merchandises.setMerchandiseState(1);
+            i=merchandiseService.updateMerchandise(merchandises);
+        if(i>0){
+            Merchandise s=new Merchandise();
+            s.setMerchandiseState(1);
+            List<Merchandise> mm =merchandiseService.selectMerchandise(s);
+            //返回值
+            String jsonString = JSON.toJSONString(mm);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+        }
+
+        String jsonString = JSON.toJSONString(0);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+    }
 //    @RequestMapping(value = "/dmerchandise.do")
 //    public String delete(Merchandise merchandise){
 //        int i =merchandiseService.updateMerchandise(merchandise);
