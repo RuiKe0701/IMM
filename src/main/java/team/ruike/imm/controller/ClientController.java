@@ -50,11 +50,7 @@ public class ClientController {
                 //返回值
                 String jsonString = JSON.toJSONString(clients);
                 printWriter.write(jsonString);
-                printWriter.flush();
-                printWriter.close();
         }
-        String jsonString = JSON.toJSONString(1);
-        printWriter.write(jsonString);
         printWriter.flush();
         printWriter.close();
     }
@@ -78,12 +74,8 @@ public class ClientController {
                 //返回值
                 String jsonString = JSON.toJSONString(clients);
                 printWriter.write(jsonString);
-                printWriter.flush();
-                printWriter.close();
             }
         }
-        String jsonString = JSON.toJSONString(1);
-        printWriter.write(jsonString);
         printWriter.flush();
         printWriter.close();
     }

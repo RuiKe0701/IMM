@@ -81,7 +81,7 @@
 
     <div class="bill-ser-botm cf">
         <div class="fr ml10">
-            <button type="button"  class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
+            <button type="button" id="addClient" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
             <a class="btn btn-info"name="jin" id="btn-disable"><span class="">终止合作</span></a>
             <a class="btn btn-info" id="btn-enable"><span class="">启用合作</span></a>
         </div>
@@ -168,16 +168,19 @@
                         <input  id="addname" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                     </div>
                     <span  class="reminder" id="Divname">&nbsp;</span>
+                    <br>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">负责人名称</span>
                         <input  id="addpersonInCharge"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
                     </div>
                     <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
+                <br>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">负责人职称</span>
                         <input  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                      </div>
                 <span  class="reminder" id="Divpost">&nbsp;</span>
+                <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
@@ -188,25 +191,22 @@
                     <span class="input-group-addon" style="width: 81px;">送货地址</span>
                     <input  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
                 </div>
-                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span>
-                <br>
+                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
                     <input  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
-               <span  class="reminder" id="DivmobilePhone">&nbsp;</span>
-                <br>
+               <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
                     <input  id="addphone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
-                <span  class="reminder" id="Divphone">&nbsp;</span>
-                <br>
+                <span  class="reminder" id="Divphone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
                     <input  id="addfax" value="暂无" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
                 </div>
-                <span class="reminder" id="Divfax">&nbsp;</span>
+                <span class="reminder" id="Divfax">&nbsp;</span> <br>
                 <div class="input-group" style="display: none">
                     <span class="input-group-addon" style="width: 81px;">是否已删除</span>
                     <input  id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
@@ -239,35 +239,43 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="remindername">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人名称</span>
                     <input  id="updatepersonInCharge"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderpersonInCharge">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人职称</span>
                     <input  id="updatepost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderpost">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input  id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderaddress">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">送货地址</span>
                     <input  id="updatefactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderfactoryAddress">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
                     <input  id="updatemobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="remindermobilePhone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
                     <input  id="updatephone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderphone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
                     <input  id="updatefax"  type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderfax">&nbsp;</span><br>
             </div>
             <div class="modal-footer">
                 <button type="button" id="closeUpdate" class="btn btn-default" data-dismiss="modal">关闭

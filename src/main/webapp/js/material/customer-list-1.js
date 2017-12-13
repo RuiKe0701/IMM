@@ -1,5 +1,5 @@
-//验证客户名称
-function checkName() {
+//验证添加客户名称
+function checkAddName() {
     var $fname = $("#addname");
     var $divID = $("#Divname");
     $divID.html("");
@@ -9,8 +9,8 @@ function checkName() {
     }
     return true;
 }
-//验证负责人名称
-function checkPersonInCharge() {
+//验证添加负责人名称
+function checkAddPersonInCharge() {
     var $fname = $("#addpersonInCharge");
     var $divID = $("#DivpersonInCharge");
     $divID.html("");
@@ -20,8 +20,8 @@ function checkPersonInCharge() {
     }
     return true;
 }
-//验证负责人职称
-function checkPost() {
+//验证添加负责人职称
+function checkAddPost() {
     var $fname = $("#addpost");
     var $divID = $("#Divpost");
     $divID.html("");
@@ -31,8 +31,8 @@ function checkPost() {
     }
     return true;
 }
-//验证客户地址
-function checkAddress() {
+//验证添加客户地址
+function checkAddAddress() {
     var $fname = $("#addaddress");
     var $divID = $("#Divaddress");
     $divID.html("");
@@ -42,8 +42,8 @@ function checkAddress() {
     }
     return true;
 }
-//验证送货地址
-function checkFactoryAddress() {
+//验证添加送货地址
+function checkAddFactoryAddress() {
     var $fname = $("#addfactoryAddress");
     var $divID = $("#DivfactoryAddress");
     $divID.html("");
@@ -53,8 +53,8 @@ function checkFactoryAddress() {
     }
     return true;
 }
-//验证移动电话
-function checkMobilePhone() {
+//验证添加移动电话
+function checkAddMobilePhone() {
     var $fname = $("#addmobilePhone");
     var $divID = $("#DivmobilePhone");
     $divID.html("");
@@ -64,8 +64,8 @@ function checkMobilePhone() {
     }
     return true;
 }
-//验证电话
-function checkPhone() {
+//验证添加电话
+function checkAddPhone() {
     var $fname = $("#addphone");
     var $divID = $("#Divphone");
     $divID.html("");
@@ -75,8 +75,8 @@ function checkPhone() {
     }
     return true;
 }
-//验证传真
-function checkFax() {
+//验证添加传真
+function checkAddFax() {
     var $fname = $("#addfax");
     var $divID = $("#Divfax");
     $divID.html("");
@@ -86,6 +86,97 @@ function checkFax() {
     }
     return true;
 }
+
+
+//验证修改客户名称
+function checkUpdateName() {
+    var $fname = $("#updatename");
+    var $divID = $("#remindername");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("客户名称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改负责人名称
+function checkUpdatePersonInCharge() {
+    var $fname = $("#updatepersonInCharge");
+    var $divID = $("#reminderpersonInCharge");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("负责人名称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改负责人职称
+function checkUpdatePost() {
+    var $fname = $("#updatepost");
+    var $divID = $("#reminderpost");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("负责人职称不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改客户地址
+function checkUpdateAddress() {
+    var $fname = $("#updateaddress");
+    var $divID = $("#reminderaddress");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("客户地址不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改送货地址
+function checkUpdateFactoryAddress() {
+    var $fname = $("#updatefactoryAddress");
+    var $divID = $("#reminderfactoryAddress");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("送货地址不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改移动电话
+function checkUpdateMobilePhone() {
+    var $fname = $("#updatemobilePhone");
+    var $divID = $("#remindermobilePhone");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("移动电话不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改电话
+function checkUpdatePhone() {
+    var $fname = $("#updatephone");
+    var $divID = $("#reminderphone");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("电话不能为空");
+        return false;
+    }
+    return true;
+}
+//验证修改传真
+function checkUpdateFax() {
+    var $fname = $("#updatefax");
+    var $divID = $("#reminderfax");
+    $divID.html("");
+    if ($fname.val() == "") {
+        $divID.html("传真不能为空");
+        return false;
+    }
+    return true;
+}
+
 $(function () {
     //修改为不合作客户
     $("#btn-disable").click(function () {
@@ -112,7 +203,6 @@ $(function () {
                                 $("#"+data[i].clientId).remove();
                             }
                         }
-                        alert("修改合作关系成功")
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -121,25 +211,25 @@ $(function () {
             }
         });
     })
-    //添加用户信息
+    //添加客户信息
     $("#insert").click(function () {
-        $("#addname").blur(checkName);
-        $("#addpersonInCharge").blur(checkPersonInCharge);
-        $("#addpost").blur(checkPost);
-        $("#addaddress").blur(checkAddress);
-        $("#addfactoryAddress").blur(checkFactoryAddress);
-        $("#addmobilePhone").blur(checkMobilePhone);
-        $("#addphone").blur(checkPhone);
-        $("#addfax").blur(checkFax);
+        $("#addname").blur(checkAddName);
+        $("#addpersonInCharge").blur(checkAddPersonInCharge);
+        $("#addpost").blur(checkAddPost);
+        $("#addaddress").blur(checkAddAddress);
+        $("#addfactoryAddress").blur(checkAddFactoryAddress);
+        $("#addmobilePhone").blur(checkAddMobilePhone);
+        $("#addphone").blur(checkAddPhone);
+        $("#addfax").blur(checkAddFax);
             var flag = true;
-            if (!checkName()) flag = false;
-            if (!checkPersonInCharge()) flag = false;
-        if (!checkPost()) flag = false;
-        if (!checkAddress()) flag = false;
-        if (!checkFactoryAddress()) flag = false;
-        if (!checkMobilePhone()) flag = false;
-        if (!checkPhone()) flag = false;
-        if (!checkFax()) flag = false;
+            if (!checkAddName()) flag = false;
+            if (!checkAddPersonInCharge()) flag = false;
+        if (!checkAddPost()) flag = false;
+        if (!checkAddAddress()) flag = false;
+        if (!checkAddFactoryAddress()) flag = false;
+        if (!checkAddMobilePhone()) flag = false;
+        if (!checkAddPhone()) flag = false;
+        if (!checkAddFax()) flag = false;
             if(flag != false){
                 var clients = new Array();
                 var object =new Object();
@@ -163,7 +253,6 @@ $(function () {
                     dataType: "json",
                     success: function (data) {
                         $("#closeAdd").click();
-                        alert("添加成功")
                         var str = "";
                         if(data!=0){
                             var da = eval(data);
@@ -204,10 +293,26 @@ $(function () {
                 })
             }
         })
-
-
-    //修改用户信息
+    //修改客户信息
     $("#updates").click(function () {
+        $("#updatename").blur(checkUpdateName);
+        $("#updatepersonInCharge").blur(checkUpdatePersonInCharge);
+        $("#updatepost").blur(checkUpdatePost);
+        $("#updateaddress").blur(checkUpdateAddress);
+        $("#updatefactoryAddress").blur(checkUpdateFactoryAddress);
+        $("#updatemobilePhone").blur(checkUpdateMobilePhone);
+        $("#updatephone").blur(checkUpdatePhone);
+        $("#updatefax").blur(checkUpdateFax);
+        var flag = true;
+        if (!checkUpdateName()) flag = false;
+        if (!checkUpdatePersonInCharge()) flag = false;
+        if (!checkUpdatePost()) flag = false;
+        if (!checkUpdateAddress()) flag = false;
+        if (!checkUpdateFactoryAddress()) flag = false;
+        if (!checkUpdateMobilePhone()) flag = false;
+        if (!checkUpdatePhone()) flag = false;
+        if (!checkUpdateFax()) flag = false;
+        if(flag != false){
         var clients = new Array();
         var object =new Object();
         object.clientId= $("#updateid").val();
@@ -268,11 +373,13 @@ $(function () {
                 alert("系统异常，请稍后重试！");
             }
         })
+        }
     })
-    //查看终止合作的
+    //查看终止合作的客户
     $("#termination").click(function () {
         var clientState=this.name;
         document.getElementById("btn-disable").setAttribute("disabled",true);
+        document.getElementById("addClient").setAttribute("disabled",true);
         $("#btn-enable").attr("disabled",false);
         $.ajax({
             type:"post",
@@ -311,11 +418,12 @@ $(function () {
             }
         })
     })
-
-    //        查看在合作
+    //查看在合作客户
     $("#cooperation").click(function () {
         var clientState=this.name;
         document.getElementById("btn-enable").setAttribute("disabled",true);
+
+        $("#addClient").attr("disabled",false);
         $("#btn-disable").attr("disabled",false);
         $.ajax({
             type:"post",
