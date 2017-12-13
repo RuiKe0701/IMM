@@ -67,7 +67,7 @@ public class SalesController {
         Sales s=sa.get(0);
         int i = salesService.insertSales(s);
         System.out.println(i);
-        ArrayList<Sales> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<Sales>>(){});
+        ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
         salesInformationService.insertAll(salesInformations);
     }
 
