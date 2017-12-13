@@ -86,6 +86,14 @@
                         </c:forEach>
                     </select><br>
                 </li>
+                <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
+                    <select name="unitsId" style="width:115px;height: 32px">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${sale}" var="s">
+                            <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
+                        </c:forEach>
+                    </select><br>
+                </li>
                 <div class="btns"><a class="ui-btn mrb ui-btn-search" id="filter-submit">查询</a></div>
             </ul>
         </div>
@@ -130,7 +138,7 @@
                 <td>${m.salesStatus.salesStatusName}</td>
                 <td style="display: none">${m.merchandiseState}</td>
                 <td style="width: 120px;text-align: center">
-                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#Update" ><span class="up">修改</span></button>
+                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
@@ -139,7 +147,7 @@
 </div>
 <!--新增-->
 <!--修改-->
-<div class="modal fade" id="Update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -179,7 +187,6 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品单位</span>
                     <select id="updateunitsId" name="productTypeId" class="form-control"  style="width:487px;">
-
                         <c:forEach items="${unis}" var="u">
                             <option value="${u.unitsId}" >${u.unitsName}</option>
                         </c:forEach>
@@ -192,11 +199,10 @@
                 </div>
                 <br>
                 <div class="input-group">
-                <span class="input-group-addon" style="width: 81px;">安全库存</span>
-                <input  id="updatemerchandiseSafetyStock" type="text" class="form-control"  style="width:200px;">
+                    <span class="input-group-addon" style="width: 81px;">安全库存</span>
+                    <input  id="updatemerchandiseSafetyStock" type="text" class="form-control"  style="width:200px;">
                     <span class="input-group-addon" style="width: 81px;">商品库存</span>
                     <input  id="updatemerchandiseActualQuntity" type="text" class="form-control"  style="width:200px;">
-
                 </div>
                 <br>
                 <div class="input-group">
@@ -225,88 +231,26 @@
     </div><!-- /.modal -->
 </div>
 <!--删除-->
-<div id="COMBO_WRAP">
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 175px; display: none;">
-        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
-            <div class="list-item" data-value="129609203891259700">CK001 默认仓库</div>
-        </div>
-    </div>
-</div>
-<div class="pika-single is-hidden is-bound" style=""></div>
-<div class="pika-single is-hidden is-bound" style=""></div>
-<ul id="tree9043" class="ztree ztreeCombo showRoot" style="max-height: 200px; top: 143px; left: 524px; width: 250px;">
-    <li id="tree9043_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="tree9043_1_switch" title=""
-                                                                                       class="button level0 switch root_docu"
-                                                                                       treenode_switch=""></span><a
-            id="tree9043_1_a" class="level0" treenode_a="" onclick="" target="_blank" style=""><span id="tree9043_1_ico"
-                                                                                                     title=""
-                                                                                                     treenode_ico=""
-                                                                                                     class="button ico_docu"
-                                                                                                     style=""></span><span
-            id="tree9043_1_span"></span></a></li>
-</ul>
-<div style="position: absolute; left: -9999em; top: 208px; visibility: visible; width: auto; z-index: 1976;">
-    <table class="ui_border ui_state_visible ui_state_focus">
-        <tbody>
-        <tr>
-            <td class="ui_lt"></td>
-            <td class="ui_t"></td>
-            <td class="ui_rt"></td>
-        </tr>
-        <tr>
-            <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;">视窗</div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;">
-                                    <div class="ui_loading"><span>loading...</span></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div  class="modal fade" id="myDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" >
+                            确定删除${merchandiseName}吗
+                    </h4>
                 </div>
-            </td>
-            <td class="ui_r"></td>
-        </tr>
-        <tr>
-            <td class="ui_lb"></td>
-            <td class="ui_b"></td>
-            <td class="ui_rb" style="cursor: auto;"></td>
-        </tr>
-        </tbody>
-    </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        确定
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
 </div>
 <script src="../../js/jquery.min.js?v=2.1.4"></script>
 <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
@@ -396,7 +340,7 @@
         //修改商品信息
         $("#updates").click(function () {
             var merchandise = new Array();
-            var object=new object();
+            var object=new Object();
             object.merchandiseId=$("#updatemerchandiseId").val();
             object.merchandiseCode=$("#updatemerchandiseCode").val()
             object.merchandiseName=$("#updatemerchandiseName").val()
@@ -404,36 +348,32 @@
             object.productTypeId=$("#updateproductTypeId").val();
             object.unitsId=$("#updateunitsId").val();
             object.merchandisePlaceOfOsrigin=$("#updatemerchandisePlaceOfOsrigin").val();
-            object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock")
+            object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock").val();
             object.merchandiseActualQuntity=$("#updatemerchandiseActualQuntity").val();
             object.merchandiseSalsePrice=$("#updatemerchandiseSalsePrice").val();
             object.salesStatusId=$("#updatesalesStatusId").val();
             merchandise.push(object);
             var merchandiseList=JSON.stringify(merchandise);
             $.ajax({
-                type:"post",
-                url:"/merchandise/updateMerchandise.do",
-                data:{
-                    "merchandiseList":merchandiseList
+                type: "post",
+                url: "/merchandise/updateMerchandise.do",
+                data: {
+                    "merchandises": merchandiseList
                 },
-                dataType:"json",
-                success:function (data) {
+                dataType: "json",
+                success: function (data) {
                     if(data!=0){
-                        alert("商品信息修改成功！")
-                    }else{
-                        alert("商品信息修改失败！")
+                        alert("修改用户信息成功")
+                        window.location.reload();
+                    }else {
+                        alert("修改用户信息失败")
                     }
                 },
-                error:function () {
-                    alert("系统出现异常！")
+                error: function () {
+                    alert("系统异常，请稍后重试！");
                 }
             })
-
         })
     }
-
-</script>
-<script type="text/javascript">
-
 </script>
 </html>

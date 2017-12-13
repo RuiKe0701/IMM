@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,9 +35,6 @@ public class MerchandiseController {
 
     /**
      * 查询商品信息
-     * @param merchandise
-     * @param session
-     * @return
      */
     @RequestMapping(value = "/smerchandise.do")
     public String select(Merchandise merchandise, HttpSession session){
@@ -54,8 +50,6 @@ public class MerchandiseController {
     }
     /**
      * 要被修改的商品信息
-     * @param merchandise
-     * @param printWriter
      */
     @RequestMapping(value = "/merchandiseId.do")
     public void updatemerchandiseId(Merchandise merchandise,PrintWriter printWriter){
@@ -74,6 +68,10 @@ public class MerchandiseController {
             printWriter.close();
         }
     }
+
+    /**
+     * 修改商品信息
+     */
     @RequestMapping(value = "/updateMerchandise.do")
     public void  updateMerchandise(String merchandises,PrintWriter printWriter){
         int i =0;
@@ -95,74 +93,61 @@ public class MerchandiseController {
         printWriter.flush();
         printWriter.close();
     }
-    @RequestMapping(value = "/dmerchandise.do")
-    public String delete(Merchandise merchandise){
-        int i =merchandiseService.updateMerchandise(merchandise);
-        if(i>0){
-            return "page/warehouse/goods-balance" ;
-        }
-        return null;
-    }
-
-
-
-
-
-    @RequestMapping(value = "iMerchandise.do")
-    public String insertMerchandise(Merchandise merchandise,HttpSession session){
-        System.out.println(merchandise.getSalesStatus());
-        int i =merchandiseService.insertMerchandise(merchandise);
-        if(i>0){
-            return "success";
-        }
-        return "fail";
-    }
-    @RequestMapping(value = "insertMerchandises.do")
-    public String insertMerchandise(HttpSession session){
-        List<Units> u = unitsService.selectUnits(null);
-        List<ProductType> t = productTypeService.selectProductType(null);
-        if(u!=null && t!=null) {
-            session.setAttribute("u",u);
-            session.setAttribute("type",t);
-            return "iMerchandise";
-        }
-        return "nothing";
-    }
-    @RequestMapping(value = "suMerchandise.do")
-    public String suMerchandise(Merchandise merchandise,HttpSession session){
-        List<Merchandise> merchandises=merchandiseService.selectMerchandise(merchandise);
-        if(merchandises!=null){
-            session.setAttribute("m",merchandises);
-            return "uMerchandise";
-        }
-        return null;
-    }
-    @RequestMapping(value = "aa.do")
-    public String updateMerchandise(Merchandise merchandise, Model model){
-        int m=merchandiseService.updateMerchandise(merchandise);
-        if(m>0){
-            return "success";
-        }
-        return "fail";
-    }
-    @RequestMapping(value = "updateMerchandises.do")
-    public String updateMerchandises(Merchandise mer,HttpSession session){
-        session.setAttribute("m",mer);
-        List<Units> u = unitsService.selectUnits(null);
-        List<ProductType> t = productTypeService.selectProductType(null);
-        if(u!=null && t!=null) {
-            session.setAttribute("u", u);
-            session.setAttribute("type", t);
-            return "um";
-        }
-        return null;
-    }
-    //倪嗣承ajax根据id获取信息
-    @RequestMapping(value = "ajaxMerchand.do")
-    @ResponseBody
-    public void ajaxMerchand(@RequestParam(value = "id",required = false) Integer id){
-        System.out.println("11111111111111111111111111111111111111111111111");
-        System.out.println(id);
-        //JSON.toJSON();
-    }
+//    @RequestMapping(value = "/dmerchandise.do")
+//    public String delete(Merchandise merchandise){
+//        int i =merchandiseService.updateMerchandise(merchandise);
+//        if(i>0){
+//            return "page/warehouse/goods-balance" ;
+//        }
+//        return null;
+//    }
+//    @RequestMapping(value = "iMerchandise.do")
+//    public String insertMerchandise(Merchandise merchandise){
+//        System.out.println(merchandise.getSalesStatus());
+//        int i =merchandiseService.insertMerchandise(merchandise);
+//        if(i>0){
+//            return null;
+//        }
+//        return null;
+//    }
+//    @RequestMapping(value = "insertMerchandises.do")
+//    public String insertMerchandise(HttpSession session){
+//        List<Units> u = unitsService.selectUnits(null);
+//        List<ProductType> t = productTypeService.selectProductType(null);
+//        if(u!=null && t!=null) {
+//            session.setAttribute("u",u);
+//            session.setAttribute("type",t);
+//            return null;
+//        }
+//        return null;
+//    }
+//    @RequestMapping(value = "suMerchandise.do")
+//    public String suMerchandise(Merchandise merchandise,HttpSession session){
+//        List<Merchandise> merchandises=merchandiseService.selectMerchandise(merchandise);
+//        if(merchandises!=null){
+//            session.setAttribute("m",merchandises);
+//            return null;
+//        }
+//        return null;
+//    }
+//    @RequestMapping(value = "aa.do")
+//    public String updateMerchandise(Merchandise merchandise){
+//        int m=merchandiseService.updateMerchandise(merchandise);
+//        if(m>0){
+//            return null;
+//        }
+//        return null;
+//    }
+//    @RequestMapping(value = "updateMerchandises.do")
+//    public String updateMerchandises(Merchandise mer,HttpSession session){
+//        session.setAttribute("m",mer);
+//        List<Units> u = unitsService.selectUnits(null);
+//        List<ProductType> t = productTypeService.selectProductType(null);
+//        if(u!=null && t!=null) {
+//            session.setAttribute("u", u);
+//            session.setAttribute("type", t);
+//            return null;
+//        }
+//        return null;
+//    }
 }
