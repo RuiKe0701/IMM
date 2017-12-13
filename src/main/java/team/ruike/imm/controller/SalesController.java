@@ -27,16 +27,10 @@ public class SalesController {
     ClientService clientService;
 
     @Autowired
-    ProcurementService procurementService;
-
-    @Autowired
     EmployeeService employeeService;
 
     @Autowired
     MerchandiseService merchandiseService;
-
-    @Autowired
-    ProcurementInformationService procurementInformationService;
 
     @Autowired
     SalesInformationService salesInformationService;
@@ -51,7 +45,7 @@ public class SalesController {
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
-        String id=procurementService.purchaseId();
+        String id=salesService.salesId();
         model.addAttribute("purId",id);
         model.addAttribute("clientss",clientList);
         model.addAttribute("employeess",employeeList);
@@ -65,6 +59,16 @@ public class SalesController {
     public Object ajaxMerchand(Merchandise merchandise){
         Merchandise merchandises=merchandiseService.selectOne(merchandise);
         return JSON.toJSONString(merchandises);
+    }
+
+    @RequestMapping(value = "saveSaveInformationList.do",produces="text/html;charset=UTF-8")
+    public void saveProcurementInformationList(String saveInformationList,String saveList){
+        ArrayList<Sales> sa =  JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
+        Sales s=sa.get(0);
+        int i = salesService.insertSales(s);
+        System.out.println(i);
+        ArrayList<Sales> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<Sales>>(){});
+        salesInformationService.insertAll(salesInformations);
     }
 
 }

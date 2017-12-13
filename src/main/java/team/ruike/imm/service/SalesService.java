@@ -25,4 +25,6 @@ public interface SalesService {
      * @return
      */
     public int insertSales(Sales sales);
+
+    String salesId();
 }

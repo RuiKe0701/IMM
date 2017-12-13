@@ -155,15 +155,14 @@
                             </select>
                         </div>
                     </dd>
-
                     <dd class="mr40" style="width: 240px">
                         <label><span class="red">*</span>销售人员:</label>
-                        <div class="input-group" style="width: 150px;float: right">
+                        <div class="input-group" style="width: 170px;float: right">
                             <select  class="selectpicker show-tick form-control" style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" name="supplierId">
-                                <c:forEach items="${employeess}" var="em">
-                                    <option value="${em.employeeId}">${em.employeeName}</option>
-                                </c:forEach>
-                            </select>
+                            <c:forEach items="${employeess}" var="em">
+                                <option value="${em.employeeId}">${em.employeeName}</option>
+                            </c:forEach>
+                        </select>
                         </div>
                     </dd>
 
@@ -171,16 +170,13 @@
                         <label>单据日期:</label>
                         <input id="hello" class="">
                     </dd>
-                    <dd class="mr20 tc">
-                        <label>交货日期:</label>
-                        <input id="end" class="">
-                    </dd>
-                    <dd id="identifier" style="float:right">
-                        <label>单据编号:</label>
-                        <span id="number">XHDD20171121001</span>
+                    <dd id="identifier">
+                        <label >&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
+                        <input disabled="disabled" class="salesId" id="salesId" name="salesId" value="${purId}" />
                         <i id="editBills"></i>
-                        <i class="trigger"></i>
-                        </span>
+                        <span class="ui-combo-wrap" id="numberAuto" style="display: none;">
+              <i class="trigger"></i>
+            </span>
                     </dd>
                 </dl>
                 <hr class="hrcls">
@@ -238,66 +234,6 @@
                                 </tbody>
                             </table>
 
-                            <div class="ui-jqgrid-sdiv" style="width: 1307px;">
-                                <div class="ui-jqgrid-hbox">
-                                    <table role="grid" style="width:1392px" class="ui-jqgrid-ftable" cellspacing="0"
-                                           cellpadding="0" border="0">
-                                        <tbody>
-                                        <tr role="row" class="ui-widget-content footrow footrow-ltr">
-                                            <td role="gridcell" style="text-align:center;width: 25px;"
-                                                aria-describedby="grid_rn" class="ui-state-default jqgrid-rownum">
-                                                &nbsp;</td>
-                                            <td role="gridcell" style="text-align:left;width: 0px;"
-                                                aria-describedby="grid_operating">&nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 1px;"
-                                                aria-describedby="grid_goodId">&nbsp;</td>
-                                            <td role="gridcell" style="width: 300px;" class="goods"
-                                                aria-describedby="grid_goods">合计：
-                                            </td>
-                                            <td role="gridcell" style="display:none;width: 120px;"
-                                                aria-describedby="grid_barCode">&nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 150px;"
-                                                aria-describedby="grid_skuId">&nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 100px;"
-                                                class="ui-ellipsis skuInfo" aria-describedby="grid_skuName">&nbsp;</td>
-                                            <td role="gridcell" style="width: 80px;" aria-describedby="grid_mainUnit">
-                                                &nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 150px;"
-                                                aria-describedby="grid_unitId">&nbsp;</td>
-                                            <td role="gridcell" style="text-align:center;width: 20px;"
-                                                aria-describedby="grid_inventory">&nbsp;</td>
-                                            <td role="gridcell" style="width: 100px;" aria-describedby="grid_locationName">
-                                                &nbsp;</td>
-                                            <td role="gridcell" style="text-align:right;width: 80px;"
-                                                aria-describedby="grid_qty">0
-                                            </td>
-                                            <td role="gridcell" style="text-align:right;width: 100px;"
-                                                aria-describedby="grid_price">&nbsp;</td>
-                                            <td role="gridcell" style="text-align:right;width: 126px;"
-                                                aria-describedby="grid_discountRate">&nbsp;</td>
-                                            <td role="gridcell" style="text-align:right;display:none;width: 126px;"
-                                                aria-describedby="grid_goodsDiscountRate">&nbsp;</td>
-                                            <td role="gridcell" style="text-align:right;width: 126px;"
-                                                aria-describedby="grid_deduction">0.00
-                                            </td>
-                                            <td role="gridcell" style="display:none;width: 150px;"
-                                                aria-describedby="grid_prices">&nbsp;</td>
-                                            <td role="gridcell" style="text-align:right;width: 100px;"
-                                                aria-describedby="grid_amount">0.00
-                                            </td>
-                                            <td role="gridcell" style="width: 150px;" aria-describedby="grid_description">
-                                                &nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 150px;"
-                                                aria-describedby="grid_srcOrderEntryId">&nbsp;</td>
-                                            <td role="gridcell" style="display:none;width: 150px;"
-                                                aria-describedby="grid_srcOrderId">&nbsp;</td>
-                                            <td role="gridcell" style="width: 120px;" aria-describedby="grid_srcOrderNo">
-                                                &nbsp;</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                         <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
                     </div>
