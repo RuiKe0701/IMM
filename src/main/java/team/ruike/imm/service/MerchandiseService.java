@@ -14,6 +14,7 @@ public interface MerchandiseService {
      * @return
      */
     public List<Merchandise> selectMerchandise(Merchandise merchandise);
+    List<Merchandise> selectAll(Merchandise merchandise);
 
     /**
      * 查询

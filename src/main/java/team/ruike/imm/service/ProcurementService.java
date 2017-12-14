@@ -27,5 +27,5 @@ public interface ProcurementService {
      * @return
      */
     public int insertProcurement(Procurement procurement);
-    String purchaseId();
+    String purchaseId(String param);
 }

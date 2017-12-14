@@ -15,6 +15,7 @@ public interface MerchandiseDao {
      * @return
      */
     public List<Merchandise> selecrMerchandise(Merchandise merchandise);
+    List<Merchandise> selectAll(Merchandise merchandise);
 
     /**
      *指定条件修改商品信息

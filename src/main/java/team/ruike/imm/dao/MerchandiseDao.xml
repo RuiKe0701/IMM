@@ -30,7 +30,16 @@
             <result column="sales_status_state" property="salesStatusState" />
         </association>
     </resultMap>
-
+    <!--nsc 查询所有商品-->
+    <select id="selectAll" resultMap="merchandiseMap">
+        SELECT * FROM merchandise m
+        INNER JOIN units u on m.units_id=u.units_id
+        <where>
+            <if test="merchandiseId!=null and merchandiseId>0">
+             m.merchandise_id=#{merchandiseId}
+            </if>
+        </where>
+    </select>
     <!--指定条件查询商品信息-->
     <select id="selecrMerchandise" resultMap="merchandiseMap">
         select * from merchandise m,product_type p,units u,sales_status s
@@ -127,5 +136,7 @@
         insert into merchandise (merchandise-code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
         values (#{merchandiseCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
     </insert>
-
+    <select id="selectOne">
+        select * from merchandise
+    </select>
 </mapper>

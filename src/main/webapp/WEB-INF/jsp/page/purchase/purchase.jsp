@@ -27,7 +27,7 @@
             var i=7;
             $("#btnline").click(function () {
                 $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
-               i=i+1;
+                i=i+1;
             });
             $(".selectpicker").change(function () {
                 var id=$(this).val();
@@ -62,11 +62,11 @@
                 procurements.push(procurementList);
                 var procurement=JSON.stringify(procurements);
                 $(".trParam").each(function (index,data) {
-                   if($(data).find(".piVolume").val()==""){
-                       return false;
-                   }
-                   var procurementId=$(".procurementId").val();
-                   var merchandiseId=$(data).find(".selectpicker").val();
+                    if($(data).find(".piVolume").val()==""){
+                        return false;
+                    }
+                    var procurementId=$(".procurementId").val();
+                    var merchandiseId=$(data).find(".selectpicker").val();
                     var piVolume =$(data).find(".piVolume").val();
                     var piActualPrice =$(data).find(".piActualPrice").val();
                     var piTotalPrice =$(data).find(".piTotalPrice").val();
@@ -81,9 +81,9 @@
                     object.procurementId=procurementId;
                     object.unitsId=unitsId;
                     procurementInformation.push(object);
-                     procurementInformationList=JSON.stringify(procurementInformation);
+                    procurementInformationList=JSON.stringify(procurementInformation);
 
-                    })
+                })
                 $.ajax({
                     type: "post",
                     url: "/purchases/saveProcurementInformationList.do",
@@ -154,42 +154,42 @@
 
 <body style="">
 <form action="/purchases/saveSupplierorProcureMent.do" method="post">
-<div class="wrapper">
-    <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
-    <div class="bills cf">
-        <div class="con-header">
-            <dl class="cf">
-                <dd class="mr40" style="width: 360px">
-                    <input type="text" name="procurementEmployeeId" id="procurementEmployeeId" style="display:none;" value="${user.userId}"/>
-                    <label><span class="red">*</span>供应商:</label>
-                    <div class="input-group" style="width: 300px;float: right">
-                        <select  class="selectpicker show-tick form-control" style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" id="supplierId" name="supplierId">
-                               <c:forEach items="${supps}" var="su">`
-                                   <option value="${su.supplierId}">${su.supplierName}</option>
-                               </c:forEach>
-                        </select>
-                    </div>
-                <dd class="mr20">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>单据日期:</label>
-                    <input id="end" name="procurementDate" class="">
-                </dd>
-                <dd id="identifier">
-                    <label >&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
-                    <input disabled="disabled" class="procurementId" id="procurementId" name="procurementId" value="${purId}" />
-                    <i id="editBills"></i>
-                    <span class="ui-combo-wrap" id="numberAuto" style="display: none;">
+    <div class="wrapper">
+        <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
+        <div class="bills cf">
+            <div class="con-header">
+                <dl class="cf">
+                    <dd class="mr40" style="width: 360px">
+                        <input type="text" name="procurementEmployeeId" id="procurementEmployeeId" style="display:none;" value="${user.userId}"/>
+                        <label><span class="red">*</span>供应商:</label>
+                        <div class="input-group" style="width: 300px;float: right">
+                            <select  class="selectpicker show-tick form-control" style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" id="supplierId" name="supplierId">
+                                <c:forEach items="${supps}" var="su">`
+                                    <option value="${su.supplierId}">${su.supplierName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    <dd class="mr20">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>单据日期:</label>
+                        <input id="end" name="procurementDate" class="">
+                    </dd>
+                    <dd id="identifier">
+                        <label >&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
+                        <input disabled="disabled" class="procurementId" id="procurementId" name="procurementId" value="${purId}" />
+                        <i id="editBills"></i>
+                        <span class="ui-combo-wrap" id="numberAuto" style="display: none;">
               <i class="trigger"></i>
             </span>
-                </dd>
-            </dl>
-            <hr class="hrcls">
-        </div>
-        <div class="wrapper_con">
-            <span id="config" class="ui-config"><a href="#" class="ui-icon-config-new"></a></span>
-            <div class="grid-wrap">
-                <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-                     style="width: 1200px;">
-                    <div class="ui-jqgrid-view" id="gview_grid" style="width: 1200px;">
+                    </dd>
+                </dl>
+                <hr class="hrcls">
+            </div>
+            <div class="wrapper_con">
+                <span id="config" class="ui-config"><a href="#" class="ui-icon-config-new"></a></span>
+                <div class="grid-wrap">
+                    <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
+                         style="width: 1200px;">
+                        <div class="ui-jqgrid-view" id="gview_grid" style="width: 1200px;">
 
 
                             <table class="table table-bordered" >
@@ -214,12 +214,12 @@
                                         <td style="width: 30px;">${status.index}</td>
                                         <td>
                                             <div style="width: 150px">
-                                            <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
-                                            <option>请选择</option>
-                                            <c:forEach items="${merchandises}" var="mer">
-                                                <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
-                                            </c:forEach>
-                                        </select>
+                                                <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
+                                                    <option>请选择</option>
+                                                    <c:forEach items="${merchandises}" var="mer">
+                                                        <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                         </td>
                                         <td >
@@ -235,10 +235,10 @@
                                 </tbody>
                             </table>
 
-                        <div class="ui-jqgrid-sdiv" style="width: 1300px;">
-                            <div class="ui-jqgrid-hbox">
-                                <table class="table table-bordered">
-                                    <thead>
+                            <div class="ui-jqgrid-sdiv" style="width: 1300px;">
+                                <div class="ui-jqgrid-hbox">
+                                    <table class="table table-bordered">
+                                        <thead>
                                         <th style="font-size: 18px">
                                             合计：
                                         </th>
@@ -248,15 +248,15 @@
 
 
 
-                                    </thead>
-                                </table>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+                        <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
                     </div>
-                    <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
+                    <div id="page"></div>
                 </div>
-                <div id="page"></div>
-            </div>
 
             </div>
             <div id="mark"></div>
@@ -265,11 +265,11 @@
         <div class="con-footer cf">
 
             <div class="cf fr" style="float:right">
-               <input type="button" id="operaLog" class="ui-btn" value="提交"/>
+                <input type="button" id="operaLog" class="ui-btn" value="提交"/>
             </div>
         </div>
     </div>
-</div>
+    </div>
 </form>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
