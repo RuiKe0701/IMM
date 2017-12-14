@@ -58,6 +58,34 @@ public class SalesInformation extends PagerParameter implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
+
+    /**
+     * 总价
+     */
+    private double siTotalPrice;
+
+    /**
+     * 备注
+     */
+    private String siRemarks;
+
+
+    public double getSiTotalPrice() {
+        return siTotalPrice;
+    }
+
+    public void setSiTotalPrice(double siTotalPrice) {
+        this.siTotalPrice = siTotalPrice;
+    }
+
+    public String getSiRemarks() {
+        return siRemarks;
+    }
+
+    public void setSiRemarks(String siRemarks) {
+        this.siRemarks = siRemarks;
+    }
+
     public Integer getSiId() {
         return siId;
     }

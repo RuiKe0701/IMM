@@ -70,12 +70,12 @@
                 <div class="login_form">
                     <form  id="login"  action="/user/login.do" name="loginform" accept-charset="utf-8" class="loginForm" method="post">
                         <input type="hidden" name="did" value="0"/>
-                        <input type="hidden" name="to" value="log"/>
+                        <input type="hidden" name="to" value="log"/>a
                         <b id="hint">${hint}</b>
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips"   >帐号：</label>
                             <div class="inputOuter" id="uArea">
-                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="nisicheng" type="name" name="userName" class="inputstyle"  />
+                                <input id="u"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" value="a" type="name" name="userName" class="inputstyle"  />
                                 <span id="DivFname"></span>
                             </div>
                         </div>

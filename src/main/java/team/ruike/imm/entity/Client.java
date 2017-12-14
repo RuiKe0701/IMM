@@ -60,9 +60,22 @@ public class Client extends PagerParameter implements Serializable {
      */
     private String clientFactoryAddress;
     /**
-     * 是否已删除
+     * 是否合作
      */
     private Integer clientState;
+
+    /**
+     * 保存是否合作
+     */
+    private String State;
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
 
     public Integer getClientState() {
         return clientState;

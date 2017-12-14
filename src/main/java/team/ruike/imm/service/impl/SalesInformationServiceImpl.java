@@ -14,8 +14,13 @@ public class SalesInformationServiceImpl implements SalesInformationService {
     @Autowired
     SalesInformationDao salesInformationDao;
 
+
     public SalesInformationDao getSalesInformationDao() {
         return salesInformationDao;
+    }
+
+    public void insertAll(List<SalesInformation> salesInformations) {
+        salesInformationDao.insertAll(salesInformations);
     }
 
     public void setSalesInformationDao(SalesInformationDao salesInformationDao) {

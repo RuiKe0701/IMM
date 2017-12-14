@@ -27,5 +27,5 @@ public interface SupplierService {
      * @param supplier
      * @return
      */
-    public int insertSupplier(Supplier supplier);
+    public int insertSuplier(Supplier supplier);
 }
