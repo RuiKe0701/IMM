@@ -92,8 +92,8 @@
         </set>
     </update>
 
-    <insert id="insertSupplier" parameterType="supplier">
-        into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
+    <insert id="insertSuplier" parameterType="supplier">
+        insert supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
     </insert>
 </mapper>
 

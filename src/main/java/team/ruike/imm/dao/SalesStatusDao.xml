@@ -43,7 +43,7 @@
     </update>
 
     <insert id="insertSalesStatus" parameterType="salesStatus">
-        into sales_status values(default,#{salesStatusName},#{salesStatusState})
+        insert sales_status values(default,#{salesStatusName},#{salesStatusState})
     </insert>
 </mapper>
 

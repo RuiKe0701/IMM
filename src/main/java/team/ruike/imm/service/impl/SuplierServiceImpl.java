@@ -34,7 +34,7 @@ public class SuplierServiceImpl implements SupplierService {
         return 0;
     }
 
-    public int insertSupplier(Supplier supplier) {
-        return 0;
+    public int insertSuplier(Supplier supplier) {
+        return supplierDao.insertSuplier(supplier);
     }
 }

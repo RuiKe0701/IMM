@@ -80,7 +80,7 @@
         </set>
     </update>
     <insert id="insertSupplierProduct" parameterType="supplierProduct">
-        into supplier_product values(default,#{},,#{supplierProductPrice},#{supplierProductState})
+        insert supplier_product values(default,#{},,#{supplierProductPrice},#{supplierProductState})
     </insert>
 </mapper>
 

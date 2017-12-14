@@ -61,7 +61,7 @@
     </update>
 
     <insert id="insertRolePermissions" parameterType="rolePermissions">
-        into sales_information values(default,#{userId},#{PermissionsId},#{roleGive})
+        insert sales_information values(default,#{userId},#{PermissionsId},#{roleGive})
     </insert>
 </mapper>
 
