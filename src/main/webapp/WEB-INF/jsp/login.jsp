@@ -70,7 +70,7 @@
                 <div class="login_form">
                     <form  id="login"  action="/user/login.do" name="loginform" accept-charset="utf-8" class="loginForm" method="post">
                         <input type="hidden" name="did" value="0"/>
-                        <input type="hidden" name="to" value="log"/>
+                        <input type="hidden" name="to" value="log"/>a
                         <b id="hint">${hint}</b>
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips"   >帐号：</label>

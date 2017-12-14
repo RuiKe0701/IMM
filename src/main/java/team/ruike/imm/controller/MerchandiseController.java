@@ -48,8 +48,31 @@ public class MerchandiseController {
         session.setAttribute("sale",salesStatuses);
         return "page/warehouse/goods-balance";
     }
+    //按商品名关键字查询
+    @RequestMapping(value = "ajaxMerchand.do",produces="text/html;charset=UTF-8")
+            @ResponseBody
+            public Object ajaxMerchand(Merchandise merchandise){
+            Merchandise merchandises=merchandiseService.selectOne(merchandise);
+            return JSON.toJSONString(merchandises);
+            }
+    //按商品类型查询
+    @RequestMapping(value = "/selectType.do")
+    public void selectType(Merchandise merchandise,PrintWriter printWriter){
+        List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
+        System.out.println(merchandise.getMerchandiseName());
+        if(merchandises.size()>0){
+            String json = JSON.toJSONString(merchandises);
+            printWriter.write(json);
+            printWriter.flush();
+            printWriter.close();
+        }
+    }
+    //按单位查询
+    //@RequestMapping(value = "/merchandiseUnits.do")
+    //按销售状态查询
+    //@RequestMapping(value = "/merchandiseState.do")
     /**
-     * 要被修改的商品信息
+     * 查询被选中即将修改的商品的信息
      */
     @RequestMapping(value = "/merchandiseId.do")
     public void updatemerchandiseId(Merchandise merchandise,PrintWriter printWriter){
@@ -70,7 +93,7 @@ public class MerchandiseController {
     }
 
     /**
-     * 修改商品信息
+     * 修改被选中的商品的信息
      */
     @RequestMapping(value = "/updateMerchandise.do")
     public void  updateMerchandise(String merchandises,PrintWriter printWriter){

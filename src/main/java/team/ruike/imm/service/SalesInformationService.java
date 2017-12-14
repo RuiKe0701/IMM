@@ -1,5 +1,6 @@
 package team.ruike.imm.service;
 
+import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.SalesInformation;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface SalesInformationService {
      * @return
      */
     public List<SalesInformation> selectSalesInformation (SalesInformation salesInformation);
+    void  insertAll(List<SalesInformation> salesInformations);
 
     /**
      *  按指定条件修改销售订单详情
