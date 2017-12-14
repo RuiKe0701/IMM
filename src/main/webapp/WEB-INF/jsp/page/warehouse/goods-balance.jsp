@@ -22,6 +22,7 @@
           id="LayDateSkin">
     <link href="../../css/ui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/report.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/select/dist/css/bootstrap-select.css">
     <script src="${pageContext.request.contextPath }/js/warehousing/warehouse.js"></script>
     <style>
         .ui-icon-ellipsis {
@@ -53,16 +54,44 @@
     </style>
 </head>
 <body style="">
+
+
 <div class="wrapper">
+
+    <tr>
+        <td>
+            <div style="width: 150px">
+                <select class="selectpicker show-tick form-control"
+                        style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
+                        data-live-search="true" name="merchandiseId">
+                    <option>请选择</option>
+                    <c:forEach items="${merchandisess}" var="mer">
+                        <option class="aaa"
+                                value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </td>
+    </tr>
     <!-- header -->
     <div class="mod-search cf" id="report-search">
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
-                <li id="billNum" style="display: list-item;"><label>商品关键字</label>
-                    <input type="text" placeholder="请输入" value="" style="width:115px;">
+                <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
+                    <div style="width: 150px">
+                        <select class="selectpicker show-tick form-control"
+                                style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
+                                data-live-search="true" name="merchandiseId">
+                            <option>请选择</option>
+                            <c:forEach items="${merchandisess}" var="mer">
+                                <option class="aaa"
+                                        value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                 </li>
                 <li id="product" style="display: list-item;"><label>商品类型</label>
-                    <select name="productTypeId" style="width:115px;height: 32px">
+                    <select name="productTypeId" style="width:115px;height: 32px"onclick="selectType">
                         <option value="0">请选择</option>
                         <c:forEach items="${prod}" var="p">
                             <option value="${p.productTypeId}">${p.productTypeName}</option>
@@ -88,8 +117,6 @@
             </ul>
         </div>
     </div>
-    <!-- no data -->
-    <%--<div class="no-query"></div>--%>
 
     <table class="table table-striped" style="width: 1200px">
         <thead>
@@ -242,6 +269,7 @@
 </div>
 <script src="../../js/jquery.min.js?v=2.1.4"></script>
 <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath }/select/js/bootstrap-select.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {
@@ -442,5 +470,32 @@
             })
         })
     }
+    $(".selectpicker").change(function () {
+        var id = $(this).val();
+        var name = $(this);
+        $.ajax({
+            url: "/sales/ajaxMerchand.do",
+            data: {"merchandiseId": id},
+            dataType: "JSON",
+            success: function (date) {
+                name.parent().parent('td').next("td").find("input").val(date.units.unitsName);
+                name.parent().parent('td').next("td").find("input").eq(1).val(date.units.unitsId);
+            }
+        });
+    });
+    //通过商品类型查询商品信息的单机事件
+    $("#selectType").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/selectType",
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#updatemerchandiseId").val(item.merchandiseId)
+
+                }
+            },
+        })
+    })
 </script>
 </html>

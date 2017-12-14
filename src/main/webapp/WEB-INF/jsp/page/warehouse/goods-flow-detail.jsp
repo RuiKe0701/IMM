@@ -103,7 +103,6 @@
                 <span id="config" class="ui-config">
                   <a href="#" class="ui-icon-config-new"></a>列设置</span>
             </div>
-            <div class="grid-title flex">商品收发明细表</div>
             <div class="fr">
                 <a href="http://vip2-gd.youshang.com/report/pu-detail-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
                    class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
@@ -135,7 +134,6 @@
                             <th>单据号</th>
                             <th>业务类型</th>
                             <th>往来单位</th>
-                            <th>仓库</th>
                             <th>单位</th>
                             <th>备注</th>
                             <th>操作</th>
