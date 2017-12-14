@@ -90,13 +90,13 @@
     </insert>
 
     <!--批量添加 nsc-->
-    <insert id="insertAll" useGeneratedKeys="true"  parameterType="java.util.List">
-        insert into sales_information (sales_id,merchandise_id,si_volume,units_id,,si_remarks,si_state)
-        values
+    <insert id="insertAll"  parameterType="java.util.List">
+        insert into sales_information(sales_id,merchandise_id,si_volume,si_actual_price,si_totalprice,units_id,si_remarks,si_state)
+        VALUES
         <foreach collection="list" item="saveInformations" index="index" separator="," >
-            (#{saveInformations.salesId},#{saveInformations.merchandiseId},#{saveInformations.siVolume},#{saveInformations.unitsId},#{saveInformations.siRemarks},#{saveInformations.piRemarks},0);
+            (#{saveInformations.salesId},#{saveInformations.merchandiseId},#{saveInformations.siVolume},
+            #{saveInformations.siActualPrice},#{saveInformations.siTotalPrice},#{saveInformations.unitsId},#{saveInformations.siRemarks},0)
         </foreach>
-
     </insert>
 </mapper>
 

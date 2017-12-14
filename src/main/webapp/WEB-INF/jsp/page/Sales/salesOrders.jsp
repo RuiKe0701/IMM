@@ -43,6 +43,9 @@
                     }
                 });
             });
+
+
+
             $("#operaLog").click(function () {
                 if ($("#end").val() == "") {
                     alert("请选择日期");
@@ -51,7 +54,6 @@
                 var salesInformation = new Array();
                 var sales = new Array();
                 var clientId = $("#clientId").val();
-
                 var employeeId =$("#employeeId").val();
                 var salesDate = $("#end").val();
                 var salesId = $("#salesId").val();
@@ -61,7 +63,6 @@
                 salesList.salesDate = salesDate;
                 salesList.salesId = salesId;
                 sales.push(salesList);
-
                 $(".trParam").each(function (index, data) {
                     if ($(data).find(".siVolume").val() == "") {
                         return false;
@@ -83,21 +84,31 @@
                     object.siTotalPrice = siTotalPrice;
                     object.siRemarks = siRemarks;
                     salesInformation.push(object);
-                    var salesInformationList = JSON.stringify(salesInformation);
-                    var sale = JSON.stringify(sales);
-                    alert(salesInformationList);
-                    alert(sale);
-
-                    $.ajax({
-                        type: "post",
-                        url: "/sales/saveSaveInformationList.do",
-                        data: {
-                            "saveInformationList": salesInformationList,
-                            "saveList": sale,
-                        },
-                        dataType: "json"
-                    })
                 });
+
+                var salesInformationList = JSON.stringify(salesInformation);
+                alert(salesInformationList);
+                var sale = JSON.stringify(sales);
+                alert(sale);
+                $.ajax({
+                    type: "post",
+                    url: "/sales/saveSaveInformationList.do",
+                    data: {
+                        "saveInformationList": salesInformationList,
+                        "saveList": sale},
+                    async: false,
+                    dataType: "json",
+                    success:function (data) {
+                        if(data>0){
+                            alert("成功")
+                        }else {
+                            alert("失败")
+                        }
+                    },error:function () {
+                        alert("ss")
+                    }
+                })
+
             });
             $(".siActualPrice").blur(function () {
                 if ($(this).parent('td').prev("td").find("input").val() == "") {
@@ -150,7 +161,7 @@
 </head>
 
 <body style="">
-<form action="/sales/saveSaveInformationList.do" method="post">
+<form  >
 
     <div class="wrapper">
         <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
@@ -283,7 +294,7 @@
         <div class="con-footer cf">
 
             <div class="cf fr" style="float:right">
-                <input type="submit" id="operaLog" class="ui-btn" value="提交"/>
+                <input type="button" id="operaLog" class="ui-btn" value="提交"/>
             </div>
         </div>
     </div>
