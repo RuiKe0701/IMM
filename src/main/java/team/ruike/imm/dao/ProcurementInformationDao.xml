@@ -101,7 +101,10 @@
         insert into procurement_information (procurement_id,merchandise_id,pi_actual_price,pi_volume,units_id,pi_state,pi_remarks)
         values
         <foreach collection="list" item="procurementInformations" index="index" separator="," >
-            (#{procurementInformations.procurementId},#{procurementInformations.merchandiseId},#{procurementInformations.piActualPrice},#{procurementInformations.piVolume},#{procurementInformations.unitsId},0,#{procurementInformations.piRemarks});
+            (#{procurementInformations.procurementId},
+            #{procurementInformations.merchandiseId},#{procurementInformations.piActualPrice},
+            #{procurementInformations.piVolume},#{procurementInformations.unitsId},
+            0,#{procurementInformations.piRemarks});
         </foreach>
 
     </insert>

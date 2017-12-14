@@ -50,13 +50,19 @@ public class PurchaseController {
         Merchandise merchandises=merchandiseService.selectOne(merchandise);
         return JSON.toJSONString(merchandises);
     }
+    private int s=0;
     @RequestMapping(value = "saveProcurementInformationList.do",produces="text/html;charset=UTF-8")
     public void saveProcurementInformationList(String procurementInformationList,String procurementList){
+        s++;
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(procurementInformationList);
+        System.out.println(s);
         ArrayList<Procurement> pr =  JSON.parseObject(procurementList, new TypeReference<ArrayList<Procurement>>(){});
         Procurement p=pr.get(0);
         int i=procurementService.insertProcurement(p);
         System.out.println(i);
         ArrayList<ProcurementInformation> procurementInformations =  JSON.parseObject(procurementInformationList, new TypeReference<ArrayList<ProcurementInformation>>(){});
+
        procurementInformationService.insertAll(procurementInformations);
     }
     @RequestMapping(value = "showPurchaseSales.do")
