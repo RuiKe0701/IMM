@@ -139,7 +139,7 @@
                             <td  id="supplierState">已终止</td>
                         </c:if>
                         <td  >
-                            <button type="button" id="${s.supplierId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                            <button type="button" onclick="gainclient(${s.supplierId})" id="${s.supplierId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
                         </td>
                     </tr>
                 </c:if>

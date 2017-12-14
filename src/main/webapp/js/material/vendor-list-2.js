@@ -211,7 +211,7 @@ $(function () {
             }
         });
     })
-    //添加客户信息
+    //添加供应商信息
     $("#insert").click(function () {
         $("#addname").blur(checkAddName);
         $("#addpersonInCharge").blur(checkAddPersonInCharge);
@@ -257,6 +257,7 @@ $(function () {
                     if(data!=0){
                         var da = eval(data);
                         $("#tbod").html("");
+                        alert("adsa");
                         $.each(da,function (i,item) {
                             str+="<tr id="+item.supplierId+" class='clients'>" +
                                 "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
@@ -269,7 +270,7 @@ $(function () {
                                 "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
                                 "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
                                 "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                                "                <td  id=\"supplierState\">"+item.state+"</td>\n"+
+                                "                <td  id=\"State\">"+item.state+"</td>\n"+
                                 "                <td  >\n" +
                                 "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
                                 "                </td>\n" +
@@ -316,14 +317,14 @@ $(function () {
             var clients = new Array();
             var object =new Object();
             object.clientId= $("#updateid").val();
-            object.clientName= $("#updatename").val();
-            object.clientPersonInCharge= $("#updatepersonInCharge").val();
-            object.clientPost= $("#updatepost").val();
-            object.clientAddress= $("#updateaddress").val();
-            object.clientFactoryAddress= $("#updatefactoryAddress").val();
-            object.clientMobilePhone= $("#updatemobilePhone").val();
-            object.clientPhone= $("#updatephone").val();
-            object.clientFax= $("#updatefax").val();
+            object.supplierName= $("#updatename").val();
+            object.supplierPersonInCharge= $("#updatepersonInCharge").val();
+            object.supplierPost= $("#updatepost").val();
+            object.supplierAddress= $("#updateaddress").val();
+            object.supplierFactoryAddress= $("#updatefactoryAddress").val();
+            object.supplierMobilePhone= $("#updatemobilePhone").val();
+            object.supplierPhone= $("#updatephone").val();
+            object.supplierFax= $("#updatefax").val();
             clients.push(object);
             var clientList = JSON.stringify(clients);
             $.ajax({
@@ -340,20 +341,20 @@ $(function () {
                         var da = eval(data);
                         $("#tbod").html("");
                         $.each(da,function (i, item) {
-                            str+="<tr id="+item.clientId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                                "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                                "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                                "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                                "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                                "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                                "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                                "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                                "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                                "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                                "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+                            str+="<tr id="+item.supplierId+" class='clients'>" +
+                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
+                                "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
+                                "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
+                                "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
+                                "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
+                                "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
+                                "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
+                                "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
+                                "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
+                                "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
+                                "                <td  id=\"State\">"+item.state+"</td>\n"+
                                 "                <td  >\n" +
-                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                                "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
                                 "                </td>\n" +
                                 "            </tr>";
                         })
@@ -391,20 +392,20 @@ $(function () {
                     var da = eval(data);
                     $("#tbod").html("");
                     $.each(da,function (i, item) {
-                        str+="<tr id="+item.clientId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                            "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                            "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                            "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                            "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                            "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                            "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                            "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                            "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                            "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                            "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+                        str+="<tr id="+item.supplierId+" class='clients'>" +
+                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
+                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
+                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
+                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
+                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
+                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
+                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
+                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
+                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
+                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
+                            "                <td  id=\"State\">"+item.state+"</td>\n"+
                             "                <td  >\n" +
-                            "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
                             "                </td>\n" +
                             "            </tr>";
                     })
@@ -435,20 +436,20 @@ $(function () {
                     var da = eval(data);
                     $("#tbod").html("");
                     $.each(da,function (i, item) {
-                        str+="<tr id="+item.clientId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                            "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                            "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                            "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                            "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                            "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                            "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                            "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                            "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                            "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                            "                <td  id=\"clientState\">"+item.state+"</td>\n"+
+                        str+="<tr id="+item.supplierId+" class='clients'>" +
+                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
+                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
+                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
+                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
+                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
+                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
+                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
+                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
+                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
+                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
+                            "                <td  id=\"State\">"+item.state+"</td>\n"+
                             "                <td  >\n" +
-                            "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
                             "                </td>\n" +
                             "            </tr>";
                     })
@@ -462,30 +463,32 @@ $(function () {
             }
         })
     })
-})
-//获取要修改的信息
-function gainclient(val){
-    $.ajax({
-        type: "post",
-        url: "/client/clientId.do?clientId="+val,
-        dataType: "json",
-        success: function (data) {
-            if(data!=0){
-                $.each(data, function(i,item){
-                    $("#updateid").val(item.clientId)
-                    $("#updatename").val(item.clientName)
-                    $("#updatepersonInCharge").val(item.clientPersonInCharge)
-                    $("#updatepost").val(item.clientPost)
-                    $("#updateaddress").val(item.clientAddress)
-                    $("#updatefactoryAddress").val(item.clientFactoryAddress)
-                    $("#updatemobilePhone").val(item.clientMobilePhone)
-                    $("#updatephone").val(item.clientPhone)
-                    $("#updatefax").val(item.clientFax)
-                });
+
+    //获取要修改的信息
+    function gainclient(val){
+        alert(val)
+        $.ajax({
+            type: "post",
+            url: "/client/clientId.do?clientId="+val,
+            dataType: "json",
+            success: function (data) {
+                if(data!=0){
+                    $.each(data, function(i,item){
+                        $("#updateid").val(item.supplierId)
+                        $("#updatename").val(item.supplierName)
+                        $("#updatepersonInCharge").val(item.supplierPersonInCharge)
+                        $("#updatepost").val(item.supplierPost)
+                        $("#updateaddress").val(item.supplierAddress)
+                        $("#updatefactoryAddress").val(item.supplierFactoryAddress)
+                        $("#updatemobilePhone").val(item.supplierMobilePhone)
+                        $("#updatephone").val(item.supplierPhone)
+                        $("#updatefax").val(item.supplierFax)
+                    });
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
             }
-        },
-        error: function () {
-            alert("系统异常，请稍后重试！");
-        }
-    })
-}
+        })
+    }
+})

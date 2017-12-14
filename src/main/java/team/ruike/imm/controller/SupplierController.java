@@ -18,7 +18,7 @@ import java.util.List;
 public class SupplierController {
     @Autowired
     SupplierService supplierService;
-    //展示全部数据
+    //展示全部供应商
     @RequestMapping(value="/supplierAll.do")
     public  String  SupplierAll(HttpServletRequest request){
         List<Supplier> suppliers=supplierService.selectSuplier(null);
@@ -76,24 +76,24 @@ public class SupplierController {
 //    }
 //
 //
-//    /**
-//     * 工具方法
-//     * @param client
-//     * @return
-//     */
-//    public List<Client> client(Client client){
-//        List<Client> clients=clientService.selecrClient(client);
-//        List<Client> sa=new ArrayList<Client>();
-//        for (Client client1 : clients) {
-//            if (client1.getClientState()==1){
-//                client1.setState("已终止");
-//            }else if(client1.getClientState()==0){
-//                client1.setState("合作中");
-//            }
-//            sa.add(client1);
-//        }
-//        return sa;
-//    }
+    /**
+     * 工具方法
+     * @param supplier
+     * @return
+     */
+    public List<Supplier> supplier(Supplier supplier){
+        List<Supplier> suppliers=supplierService.selectSuplier(supplier);
+        List<Supplier> sa=new ArrayList<Supplier>();
+        for (Supplier supp : suppliers) {
+            if (supp.getSupplierState()==1){
+                supp.setState("已终止");
+            }else if(supp.getSupplierState()==0){
+                supp.setState("合作中");
+            }
+            sa.add(supp);
+        }
+        return sa;
+    }
 //    /**
 //     * 查询终止合作的用户
 //     * @param client
@@ -166,7 +166,7 @@ public class SupplierController {
 //
 //
     /**
-     * 添加用户信息
+     * 添加供应商信息
      * @return
      */
     @RequestMapping("/addsupplier.do")
@@ -177,7 +177,7 @@ public class SupplierController {
         if(i>0) {
             Supplier s = new Supplier();
             s.setSupplierState(0);
-            List<Supplier> suppliers =supplierService.selectSuplier(s);
+            List<Supplier> suppliers =supplier(s);
             if (suppliers.size() > 0) {
                 String jsonString = JSON.toJSONString(suppliers);
                 printWriter.write(jsonString);
