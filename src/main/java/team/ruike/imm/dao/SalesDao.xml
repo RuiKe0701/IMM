@@ -77,7 +77,7 @@
         </if>
     </select>
     <update id="updateSales" parameterType="sales">
-        supplier
+        update sales
         <set>
             <if test="salesId !=null and salesId!=''">
                   sales_id=#{salesId}
@@ -104,7 +104,7 @@
     </update>
 
     <insert id="insertSales" parameterType="sales">
-    into sales values(#{salesId},#{salesDate},#{clientId},#{employeeId})
+    insert into sales values(#{salesId},#{salesDate},#{clientId},#{employeeId})
 </insert>
 </mapper>
 <!---->

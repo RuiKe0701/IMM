@@ -21,7 +21,7 @@
     </resultMap>
 
     <select id="selectRolePermissions" resultMap="rolePermissionsMap" parameterType="rolePermissions">
-        select * from sales_information
+        select * from role_permissions
         <where>
              1=1
             <if test="roleId!=null and roleId>0">
@@ -43,7 +43,7 @@
     </select>
 
     <update id="updateRolePermissions" parameterType="rolePermissions">
-        supplier
+        update role_permissions
         <set>
             <if test="userId !=null and userId>0">
                   user_id=#{userId}
@@ -61,7 +61,7 @@
     </update>
 
     <insert id="insertRolePermissions" parameterType="rolePermissions">
-        into sales_information values(default,#{userId},#{PermissionsId},#{roleGive})
+        insert into role_permissions values(default,#{userId},#{PermissionsId},#{roleGive})
     </insert>
 </mapper>
 

@@ -28,7 +28,7 @@
     </select>
 
     <update id="updateSalesStatus" parameterType="salesStatus">
-        supplier
+        update supplier
         <set>
             <if test="salesStatusName !=null and salesStatusName!=''">
                  sales_status_name=#{salesStatusName},
@@ -43,7 +43,7 @@
     </update>
 
     <insert id="insertSalesStatus" parameterType="salesStatus">
-        into sales_status values(default,#{salesStatusName},#{salesStatusState})
+        insert into sales_status values(default,#{salesStatusName},#{salesStatusState})
     </insert>
 </mapper>
 
