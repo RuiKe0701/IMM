@@ -57,66 +57,42 @@
 
 
 <div class="wrapper">
-
-    <tr>
-        <td>
-            <div style="width: 150px">
-                <select class="selectpicker show-tick form-control"
-                        style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
-                        data-live-search="true" name="merchandiseId">
-                    <option>请选择</option>
-                    <c:forEach items="${merchandisess}" var="mer">
-                        <option class="aaa"
-                                value="${mer.merchandiseId}">${mer.merchandiseName}</option>
-                    </c:forEach>
-                </select>
-            </div>
-        </td>
-    </tr>
     <!-- header -->
-    <div class="mod-search cf" id="report-search">
-        <div class="l" id="filter-menu">
-            <ul class="ul-inline fix" id="filterItems">
-                <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
-                    <div style="width: 150px">
-                        <select class="selectpicker show-tick form-control"
-                                style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
-                                data-live-search="true" name="merchandiseId">
-                            <option>请选择</option>
-                            <c:forEach items="${merchandisess}" var="mer">
-                                <option class="aaa"
-                                        value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+    <form action="/merchandise/merchandisemenu.do" method="post">
+        <div class="mod-search cf" id="report-search">
+            <div class="l" id="filter-menu">
+                <ul class="ul-inline fix" id="filterItems">
+                    <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
+                        <input type="text"  name="merchandiseName">
+                    </li>
+                    <li id="product" style="display: list-item;"><label>商品类型</label>
+                        <select  name="productTypeId" style="width:115px;height: 32px">
+                            <option value="0">请选择</option>
+                            <c:forEach items="${prod}" var="p">
+                                <option value="${p.productTypeId}">${p.productTypeName}</option>
                             </c:forEach>
-                        </select>
-                    </div>
-                </li>
-                <li id="product" style="display: list-item;"><label>商品类型</label>
-                    <select name="productTypeId" style="width:115px;height: 32px">
-                        <option value="0">请选择</option>
-                        <c:forEach items="${prod}" var="p">
-                            <option value="${p.productTypeId}">${p.productTypeName}</option>
-                        </c:forEach>
-                    </select><br></li>
-                <li id="units" style="display: list-item;"><label>单位</label>
-                    <select name="unitsId" style="width:115px;height: 32px">
-                        <option value="0">请选择</option>
-                        <c:forEach items="${unis}" var="u">
-                            <option value="${u.unitsId}" >${u.unitsName}</option>
-                        </c:forEach>
-                    </select><br>
-                </li>
-                <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
-                    <select name="unitsId" style="width:115px;height: 32px">
-                        <option value="0">请选择</option>
-                        <c:forEach items="${sale}" var="s">
-                            <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
-                        </c:forEach>
-                    </select><br>
-                </li>
-                <div class="btns"><a class="ui-btn mrb ui-btn-search" id="filter-submit">查询</a></div>
-            </ul>
+                        </select><br></li>
+                    <li id="units" style="display: list-item;"><label>单位</label>
+                        <select  name="unitsId" style="width:115px;height: 32px" >
+                            <option value="0">请选择</option>
+                            <c:forEach items="${unis}" var="u">
+                                <option value="${u.unitsId}" >${u.unitsName}</option>
+                            </c:forEach>
+                        </select><br>
+                    </li>
+                    <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
+                        <select  name="unitsId" style="width:115px;height: 32px" >
+                            <option value="0">请选择</option>
+                            <c:forEach items="${sale}" var="s">
+                                <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
+                            </c:forEach>
+                        </select><br>
+                    </li>
+                    <div class="btns"><input class="ui-btn mrb ui-btn-search" id="filter-submit" type="submit"value="查询"></div>
+                </ul>
+            </div>
         </div>
-    </div>
+    </form>
 
     <table class="table table-striped" style="width: 1200px">
         <thead>
@@ -161,7 +137,6 @@
         </tbody>
     </table>
 </div>
-<!--新增-->
 <!--修改-->
 <div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -412,54 +387,14 @@
             $.ajax({
                 type: "post",
                 url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
-//                data: {
-//                    "merchandises": merchandiseId
-//                },
                 dataType: "json",
-//                success: function (data) {
-//                    $("#closeAdd").click();
-//                    var str = "";
-//                    if(data!=0){
-//                        var da = eval(data);
-//                        $("#tbody").html("");
-//                        $.each(da,function (i,item) {
-//                            str+="<tr id="+item.merchandiseId+" class='clients'>" +
-//                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.merchandiseId+" /></td>\n" +
-//                                "                <td id=\"merchandiseId\" style=\"display: none\">"+item.merchandiseId+"</td>\n" +
-//                                "                <td id=\"merchandiseCode\">"+item.merchandiseCode+"</td>\n" +
-//                                "                <td id=\"merchandiseName\">"+item.merchandiseName+"</td>\n" +
-//                                "                <td id=\"merchandiseSpecification\">"+item.merchandiseSpecification+"</td>\n" +
-//                                "                <td id=\"productTypeId\">"+item.productTypeId+"</td>\n" +
-//                                "                <td id=\"unitsId\">"+item.unitsId+"</td>\n" +
-//                                "                <td id=\"merchandiseSafetyStock\">"+item.merchandiseSafetyStock+"</td>\n" +
-//                                "                <td id=\"merchandiseActualQuntity\">"+item.merchandiseActualQuntity+"</td>\n" +
-//                                "                <td id=\"merchandiseSalsePrice\">"+item.merchandiseSalsePrice+"</td>\n" +
-//                                "                <td  id=\"salesStatusId\">"+item.salesStatusId+"</td>\n"+
-//                                "                <td  >\n" +
-//                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-//                                "                </td>\n" +
-//                                "            </tr>";
-//                        })
-//                        $("#tbod").append(str);
-//                    }
-//                    $("#addname").val("");
-//                    $("#addpersonInCharge").val("");
-//                    $("#addpost").val("");
-//                    $("#addphone").val("");
-//                    $("#addmobilePhone").val("");
-//                    $("#addfax").val("");
-//                    $("#addaddress").val("");
-//                    $("#addfactoryAddress").val("");
-//                    $("#addstate").val("");
-//                },
-
                 success: function (data) {
                     if(data!=0){
                        $.each(data,function (i,time) {
                            $("#"+time.merchandiseId).remove();
                        })
-                        //alert("商品信息删除成功")
-                        //window.location.reload();
+                        alert("商品信息删除成功")
+                        window.location.reload();
                     }else {
                         alert("商品信息删除失败")
                     }
@@ -470,33 +405,5 @@
             })
         })
     }
-    $(".selectpicker").change(function () {
-        var id = $(this).val();
-        var name = $(this);
-        $.ajax({
-            url: "/sales/ajaxMerchand.do",
-            data: {"merchandiseId": id},
-            dataType: "JSON",
-            success: function (date) {
-                name.parent().parent('td').next("td").find("input").val(date.units.unitsName);
-                name.parent().parent('td').next("td").find("input").eq(1).val(date.units.unitsId);
-            }
-        });
-    });
-    //通过商品类型查询商品信息的单机事件
-    $("#selectType").change(function () {
-        $.ajax({
-            type: "post",
-            url: "/merchandise/selectType",
-            dataType: "json",
-            success: function (item) {
-                if(item){
-                    alert(item)
-                    //$("#updatemerchandiseId").val(item.merchandiseId)
-
-                }
-            },
-        })
-    })
 </script>
 </html>
