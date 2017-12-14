@@ -110,7 +110,7 @@
             <th>操作</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
         <c:forEach var="m" items="${merc}">
             <tr id="${m.merchandiseId}">
                 <td><input type="checkbox" /></td>
@@ -350,50 +350,13 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    $("#closeAdd").click();
-                    var str = "";
                     if(data!=0){
-                        var da = eval(data);
-                        $("#tbod").html("");
-                        $.each(da,function (i,item) {
-                            str+="<tr id="+item.clientId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                                "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                                "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                                "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                                "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                                "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                                "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                                "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                                "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                                "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                                "                <td  id=\"clientState\">"+item.state+"</td>\n"+
-                                "                <td  >\n" +
-                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                                "                </td>\n" +
-                                "            </tr>";
-                        })
-                        $("#tbod").append(str);
+                        alert("商品信息修改成功")
+                        window.location.reload();
+                    }else {
+                        alert("商品信息修改失败")
                     }
-                    $("#addname").val("");
-                    $("#addpersonInCharge").val("");
-                    $("#addpost").val("");
-                    $("#addphone").val("");
-                    $("#addmobilePhone").val("");
-                    $("#addfax").val("");
-                    $("#addaddress").val("");
-                    $("#addfactoryAddress").val("");
-                    $("#addstate").val("");
                 },
-
-//                success: function (data) {
-//                    if(data!=0){
-//                        alert("商品信息修改成功")
-//                        window.location.reload();
-//                    }else {
-//                        alert("商品信息修改失败")
-//                    }
-//                },
                 error: function () {
                     alert("系统异常，请稍后重试！");
                 }
@@ -425,13 +388,50 @@
 //                    "merchandises": merchandiseId
 //                },
                 dataType: "json",
+//                success: function (data) {
+//                    $("#closeAdd").click();
+//                    var str = "";
+//                    if(data!=0){
+//                        var da = eval(data);
+//                        $("#tbody").html("");
+//                        $.each(da,function (i,item) {
+//                            str+="<tr id="+item.merchandiseId+" class='clients'>" +
+//                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.merchandiseId+" /></td>\n" +
+//                                "                <td id=\"merchandiseId\" style=\"display: none\">"+item.merchandiseId+"</td>\n" +
+//                                "                <td id=\"merchandiseCode\">"+item.merchandiseCode+"</td>\n" +
+//                                "                <td id=\"merchandiseName\">"+item.merchandiseName+"</td>\n" +
+//                                "                <td id=\"merchandiseSpecification\">"+item.merchandiseSpecification+"</td>\n" +
+//                                "                <td id=\"productTypeId\">"+item.productTypeId+"</td>\n" +
+//                                "                <td id=\"unitsId\">"+item.unitsId+"</td>\n" +
+//                                "                <td id=\"merchandiseSafetyStock\">"+item.merchandiseSafetyStock+"</td>\n" +
+//                                "                <td id=\"merchandiseActualQuntity\">"+item.merchandiseActualQuntity+"</td>\n" +
+//                                "                <td id=\"merchandiseSalsePrice\">"+item.merchandiseSalsePrice+"</td>\n" +
+//                                "                <td  id=\"salesStatusId\">"+item.salesStatusId+"</td>\n"+
+//                                "                <td  >\n" +
+//                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+//                                "                </td>\n" +
+//                                "            </tr>";
+//                        })
+//                        $("#tbod").append(str);
+//                    }
+//                    $("#addname").val("");
+//                    $("#addpersonInCharge").val("");
+//                    $("#addpost").val("");
+//                    $("#addphone").val("");
+//                    $("#addmobilePhone").val("");
+//                    $("#addfax").val("");
+//                    $("#addaddress").val("");
+//                    $("#addfactoryAddress").val("");
+//                    $("#addstate").val("");
+//                },
+
                 success: function (data) {
                     if(data!=0){
                        $.each(data,function (i,time) {
                            $("#"+time.merchandiseId).remove();
                        })
-                        alert("商品信息删除成功")
-//                        window.location.reload();
+                        //alert("商品信息删除成功")
+                        //window.location.reload();
                     }else {
                         alert("商品信息删除失败")
                     }
