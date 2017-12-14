@@ -10,33 +10,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <title>恒辉商品库存</title>
-
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="../../css/common.css" rel="stylesheet" type="text/css">
     <link href="../../css/print.css" rel="stylesheet" type="text/css">
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/skins/default/laydate.css"
           id="LayDateSkin">
     <link href="../../css/ui.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../../css/report.css">
     <script src="${pageContext.request.contextPath }/js/warehousing/warehouse.js"></script>
-
     <style>
         .ui-icon-ellipsis {
             right: 5px;
         }
-
         #grid tr {
             cursor: pointer;
         }
-
         .no-query {
             background-position: center;
             border: 1px solid #ddd;
@@ -44,17 +37,14 @@
             height: 402px;
             margin-right: 0;
         }
-
         .box-flex {
             overflow: hidden;
             zoom: 1;
         }
-
         .box-flex .flex {
             float: left;
             width: 33.3%;
         }
-
         .grid-title {
             font-size: 24px;
             text-align: center;
@@ -69,7 +59,7 @@
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
                 <li id="billNum" style="display: list-item;"><label>商品关键字</label>
-                    <input type="text" value="" style="width:115px;">
+                    <input type="text" placeholder="请输入" value="" style="width:115px;">
                 </li>
                 <li id="product" style="display: list-item;"><label>商品类型</label>
                     <select name="productTypeId" style="width:115px;height: 32px">
@@ -83,6 +73,14 @@
                         <option value="0">请选择</option>
                         <c:forEach items="${unis}" var="u">
                             <option value="${u.unitsId}" >${u.unitsName}</option>
+                        </c:forEach>
+                    </select><br>
+                </li>
+                <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
+                    <select name="unitsId" style="width:115px;height: 32px">
+                        <option value="0">请选择</option>
+                        <c:forEach items="${sale}" var="s">
+                            <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
                         </c:forEach>
                     </select><br>
                 </li>
@@ -112,10 +110,9 @@
             <th>操作</th>
         </tr>
         </thead>
-        <tbody>
-
+        <tbody id="tbody">
         <c:forEach var="m" items="${merc}">
-            <tr>
+            <tr id="${m.merchandiseId}">
                 <td><input type="checkbox" /></td>
                 <td style="display: none">${m.merchandiseId}</td>
                 <td>${m.merchandiseCode}</td>
@@ -130,8 +127,8 @@
                 <td>${m.salesStatus.salesStatusName}</td>
                 <td style="display: none">${m.merchandiseState}</td>
                 <td style="width: 120px;text-align: center">
-                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#Update" ><span class="up">修改</span></button>
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
+                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
+                    <button type="button" id="${m.merchandiseId}" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -139,7 +136,7 @@
 </div>
 <!--新增-->
 <!--修改-->
-<div class="modal fade" id="Update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -179,7 +176,6 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">商品单位</span>
                     <select id="updateunitsId" name="productTypeId" class="form-control"  style="width:487px;">
-
                         <c:forEach items="${unis}" var="u">
                             <option value="${u.unitsId}" >${u.unitsName}</option>
                         </c:forEach>
@@ -192,11 +188,10 @@
                 </div>
                 <br>
                 <div class="input-group">
-                <span class="input-group-addon" style="width: 81px;">安全库存</span>
-                <input  id="updatemerchandiseSafetyStock" type="text" class="form-control"  style="width:200px;">
+                    <span class="input-group-addon" style="width: 81px;">安全库存</span>
+                    <input  id="updatemerchandiseSafetyStock" type="text" class="form-control"  style="width:200px;">
                     <span class="input-group-addon" style="width: 81px;">商品库存</span>
                     <input  id="updatemerchandiseActualQuntity" type="text" class="form-control"  style="width:200px;">
-
                 </div>
                 <br>
                 <div class="input-group">
@@ -225,88 +220,25 @@
     </div><!-- /.modal -->
 </div>
 <!--删除-->
-<div id="COMBO_WRAP">
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 175px; display: none;">
-        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
-            <div class="list-item" data-value="129609203891259700">CK001 默认仓库</div>
-        </div>
-    </div>
-</div>
-<div class="pika-single is-hidden is-bound" style=""></div>
-<div class="pika-single is-hidden is-bound" style=""></div>
-<ul id="tree9043" class="ztree ztreeCombo showRoot" style="max-height: 200px; top: 143px; left: 524px; width: 250px;">
-    <li id="tree9043_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="tree9043_1_switch" title=""
-                                                                                       class="button level0 switch root_docu"
-                                                                                       treenode_switch=""></span><a
-            id="tree9043_1_a" class="level0" treenode_a="" onclick="" target="_blank" style=""><span id="tree9043_1_ico"
-                                                                                                     title=""
-                                                                                                     treenode_ico=""
-                                                                                                     class="button ico_docu"
-                                                                                                     style=""></span><span
-            id="tree9043_1_span"></span></a></li>
-</ul>
-<div style="position: absolute; left: -9999em; top: 208px; visibility: visible; width: auto; z-index: 1976;">
-    <table class="ui_border ui_state_visible ui_state_focus">
-        <tbody>
-        <tr>
-            <td class="ui_lt"></td>
-            <td class="ui_t"></td>
-            <td class="ui_rt"></td>
-        </tr>
-        <tr>
-            <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;">视窗</div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;">
-                                    <div class="ui_loading"><span>loading...</span></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div  class="modal fade" id="myDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="as"></h4>
                 </div>
-            </td>
-            <td class="ui_r"></td>
-        </tr>
-        <tr>
-            <td class="ui_lb"></td>
-            <td class="ui_b"></td>
-            <td class="ui_rb" style="cursor: auto;"></td>
-        </tr>
-        </tbody>
-    </table>
+                <div class="modal-footer">
+                    <button type="button" id="deletes" class="btn btn-danger" data-dismiss="modal">
+                        确定
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
 </div>
 <script src="../../js/jquery.min.js?v=2.1.4"></script>
 <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
@@ -396,7 +328,7 @@
         //修改商品信息
         $("#updates").click(function () {
             var merchandise = new Array();
-            var object=new object();
+            var object=new Object();
             object.merchandiseId=$("#updatemerchandiseId").val();
             object.merchandiseCode=$("#updatemerchandiseCode").val()
             object.merchandiseName=$("#updatemerchandiseName").val()
@@ -404,36 +336,111 @@
             object.productTypeId=$("#updateproductTypeId").val();
             object.unitsId=$("#updateunitsId").val();
             object.merchandisePlaceOfOsrigin=$("#updatemerchandisePlaceOfOsrigin").val();
-            object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock")
+            object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock").val();
             object.merchandiseActualQuntity=$("#updatemerchandiseActualQuntity").val();
             object.merchandiseSalsePrice=$("#updatemerchandiseSalsePrice").val();
             object.salesStatusId=$("#updatesalesStatusId").val();
             merchandise.push(object);
             var merchandiseList=JSON.stringify(merchandise);
             $.ajax({
-                type:"post",
-                url:"/merchandise/updateMerchandise.do",
-                data:{
-                    "merchandiseList":merchandiseList
+                type: "post",
+                url: "/merchandise/updateMerchandise.do",
+                data: {
+                    "merchandises": merchandiseList
                 },
-                dataType:"json",
-                success:function (data) {
+                dataType: "json",
+                success: function (data) {
                     if(data!=0){
-                        alert("商品信息修改成功！")
-                    }else{
-                        alert("商品信息修改失败！")
+                        alert("商品信息修改成功")
+                        window.location.reload();
+                    }else {
+                        alert("商品信息修改失败")
                     }
                 },
-                error:function () {
-                    alert("系统出现异常！")
+                error: function () {
+                    alert("系统异常，请稍后重试！");
                 }
             })
-
         })
     }
+    //获取删除的信息
+    function deletemerchandise(val) {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletes").click(function () {
+            var merchandiseId=val;
+            $.ajax({
+                type: "post",
+                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+//                data: {
+//                    "merchandises": merchandiseId
+//                },
+                dataType: "json",
+//                success: function (data) {
+//                    $("#closeAdd").click();
+//                    var str = "";
+//                    if(data!=0){
+//                        var da = eval(data);
+//                        $("#tbody").html("");
+//                        $.each(da,function (i,item) {
+//                            str+="<tr id="+item.merchandiseId+" class='clients'>" +
+//                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.merchandiseId+" /></td>\n" +
+//                                "                <td id=\"merchandiseId\" style=\"display: none\">"+item.merchandiseId+"</td>\n" +
+//                                "                <td id=\"merchandiseCode\">"+item.merchandiseCode+"</td>\n" +
+//                                "                <td id=\"merchandiseName\">"+item.merchandiseName+"</td>\n" +
+//                                "                <td id=\"merchandiseSpecification\">"+item.merchandiseSpecification+"</td>\n" +
+//                                "                <td id=\"productTypeId\">"+item.productTypeId+"</td>\n" +
+//                                "                <td id=\"unitsId\">"+item.unitsId+"</td>\n" +
+//                                "                <td id=\"merchandiseSafetyStock\">"+item.merchandiseSafetyStock+"</td>\n" +
+//                                "                <td id=\"merchandiseActualQuntity\">"+item.merchandiseActualQuntity+"</td>\n" +
+//                                "                <td id=\"merchandiseSalsePrice\">"+item.merchandiseSalsePrice+"</td>\n" +
+//                                "                <td  id=\"salesStatusId\">"+item.salesStatusId+"</td>\n"+
+//                                "                <td  >\n" +
+//                                "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+//                                "                </td>\n" +
+//                                "            </tr>";
+//                        })
+//                        $("#tbod").append(str);
+//                    }
+//                    $("#addname").val("");
+//                    $("#addpersonInCharge").val("");
+//                    $("#addpost").val("");
+//                    $("#addphone").val("");
+//                    $("#addmobilePhone").val("");
+//                    $("#addfax").val("");
+//                    $("#addaddress").val("");
+//                    $("#addfactoryAddress").val("");
+//                    $("#addstate").val("");
+//                },
 
-</script>
-<script type="text/javascript">
-
+                success: function (data) {
+                    if(data!=0){
+                       $.each(data,function (i,time) {
+                           $("#"+time.merchandiseId).remove();
+                       })
+                        //alert("商品信息删除成功")
+                        //window.location.reload();
+                    }else {
+                        alert("商品信息删除失败")
+                    }
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
 </script>
 </html>
