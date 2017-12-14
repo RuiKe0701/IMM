@@ -23,22 +23,21 @@
         SELECT count(1) FROM user
     </select>
     <select id="selectUser" resultMap="userMap">
-        SELECT * FROM user u,employee e
+        SELECT * FROM user
         <where>
-            u.employee_id=e.employee_id
             <if test="userId!=null and userId>0">
-              and  u.user_id=#{userId}
+              and  user_id=#{userId}
             </if>
             <if test="userName!=null and userName!=''">
-                and u.user_name=#{userName}
+                and user_name=#{userName}
+            </if>
+            <if test="userPassword!=null and userPassword!=''">
+                and user_password=#{userPassword}
             </if>
             <if test="userState!=null">
-                and u.user_state=#{userState}
+                and user_state=#{userState}
             </if>
         </where>
-        <if test="currentPage!=null and pageSize!=null ">
-            LIMIT #{currentPage},#{pageSize}
-        </if>
     </select>
     <update id="updateUser" parameterType="user">
         update user

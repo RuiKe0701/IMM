@@ -19,6 +19,15 @@ import java.util.List;
 public class UserServiceImpl  implements UserService {
     @Autowired
     UserDao userDao;
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     /**
      *
      * @param user
