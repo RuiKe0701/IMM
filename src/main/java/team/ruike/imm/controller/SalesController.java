@@ -62,11 +62,10 @@ public class SalesController {
     }
 
     @RequestMapping("saveSaveInformationList.do")
-    public void saveProcurementInformationList(String saveInformationList,String saveList,String sss,Integer ss){
+    public void saveSaveInformationList(String saveInformationList,String saveList){
         System.out.println(saveList);
-        System.out.println(sss);
-        System.out.println(ss);
-        System.out.println("ssss");
+        System.out.println(saveInformationList);
+
         ArrayList<Sales> sa =  JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
         Sales s=sa.get(0);
         int i = salesService.insertSales(s);

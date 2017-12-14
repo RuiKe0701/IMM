@@ -104,7 +104,7 @@
     </update>
 
     <insert id="insertSales" parameterType="sales">
-        into sales values(default,#{salesId},#{merchandiseId},#{siVolume},#{unitsId},#{siActualPrice},#{siState})
-    </insert>
+    into sales values(#{salesId},#{salesDate},#{clientId},#{employeeId})
+</insert>
 </mapper>
 <!---->

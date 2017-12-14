@@ -57,7 +57,7 @@
                 var salesId = $("#salesId").val();
                 var salesList=new Object();
                 salesList.clientId = clientId;
-                salesList.employeeIds = employeeId;
+                salesList.employeeId = employeeId;
                 salesList.salesDate = salesDate;
                 salesList.salesId = salesId;
                 sales.push(salesList);
@@ -87,8 +87,6 @@
                     var sale = JSON.stringify(sales);
                     alert(salesInformationList);
                     alert(sale);
-                    var s="ss"
-                    var ss=1;
 
                     $.ajax({
                         type: "post",
@@ -96,8 +94,6 @@
                         data: {
                             "saveInformationList": salesInformationList,
                             "saveList": sale,
-                            "sss":s,
-                            "ss":ss
                         },
                         dataType: "json"
                     })
@@ -162,7 +158,7 @@
             <div class="con-header">
                 <dl class="cf">
                     <dd class="mr40" style="width: 240px">
-                        <input type="text" name="procurementEmployeeId" style="display:none;" value="${user.userId}"/>
+                        <input type="text" name="EmployeeId" style="display:none;" value="${user.userId}"/>
                         <label><span class="red">*</span>客户:</label>
                         <div class="input-group" style="width: 200px;float: right">
                             <select class="selectpicker show-tick form-control"
@@ -189,7 +185,7 @@
 
                     <dd class="mr20 tc">
                         <label>单据日期:</label>
-                        <input id="end" name="procurementDate" class="">
+                        <input id="end" name="salesDate" class="">
                     </dd>,
                     <dd id="identifier">
                         <label>&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
