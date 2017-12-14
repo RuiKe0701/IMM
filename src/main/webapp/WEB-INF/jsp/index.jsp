@@ -219,7 +219,7 @@
                                     <ul class="sub-nav">
                                         <li class="" id="Goods-inventory-balance">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品库存余额表
+                                                <span class="hasList">商品库存管理
                                                  <span class="hide"></span>
                                                 </span>
                                                 <i href="javascript:void(0);">查询</i>
@@ -227,7 +227,7 @@
                                         </li>
                                         <li class="" id="Goods-receipt-details">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发明细表
+                                                <span class="hasList">商品收发明细
                                                  <span class="hide"></span>
                                                 </span>
                                                 <i href="javascript:void(0);">查询</i>
@@ -235,7 +235,7 @@
                                         </li>
                                         <li class="" id="Send-and-receive-goods-summary">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发汇总表
+                                                <span class="hasList">商品收发汇总
                                                  <span class="hide"></span>
                                                 </span>
                                                 <i href="javascript:void(0);">查询</i>

@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<!-- saved from url=(0054)http://vip2-gd.youshang.com/settings/customer-list.jsp -->
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" type="text/css">
@@ -44,19 +43,35 @@
             position: relative;
             top: -5px;
         }
+
+        .reminder{
+            color: red;
+        }
     </style>
+    <script>
+        $(function () {
+        document.getElementById("btn-enable").setAttribute("disabled",true);
+        })
+    </script>
+
+    <script type="text/javascript">
+
+    </script>
 </head>
 <body style="">
 <div class="bill-ser-top">
     <ul class="ul-inline cf">
         <li>
-            <input type="text" id="matchCon" class="ui-input ui-input-ph matchCon" placeholder ="输入客户编号/ 名称/ 联系人/ 电话查询">
+                <button type="submit" class="btn btn-info">查找</button>
+                <input placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
         </li>
-        <li><a class="ui-btn mrb ui-btn-search" id="search">查询</a></li>
-        <li class="chk-list" id="chk-ischecked" style="display: list-item;">
-            <div>
-                <input style="width:20px;height: 30px" name="" type="checkbox" value="" checked="" />
-                <!--<span style="font-size: 20px;position: absolute;right:970px;top: 20px">显示失联客户</span>-->
+
+        <li class="chk-list" id="chk-ischecked" style="display: list-item;position: relative;left: 60px;">
+            <div >
+                <button type="button" id="cooperation" name="0" class="btn btn-info" data-toggle="modal" >
+                    <span class="">合作中</span></button>
+                <button type="button" id="termination" name="1" class="btn btn-info" data-toggle="modal">
+                    <span class="">已终止</span></button>
             </div>
         </li>
     </ul>
@@ -66,9 +81,9 @@
 
     <div class="bill-ser-botm cf">
         <div class="fr ml10">
-            <button type="button"  class="ui-btn-bill ui-btn-add mrb" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
-            <a class="ui-btn-bill mrb" id="btn-disable">禁用</a>
-            <a class="ui-btn-bill mrb" id="btn-enable">启用</a>
+            <button type="button" id="addClient" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
+            <a class="btn btn-info"name="jin" id="btn-disable"><span class="">终止合作</span></a>
+            <a class="btn btn-info" id="btn-enable"><span class="">启用合作</span></a>
         </div>
     </div>
     <div class="grid-wrap">
@@ -87,8 +102,7 @@
         </div>
 
     </div>
-    <%--/client/k.do--%>
-<form method="post" action="/client/k.do" >
+    <%--展示信息--%>
     <div style="position: relative;left: 50px">
         <table class="table table-striped" style="width: 1200px">
             <thead>
@@ -102,12 +116,13 @@
                 <th>传真</th>
                 <th>客户地址</th>
                 <th>送货地址</th>
+                <th>合作关系</th>
                 <th>操作</th>
             </tr>
             </thead>
+            <tbody id="tbod">
             <c:forEach items="${clients}" var="c">
             <c:if test="${c.clientState==0}">
-            <tbody class="tbod">
             <tr id="${c.clientId}"  class="clients">
                 <td><input name="client.kk" class="k"  runat="server" type="checkbox" value="${c.clientId}" /></td>
                 <td id="clientId" style="display: none">${c.clientId}</td>
@@ -119,18 +134,21 @@
                 <td id="clientFax">${c.clientFax}</td>
                 <td id="clientAddress">${c.clientAddress}</td>
                 <td id="clientFactoryAddress">${c.clientFactoryAddress}</td>
-                <td  id="clientState" style="display:none">${c.clientState}</td>
-                <td style="width: 120px;text-align: center" >
+                <c:if test="${c.clientState==0}">
+                    <td  id="clientState">合作中</td>
+                </c:if>
+                <c:if test="${c.clientState==1}">
+                    <td  id="clientState">已终止</td>
+                </c:if>
+                <td  >
                     <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
-                    <%--<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del"><span class="up">删除</span></button></td>--%>
                 </td>
             </tr>
-            </tbody>
             </c:if>
             </c:forEach>
+            </tbody>
         </table>
     </div>
-</form>
 </div>
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -149,48 +167,53 @@
                         <span class="input-group-addon" style="width: 81px;">客户名称</span>
                         <input  id="addname" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                     </div>
-                <br>
+                    <span  class="reminder" id="Divname">&nbsp;</span>
+                    <br>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">负责人名称</span>
                         <input  id="addpersonInCharge"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
                     </div>
+                    <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
                 <br>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">负责人职称</span>
                         <input  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                      </div>
+                <span  class="reminder" id="Divpost">&nbsp;</span>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
                 </div>
+               <span   class="reminder" id="Divaddress">&nbsp;</span>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">送货地址</span>
                     <input  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
                 </div>
-                <br>
+                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                    <input  id="addmobilePhone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
-                <br>
+               <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
-                    <input  id="addphone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input  id="addphone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
-                <br>
+                <span  class="reminder" id="Divphone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
-                    <input  id="addfax" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                    <input  id="addfax" value="暂无" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
                 </div>
+                <span class="reminder" id="Divfax">&nbsp;</span> <br>
                 <div class="input-group" style="display: none">
                     <span class="input-group-addon" style="width: 81px;">是否已删除</span>
                     <input  id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="button" id="insert" class="btn btn-primary">
                     提交新增
@@ -216,38 +239,46 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="remindername">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人名称</span>
                     <input  id="updatepersonInCharge"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderpersonInCharge">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">负责人职称</span>
                     <input  id="updatepost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderpost">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input  id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderaddress">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">送货地址</span>
                     <input  id="updatefactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                </div><br>
+                </div>
+                <span class="reminder" id="reminderfactoryAddress">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                    <input  id="updatemobilePhone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div><br>
+                    <input  id="updatemobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <span class="reminder" id="remindermobilePhone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
-                    <input  id="updatephone" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                </div><br>
+                    <input  id="updatephone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <span class="reminder" id="reminderphone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
-                    <input  id="updatefax" type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
-                </div><br>
+                    <input  id="updatefax"  type="text" class="form-control" placeholder="请输入正确号码"  style="width:487px;">
+                </div>
+                <span class="reminder" id="reminderfax">&nbsp;</span><br>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                <button type="button" id="closeUpdate" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="button" id="updates" class="btn btn-primary">
                     提交修改
@@ -282,7 +313,41 @@
 
 <script type="text/javascript">
     $(function () {
-
+        //修改客户是否合作
+        $("#btn-enable").click(function () {
+            var clientList = new Array();
+            $(".clients").each(function (index, date) {
+                var checkbox = $(date).find(".k");
+                if(checkbox.is(':checked')){
+                    //选中了
+                    var id = $(date).find(".k").val();
+                    var object = new Object();
+                    object.kk = id;
+                    clientList.push(object);
+                    var cooperativeClients = JSON.stringify(clientList);
+                    $.ajax({
+                        type: "post",
+                        url: "/client/cooperativeClient.do",
+                        data: {
+                            "cooperativeClients": cooperativeClients
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if(data!=0){
+                                if(data!=0){
+                                    for(i in data){
+                                        $("#"+data[i].clientId).remove();
+                                    }
+                                }
+                            }
+                        },
+                        error: function () {
+                            alert("系统异常，请稍后重试！");
+                        }
+                    })
+                }
+            });
+        })
     })
 </script>
 </html>

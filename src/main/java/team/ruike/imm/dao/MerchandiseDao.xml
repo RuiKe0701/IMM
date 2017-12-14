@@ -76,6 +76,7 @@
         <if test="currentPage!=null and pageSize!=null">
             LIMIT #{currentPage},#{pageSize}
         </if>
+         order by m.merchandise_id asc
     </select>
 
     <!--指定条件修改商品信息-->

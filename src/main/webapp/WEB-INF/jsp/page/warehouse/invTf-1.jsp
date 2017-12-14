@@ -301,26 +301,6 @@
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
                                                 style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_outLocationName" class="ui-jqgrid-sortable">调出仓库
-                                                <small id="batch-storageA">批量</small>
-                                                <span class="s-ico" style="display:none"><span sort="asc"
-                                                                                               class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                        sort="desc"
-                                                        class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="grid_inLocationName" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="jqgh_grid_inLocationName" class="ui-jqgrid-sortable">调入仓库
-                                                <small id="batch-storageB">批量</small>
-                                                <span class="s-ico" style="display:none"><span sort="asc"
-                                                                                               class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                        sort="desc"
-                                                        class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
                                         <th id="grid_description" role="columnheader"
                                             class="ui-state-default ui-th-column ui-th-ltr" style="width: 150px;"><span
                                                 class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
