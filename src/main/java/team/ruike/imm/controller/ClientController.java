@@ -81,7 +81,11 @@ public class ClientController {
     }
 
 
-
+    /**
+     * 工具方法
+     * @param client
+     * @return
+     */
     public List<Client> client(Client client){
         List<Client> clients=clientService.selecrClient(client);
         List<Client> sa=new ArrayList<Client>();

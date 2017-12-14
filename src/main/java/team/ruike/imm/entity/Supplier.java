@@ -53,9 +53,21 @@ public class Supplier extends PagerParameter implements Serializable{
      */
     private List<SupplierProduct> supplierProduct;
     /**
-     * 是否已删除
+     * 是否已合作
      */
     private Integer supplierState;
+    /**
+     * 保存是否合作
+     */
+    private String State;
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
 
     public Integer getSupplierState() {
         return supplierState;
