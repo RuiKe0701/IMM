@@ -34,5 +34,6 @@ public interface ClientDao {
     public int insertClient(Client client);
 
 
-    public int updateAdd(List client);
+    public int noncooperation(List client);
+    public int cooperative(List client);
 }

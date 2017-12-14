@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pager;
+import team.ruike.imm.instrument.Pages;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -36,27 +36,37 @@ public class UserController {
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
 //            return "index";
-        return "redirect:/merchandise/smerchandise.do";
+        return "redirect:/user/pages.do";
     }
 
 
-    @RequestMapping(value = "/page.do")
-    public  String page(Integer currentPage,Model model){//分页显示用户信息
-       //分页显示用户信息
-       List<User> pages= userService.pagerUser(currentPage);
-        Pager<User> pagerss=null;
-        if (pages.size()!=0){
-            model.addAttribute("pages",pages);
-            if(currentPage==0){
-                pagerss=userService.getPager(1);
-            }else {
-                pagerss=userService.getPager(currentPage);
-            }
-            model.addAttribute("pagesList",pagerss);
-            return "adsa";
-        }
-        return "aaaa";
+    @RequestMapping(value = "/pages.do")
+    public String pages(Model model){
+        List<Integer> a=null;
+        Pages<User> pages=userService.queryOrderContract();
+        System.out.println( pages.getPageSize());
+        System.out.println( pages.getPageBar().length);
+        model.addAttribute("page",pages);
+        return "adsa";
     }
+
+//    @RequestMapping(value = "/page.do")
+//    public  String page(Integer currentPage,Model model){//分页显示用户信息
+//       //分页显示用户信息
+//       List<User> pages= userService.pagerUser(currentPage);
+//        Pager<User> pagerss=null;
+//        if (pages.size()!=0){
+//            model.addAttribute("pages",pages);
+//            if(currentPage==0){
+//                pagerss=userService.getPager(1);
+//            }else {
+//                pagerss=userService.getPager(currentPage);
+//            }
+//            model.addAttribute("pagesList",pagerss);
+//            return "adsa";
+//        }
+//        return "aaaa";
+//    }
 
     /**
      * 退出到登录页面

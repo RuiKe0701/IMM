@@ -1,8 +1,6 @@
 package team.ruike.imm.entity;
 
-import team.ruike.imm.instrument.Pager;
-import team.ruike.imm.instrument.PagerParameter;
-
+import team.ruike.imm.instrument.Pages;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
  * @version 2.0
  *用户信息
  */
-public class User extends PagerParameter implements Serializable{
+public class User extends Pages implements Serializable{
     /**
      * 用户编号
      */
