@@ -59,7 +59,7 @@
     </select>
 
     <update id="updateSalesInformation" parameterType="salesInformation">
-        supplier
+        update supplier
         <set>
             <if test="salesId !=null and salesId!=''">
                   sales_id=#{salesId}
@@ -86,7 +86,7 @@
     </update>
 
     <insert id="insertSalesInformation" parameterType="salesInformation">
-        into sales_information values(default,#{salesId},#{merchandiseId},#{siVolume},#{unitsId},#{siActualPrice},#{siState})
+        insert into sales_information values(default,#{salesId},#{merchandiseId},#{siVolume},#{unitsId},#{siActualPrice},#{siState})
     </insert>
 
     <!--批量添加 nsc-->

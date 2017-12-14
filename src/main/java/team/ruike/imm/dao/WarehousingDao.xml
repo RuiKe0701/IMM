@@ -103,7 +103,6 @@
         <where>
              warehousing_id=#{warehousingId}
         </where>
-
     </update>
 
     <insert id="insertWarehousing" parameterType="warehousing">

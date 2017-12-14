@@ -57,7 +57,7 @@
     </select>
 
     <update id="updateSupplier" parameterType="supplier">
-        supplier
+        update supplier
         <set>
             <if test="supplierName !=null and supplierName!=''">
                  supplier_Nrice=#{supplierName},
@@ -93,7 +93,7 @@
     </update>
 
     <insert id="insertSupplier" parameterType="supplier">
-        into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
+        insert into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
     </insert>
 </mapper>
 
