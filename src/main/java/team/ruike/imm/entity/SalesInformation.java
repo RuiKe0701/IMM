@@ -1,9 +1,11 @@
 package team.ruike.imm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import team.ruike.imm.instrument.PagerParameter;
 
 import java.awt.print.Paper;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 闫琛昊
@@ -51,6 +53,10 @@ public class SalesInformation extends PagerParameter implements Serializable{
      * 单位
      */
     private Units units;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endTime;
 
     public Integer getSiId() {
         return siId;
@@ -126,6 +132,22 @@ public class SalesInformation extends PagerParameter implements Serializable{
 
     public Units getUnits() {
         return units;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public void setUnits(Units units) {

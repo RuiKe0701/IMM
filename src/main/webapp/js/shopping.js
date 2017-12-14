@@ -24,7 +24,7 @@ $(function () {
 
     $("#purchase2").click(function () {
         $("#tabManage").remove();
-        $("#iff").attr("src","/purchases/loginPurchaseOrder.do");
+        $("#iff").attr("src","/purchaseOrder/loginPurchase.do");
     });
     $("#purchase3").click(function () {
         $("#tabManage").remove();

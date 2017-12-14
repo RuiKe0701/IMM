@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/select/dist/css/bootstrap-select.css">
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
@@ -22,42 +21,111 @@
         td{
             text-align: center;
         }
+        li{
+            list-style: none;
+        }
     </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#search").click(function () {
+                var v=$("#end").val();
+                var c=$("#hello").val();
+                if(c>v){
+                   alert("起始日期不能大于结束日期");
+                   return false;
+                }
+
+            });
+            //全选
+            $("#checkAll").click(function () {
+                if(this.checked){
+                    $("[type='checkbox']").prop("checked", true);
+                }else{
+                    $("[type='checkbox']").prop("checked", false);
+                }
+            });
+            $("#toPo").click(function () {
+                var salesInformation=new Array();
+                var procurementInformation=new Array();
+                var salesInformationList=null;
+                var procurementInformationList=null;
+                $(".eachtr").each(function (index,data) {
+                    if($(data).find(".ck").is(':checked')){
+                        var merchandiseId=$(data).find(".merchandiseId").html();
+                        var unitsId=$(data).find(".unitsId").html();
+                        var siVolume=$(data).find(".siVolume").html();
+                        var salesId=$(data).find(".salesId").html();
+                        var salesDate=$(data).find(".salesDate").html();
+                        var piVolume=$(data).find(".piVolume").val();
+                        var piActualPrice=$(data).find(".piActualPrice").val();
+                        var obj=new Object();
+                        obj.merchandiseId=merchandiseId;
+                        obj.unitsId=unitsId;
+                        obj.siVolume=siVolume;
+                        obj.salesId=salesId;
+                        obj.salesDate=salesDate;
+                        salesInformation.push(obj);
+                         salesInformationList=JSON.stringify(salesInformation);
+                        var procurementInformationobj=new Object();
+                        procurementInformationobj.piVolume=piVolume;
+                        procurementInformationobj.piActualPrice=piActualPrice;
+                        procurementInformation.push(procurementInformationobj);
+                         procurementInformationList=JSON.stringify(procurementInformation);
+                    }
+
+                })
+                $.ajax({
+                    type: "post",
+                    url: "/purchases/generateOrders.do",
+                    data:{
+                        "procurementInformationList":procurementInformationList,
+                        "salesInformationList":salesInformationList
+                    },
+                    dataType: "json",
+                    success:function () {
+                        window.location.href="/purchases/purchaseOrderLoginParam.do";
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body style="">
 
 <div class="bill-ser-top">
-
+    <form action="/saleInformation/selectAllSaleInformation.do" method="post">
+    <div style="height: 30px;"></div>
     <ul class="ul-inline cf">
-        <li>
-            <input type="text" id="matchCon"  placeholder="请输入商品名称">
+        <li style="float: left;width: 130px">
+
+            <select  class="selectpicker show-tick form-control" style="width:130px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" id="merchandiseId" name="merchandiseId">
+              <option value="0">请选择药品</option>
+              <c:forEach items="${merchands}" var="mercha">
+                  <option value="${mercha.merchandiseId}">${mercha.merchandiseName}</option>
+              </c:forEach>
+            </select>
         </li>
-        <li>
-            <label>交货日期:</label>
-            <input id="hello" class="">
+        <li style="float: left">
+            <label>&nbsp;&nbsp;&nbsp;交货日期:</label>
+            <input id="hello"  name="startTime">
             <i>-</i>
-            <input id="end" class="">
+            <input id="end" class="" name="endTime">
         </li>
-        <li>
-            <input type="text" id="saleOrderNumber"  placeholder="请输入销售订单号">
-        </li>
-        <li>
-            <label>销售订单范围:</label>
-            <input type="checkbox" id="hasPurReady" checked="checked"><label> 已采购完订单不显示</label>
-            <a class="ui-btn ui-btn-search" href="/saleInformation/selectAllSaleInformation.do" id="search">查询</a>
+        <li style="float: left">
+            <input type="radio" id="check" name="siState" value="1" checked="checked" onclick="this.value=this.checked?1:0"><label> 已采购完订单不显示</label>
+            <input type="submit" class="ui-btn ui-btn-search" href="" id="search" value="查询"/>
         </li>
     </ul>
+    <br/>
+    </form>
 </div>
 <div class="wrapper btc">
+    <div style="height: 50px;"></div>
     <div class="bill-ser-botm">
         <div class="cf">
-            <div class="ui-config-box">
-                <span id="config" class="ui-config"><a
-                        href="#"
-                        class="ui-icon-config-new"></a>列设置</span>
-            </div>
-            <div class="fr">
-                <a class="ui-btn-bill" id="toPo">生成购货订单</a>
+
+            <div class="fr" style="position: absolute;top: 70px;right: 60px">
+                <button class="btn btn-default" id="toPo">生成购货订单</button>
             </div>
         </div>
     </div>
@@ -77,8 +145,8 @@
 
                     <thead>
                     <tr>
-                        <th style="width: 25px;"></th>
-                        <th style="display: none">商品id</th>
+                        <th style="width: 25px;"><input type="checkbox" id="checkAll"></th>
+                        <th style="display: none">销货商品id</th>
                         <th>销货商品名称</th>
                         <th>销货商品单位</th>
                         <th>销货商品数量</th>
@@ -92,17 +160,18 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${salesInformations}" var="salesInfo">
-                        <tr>
-                            <td style="width: 25px;text-align: center"><input type="checkbox"></td>
-                            <td style="display: none"></td>
-                            <td>${salesInfo.merchandise.merchandiseName}</td>
+                        <tr class="eachtr">
+                            <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
+                            <td class="merchandiseId" style="display: none">${salesInfo.merchandise.merchandiseId}</td>
+                            <td >${salesInfo.merchandise.merchandiseName}</td>
+                            <td style="display: none" class="unitsId">${salesInfo.units.unitsId}</td>
                             <td>${salesInfo.units.unitsName}</td>
+                            <td class="siVolume">${salesInfo.siVolume}</td>
+                            <td class="salesId">${salesInfo.salesId}</td>
+                            <td class="salesDate"><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
                             <td>${salesInfo.siVolume}</td>
-                            <td>${salesInfo.merchandiseId}</td>
-                            <td><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
-                            <td>${salesInfo.siVolume}</td>
-                            <td><input type="text" style="border: none;height: 30px;text-align: center"></td>
-                            <td><input type="text" style="border: none;height: 30px;text-align: center"></td>
+                            <td><input class="piVolume" type="text" style="border: none;height: 30px;text-align: center"></td>
+                            <td><input class="piActualPrice" type="text" style="border: none;height: 30px;text-align: center"></td>
                             <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
                         </tr>
                     </c:forEach>
@@ -220,6 +289,7 @@
 <script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
+<script src="${pageContext.request.contextPath }/select/js/bootstrap-select.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

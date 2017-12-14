@@ -117,12 +117,5 @@ public class MerchandiseController {
         }
         return null;
     }
-    //倪嗣承ajax根据id获取信息
-    @RequestMapping(value = "ajaxMerchand.do")
-    @ResponseBody
-    public void ajaxMerchand(@RequestParam(value = "id",required = false) Integer id){
-        System.out.println("11111111111111111111111111111111111111111111111");
-        System.out.println(id);
-        //JSON.toJSON();
-    }
+
 }

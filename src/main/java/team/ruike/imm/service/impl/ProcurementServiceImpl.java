@@ -25,21 +25,23 @@ public class ProcurementServiceImpl implements ProcurementService {
     }
 
     public List<Procurement> selectProcurement(Procurement procurement) {
-        List<Procurement> list=procurementDao.selectAll(procurement);
+        List<Procurement> list = procurementDao.selectAll(procurement);
         return list;
     }
-    public  String purchaseId(){
-        String aa="GH";
-       List<Procurement> list= selectProcurement(null);
-       aa+=RandomUtil.getRandomFileName();
-      String size=String.valueOf(list.size()+1) ;
-      if(size.length()==1){
-          size="00"+size;
-      }else if(size.length()==2){
-          size="0"+size;
-      }
-      aa+=size;
-      return aa;
+
+    //生成购货订单ID
+    public String purchaseId(String param) {
+        String aa = param;
+        List<Procurement> list = selectProcurement(null);
+        aa += RandomUtil.getRandomFileName();
+        String size = String.valueOf(list.size() + 1);
+        if (size.length() == 1) {
+            size = "00" + size;
+        } else if (size.length() == 2) {
+            size = "0" + size;
+        }
+        aa += size;
+        return aa;
     }
 
     public int updateProcurement(Procurement procurement) {
