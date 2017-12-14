@@ -27,12 +27,16 @@ public class MerchandiseServiceImpl implements MerchandiseService{
     }
     //根据id 查询一个类
     public Merchandise selectOne(Merchandise merchandise){
-        List<Merchandise> list=merchandiseDao.selecrMerchandise(merchandise);
+        List<Merchandise> list=merchandiseDao.selectAll(merchandise);
         if(null!=list){
             return list.get(0);
         }else {
             return  new Merchandise();
         }
+    }
+
+    public List<Merchandise> selectAll(Merchandise merchandise) {
+        return merchandiseDao.selectAll(merchandise);
     }
 
     public int updateMerchandise(Merchandise merchandise) {

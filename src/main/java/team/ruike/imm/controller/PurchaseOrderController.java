@@ -14,6 +14,7 @@ public class PurchaseOrderController {
     //加载购货单页面
     @RequestMapping(value = "loginPurchase.do")
     public String loginPurchase(Model model){
+
         return "";
     }
 }

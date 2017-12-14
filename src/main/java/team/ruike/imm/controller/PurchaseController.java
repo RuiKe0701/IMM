@@ -36,7 +36,7 @@ public class PurchaseController {
     @RequestMapping("/loginPurchaseOrder.do")
     public String loginPurchaseOrder(Model model) {
         List<Supplier> list = supplierService.selectSuplier(null);
-        List<Merchandise> merchandises=merchandiseService.selectMerchandise(null);
+        List<Merchandise> merchandises=merchandiseService.selectAll(null);
         String id=procurementService.purchaseId("GHDD");
         model.addAttribute("purId",id);
         model.addAttribute("merchandises",merchandises);

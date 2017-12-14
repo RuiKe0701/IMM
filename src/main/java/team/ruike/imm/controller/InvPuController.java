@@ -50,7 +50,7 @@ public class InvPuController {
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
-        String id=procurementService.purchaseId();
+        String id=procurementService.purchaseId("XH");
         model.addAttribute("purId",id);
         model.addAttribute("clientss",clientList);
         model.addAttribute("employeess",employeeList);
