@@ -91,7 +91,7 @@
                     </div>
                 </li>
                 <li id="product" style="display: list-item;"><label>商品类型</label>
-                    <select name="productTypeId" style="width:115px;height: 32px"onclick="selectType">
+                    <select name="productTypeId" style="width:115px;height: 32px">
                         <option value="0">请选择</option>
                         <c:forEach items="${prod}" var="p">
                             <option value="${p.productTypeId}">${p.productTypeName}</option>
@@ -484,14 +484,15 @@
         });
     });
     //通过商品类型查询商品信息的单机事件
-    $("#selectType").click(function () {
+    $("#selectType").change(function () {
         $.ajax({
             type: "post",
             url: "/merchandise/selectType",
             dataType: "json",
             success: function (item) {
-                if(item!=0){
-                    $("#updatemerchandiseId").val(item.merchandiseId)
+                if(item){
+                    alert(item)
+                    //$("#updatemerchandiseId").val(item.merchandiseId)
 
                 }
             },

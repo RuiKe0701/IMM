@@ -59,29 +59,23 @@
             <if test="warehousingId !=null and warehousingId!=''">
                   and warehousing_id=#{warehousingId}
             </if>
-            <if test="supplierPersonInCharge !=null and supplierPersonInCharge!=''">
-                  and supplier_person_in_charge =#{supplierPersonInCharge}
+            <if test="smBuyer !=null and smBuyer!=''">
+                  and sm_buyer =#{smBuyer}
             </if>
-            <if test="supplierPost!=null and supplierPost !=''">
-                  and supplier_post =#{supplierPost}
+            <if test="salesId!=null and salesId !=''">
+                  and sales_id =#{salesId}
             </if>
-            <if test="supplierPhone !=null and supplierPhone !=''">
-                  and supplier_phone =#{supplierPhone}
+            <if test="smDate !=null and smDate !=''">
+                  and sm_date =#{smDate}
             </if>
-            <if test="supplierMobilePhone !=null and supplierMobilePhone!=''">
-                  and supplier_mobile_phone=#{supplierMobilePhone}
+            <if test="smRemarks !=null and smRemarks!=''">
+                  and sm_remarks=#{smRemarks}
             </if>
-            <if test="supplierFax !=null and supplierFax!=''">
-                  and supplier_fax =#{supplierFax}
+            <if test="smUserId !=null and smUserId!=''">
+                  and sm_user_id =#{smUserId}
             </if>
-            <if test="supplierAddress !=null and supplierAddress!=''">
-                  and supplier_address =#{supplier_address}
-            </if>
-            <if test="supplierFactoryAddress!=null and supplierFactoryAddress!=''">
-                  and supplier_factory_address = #{supplierFactoryAddress}
-            </if>
-            <if test="supplierState !=null">
-                  and supplier_state=#{supplierState}
+            <if test="smState !=null and smState!=''">
+                  and sm_state =#{smState}
             </if>
         </where>
         <if test="currentPage!=null and pageSize!=null">
@@ -90,42 +84,36 @@
     </select>
 
     <update id="updateStorageMove" parameterType="storageMove">
-        supplier
+        update storage_move
         <set>
-            <if test="supplierName !=null and supplierName!=''">
-                 supplier_Nrice=#{supplierName},
+            <if test="warehousingId !=null and warehousingId!=''">
+                 and warehousing_id=#{warehousingId}
             </if>
-            <if test="supplierPersonInCharge !=null and supplierPersonInCharge!=''">
-                 supplier_person_in_charge =#{supplierPersonInCharge},
+            <if test="smBuyer !=null and smBuyer!=''">
+                 and sm_buyer =#{smBuyer}
             </if>
-            <if test="supplierPost!=null and supplierPost !=''">
-                 supplier_post =#{supplierPost},
+            <if test="salesId!=null and salesId !=''">
+                 and sales_id =#{salesId}
             </if>
-            <if test="supplierPhone !=null and supplierPhone !=''">
-                 supplier_phone =#{supplierPhone},
+            <if test="smDate !=null and smDate !=''">
+                 and sm_date =#{smDate}
             </if>
-            <if test="supplierMobilePhone !=null and supplierMobilePhone!=''">
-                 supplier_mobile_phone=#{supplierMobilePhone},
+            <if test="smRemarks !=null and smRemarks!=''">
+                 and sm_remarks=#{smRemarks}
             </if>
-            <if test="supplierFax !=null and supplierFax!=''">
-                 supplier_fax =#{supplierFax},
+            <if test="smUserId !=null and smUserId!=''">
+                 and sm_user_id =#{smUserId}
             </if>
-            <if test="supplierAddress !=null and supplierAddress!=''">
-                 supplier_address =#{supplier_address},
+            <if test="smState !=null and smState!=''">
+                 and sm_state =#{smState}
             </if>
-            <if test="supplierFactoryAddress!=null and supplierFactoryAddress!=''">
-                 supplier_factory_address = #{supplierFactoryAddress},
-            </if>
-            <if test="supplierState !=null">
-                 supplier_state=#{supplierState}
-            </if>
-            <where>
-                supplier_id=#{supplierId}
-            </where>
         </set>
+        <where>
+             sm_id=#{smId}
+        </where>
     </update>
     <insert id="insertStorageMove" parameterType="storageMove">
-        insert supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
+        insert into storage_move values(default,#{warehousingId},#{smBuyer},#{salesId},#{smDate},#{smRemarks},#{smUserId},#{smState})
     </insert>
 </mapper>
 

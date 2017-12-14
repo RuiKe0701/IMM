@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.*;
 import team.ruike.imm.service.*;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,16 +63,62 @@ public class SalesController {
     }
 
     @RequestMapping("saveSaveInformationList.do")
-    public void saveSaveInformationList(String saveInformationList,String saveList){
+    public void saveSaveInformationList(String saveInformationList, String saveList, PrintWriter printWriter){
         System.out.println(saveList);
         System.out.println(saveInformationList);
-
-        ArrayList<Sales> sa =  JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
+        System.out.println("ssssss");
+        ArrayList<Sales> sa = JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
         Sales s=sa.get(0);
+        System.out.println("+++++++++++++++");
+        System.out.println(s.getClientId());
+        System.out.println(s.getSalesDate());
+        System.out.println(s.getEmployeeId());
+        System.out.println(s.getSalesId());
+        Integer i = salesService.insertSales(s);
+
+        System.out.println("++++++++++++++++++++++++++++++++++++++++");
+        ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
+
+        for (SalesInformation salesInformation : salesInformations) {
+            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+            System.out.println(salesInformation.getSiActualPrice()+"+++"+salesInformation.getSiTotalPrice()+"+++"+salesInformation.getMerchandiseId());
+        }
+        System.out.println(i);
+
+        salesInformationService.insertAll(salesInformations);
+        if(i>0){
+            String str=JSON.toJSONString(1);
+            printWriter.write(str);
+            printWriter.flush();
+            printWriter.close();
+        }else {
+            String str=JSON.toJSONString(0);
+            printWriter.write(str);
+            printWriter.flush();
+            printWriter.close();
+        }
+
+    }
+    @RequestMapping("sssssssss.do")
+    public void saveSaveInformationLists(String saveInformationList,String saveList){
+        System.out.println(saveList);
+        System.out.println(saveInformationList);
+        System.out.println("ss");
+        ArrayList<Sales> sa = JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
+        Sales s=sa.get(0);
+        System.out.println("+++++++++++++++");
+
+        ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
+        System.out.println("++++++++++++++++++++++++++++++++++++++++");
+        for (SalesInformation salesInformation : salesInformations) {
+            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+            System.out.println(salesInformation.getSiActualPrice()+"+++"+salesInformation.getSiTotalPrice()+"+++"+salesInformation.getMerchandiseId());
+        }
+
+
+        salesInformationService.insertAll(salesInformations);
         int i = salesService.insertSales(s);
         System.out.println(i);
-        ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
-        salesInformationService.insertAll(salesInformations);
-    }
 
+    }
 }

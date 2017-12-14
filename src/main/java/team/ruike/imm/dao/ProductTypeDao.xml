@@ -28,7 +28,7 @@
     </select>
 
     <update id="updateProductType" parameterType="productType">
-        supplier
+        update product_type
         <set>
             <if test="productTypeName !=null and productTypeName!=''">
                   product_type_name=#{productTypeName}
@@ -42,8 +42,8 @@
         </set>
     </update>
 
-    <insert id="insertSales" parameterType="sales">
-        insert sales_information values(default,#{productTypeName},#{productTypeState})
+    <insert id="insertProductType" parameterType="productType">
+        insert into product_type values(default,#{productTypeName},#{productTypeState})
     </insert>
 </mapper>
 
