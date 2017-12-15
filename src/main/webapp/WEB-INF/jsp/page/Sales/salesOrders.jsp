@@ -31,13 +31,13 @@
                 i = i + 1;
             });
             $(".selectpicker").change(function () {
-                var id = $(this).val();
-                var name = $(this);
+                var id=$(this).val();
+                var name=$(this);
                 $.ajax({
-                    url: "/sales/ajaxMerchand.do",
-                    data: {"merchandiseId": id},
-                    dataType: "JSON",
-                    success: function (date) {
+                    url:"/purchases/ajaxMerchand.do",
+                    data:{"merchandiseId":id},
+                    dataType:"JSON",
+                    success:function (date) {
                         name.parent().parent('td').next("td").find("input").val(date.units.unitsName);
                         name.parent().parent('td').next("td").find("input").eq(1).val(date.units.unitsId);
                     }
@@ -67,7 +67,6 @@
                     if ($(data).find(".siVolume").val() == "") {
                         return false;
                     }
-                    alert($(data).find(".selectpicker").val())
                     var salesId = $(".salesId").val();
                     var merchandiseId=$(data).find(".selectpicker").val();
                     var siVolume = $(data).find(".siVolume").val();
@@ -87,9 +86,7 @@
                 });
 
                 var salesInformationList = JSON.stringify(salesInformation);
-                alert(salesInformationList);
                 var sale = JSON.stringify(sales);
-                alert(sale);
                 $.ajax({
                     type: "post",
                     url: "/sales/saveSaveInformationList.do",
@@ -101,6 +98,7 @@
                     success:function (data) {
                         if(data>0){
                             alert("成功")
+                            window.location.href="/sales/loginsalesOrders.do";
                         }else {
                             alert("失败")
                         }
@@ -240,18 +238,14 @@
                                         <td style="width: 30px;">${status.index}</td>
                                         <td>
                                             <div style="width: 150px">
-                                                <select class="selectpicker show-tick form-control"
-                                                        style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
-                                                        data-live-search="true" name="merchandiseId">
+                                                <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
                                                     <option>请选择</option>
-                                                    <c:forEach items="${merchandisess}" var="mer">
-                                                        <option class="aaa"
-                                                                value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                                                    <c:forEach items="${merchandises}" var="mer">
+                                                        <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                         </td>
-
                                         <td>
                                             <input type="text" disabled="disabled"
                                                    style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">

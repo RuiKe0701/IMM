@@ -105,7 +105,7 @@
     </update>
 
     <insert id="insertSales" parameterType="sales">
-    insert into sales(sales_id,sales_date,client_id,employee_id) values(#{salesId},#{salesDate},#{clientId},#{employeeId})
+    insert into sales(sales_id,sales_date,client_id,employee_id,sales_accomplish) values(#{salesId},#{salesDate},#{clientId},#{employeeId},0)
 </insert>
 </mapper>
 <!---->

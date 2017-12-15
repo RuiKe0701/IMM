@@ -24,6 +24,12 @@
     <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
         $(function () {
+            if($(".piVolume").val()!="" && $(".piActualPrice").val()!=""){
+                mun=parseInt($(".piVolume").val());
+                money=parseInt($(".piActualPrice").val());
+                totalPrice=mun*money;
+                $(".piTotalPrice").val(totalPrice);
+            }
             var i=7;
             $("#btnline").click(function () {
                 $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -189,7 +195,7 @@
                 <div class="grid-wrap">
                     <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
                          style="width: 1200px;">
-                        <div class="ui-jqgrid-view" id="gview_grid" style="width: 1200px;">
+                        <div class="ui-jqgrid-view" id="gview_grid" style="width: 1200px;height: 400px">
 
 
                             <table class="table table-bordered" >
@@ -209,29 +215,59 @@
                                 </tr>
                                 </thead>
                                 <tbody id="addtr">
-                                <c:forEach begin="1" end="6" varStatus="status">
-                                    <tr class="trParam">
-                                        <td style="width: 30px;">${status.index}</td>
-                                        <td>
-                                            <div style="width: 150px">
-                                                <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
-                                                    <option>请选择</option>
-                                                    <c:forEach items="${merchandises}" var="mer">
-                                                        <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td >
-                                            <input type="text"  disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
-                                            <input type="text" class="unitsId" style="display: none">
-                                        </td>
-                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piActualPrice" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
-                                        <td style="font-size: 16px;"><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piTotalPrice" type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
-                                        <td><input type="text" class="piRemarks" name="piRemarks" style="border: 0px;height: 30px;font-size: 16px;"/></td>
-                                    </tr>
-                                </c:forEach>
+                                <c:if test="${salesInformationArrayList==null}">
+                                    <c:forEach begin="1" end="6" varStatus="status">
+                                        <tr class="trParam">
+                                            <td style="width: 30px;">${status.index}</td>
+                                            <td>
+                                                <div style="width: 150px">
+                                                    <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
+                                                        <option>请选择</option>
+                                                        <c:forEach items="${merchandises}" var="mer">
+                                                            <option  class="aaa" value="${mer.merchandiseId}">${mer.merchandiseName}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <input type="text"  disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
+                                                <input type="text" class="unitsId" style="display: none">
+                                            </td>
+                                            <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                            <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piActualPrice" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                            <td style="font-size: 16px;"><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piTotalPrice" type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
+                                            <td><input type="text" class="piRemarks" name="piRemarks" style="border: 0px;height: 30px;font-size: 16px;"/></td>
+                                        </tr>
+                                    </c:forEach>
+
+                                </c:if>
+                                <c:if test="${salesInformationArrayList!=null}">
+                                    <c:forEach items="${salesInformationArrayList}"  var="sales" varStatus="status">
+                                        <tr class="trParam">
+                                            <td style="width: 30px;">${status.index+1}</td>
+                                            <td>
+                                                <div style="width: 150px">
+                                                    <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
+                                                        <option>请选择</option>
+                                                        <c:forEach items="${merchandises}" var="mer">
+                                                            <option  class="aaa" value="${mer.merchandiseId}"  <c:if test="${mer.merchandiseId}==${sales.merchandiseId}">selected="selected"</c:if>>${mer.merchandiseName}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <input type="text"  value="${sales.unitsId}" disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
+                                                <input type="text" class="unitsId" style="display: none">
+                                            </td>
+                                            <td><input type="text" value="${sales.siVolume}" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" name="piVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                            <td><input type="text"  value="${sales.siActualPrice}" onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piActualPrice" name="piActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
+                                            <td style="font-size: 16px;"><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="piTotalPrice" type="text" name="piTotalPrice"disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
+                                            <td><input type="text" class="piRemarks" name="piRemarks" style="border: 0px;height: 30px;font-size: 16px;"/></td>
+                                        </tr>
+                                    </c:forEach>
+
+                                </c:if>
+
                                 </tbody>
                             </table>
 
