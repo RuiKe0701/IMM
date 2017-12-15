@@ -76,31 +76,32 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
+
     <update id="updateSales" parameterType="sales">
         update sales
         <set>
-            <if test="salesId !=null and salesId!=''">
-                  sales_id=#{salesId}
+            <if test="salesDate !=null and salesDate!=''">
+                and sales_date=#{salesDate}
             </if>
-            <if test="merchandiseId !=null and merchandiseId>0">
-                  merchandise_id =#{merchandiseId}
+            <if test="clientId !=null and clientId>0">
+                and client_id =#{clientId}
             </if>
-            <if test="siVolume!=null and siVolume>0">
-                  si_volume =#{siVolume}
+            <if test="employeeId!=null and employeeId>0">
+                and employee_id =#{employeeId}
             </if>
-            <if test="unitsId!=null and unitsId>0">
-                  units_id =#{unitsId}
+            <if test="eventDetailsId!=null and eventDetailsId>=0">
+                and event_details_id =#{eventDetailsId}
             </if>
-            <if test="siActualPrice!=null and siActualPrice>=0">
-                  si_actual_price =#{siActualPrice}
+            <if test="salesActivities!=null and salesActivities>=0">
+                and sales_activities=#{salesActivities}
             </if>
-            <if test="siState!=null">
-                  si_state=#{siState}
+            <if test="salesState !=null">
+                and sales_state=#{salesState}
             </if>
-            <where>
-                si_id=#{siId}
-            </where>
         </set>
+        <where>
+            sales_id=#{salesId}
+        </where>
     </update>
 
     <insert id="insertSales" parameterType="sales">

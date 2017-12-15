@@ -112,6 +112,7 @@
              sm_id=#{smId}
         </where>
     </update>
+
     <insert id="insertStorageMove" parameterType="storageMove">
         insert into storage_move values(default,#{warehousingId},#{smBuyer},#{salesId},#{smDate},#{smRemarks},#{smUserId},#{smState})
     </insert>
