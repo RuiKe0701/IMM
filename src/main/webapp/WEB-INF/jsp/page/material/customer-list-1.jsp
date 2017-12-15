@@ -33,21 +33,21 @@
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script src="${pageContext.request.contextPath }/js/material/customer-list-1.js"></script>
     <style>
-        .matchCon {
-            width: 280px;
-        }
-        .chk-list {
-            line-height: 28px;
-        }
-        .up{
-            position: relative;
-            top: -5px;
-        }
+    .matchCon {
+        width: 280px;
+    }
+    .chk-list {
+        line-height: 28px;
+    }
+    .up{
+        position: relative;
+        top: -5px;
+    }
 
-        .reminder{
-            color: red;
-        }
-    </style>
+    .reminder{
+        color: red;
+    }
+</style>
     <script>
         $(function () {
         document.getElementById("btn-enable").setAttribute("disabled",true);

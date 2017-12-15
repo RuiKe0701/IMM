@@ -12,6 +12,7 @@ $(function () {
     });
 
     $("#sales").click(function () {
+            alert("销售订单表");
             $("#tabManage").remove();
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
@@ -24,7 +25,7 @@ $(function () {
     });
 
     $("#salesForAbout").click(function () {
-        alert("asddf");
+        alert("销售单表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -51,7 +52,7 @@ $(function () {
 
 
     $("#Sales-details").click(function () {
-        alert("asdf");
+        alert("商品销售明细表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
