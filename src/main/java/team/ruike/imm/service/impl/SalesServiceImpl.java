@@ -53,5 +53,5 @@ public class SalesServiceImpl implements SalesService{
         return salesDao.insertSales(sales);
     }
 
-
+    public int insertSalesForPu(Sales sales) { return salesDao.insertSalesForPu(sales); }
 }

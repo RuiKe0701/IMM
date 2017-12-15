@@ -1,4 +1,4 @@
-<%--
+<%--商品收发明细
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017-12-07

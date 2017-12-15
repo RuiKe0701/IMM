@@ -36,7 +36,7 @@ public class PurchaseController {
     @RequestMapping("/loginPurchaseOrder.do")
     public String loginPurchaseOrder(Model model) {
         List<Supplier> list = supplierService.selectSuplier(null);
-        List<Merchandise> merchandises=merchandiseService.selectMerchandise(null);
+        List<Merchandise> merchandises=merchandiseService.selectAll(null);
         String id=procurementService.purchaseId("GHDD");
         model.addAttribute("purId",id);
         model.addAttribute("merchandises",merchandises);
@@ -80,19 +80,13 @@ public class PurchaseController {
     //接收已销订单传值
     @RequestMapping(value = "generateOrders.do")
     @ResponseBody
-    public void generateOrders(String procurementInformationList,String salesInformationList, HttpSession session,PrintWriter printWriter){
+    public void generateOrders(String salesInformationList, HttpSession session,PrintWriter printWriter){
         ArrayList<SalesInformation> salesInformationArrayList =  JSON.parseObject(salesInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
-        ArrayList<ProcurementInformation> procurementInformations =  JSON.parseObject(procurementInformationList, new TypeReference<ArrayList<ProcurementInformation>>(){});
         session.setAttribute("salesInformationArrayList",salesInformationArrayList);
-        session.setAttribute("procurementInformations",procurementInformations);
         String jsonString = JSON.toJSONString("1");
         printWriter.write(jsonString);
         printWriter.flush();
         printWriter.close();
     }
-    //跳转到购货单页面
-    @RequestMapping(value = "purchaseOrderLoginParam.do")
-    public String purchaseOrderLoginParam(){
-        return"";
-    }
+
 }
