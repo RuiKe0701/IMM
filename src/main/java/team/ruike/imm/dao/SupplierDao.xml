@@ -86,10 +86,10 @@
             <if test="supplierState !=null">
                  supplier_state=#{supplierState}
             </if>
-            <where>
-                supplier_id=#{supplierId}
-            </where>
         </set>
+        <where>
+            supplier_id=#{supplierId}
+        </where>
     </update>
 
     <insert id="insertSupplier" parameterType="supplier">

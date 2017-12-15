@@ -12,31 +12,22 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@RequestMapping("warehousing")
 public class WarehousingController {
 
     @Autowired
     WarehousingService warehousingService;
+    @RequestMapping(value = "warehousing.do")
+    public String warehousing(Model model)
+    {
+        return "page/warehouse/warehousing";
+    }
 
-
-    @RequestMapping(value = "/warehousing.do")
-    public String select(Warehousing warehousing, Model model,HttpSession session){
-        try{
-            if(warehousing.getWarehousingId()!=null){
-                    List<Warehousing> warehousingList=warehousingService.selectWarehousing(warehousing);
-                    if(warehousingList!=null){
-                        for (Warehousing w1 :warehousingList){
-                            System.out.println(w1.getUser().getUserName());
-                        }
-                        session.setAttribute("ware",warehousingList);
-                        return "crr";
-                    }else{
-                        return "indexa";
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "indexa";
+    @RequestMapping(value = "/selectwarehousing.do")
+    public String select(Warehousing warehousing,HttpSession session) {
+        List<Warehousing> warehousingList = warehousingService.selectWarehousing(warehousing);
+        session.setAttribute("ware", warehousingList);
+        return "page/warehouse/warehousing";
     }
 
     @RequestMapping(value = "/updatess.do")

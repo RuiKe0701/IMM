@@ -202,7 +202,6 @@
                                                 <span class="hasList">调拨单
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Count-records">
@@ -210,7 +209,6 @@
                                                 <span class="hasList">盘点记录
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                     </ul>
@@ -219,26 +217,37 @@
                                     <ul class="sub-nav">
                                         <li class="" id="Goods-inventory-balance">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品库存管理
+                                                <span class="hasList">库存管理
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Goods-receipt-details">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发明细
+                                                <span class="hasList">收发明细
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Send-and-receive-goods-summary">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发汇总
+                                                <span class="hasList">收发汇总
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="warehousing">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">入库记录
+                                                 <span class="hide"></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="" id="storage_move">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">出库记录
+                                                 <span class="hide"></span>
+                                                </span>
                                             </a>
                                         </li>
                                     </ul>
