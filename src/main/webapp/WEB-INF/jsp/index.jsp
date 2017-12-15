@@ -190,8 +190,7 @@
                             </div>
                         </li>
                         <li class="menu-item item-storage" data-subid="storage"><a
-                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#" rel=""
-                                tabtxt="仓库" tabid="storage" class="main-nav cf"> <span
+                               tabtxt="仓库" tabid="storage" class="main-nav cf"> <span
                                 class="menu-pic storage left"></span> <span class="text">仓库</span> </a> <span
                                 class="arrow" style="top: 229.451px; left: 121px; display: none;"></span>
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 72.9505px; left: 129px;">
@@ -246,7 +245,7 @@
                             </div>
                         </li>
                         <li class="menu-item item-money odd" data-subid="money"><a
-                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#" rel=""
+                              rel=""
                                 tabtxt="资金" tabid="money" class="main-nav cf"> <span class="menu-pic money left"></span>
                             <span class="text">资金</span> </a> <span class="arrow"
                                                                     style="top: 296.93px; left: 121px; display: none;"></span>
@@ -310,7 +309,7 @@
                             </div>
                         </li>
                         <li class="menu-item item-information" data-subid="information"><a
-                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#" rel=""
+                                rel=""
                                 tabtxt="资料" tabid="information" class="main-nav cf"> <span
                                 class="menu-pic information left"></span> <span class="text">资料</span> </a> <span
                                 class="arrow" style="top: 363.409px; left: 121px; display: none;"></span>
@@ -343,7 +342,7 @@
                                         </li>
                                         <li class="" id="product-brand">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品品牌
+                                                <span class="hasList">商品管理
                                                  <span class="hide"></span>
                                                 </span>
                                                 <i href="javascript:void(0);">查询</i>
@@ -403,33 +402,25 @@
                                         </li>
                                         <li class="" id="unit-of-measurement">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">计量单位
+                                                <span class="hasList">
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
+                                                <i href="javascript:void(0);"></i>
                                             </a>
                                         </li>
                                         <li class="" id="Document-coding-rules">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">单据编码规则
+                                                <span class="hasList">
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
+                                                <i href="javascript:void(0);"></i>
                                             </a>
                                         </li>
-
-
-
-                                        <li class=""><a href="http://vip2-gd.youshang.com/settings/coderule-list.jsp"
-                                                        rel="pageTab" tabtxt="单据编码规则" tabid="information-coderuleList"
-                                                        data-right="DOCNO_QUERY"> <span>单据编码规则<span
-                                                class="newMenuIcon"></span></span> </a></li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
                         <li class="menu-item item-cloudPos odd" data-subid="cloudPos"><a
-                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#" rel=""
                                 tabtxt="云POS" tabid="cloudPos" class="main-nav cf"> <span
                                 class="menu-pic cloudPos left"></span> <span class="text">云POS</span> </a> <span
                                 class="arrow" style="display: none;"></span>
@@ -456,8 +447,7 @@
                             </div>
                         </li>
                         <li class="menu-item item-setting" data-subid="setting"><a
-                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#" rel=""
-                                tabtxt="设置" tabid="setting" class="main-nav cf"> <span
+                               tabtxt="设置" tabid="setting" class="main-nav cf"> <span
                                 class="menu-pic setting left"></span> <span class="text">设置</span> </a> <span
                                 class="arrow"></span>
                             <div class="sub-nav-wrap group-nav cf">
@@ -489,11 +479,9 @@
                                                 rel="pageTab" tabtxt="结账/反结账" tabid="setting-accounts" data-right="">
                                             <span>结账/反结账<span class="hide"></span></span> </a></li>
                                         <li class=""><a
-                                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
                                                 rel="pageTab" tabtxt="重算成本" tabid="setting-recalculation" data-right="">
                                             <span>重算成本<span class="hide"></span></span> </a></li>
                                         <li class=""><a
-                                                href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
                                                 rel="pageTab" tabtxt="重新初始化" tabid="setting-reInitial" data-right="">
                                             <span>重新初始化<span class="hide"></span></span> </a></li>
                                         <li class=""><a href="http://vip2-gd.youshang.com/settings/addedServiceList.jsp"
@@ -509,8 +497,6 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="fold-mark menu-open" style="left: 111px;"></div>
-                    <div class="copy-right "></div>
                 </div>
             </div>
         </div>
@@ -520,17 +506,6 @@
                     <div class="companyName left"> 瑞科科技</div>
                     <div class="right">
                         <ul class="advanced-menu cf left">
-                            <li>
-                                <div class="top-search-wrap cf special">
-                                    <div class="left"><span class="left-line"></span> <input type="text" value="搜库存"
-                                                                                             class="search-type"
-                                                                                             disabled=""> <span
-                                            class="triangle-bottom"></span></div>
-                                    <div class="left"><input type="text" placeholder="请输入商品编码或名称" id="headerBar-goods"
-                                                             class="search-dtl" autocomplete="off"> <span
-                                            class="right-line"></span> <span class="icon icon-search"></span></div>
-                                </div>
-                            </li>
                             <li id="userName" class="default-userName cf" style="position: relative;"><span
                                     class="user left"></span>
                                 <a href="#" class="special left" id="user_name">${user.userName}<%-- 显示登录的员工名字--%></a> <span
@@ -542,14 +517,9 @@
                                             class="triangle-bg"></span>
                                         <ul>
                                             <li class="newdisabled" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">瑞科科技</a></li>
+                                                   target="">瑞科科技</a></li>
                                             <li class="newdisabled" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">zqk</a></li>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">操作日志</a></li>
+                                                   target="">zqk</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -557,81 +527,12 @@
                             <li>|</li>
                         </ul>
                         <ul class="advanced-menu cf left ">
-                            <li style="position: relative;"><a
-                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                    class="icon-music "></a>
-                                <div class="drop-down-wrap" style="width: 200px; left: -81px;">
-                                    <div class="drop-down"><span class="triangle-border"></span><span
-                                            class="triangle-bg"></span>
-                                        <ul>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">
-                                                <div class="headerBar-robot">
-                                                    <div class="headerBar-label">QQ咨询</div>
-                                                    <div>4008300755</div>
-                                                </div>
-                                            </a></li>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">
-                                                <div class="headerBar-question">
-                                                    <div class="headerBar-label">在线提问</div>
-                                                    <div>每一个提问均有回复</div>
-                                                </div>
-                                            </a></li>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">
-                                                <div class="headerBar-label">电话</div>
-                                                <div>400-830-0780</div>
-                                            </a></li>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">
-                                                <div class="headerBar-label">服务时间</div>
-                                                <div>周一至周五</div>
-                                                <div>8:30-12:00、13:00-20:00</div>
-                                                <div>周六</div>
-                                                <div>9:00-12:00、13:30-17:30</div>
-                                                <div>周日及其他法定假日除外</div>
-                                            </a></li>
-                                            <li class="" style="text-align: left"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">
-                                                <div class="headerBar-label">客服邮箱</div>
-                                                <div>cs@youshang.com</div>
-                                            </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
                             <li class="news-wrap"><a
-                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
                                     class="icon-bell" data-tab="1"></a>
                             </li>
                             <li style="position: relative;"><a
-                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                    class="icon-question-sign"></a>
-                                <div class="drop-down-wrap" style="width: 100px; left: -31px;">
-                                    <div class="drop-down"><span class="triangle-border"></span><span
-                                            class="triangle-bg"></span>
-                                        <ul>
-                                            <li class="" style="text-align: center"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">新手导航</a></li>
-                                            <li class="" style="text-align: center"><a
-                                                    href="http://www.youshang.com/zxjxchelp/jxcv3/czjq/"
-                                                    target="_blank">在线帮助</a></li>
-                                            <li class="" style="text-align: center"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">辅助属性向导</a></li>
-                                            <li class="" style="text-align: center"><a
-                                                    href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                    target="">旧版</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                   class="icon-question-sign"></a>
+
                             </li>
                             <li class=""><a href="http://service.youshang.com/myservice/list_service.do"
                                             class=" icon-circle-arrow-left"></a></li>
@@ -714,13 +615,10 @@
                                                                     class="triangle-bg"></span>
                                                                 <ul>
                                                                     <li class="" style="text-align: center"><a
-                                                                            href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                                            target="">近七天</a></li>
+                                                                           target="">近七天</a></li>
                                                                     <li class="" style="text-align: center"><a
-                                                                            href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
-                                                                            target="">近七周</a></li>
+                                                                           target="">近七周</a></li>
                                                                     <li class="" style="text-align: center"><a
-                                                                            href="http://vip2-gd.youshang.com/default-new.jsp?dbid=7958971933164#"
                                                                             target="">近七月</a></li>
                                                                 </ul>
                                                             </div>
