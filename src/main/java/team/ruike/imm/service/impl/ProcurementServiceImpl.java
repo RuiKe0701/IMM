@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.ProcurementDao;
 import team.ruike.imm.entity.Procurement;
-import team.ruike.imm.instrument.RandomUtil;
+import team.ruike.imm.utility.RandomUtil;
 import team.ruike.imm.service.ProcurementService;
 
 import java.util.List;

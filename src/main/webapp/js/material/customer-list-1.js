@@ -465,6 +465,15 @@ $(function () {
 })
 //获取要修改的信息
 function gainclient(val){
+    $("#updatename").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepost").val("");
+    $("#updateaddress").val("");
+    $("#updatefactoryAddress").val("");
+    $("#updatemobilePhone").val("");
+    $("#updatephone").val("");
+    $("#updatefax").val("");
     $.ajax({
         type: "post",
         url: "/client/clientId.do?clientId="+val,
@@ -483,6 +492,7 @@ function gainclient(val){
                     $("#updatefax").val(item.clientFax)
                 });
             }
+
         },
         error: function () {
             alert("系统异常，请稍后重试！");

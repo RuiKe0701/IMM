@@ -1,7 +1,6 @@
 package team.ruike.imm.dao;
 
 import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pager;
 
 import java.util.List;
 

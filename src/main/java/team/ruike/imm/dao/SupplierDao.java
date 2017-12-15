@@ -22,7 +22,7 @@ public interface SupplierDao {
      * @param supplier 供应商信息
      * @return
      */
-    public int updateSuplier(Supplier supplier);
+    public int updateSupplier(Supplier supplier);
 
     /**
      * 新增供应商信息
@@ -35,4 +35,7 @@ public interface SupplierDao {
      * @return
      */
     public List<Supplier> PagerSupplier(Supplier supplier);
+
+    public int noncooperation(List supplier);
+    public int cooperative(List supplier);
 }

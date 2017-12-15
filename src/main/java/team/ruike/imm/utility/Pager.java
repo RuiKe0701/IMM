@@ -1,4 +1,4 @@
-package team.ruike.imm.instrument;
+package team.ruike.imm.utility;
 
 import java.io.Serializable;
 import java.util.List;

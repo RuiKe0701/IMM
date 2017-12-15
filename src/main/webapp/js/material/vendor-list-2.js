@@ -180,29 +180,30 @@ function checkUpdateFax() {
 $(function () {
     //修改为不合作客户
     $("#btn-disable").click(function () {
-        var clientList = new Array();
+        var supplierList = new Array();
         $(".clients").each(function (index, date) {
             var checkbox = $(date).find(".k");
             if(checkbox.is(':checked')){
                 //选中了
                 var id = $(date).find(".k").val();
                 var object = new Object();
-                object.kk = id;
-                clientList.push(object);
-                var noncooperationClient = JSON.stringify(clientList);
+                object.BulkChanges = id;
+                supplierList.push(object);
+                var noncooperationSupplierList = JSON.stringify(supplierList);
                 $.ajax({
                     type: "post",
-                    url: "/client/noncooperationClient.do",
+                    url: "/supplier/noncooperationSupplier.do",
                     data: {
-                        "noncooperationClient": noncooperationClient
+                        "noncooperationSupplierList": noncooperationSupplierList
                     },
                     dataType: "json",
                     success: function (data) {
                         if(data!=0){
                             for(i in data){
-                                $("#"+data[i].clientId).remove();
+                                $("#"+data[i].supplierId).remove();
                             }
                         }
+                        alert("修改成功")
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -314,9 +315,9 @@ $(function () {
         if (!checkUpdatePhone()) flag = false;
         if (!checkUpdateFax()) flag = false;
         if(flag != false){
-            var clients = new Array();
+            var supplier = new Array();
             var object =new Object();
-            object.clientId= $("#updateid").val();
+            object.supplierId= $("#updateid").val();
             object.supplierName= $("#updatename").val();
             object.supplierPersonInCharge= $("#updatepersonInCharge").val();
             object.supplierPost= $("#updatepost").val();
@@ -325,13 +326,13 @@ $(function () {
             object.supplierMobilePhone= $("#updatemobilePhone").val();
             object.supplierPhone= $("#updatephone").val();
             object.supplierFax= $("#updatefax").val();
-            clients.push(object);
-            var clientList = JSON.stringify(clients);
+            supplier.push(object);
+            var supplierList = JSON.stringify(supplier);
             $.ajax({
                 type: "post",
-                url: "/client/updatesClient.do",
+                url: "/supplier/updateSupplier.do",
                 data: {
-                    "clientList": clientList
+                    "supplierList": supplierList
                 },
                 dataType: "json",
                 success: function (data) {
@@ -354,37 +355,30 @@ $(function () {
                                 "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
                                 "                <td  id=\"State\">"+item.state+"</td>\n"+
                                 "                <td  >\n" +
-                                "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
+                                "                    <button type=\"button\" onclick=\"gainclient("+item.supplierId+")\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
                                 "                </td>\n" +
                                 "            </tr>";
                         })
                         $("#tbod").append(str);
                     }
-                    $("#updatename").val("");
-                    $("#updatepersonInCharge").val("");
-                    $("#updatepost").val("");
-                    $("#updatephone").val("");
-                    $("#updatemobilePhone").val("");
-                    $("#updatefax").val("");
-                    $("#updateaddress").val("");
-                    $("#updatefactoryAddress").val("");
-                    $("#updatestate").val("");
+
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
                 }
             })
+
         }
     })
     //查看终止合作的客户
     $("#termination").click(function () {
-        var clientState=this.name;
+        var supplierState=this.name;
         document.getElementById("btn-disable").setAttribute("disabled",true);
         document.getElementById("addClient").setAttribute("disabled",true);
         $("#btn-enable").attr("disabled",false);
         $.ajax({
             type:"post",
-            url:"/client/clientCooperation.do?clientState="+clientState,
+            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
             dataType: "json",
             success: function (data) {
                 var str = "";
@@ -421,14 +415,13 @@ $(function () {
     })
     //查看在合作客户
     $("#cooperation").click(function () {
-        var clientState=this.name;
+        var supplierState=this.name;
         document.getElementById("btn-enable").setAttribute("disabled",true);
-
         $("#addClient").attr("disabled",false);
         $("#btn-disable").attr("disabled",false);
         $.ajax({
             type:"post",
-            url:"/client/clientCooperation.do?clientState="+clientState,
+            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
             dataType: "json",
             success: function (data) {
                 var str = "";
@@ -463,32 +456,66 @@ $(function () {
             }
         })
     })
-
-    //获取要修改的信息
-    function gainclient(val){
-        alert(val)
-        $.ajax({
-            type: "post",
-            url: "/client/clientId.do?clientId="+val,
-            dataType: "json",
-            success: function (data) {
-                if(data!=0){
-                    $.each(data, function(i,item){
-                        $("#updateid").val(item.supplierId)
-                        $("#updatename").val(item.supplierName)
-                        $("#updatepersonInCharge").val(item.supplierPersonInCharge)
-                        $("#updatepost").val(item.supplierPost)
-                        $("#updateaddress").val(item.supplierAddress)
-                        $("#updatefactoryAddress").val(item.supplierFactoryAddress)
-                        $("#updatemobilePhone").val(item.supplierMobilePhone)
-                        $("#updatephone").val(item.supplierPhone)
-                        $("#updatefax").val(item.supplierFax)
-                    });
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
+    // 修改为合作客户
+    $("#btn-enable").click(function () {
+        var clientList = new Array();
+        $(".clients").each(function (index, date) {
+            var checkbox = $(date).find(".k");
+            if(checkbox.is(':checked')){
+                //选中了
+                var id = $(date).find(".k").val();
+                var object = new Object();
+                object.BulkChanges = id;
+                clientList.push(object);
+                var cooperativeSupplier = JSON.stringify(clientList);
+                $.ajax({
+                    type: "post",
+                    url: "/supplier/cooperativeSupplier.do",
+                    data: {
+                        "cooperativeSupplier": cooperativeSupplier
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if(data!=0){
+                            if(data!=0){
+                                for(i in data){
+                                    $("#"+data[i].supplierId).remove();
+                                }
+                            }
+                        }
+                    },
+                    error: function () {
+                        alert("系统异常，请稍后重试！");
+                    }
+                })
             }
-        })
-    }
+        });
+    })
 })
+//获取要修改的信息
+function gainclient(val){
+
+    $.ajax({
+        type: "post",
+        url: "/supplier/supplierId.do?supplierId="+val,
+        dataType: "json",
+        success: function (data) {
+            if(data!=0){
+                $.each(data, function(i,item){
+                    $("#updateid").val(item.supplierId)
+                    $("#updatename").val(item.supplierName)
+                    $("#updatepersonInCharge").val(item.supplierPersonInCharge)
+                    $("#updatepost").val(item.supplierPost)
+                    $("#updateaddress").val(item.supplierAddress)
+                    $("#updatefactoryAddress").val(item.supplierFactoryAddress)
+                    $("#updatemobilePhone").val(item.supplierMobilePhone)
+                    $("#updatephone").val(item.supplierPhone)
+                    $("#updatefax").val(item.supplierFax)
+                });
+            }
+        },
+        error: function () {
+            alert("系统异常，请稍后重试！");
+        }
+    })
+}

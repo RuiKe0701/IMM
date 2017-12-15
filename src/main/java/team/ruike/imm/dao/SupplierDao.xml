@@ -56,11 +56,11 @@
         </if>
     </select>
 
-    <update id="updateSupplier" parameterType="supplier">
+    <update id="updateSupplier" >
         update supplier
         <set>
             <if test="supplierName !=null and supplierName!=''">
-                 supplier_Nrice=#{supplierName},
+                supplier_name=#{supplierName},
             </if>
             <if test="supplierPersonInCharge !=null and supplierPersonInCharge!=''">
                  supplier_person_in_charge =#{supplierPersonInCharge},
@@ -78,7 +78,7 @@
                  supplier_fax =#{supplierFax},
             </if>
             <if test="supplierAddress !=null and supplierAddress!=''">
-                 supplier_address =#{supplier_address},
+                 supplier_address =#{supplierAddress},
             </if>
             <if test="supplierFactoryAddress!=null and supplierFactoryAddress!=''">
                  supplier_factory_address = #{supplierFactoryAddress},
@@ -86,14 +86,35 @@
             <if test="supplierState !=null">
                  supplier_state=#{supplierState}
             </if>
-            <where>
-                supplier_id=#{supplierId}
-            </where>
         </set>
+        <where>
+            supplier_id=#{supplierId}
+        </where>
     </update>
 
     <insert id="insertSupplier" parameterType="supplier">
         insert into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
     </insert>
+
+    <!--修改为不合作供应商-->
+    <update id="noncooperation" parameterType="java.util.List">
+        <foreach collection="list" item="supplier" index="index" open="" close="" separator=";" >
+            update supplier
+            <set>
+                supplier_state=1
+            </set>
+            where supplier_id=#{supplier}
+        </foreach>
+    </update>
+    <!--修改为合作客户-->
+    <update id="cooperative" parameterType="java.util.List">
+        <foreach collection="list" item="supplier" index="index" open="" close="" separator=";" >
+            update supplier
+            <set>
+                supplier_state=0
+            </set>
+            where supplier_id=#{supplier}
+        </foreach>
+    </update>
 </mapper>
 
