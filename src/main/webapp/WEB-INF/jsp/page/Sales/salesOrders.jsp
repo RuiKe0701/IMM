@@ -34,7 +34,7 @@
                 var id=$(this).val();
                 var name=$(this);
                 $.ajax({
-                    url:"/purchases/ajaxMerchand.do",
+                    url:"/sales/ajaxMerchand.do",
                     data:{"merchandiseId":id},
                     dataType:"JSON",
                     success:function (date) {
@@ -97,7 +97,7 @@
                     dataType: "json",
                     success:function (data) {
                         if(data>0){
-                            alert("成功")
+                            alert("成功添加购货订单")
                             window.location.href="/sales/loginsalesOrders.do";
                         }else {
                             alert("失败")
