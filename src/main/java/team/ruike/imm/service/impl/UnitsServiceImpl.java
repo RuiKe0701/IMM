@@ -24,6 +24,10 @@ public class UnitsServiceImpl implements UnitsService{
     public List<Units> selectUnits(Units units){
         return unitsDao.selectUnits(units);
     }
+    //根據 id 查詢單位
+    public Units selectUntisGetById(Units units){
+        return unitsDao.selectUnits(units).get(0);
+    }
     public int updateUnits(Units units){
         return unitsDao.updateUnits(units);
     }

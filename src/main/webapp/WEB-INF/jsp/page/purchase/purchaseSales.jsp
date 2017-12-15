@@ -45,47 +45,45 @@
                 }
             });
             $("#toPo").click(function () {
-                var salesInformation=new Array();
-                var procurementInformation=new Array();
-                var salesInformationList=null;
-                var procurementInformationList=null;
-                $(".eachtr").each(function (index,data) {
-                    if($(data).find(".ck").is(':checked')){
-                        var merchandiseId=$(data).find(".merchandiseId").html();
-                        var unitsId=$(data).find(".unitsId").html();
-                        var siVolume=$(data).find(".siVolume").html();
-                        var salesId=$(data).find(".salesId").html();
-                        var salesDate=$(data).find(".salesDate").html();
-                        var piVolume=$(data).find(".piVolume").val();
-                        var piActualPrice=$(data).find(".piActualPrice").val();
-                        var obj=new Object();
-                        obj.merchandiseId=merchandiseId;
-                        obj.unitsId=unitsId;
-                        obj.siVolume=siVolume;
-                        obj.salesId=salesId;
-                        obj.salesDate=salesDate;
-                        salesInformation.push(obj);
-                         salesInformationList=JSON.stringify(salesInformation);
-                        var procurementInformationobj=new Object();
-                        procurementInformationobj.piVolume=piVolume;
-                        procurementInformationobj.piActualPrice=piActualPrice;
-                        procurementInformation.push(procurementInformationobj);
-                         procurementInformationList=JSON.stringify(procurementInformation);
-                    }
+                if($("input[type='checkbox']").is(':checked')){
+                    var salesInformation=new Array();
+                    var salesInformationList=null;
+                    $(".eachtr").each(function (index,data) {
+                        if($(data).find(".ck").is(':checked')){
+                            var merchandiseId=$(data).find(".merchandiseId").html();
+                            var unitsId=$(data).find(".unitsId").html();
+                            var siVolume=$(data).find(".piVolume").val();
+                            var salesId=$(data).find(".salesId").html();
+                            var salesDate=$(data).find(".salesDate").html();
+                            var siActualPrice=$(data).find(".piActualPrice").val();
+                            var obj=new Object();
+                            obj.merchandiseId=merchandiseId;
+                            obj.unitsId=unitsId;
+                            obj.siVolume=siVolume;
+                            obj.salesId=salesId;
+                            obj.salesDate=salesDate;
+                            obj.siActualPrice=siActualPrice;
+                            salesInformation.push(obj);
+                            salesInformationList=JSON.stringify(salesInformation);
+                        }
 
-                })
-                $.ajax({
-                    type: "post",
-                    url: "/purchases/generateOrders.do",
-                    data:{
-                        "procurementInformationList":procurementInformationList,
-                        "salesInformationList":salesInformationList
-                    },
-                    dataType: "json",
-                    success:function () {
-                        window.location.href="/purchases/purchaseOrderLoginParam.do";
-                    }
-                })
+                    });
+                    $.ajax({
+                        type: "post",
+                        url: "/purchases/generateOrders.do",
+                        data:{
+                            "salesInformationList":salesInformationList
+                        },
+                        dataType: "json",
+                        success:function () {
+                            window.location.href="/purchaseOrder/loginPurchase.do";
+                        }
+                    })
+                }else {
+                    alert("请选择你要生成订单的列");
+                    return false;
+                }
+
             })
         })
     </script>
