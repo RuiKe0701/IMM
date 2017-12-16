@@ -232,25 +232,10 @@ $(function () {
         if (!checkAddPhone()) flag = false;
         if (!checkAddFax()) flag = false;
         if(flag != false){
-            var supplier = new Array();
-            var object =new Object();
-            object.supplierName= $("#addname").val();
-            object.supplierPersonInCharge= $("#addpersonInCharge").val();
-            object.supplierPost= $("#addpost").val();
-            object.supplierPhone= $("#addphone").val();
-            object.supplierMobilePhone= $("#addmobilePhone").val();
-            object.supplierFax= $("#addfax").val();
-            object.supplierAddress= $("#addaddress").val();
-            object.supplierFactoryAddress= $("#addfactoryAddress").val();
-            object.supplierState= $("#addstate").val();
-            supplier.push(object);
-            var supplierList = JSON.stringify(supplier);
             $.ajax({
                 type: "post",
                 url: "/supplier/addsupplier.do",
-                data: {
-                    "supplierList": supplierList
-                },
+                data: $("#form").serialize(),
                 dataType: "json",
                 success: function (data) {
                     $("#closeAdd").click();
@@ -315,25 +300,10 @@ $(function () {
         if (!checkUpdatePhone()) flag = false;
         if (!checkUpdateFax()) flag = false;
         if(flag != false){
-            var supplier = new Array();
-            var object =new Object();
-            object.supplierId= $("#updateid").val();
-            object.supplierName= $("#updatename").val();
-            object.supplierPersonInCharge= $("#updatepersonInCharge").val();
-            object.supplierPost= $("#updatepost").val();
-            object.supplierAddress= $("#updateaddress").val();
-            object.supplierFactoryAddress= $("#updatefactoryAddress").val();
-            object.supplierMobilePhone= $("#updatemobilePhone").val();
-            object.supplierPhone= $("#updatephone").val();
-            object.supplierFax= $("#updatefax").val();
-            supplier.push(object);
-            var supplierList = JSON.stringify(supplier);
             $.ajax({
                 type: "post",
                 url: "/supplier/updateSupplier.do",
-                data: {
-                    "supplierList": supplierList
-                },
+                data: $("#form").serialize(),
                 dataType: "json",
                 success: function (data) {
                     $("#closeUpdate").click();
@@ -370,11 +340,15 @@ $(function () {
 
         }
     })
-    //查看终止合作的客户
+    //查看终止合作的供应商
     $("#termination").click(function () {
         var supplierState=this.name;
+        $(this).css({'background':'#FFFFFF','color':'#000000'});
+        $("#cooperation").css({'background':'#99CCFF','color':'#FFFFFF'});
+        //控制按钮不可点击
         document.getElementById("btn-disable").setAttribute("disabled",true);
         document.getElementById("addClient").setAttribute("disabled",true);
+        //控制按钮恢复可点击
         $("#btn-enable").attr("disabled",false);
         $.ajax({
             type:"post",
@@ -416,7 +390,11 @@ $(function () {
     //查看在合作客户
     $("#cooperation").click(function () {
         var supplierState=this.name;
+        $(this).css({'background':'#FFFFFF','color':'#000000'});
+        $("#termination").css({'background':'#99CCFF','color':'#FFFFFF'});
+        //控制按钮不可点击
         document.getElementById("btn-enable").setAttribute("disabled",true);
+        //控制按钮恢复可点击
         $("#addClient").attr("disabled",false);
         $("#btn-disable").attr("disabled",false);
         $.ajax({

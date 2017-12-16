@@ -25,7 +25,6 @@
     <script src="${pageContext.request.contextPath }/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.js"></script>
-
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
     <script src="${pageContext.request.contextPath }/js/guoxu.js"></script>
     <script src="${pageContext.request.contextPath }/js/warehouse.js"></script>
@@ -310,11 +309,12 @@
                         </li>
                         <li class="menu-item item-information" data-subid="information"><a
                                 rel=""
-                                tabtxt="资料" tabid="information" class="main-nav cf"> <span
-                                class="menu-pic information left"></span> <span class="text">资料</span> </a> <span
+                                tabtxt="资料" id="ziliao" class="main-nav cf"> <span
+                                class="menu-pic information left"></span>
+                            <span class="text">资料</span> </a> <span
                                 class="arrow" style="top: 363.409px; left: 121px; display: none;"></span>
-                            <div class="sub-nav-wrap group-nav cf" style="display: none; top: 52.9088px; left: 129px;">
-                                <div class="nav-item"><h3>基础资料</h3>
+                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 52.9088px; left: 129px;">
+                                 <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Customer-management">
                                             <a href="javascript:void(0);">
@@ -357,7 +357,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                 </div>
                                 <div class="nav-item"><h3>辅助资料</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="client-categories">
@@ -418,6 +418,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </li>
                         <li class="menu-item item-cloudPos odd" data-subid="cloudPos"><a

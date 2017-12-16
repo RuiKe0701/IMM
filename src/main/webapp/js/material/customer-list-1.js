@@ -231,25 +231,10 @@ $(function () {
         if (!checkAddPhone()) flag = false;
         if (!checkAddFax()) flag = false;
             if(flag != false){
-                var clients = new Array();
-                var object =new Object();
-                object.clientName= $("#addname").val();
-                object.clientPersonInCharge= $("#addpersonInCharge").val();
-                object.clientPost= $("#addpost").val();
-                object.clientPhone= $("#addphone").val();
-                object.clientMobilePhone= $("#addmobilePhone").val();
-                object.clientFax= $("#addfax").val();
-                object.clientAddress= $("#addaddress").val();
-                object.clientFactoryAddress= $("#addfactoryAddress").val();
-                object.clientState= $("#addstate").val();
-                clients.push(object);
-                var clientList = JSON.stringify(clients);
                 $.ajax({
                     type: "post",
                     url: "/client/addClient.do",
-                    data: {
-                        "clientList": clientList
-                    },
+                    data: $("#form").serialize(),
                     dataType: "json",
                     success: function (data) {
                         $("#closeAdd").click();
@@ -313,25 +298,10 @@ $(function () {
         if (!checkUpdatePhone()) flag = false;
         if (!checkUpdateFax()) flag = false;
         if(flag != false){
-        var clients = new Array();
-        var object =new Object();
-        object.clientId= $("#updateid").val();
-        object.clientName= $("#updatename").val();
-        object.clientPersonInCharge= $("#updatepersonInCharge").val();
-        object.clientPost= $("#updatepost").val();
-        object.clientAddress= $("#updateaddress").val();
-        object.clientFactoryAddress= $("#updatefactoryAddress").val();
-        object.clientMobilePhone= $("#updatemobilePhone").val();
-        object.clientPhone= $("#updatephone").val();
-        object.clientFax= $("#updatefax").val();
-        clients.push(object);
-        var clientList = JSON.stringify(clients);
         $.ajax({
             type: "post",
             url: "/client/updatesClient.do",
-            data: {
-                "clientList": clientList
-            },
+            data: $("#form").serialize(),
             dataType: "json",
             success: function (data) {
                 $("#closeUpdate").click();
@@ -377,10 +347,14 @@ $(function () {
     })
     //查看终止合作的客户
     $("#termination").click(function () {
-        var clientState=this.name;
+        $(this).css({'background':'#FFFFFF','color':'#000000'});
+        $("#cooperation").css({'background':'#99CCFF','color':'#FFFFFF'});
+        //控制按钮不可点击
         document.getElementById("btn-disable").setAttribute("disabled",true);
         document.getElementById("addClient").setAttribute("disabled",true);
+        //控制按钮恢复可点击
         $("#btn-enable").attr("disabled",false);
+        var clientState=this.name;
         $.ajax({
             type:"post",
             url:"/client/clientCooperation.do?clientState="+clientState,
@@ -420,11 +394,15 @@ $(function () {
     })
     //查看在合作客户
     $("#cooperation").click(function () {
+        $(this).css({'background':'#FFFFFF','color':'#000000'});
+        $("#termination").css({'background':'#99CCFF','color':'#FFFFFF'});
         var clientState=this.name;
+        //控制按钮不可点击
         document.getElementById("btn-enable").setAttribute("disabled",true);
-
+        //控制按钮恢复可点击
         $("#addClient").attr("disabled",false);
         $("#btn-disable").attr("disabled",false);
+
         $.ajax({
             type:"post",
             url:"/client/clientCooperation.do?clientState="+clientState,

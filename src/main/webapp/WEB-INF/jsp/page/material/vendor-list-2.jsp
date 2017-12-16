@@ -100,6 +100,7 @@
         </div>
 
     </div>
+    <form id="form">
     <%--展示信息--%>
     <div style="position: relative;left: 50px">
         <table class="table table-striped" style="width: 1200px">
@@ -147,6 +148,7 @@
             </tbody>
         </table>
     </div>
+    </form>
 </div>
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
