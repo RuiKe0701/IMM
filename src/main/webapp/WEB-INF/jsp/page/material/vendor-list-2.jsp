@@ -100,6 +100,7 @@
         </div>
 
     </div>
+    <form id="form">
     <%--展示信息--%>
     <div style="position: relative;left: 50px">
         <table class="table table-striped" style="width: 1200px">
@@ -139,7 +140,7 @@
                             <td  id="supplierState">已终止</td>
                         </c:if>
                         <td  >
-                            <button type="button" onclick="gainclient(${s.supplierId})" id="${s.supplierId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                            <button type="button"onclick="gainclient(${s.supplierId})" id="${s.supplierId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
                         </td>
                     </tr>
                 </c:if>
@@ -147,6 +148,7 @@
             </tbody>
         </table>
     </div>
+    </form>
 </div>
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -233,7 +235,7 @@
                 </h4>
             </div>
             <div class="modal-body" style="width: 300px;height: 500px" >
-                <input id="updateid" style="display: none"-/>
+                <input id="updateid" style="display: none"/>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
@@ -289,41 +291,7 @@
 
 <script type="text/javascript">
     $(function () {
-        //修改客户是否合作
-//        $("#btn-enable").click(function () {
-//            var clientList = new Array();
-//            $(".clients").each(function (index, date) {
-//                var checkbox = $(date).find(".k");
-//                if(checkbox.is(':checked')){
-//                    //选中了
-//                    var id = $(date).find(".k").val();
-//                    var object = new Object();
-//                    object.kk = id;
-//                    clientList.push(object);
-//                    var cooperativeClients = JSON.stringify(clientList);
-//                    $.ajax({
-//                        type: "post",
-//                        url: "/client/cooperativeClient.do",
-//                        data: {
-//                            "cooperativeClients": cooperativeClients
-//                        },
-//                        dataType: "json",
-//                        success: function (data) {
-//                            if(data!=0){
-//                                if(data!=0){
-//                                    for(i in data){
-//                                        $("#"+data[i].clientId).remove();
-//                                    }
-//                                }
-//                            }
-//                        },
-//                        error: function () {
-//                            alert("系统异常，请稍后重试！");
-//                        }
-//                    })
-//                }
-//            });
-//        })
+
     })
 </script>
 </html>

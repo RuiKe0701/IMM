@@ -1,7 +1,6 @@
-package team.ruike.imm.instrument;
+package team.ruike.imm.utility;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by HP on 2017/12/8.

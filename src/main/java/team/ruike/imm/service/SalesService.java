@@ -26,5 +26,7 @@ public interface SalesService {
      */
     public int insertSales(Sales sales);
 
+    public int insertSalesForPu(Sales sales);
+
     String salesId();
 }

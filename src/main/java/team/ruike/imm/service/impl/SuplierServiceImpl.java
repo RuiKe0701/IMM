@@ -31,10 +31,19 @@ public class SuplierServiceImpl implements SupplierService {
     }
 
     public int updateSupplier(Supplier supplier) {
-        return 0;
+        return supplierDao.updateSupplier(supplier);
     }
 
     public int insertSuplier(Supplier supplier) {
         return supplierDao.insertSuplier(supplier);
+    }
+
+    public int noncooperation(List supplier) {
+        return supplierDao.noncooperation(supplier);
+    };
+
+
+    public int cooperative(List supplier){
+        return supplierDao.cooperative(supplier);
     }
 }

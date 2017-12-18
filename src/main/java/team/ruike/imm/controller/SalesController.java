@@ -45,16 +45,17 @@ public class SalesController {
     public String loginsalesOrders(Model model){
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
-        List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
+        List<Merchandise> merchandises=merchandiseService.selectAll(null);
         String id=salesService.salesId();
         model.addAttribute("salesId",id);
         model.addAttribute("clientss",clientList);
         model.addAttribute("employeess",employeeList);
-        model.addAttribute("merchandisess",merchandiseList);
+        model.addAttribute("merchandises",merchandises);
         return "page/Sales/salesOrders";
     }
 
 
+    //显示一个商品信息
     @RequestMapping(value = "ajaxMerchand.do",produces="text/html;charset=UTF-8")
     @ResponseBody
     public Object ajaxMerchand(Merchandise merchandise){
@@ -64,27 +65,10 @@ public class SalesController {
 
     @RequestMapping("saveSaveInformationList.do")
     public void saveSaveInformationList(String saveInformationList, String saveList, PrintWriter printWriter){
-        System.out.println(saveList);
-        System.out.println(saveInformationList);
-        System.out.println("ssssss");
         ArrayList<Sales> sa = JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
         Sales s=sa.get(0);
-        System.out.println("+++++++++++++++");
-        System.out.println(s.getClientId());
-        System.out.println(s.getSalesDate());
-        System.out.println(s.getEmployeeId());
-        System.out.println(s.getSalesId());
         Integer i = salesService.insertSales(s);
-
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
         ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
-
-        for (SalesInformation salesInformation : salesInformations) {
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-            System.out.println(salesInformation.getSiActualPrice()+"+++"+salesInformation.getSiTotalPrice()+"+++"+salesInformation.getMerchandiseId());
-        }
-        System.out.println(i);
-
         salesInformationService.insertAll(salesInformations);
         if(i>0){
             String str=JSON.toJSONString(1);
@@ -99,26 +83,5 @@ public class SalesController {
         }
 
     }
-    @RequestMapping("sssssssss.do")
-    public void saveSaveInformationLists(String saveInformationList,String saveList){
-        System.out.println(saveList);
-        System.out.println(saveInformationList);
-        System.out.println("ss");
-        ArrayList<Sales> sa = JSON.parseObject(saveList, new TypeReference<ArrayList<Sales>>(){});
-        Sales s=sa.get(0);
-        System.out.println("+++++++++++++++");
 
-        ArrayList<SalesInformation> salesInformations =  JSON.parseObject(saveInformationList, new TypeReference<ArrayList<SalesInformation>>(){});
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
-        for (SalesInformation salesInformation : salesInformations) {
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-            System.out.println(salesInformation.getSiActualPrice()+"+++"+salesInformation.getSiTotalPrice()+"+++"+salesInformation.getMerchandiseId());
-        }
-
-
-        salesInformationService.insertAll(salesInformations);
-        int i = salesService.insertSales(s);
-        System.out.println(i);
-
-    }
 }

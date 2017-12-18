@@ -32,6 +32,12 @@ public interface SalesDao {
     public int insertSales(Sales sales);
 
     /**
+     * 新增销售订单
+     * @param sales 销售单
+     * @return
+     */
+    public int insertSalesForPu(Sales sales);
+    /**
      * 分页
      * @return
      */

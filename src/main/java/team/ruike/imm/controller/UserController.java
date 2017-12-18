@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pages;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -40,15 +39,15 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/pages.do")
-    public String pages(Model model){
-        List<Integer> a=null;
-        Pages<User> pages=userService.queryOrderContract();
-        System.out.println( pages.getPageSize());
-        System.out.println( pages.getPageBar().length);
-        model.addAttribute("page",pages);
-        return "adsa";
-    }
+//    @RequestMapping(value = "/pages.do")
+//    public String pages(Model model){
+//        List<Integer> a=null;
+//        team.ruike.imm.instrument.Pages<User> pages=userService.queryOrderContract();
+//        System.out.println( pages.getPageSize());
+//        System.out.println( pages.getPageBar().length);
+//        model.addAttribute("page",pages);
+//        return "adsa";
+//    }
 
 //    @RequestMapping(value = "/page.do")
 //    public  String page(Integer currentPage,Model model){//分页显示用户信息
