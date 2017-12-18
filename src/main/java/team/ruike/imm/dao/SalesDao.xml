@@ -106,6 +106,12 @@
 
     <insert id="insertSales" parameterType="sales">
     insert into sales(sales_id,sales_date,client_id,employee_id,sales_accomplish) values(#{salesId},#{salesDate},#{clientId},#{employeeId},0)
-</insert>
+    </insert>
+
+    <insert id="insertSalesForPu" parameterType="sales">
+        insert into sales(sales_id,sales_date,client_id,employee_id,sales_accomplish) values(#{salesId},#{salesDate},#{clientId},#{employeeId},1)
+    </insert>
+
+
 </mapper>
 <!---->

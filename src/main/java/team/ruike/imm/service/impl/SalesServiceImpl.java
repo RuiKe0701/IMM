@@ -3,9 +3,8 @@ package team.ruike.imm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.SalesDao;
-import team.ruike.imm.entity.Procurement;
 import team.ruike.imm.entity.Sales;
-import team.ruike.imm.instrument.RandomUtil;
+import team.ruike.imm.utility.RandomUtil;
 import team.ruike.imm.service.SalesService;
 
 import java.util.List;
@@ -54,5 +53,5 @@ public class SalesServiceImpl implements SalesService{
         return salesDao.insertSales(sales);
     }
 
-
+    public int insertSalesForPu(Sales sales) { return salesDao.insertSalesForPu(sales); }
 }

@@ -1,9 +1,6 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pager;
-import team.ruike.imm.instrument.Pages;
-
 import java.util.List;
 
 /**
@@ -19,7 +16,6 @@ public interface UserService {
     public User selectUser(User user);
 
     public List<User> userList(User user);
-    public Pages queryOrderContract();
     public Integer count();
     /**
      * 指定条件修改用户信息
@@ -39,14 +35,14 @@ public interface UserService {
      * 分页
      * @return
      */
-    public List<User> pagerUser(Integer currentPage);
+//    public List<User> pagerUser(Integer currentPage);
 
     /**
      * 入参分页类
      * @param currentPage
      * @return
      */
-    public Pager<User> getPager(Integer currentPage );
+//    public Pager<User> getPager(Integer currentPage );
 
     /**
      * 批量添加

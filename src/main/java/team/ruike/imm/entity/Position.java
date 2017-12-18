@@ -1,8 +1,7 @@
 package team.ruike.imm.entity;
 
-import team.ruike.imm.instrument.PagerParameter;
+import team.ruike.imm.utility.PagerParameter;
 
-import java.awt.print.Paper;
 import java.io.Serializable;
 import java.util.List;
 

@@ -71,7 +71,8 @@
                 <button type="button" id="cooperation" name="0" class="btn btn-info" data-toggle="modal" >
                     <span class="">合作中</span></button>
                 <button type="button" id="termination" name="1" class="btn btn-info" data-toggle="modal">
-                    <span class="">已终止</span></button>
+                    <span class="">已终止</span>
+                </button>
             </div>
         </li>
     </ul>
@@ -102,6 +103,7 @@
         </div>
 
     </div>
+    <form id="form">
     <%--展示信息--%>
     <div style="position: relative;left: 50px">
         <table class="table table-striped" style="width: 1200px">
@@ -149,6 +151,7 @@
             </tbody>
         </table>
     </div>
+    </form>
 </div>
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

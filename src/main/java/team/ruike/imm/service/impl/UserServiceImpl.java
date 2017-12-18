@@ -2,11 +2,9 @@ package team.ruike.imm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.dao.UserDao;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pager;
-import team.ruike.imm.instrument.Pages;
+import team.ruike.imm.utility.Pager;
 import team.ruike.imm.service.UserService;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
  * 测试
  */
 @Service("userService")
-public class UserServiceImpl  implements UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
@@ -60,18 +58,18 @@ public class UserServiceImpl  implements UserService {
      * 分页查询进入SQL语句
      * @return
      */
-    public List<User> pagerUser(Integer currentPage) {
-        User user=new User();
-        user.setCurrentPage(currentPage);
-        //设置每页显示数据数
-        user.setPageSize(pageSize);
-        if (currentPage>0){
-        //根据输入的页数查询
-        user.setCurrentPage((user.getCurrentPage()-1)*pageSize);
-        return userDao.selectUser(user);
-        }
-        return userDao.selectUser(user);
-    }
+//    public List<User> pagerUser(Integer currentPage) {
+//        User user=new User();
+//        user.setCurrentPage(currentPage);
+//        //设置每页显示数据数
+//        user.setPageSize(pageSize);
+//        if (currentPage>0){
+//        //根据输入的页数查询
+//        user.setCurrentPage((user.getCurrentPage()-1)*pageSize);
+//        return userDao.selectUser(user);
+//        }
+//        return userDao.selectUser(user);
+//    }
     /**
      * 分页信息进入Pager类
      * @return
@@ -99,17 +97,17 @@ public class UserServiceImpl  implements UserService {
      *pager分页辅助
      pager.setTotalRecord 总数OrderContract orderContract, Pager<OrderContract> pager
      */ //(每页数据数-1)*每页显示数据数
-    public Pages queryOrderContract() {
-        Pages<User> pages=new Pages<User>();
-        Integer count = userDao.count();
-        pages.setTotalRecord(count);
-        User user=new User();
-        user.setCurrentPage(1);
-        pages.setPageSize(3);
-        List<User> orderContractList = userDao.selectUser(user );
-        pages.setList(orderContractList);
-        return pages;
-    }
+//    public team.ruike.imm.instrument.Pages queryOrderContract() {
+//        team.ruike.imm.instrument.Pages<User> pages=new team.ruike.imm.instrument.Pages<User>();
+//        Integer count = userDao.count();
+//        pages.setTotalRecord(count);
+//        User user=new User();
+//        user.setCurrentPage(1);
+//        pages.setPageSize(3);
+//        List<User> orderContractList = userDao.selectUser(user );
+//        pages.setList(orderContractList);
+//        return pages;
+//    }
     public int insertAdd(List<User> users) {
         return userDao.insertAdd(users);
     }

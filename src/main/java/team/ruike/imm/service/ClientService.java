@@ -1,8 +1,7 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.Client;
-import team.ruike.imm.entity.User;
-import team.ruike.imm.instrument.Pager;
+import team.ruike.imm.utility.Pager;
 
 import java.util.List;
 
