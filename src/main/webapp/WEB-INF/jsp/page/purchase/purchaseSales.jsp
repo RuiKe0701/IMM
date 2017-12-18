@@ -51,13 +51,17 @@
                     $(".eachtr").each(function (index,data) {
                         if($(data).find(".ck").is(':checked')){
                             var merchandiseId=$(data).find(".merchandiseId").html();
+                            var merchandiseName=$(data).find(".merchandiseName").html();
                             var unitsId=$(data).find(".unitsId").html();
+                            var unitsName=$(data).find(".unitsName").html();
                             var siVolume=$(data).find(".piVolume").val();
                             var salesId=$(data).find(".salesId").html();
                             var salesDate=$(data).find(".salesDate").html();
                             var siActualPrice=$(data).find(".piActualPrice").val();
                             var obj=new Object();
                             obj.merchandiseId=merchandiseId;
+                            obj.merchandiseName=merchandiseName;
+                            obj.unitsName=unitsName;
                             obj.unitsId=unitsId;
                             obj.siVolume=siVolume;
                             obj.salesId=salesId;
@@ -161,9 +165,9 @@
                         <tr class="eachtr">
                             <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
                             <td class="merchandiseId" style="display: none">${salesInfo.merchandise.merchandiseId}</td>
-                            <td >${salesInfo.merchandise.merchandiseName}</td>
+                            <td class="merchandiseName">${salesInfo.merchandise.merchandiseName}</td>
                             <td style="display: none" class="unitsId">${salesInfo.units.unitsId}</td>
-                            <td>${salesInfo.units.unitsName}</td>
+                            <td class="unitsName">${salesInfo.units.unitsName}</td>
                             <td class="siVolume">${salesInfo.siVolume}</td>
                             <td class="salesId">${salesInfo.salesId}</td>
                             <td class="salesDate"><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
