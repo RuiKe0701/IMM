@@ -140,8 +140,8 @@
                     <td  id="clientState">合作中</td>
                 </c:if>
                 <c:if test="${c.clientState==1}">
-                    <td  id="clientState">已终止</td>
-                </c:if>
+                <td  id="clientState">已终止</td>
+            </c:if>
                 <td  >
                     <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
                 </td>

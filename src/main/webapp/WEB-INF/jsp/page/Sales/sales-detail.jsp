@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,22 +136,43 @@
             <table class="table table-striped" style="width: 1200px">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>销售日期</th>
                     <th>订单编号</th>
-                    <th>业务员编号</th>
-                    <th>客户编号</th>
+                    <th>业务员</th>
+                    <th>客户</th>
                     <th>商品编号</th>
                     <th>商品名称</th>
                     <th>单位</th>
                     <th>数量</th>
                     <th>单价</th>
                     <th>销售收入</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody id="tbod">
 
                 <!--放循环的位置-->
+                <c:forEach items="${saless}" var="s">
+                    <c:if test="${s.salesState==0}">
+                        <tr id="${s.salesId}"  class="saless">
+                            <td id="salesDate"><fmt:formatDate type="date" value="${s.salesDate}" /></td>
+                            <td id="salesId">${s.salesId}</td>
+                            <td id="employeeName">${s.employee.employeeName}</td>
+                            <td id="clientName">${s.client.clientName}</td>
+                            <td id="merchandiseIds">${s.salesInformations.merchandiseId}</td>
+                            <td id="merchandiseName">${s.salesInformations.merchandise.merchandiseName}</td>
+                            <td id="unitsName">${s.salesInformations.units.unitsName}</td>
+                            <td id="siVolume">${s.salesInformations.siVolume}</td>
+                            <td id="siActualPrice">${s.salesInformations.siActualPrice}</td>
+                            <td id="siTotalPrice">${s.salesInformations.siTotalPrice}</td>
+                            <td  >
+                                <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                            </td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+
+
                 </tbody>
             </table>
         </div>

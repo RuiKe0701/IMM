@@ -70,7 +70,7 @@ $(function () {
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/commodity/loginCommodity.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -83,7 +83,7 @@ $(function () {
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/summaryClient/loginSummaryClient.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -96,7 +96,7 @@ $(function () {
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/salesperson/loginSalesperson.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");

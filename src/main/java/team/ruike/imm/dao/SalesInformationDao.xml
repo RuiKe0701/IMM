@@ -10,6 +10,7 @@
         <result column="units_id" property="unitsId"/>
         <result column="si_actual_price" property="siActualPrice"/>
         <result column="si_state" property="siState"/>
+        <result column="si_totalprice" property="siTotalPrice"/>
         <association property="sales" javaType="sales" >
             <result column="sales_id" property="salesId"/>
             <result column="sales_date" property="salesDate"/>

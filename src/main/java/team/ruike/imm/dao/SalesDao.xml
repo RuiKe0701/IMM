@@ -12,16 +12,37 @@
         <result column="sales_activities" property="salesActivities"/>
         <result column="sales_state" property="salesState"/>
 
+
+        <collection property="salesInformations" ofType="salesInformation">
+            <result column="si_id" property="siId" />
+            <result column="sales_id" property="salesId" />
+            <result column="merchandise_id"  property="merchandiseId"/>
+            <result column="si_volume" property="siVolume"/>
+            <result column="units_id" property="unitsId"/>
+            <result column="si_actual_price" property="siActualPrice"/>
+            <result column="si_state" property="siState"/>
+            <result column="si_totalprice" property="siTotalPrice"/>
+            <association property="merchandise" javaType="merchandise">
+                <result column="merchandise_id" property="merchandiseId" />
+                <result column="merchandise_name" property="merchandiseName" />
+            </association>
+            <association property="units" javaType="units">
+                <result column="units_id" property="unitsId"/>
+                <result column="units_name" property="unitsName"/>
+            </association>
+        </collection>
+
+
         <collection property="client" ofType="client">
-            <result column="client_id" property="clientId" />
+            <id property="clientId" column="client_id"/>
             <result column="client_name" property="clientName" />
-            <result column="client_person_in_charge" property="clientPerson_inCharge" />
+            <result column="client_person_in_charge" property="clientPersonInCharge" />
             <result column="client_post" property="clientPost" />
             <result column="client_phone" property="clientPhone"/>
             <result column="client_mobile_phone" property="clientMobilePhone"/>
             <result column="client_fax" property="clientFax" />
             <result column="client_address" property="clientAddress" />
-            <result column="client_factory_address" property="client_factoryAddress" />
+            <result column="client_factory_address" property="clientFactoryAddress" />
             <result column="client_state" property="clientState" />
         </collection>
 
@@ -36,17 +57,22 @@
             <result column="employee_state" property="employeeState" />
         </collection>
 
+
         <collection property="eventDetails" ofType="eventDetails">
             <result column="event_details_id" property="eventDetailsId"/>
             <result column="event_details_name" property="eventDetailsName"/>
             <result column="event_details_state" property="eventDetailsState"/>
         </collection>
+
     </resultMap>
 
     <select id="selectSales" resultMap="salesMap" parameterType="sales">
-        select * from sales
+        select * from sales s,client c,employee e,( SELECT si.*,m.merchandise_name,u.units_name,s.sales_date FROM sales_information si
+        INNER JOIN sales s ON si.sales_id=s.sales_id
+        INNER JOIN merchandise m ON m.merchandise_id=si.merchandise_id
+        INNER JOIN units u ON u.units_id=si.units_id ) as  s_i
         <where>
-             1=1
+            s.client_id=c.client_id and s.employee_id=e.employee_id and s.sales_id = s_i.sales_id
             <if test="salesId!=null and salesId>0">
                    and sales_id=#{salesId}
             </if>
@@ -76,6 +102,8 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
+
+
     <update id="updateSales" parameterType="sales">
         update sales
         <set>

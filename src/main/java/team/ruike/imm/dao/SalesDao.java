@@ -17,6 +17,7 @@ public interface SalesDao {
      */
     public List<Sales> selectSales(Sales sales);
 
+
     /**
      * 指定条件修改销售订单
      * @param sales 销售订单
