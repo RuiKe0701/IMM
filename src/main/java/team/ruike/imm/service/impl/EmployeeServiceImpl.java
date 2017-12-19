@@ -14,13 +14,6 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeDao employeeDao;
 
-    public EmployeeDao getEmployeeDao() {
-        return employeeDao;
-    }
-
-    public void setEmployeeDao(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
-    }
     public List<Employee> selectEmployee(Employee employee){
         return employeeDao.selecrEmployee(employee);
     }

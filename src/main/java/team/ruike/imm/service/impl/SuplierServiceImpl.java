@@ -16,14 +16,6 @@ public class SuplierServiceImpl implements SupplierService {
     @Autowired
     private SupplierDao supplierDao;
 
-    public SupplierDao getSupplierDao() {
-        return supplierDao;
-    }
-
-    public void setSupplierDao(SupplierDao supplierDao) {
-        this.supplierDao = supplierDao;
-    }
-
 
     public List<Supplier> selectSuplier(Supplier supplier) {
         List<Supplier> list=supplierDao.selectSuplier(supplier);
@@ -38,12 +30,12 @@ public class SuplierServiceImpl implements SupplierService {
         return supplierDao.insertSuplier(supplier);
     }
 
-    public int noncooperation(List supplier) {
+    public int noncooperation(List<Supplier> supplier) {
         return supplierDao.noncooperation(supplier);
     };
 
 
-    public int cooperative(List supplier){
+    public int cooperative(List<Supplier> supplier){
         return supplierDao.cooperative(supplier);
     }
 }

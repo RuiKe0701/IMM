@@ -187,7 +187,7 @@ $(function () {
                 //选中了
                 var id = $(date).find(".k").val();
                 var object = new Object();
-                object.BulkChanges = id;
+                object.supplierId = id;
                 supplierList.push(object);
                 var noncooperationSupplierList = JSON.stringify(supplierList);
                 $.ajax({
@@ -443,7 +443,7 @@ $(function () {
                 //选中了
                 var id = $(date).find(".k").val();
                 var object = new Object();
-                object.BulkChanges = id;
+                object.supplierId = id;
                 clientList.push(object);
                 var cooperativeSupplier = JSON.stringify(clientList);
                 $.ajax({

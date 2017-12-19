@@ -103,7 +103,7 @@
             <set>
                 supplier_state=1
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
     <!--修改为合作客户-->
@@ -113,7 +113,7 @@
             <set>
                 supplier_state=0
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
 </mapper>

@@ -35,9 +35,7 @@ public class SupplierController {
     public void noncooperationSupplier(String noncooperationSupplierList,PrintWriter printWriter){
         int i=0;
         ArrayList<Supplier>supplierArrayList =  JSON.parseObject(noncooperationSupplierList, new TypeReference<ArrayList<Supplier>>(){});
-        for (Supplier s : supplierArrayList) {
-            i= supplierService.noncooperation(s.getBulkChanges());
-        }
+            i= supplierService.noncooperation(supplierArrayList);
         if(i>0){
             Supplier ss=new Supplier();
             ss.setSupplierState(1);
@@ -61,9 +59,7 @@ public class SupplierController {
     public void cooperativeSupplier(String cooperativeSupplier,PrintWriter printWriter){
         int i=0;
             ArrayList<Supplier> supplierArrayList =  JSON.parseObject(cooperativeSupplier, new TypeReference<ArrayList<Supplier>>(){});
-            for (Supplier s : supplierArrayList) {
-                i= supplierService.cooperative(s.getBulkChanges());
-            }
+                i= supplierService.cooperative(supplierArrayList);
             if(i>0){
                 Supplier ss=new Supplier();
                 ss.setSupplierState(0);

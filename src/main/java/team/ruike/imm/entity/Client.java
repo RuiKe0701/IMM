@@ -1,9 +1,7 @@
 package team.ruike.imm.entity;
-
 import team.ruike.imm.utility.PagerParameter;
-
+import team.ruike.imm.utility.Pages;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author 索志文
@@ -11,16 +9,6 @@ import java.util.List;
  * 客户信息
  */
 public class Client extends PagerParameter implements Serializable {
-    private List kk;
-
-    public List getKk() {
-        return kk;
-    }
-
-    public void setKk(List kk) {
-        this.kk = kk;
-    }
-
     /**
      * 客户编号
      */

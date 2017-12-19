@@ -29,6 +29,6 @@ public interface SupplierService {
      */
     public int insertSuplier(Supplier supplier);
 
-    public int noncooperation(List supplier);
-    public int cooperative(List supplier);
+    public int noncooperation(List<Supplier> supplier);
+    public int cooperative(List<Supplier> supplier);
 }
