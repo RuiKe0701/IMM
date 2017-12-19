@@ -21,11 +21,11 @@ public class PurchaseOrderInformation {
     /**
      * 采购价格
      */
-    private double piActualPrice;
+    private double poiActualPrice;
     /**
      * 采购数量
      */
-    private Integer piVolume;
+    private Integer poiVolume;
 
     /**
      * 单位编号
@@ -39,8 +39,12 @@ public class PurchaseOrderInformation {
     /**
      * 是否已删除
      */
-    private double piTotalPrice;
-    private String piRemarks;
+    private double poiTotalPrice;
+    private String poiRemarks;
+
+
+
+    private Integer poiState;
 
     public Integer getPoiId() {
         return poiId;
@@ -58,23 +62,86 @@ public class PurchaseOrderInformation {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    public double getPiTotalPrice() {
-        return piTotalPrice;
+    public Integer getMerchandiseId() {
+        return merchandiseId;
     }
 
-    public void setPiTotalPrice(double piTotalPrice) {
-        this.piTotalPrice = piTotalPrice;
+    public void setMerchandiseId(Integer merchandiseId) {
+        this.merchandiseId = merchandiseId;
     }
 
-    public String getPiRemarks() {
-        return piRemarks;
+    public double getPoiActualPrice() {
+        return poiActualPrice;
     }
 
-    public void setPiRemarks(String piRemarks) {
-        this.piRemarks = piRemarks;
+    public void setPoiActualPrice(double poiActualPrice) {
+        this.poiActualPrice = poiActualPrice;
     }
 
-    private Integer piState;
+    public Integer getPoiVolume() {
+        return poiVolume;
+    }
+
+    public void setPoiVolume(Integer poiVolume) {
+        this.poiVolume = poiVolume;
+    }
+
+    public Integer getUnitsId() {
+        return unitsId;
+    }
+
+    public void setUnitsId(Integer unitsId) {
+        this.unitsId = unitsId;
+    }
+
+    public double getSiActualPrice() {
+        return siActualPrice;
+    }
+
+    public void setSiActualPrice(double siActualPrice) {
+        this.siActualPrice = siActualPrice;
+    }
+
+    public double getPoiTotalPrice() {
+        return poiTotalPrice;
+    }
+
+    public void setPoiTotalPrice(double poiTotalPrice) {
+        this.poiTotalPrice = poiTotalPrice;
+    }
+
+    public String getPoiRemarks() {
+        return poiRemarks;
+    }
+
+    public void setPoiRemarks(String poiRemarks) {
+        this.poiRemarks = poiRemarks;
+    }
+
+    public Integer getPoiState() {
+        return poiState;
+    }
+
+    public void setPoiState(Integer poiState) {
+        this.poiState = poiState;
+    }
+
+    public Units getUnits() {
+        return units;
+    }
+
+    public void setUnits(Units units) {
+        this.units = units;
+    }
+
+    public Merchandise getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(Merchandise merchandise) {
+        this.merchandise = merchandise;
+    }
+
     /**
      * 单位信息
      */
@@ -86,78 +153,13 @@ public class PurchaseOrderInformation {
     /**
      * 采购订单信息
      */
-    private Procurement procurement;
+    private PurchaseOrder purchaseOrder;
 
-
-    public Procurement getProcurement() {
-        return procurement;
+    public PurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
     }
 
-    public void setProcurement(Procurement procurement) {
-        this.procurement = procurement;
-    }
-
-    public Integer getMerchandiseId() {
-        return merchandiseId;
-    }
-
-    public void setMerchandiseId(Integer merchandiseId) {
-        this.merchandiseId = merchandiseId;
-    }
-
-    public Merchandise getMerchandise() {
-        return merchandise;
-    }
-
-    public void setMerchandise(Merchandise merchandise) {
-        this.merchandise = merchandise;
-    }
-
-    public double getPiActualPrice() {
-        return piActualPrice;
-    }
-
-    public void setPiActualPrice(double piActualPrice) {
-        this.piActualPrice = piActualPrice;
-    }
-
-    public Integer getPiVolume() {
-        return piVolume;
-    }
-
-    public void setPiVolume(Integer piVolume) {
-        this.piVolume = piVolume;
-    }
-
-    public Units getUnits() {
-        return units;
-    }
-
-    public void setUnits(Units units) {
-        this.units = units;
-    }
-
-    public Integer getUnitsId() {
-        return unitsId;
-    }
-
-    public void setUnitsId(Integer unitsId) {
-        this.unitsId = unitsId;
-    }
-
-    public Integer getPiState() {
-        return piState;
-    }
-
-    public void setPiState(Integer piState) {
-        this.piState = piState;
-    }
-
-    public double getSiActualPrice() {
-        return siActualPrice;
-    }
-
-    public void setSiActualPrice(double siActualPrice) {
-        this.siActualPrice = siActualPrice;
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 }
