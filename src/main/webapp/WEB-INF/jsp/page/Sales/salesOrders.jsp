@@ -34,7 +34,7 @@
                 var id=$(this).val();
                 var name=$(this);
                 $.ajax({
-                    url:"/sales/ajaxMerchand.do",
+                    url:"/purchases/ajaxMerchand.do",
                     data:{"merchandiseId":id},
                     dataType:"JSON",
                     success:function (date) {

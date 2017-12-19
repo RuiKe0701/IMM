@@ -16,12 +16,9 @@ $(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
-        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
         $("#iff").attr("src", "/requisition/RequisitionForSome.do");
-
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
-
     });
 
     //盘点记录
@@ -29,25 +26,19 @@ $(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
-        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
         $("#iff").attr("src", "/CountRecords/CountRecordsForSome.do");
-
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
-
     });
 
-    //商品库存余额
+    //商品库存管理
     $("#Goods-inventory-balance").click(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
-        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
         $("#iff").attr("src", "/merchandise/smerchandise.do");
-
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
-
     });
 
     //商品收发明细表
@@ -55,12 +46,9 @@ $(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
-        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
         $("#iff").attr("src", "/warehouseReport/goods-flow-detail.do");
-
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
-
     });
 
     //商品收发汇总表
@@ -68,26 +56,36 @@ $(function () {
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
-        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
         $("#iff").attr("src", "/warehouseReport/goods-flow-summary.do");
-
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
-
     });
 
+    //入库记录表
+    $("#warehousing").click(function () {
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#iff").attr("src", "/warehousing/warehousing.do");
+        $("#ons").css("display", "none");
+        $("#showiframe").css("display", "block");
+    });
 
-
-
-
-
+    //出库记录表
+    $("#storage_move").click(function () {
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#iff").attr("src", "/stoagemove/sstoagemove.do");
+        $("#ons").css("display", "none");
+        $("#showiframe").css("display", "block");
+    });
     $("body").on("click","#aaa",function(){
         $(this).parent().remove();
     });
     aaa();
-
-
 });
+
 function  aaa() {
     $("#filter-submit").click(function () {
         $(".no-query").remove();

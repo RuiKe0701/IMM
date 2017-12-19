@@ -12,6 +12,7 @@ $(function () {
     });
 
     $("#sales").click(function () {
+            alert("销售订单表");
             $("#tabManage").remove();
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
@@ -24,7 +25,7 @@ $(function () {
     });
 
     $("#salesForAbout").click(function () {
-        alert("asddf");
+        alert("销售单表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -51,7 +52,7 @@ $(function () {
 
 
     $("#Sales-details").click(function () {
-        alert("asdf");
+        alert("商品销售明细表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -64,12 +65,12 @@ $(function () {
     });
 
     $("#Sales-summary-commodity").click(function () {
-        alert("asd");
+        alert("销售汇总表（按商品）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/commodity/loginCommodity.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -77,12 +78,12 @@ $(function () {
     });
 
     $("#Sales-summary-client").click(function () {
-        alert("asd");
+        alert("销售汇总表（按客户）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/summaryClient/loginSummaryClient.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");
@@ -90,12 +91,12 @@ $(function () {
     });
 
     $("#Sales-summary-salesperson").click(function () {
-        alert("asd");
+        alert("销售汇总表（按销售人员）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-        $("#iff").attr("src", "/sales/loginsalesOrdersForAbout.do");
+        $("#iff").attr("src", "/salesperson/loginSalesperson.do");
 
         $("#ons").css("display", "none");
         $("#showiframe").css("display", "block");

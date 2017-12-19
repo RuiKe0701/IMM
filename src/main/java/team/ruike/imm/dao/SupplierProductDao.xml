@@ -74,10 +74,11 @@
             <if test="supplierProductState !=null">
                   supplier_product_state=#{supplierProductState}
             </if>
-            <where>
-                 supplier_product_id=#{supplierProductId}
-            </where>
+
         </set>
+        <where>
+            supplier_product_id=#{supplierProductId}
+        </where>
     </update>
     <insert id="insertSupplierProduct" parameterType="supplierProduct">
         INSERT into supplier_product values(default,#{merchandiseId},#{supplierId},#{supplierProductPrice},#{supplierProductState})

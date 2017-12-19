@@ -56,6 +56,23 @@ public class SalesInformation extends PagerParameter implements Serializable{
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
+    private String merchandiseName;
+    private String unitsName;
+    public String getMerchandiseName() {
+        return merchandiseName;
+    }
+
+    public void setMerchandiseName(String merchandiseName) {
+        this.merchandiseName = merchandiseName;
+    }
+
+    public String getUnitsName() {
+        return unitsName;
+    }
+
+    public void setUnitsName(String unitsName) {
+        this.unitsName = unitsName;
+    }
 
 
     /**

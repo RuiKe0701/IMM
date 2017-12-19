@@ -16,7 +16,7 @@ public class PurchaseOrder {
      * 采购日期
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date procurementDate;
+    private Date purchaseOrderDate;
     /**
      * 供应商编号
      */
@@ -25,19 +25,19 @@ public class PurchaseOrder {
     /**
      * 员工编号
      */
-    private Integer procurementEmployeeId;
+    private Integer purchaseOrderEmployeeId;
     /**
      * 状态
      */
-    private Integer procurementAccomplish;
+    private Integer purchaseOrderAccomplish;
     /**
      * 是否已删除
      */
-    private  Integer procurementState;
+    private  Integer purchaseOrderState;
     /**
      * 采购人 =员工信息
      */
-    private Employee procurementEmployee;
+    private Employee purchaseOrderEmployee;
     /**
      * 供应商信息
      */
@@ -51,12 +51,12 @@ public class PurchaseOrder {
         this.purchaseOrderId = purchaseOrderId;
     }
 
-    public Date getProcurementDate() {
-        return procurementDate;
+    public Date getPurchaseOrderDate() {
+        return purchaseOrderDate;
     }
 
-    public void setProcurementDate(Date procurementDate) {
-        this.procurementDate = procurementDate;
+    public void setPurchaseOrderDate(Date purchaseOrderDate) {
+        this.purchaseOrderDate = purchaseOrderDate;
     }
 
     public Integer getSupplierId() {
@@ -67,36 +67,36 @@ public class PurchaseOrder {
         this.supplierId = supplierId;
     }
 
-    public Integer getProcurementEmployeeId() {
-        return procurementEmployeeId;
+    public Integer getPurchaseOrderEmployeeId() {
+        return purchaseOrderEmployeeId;
     }
 
-    public void setProcurementEmployeeId(Integer procurementEmployeeId) {
-        this.procurementEmployeeId = procurementEmployeeId;
+    public void setPurchaseOrderEmployeeId(Integer purchaseOrderEmployeeId) {
+        this.purchaseOrderEmployeeId = purchaseOrderEmployeeId;
     }
 
-    public Integer getProcurementAccomplish() {
-        return procurementAccomplish;
+    public Integer getPurchaseOrderAccomplish() {
+        return purchaseOrderAccomplish;
     }
 
-    public void setProcurementAccomplish(Integer procurementAccomplish) {
-        this.procurementAccomplish = procurementAccomplish;
+    public void setPurchaseOrderAccomplish(Integer purchaseOrderAccomplish) {
+        this.purchaseOrderAccomplish = purchaseOrderAccomplish;
     }
 
-    public Integer getProcurementState() {
-        return procurementState;
+    public Integer getPurchaseOrderState() {
+        return purchaseOrderState;
     }
 
-    public void setProcurementState(Integer procurementState) {
-        this.procurementState = procurementState;
+    public void setPurchaseOrderState(Integer purchaseOrderState) {
+        this.purchaseOrderState = purchaseOrderState;
     }
 
-    public Employee getProcurementEmployee() {
-        return procurementEmployee;
+    public Employee getPurchaseOrderEmployee() {
+        return purchaseOrderEmployee;
     }
 
-    public void setProcurementEmployee(Employee procurementEmployee) {
-        this.procurementEmployee = procurementEmployee;
+    public void setPurchaseOrderEmployee(Employee purchaseOrderEmployee) {
+        this.purchaseOrderEmployee = purchaseOrderEmployee;
     }
 
     public Supplier getSupplier() {
