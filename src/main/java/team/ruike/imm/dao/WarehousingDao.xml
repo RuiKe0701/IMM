@@ -7,14 +7,14 @@
             <result property="warehousingBatchNumber" column="warehousing_batch_number" />
             <result property="warehousingDate" column="warehousing_date" />
             <result property="warehousingRemarks" column="warehousing_remarks" />
+            <result property="warehousingUserId" column="warehousing_user_id"/>
             <result property="warehousingState" column="warehousing_state" />
-
 
             <collection property="procurement" ofType="procurement">
                 <result property="procurementId" column="procurement_id"/>
                 <result property="procurementDate" column="procurement_date"/>
                 <result property="supplierId" column="supplier_id"/>
-                <result property="procurementEmployeeId" column="procurement_employee_id"></result>
+                <result property="procurementEmployeeId" column="procurement_employee_id"/>
                 <result property="procurementAccomplish" column="procurement_accomplish"/>
                 <result property="procurementState" column="procurement_state"/>
             </collection>
@@ -31,11 +31,11 @@
             </collection>
 
             <collection property="user" ofType="user">
-                <result column="user_id" property="userId"></result>
-                <result column="user_name" property="userName"></result>
-                <result column="user_password" property="userPassword"></result>
-                <result column="employee_id" property="employeeId"></result>
-                <result column="user_state" property="userState"></result>
+                <result column="user_id" property="userId"/>
+                <result column="user_name" property="userName"/>
+                <result column="user_password" property="userPassword"/>
+                <result column="employee_id" property="employeeId"/>
+                <result column="user_state" property="userState"/>
             </collection>
         </resultMap>
 
@@ -43,7 +43,7 @@
         select * from warehousing w,procurement p,employee e,user u
         <where>
             <!--w.warehousing_buyer=u.user_id and-->
-            w.procurement_id=p.procurement_id and w.warehousing_buyer=e.employee_id
+            w.procurement_id=p.procurement_id and w.warehousing_buyer=e.employee_id and u.user_id=w.warehousing_user_id
             <if test="warehousingId!=null and warehousingId>0">
                 and w.warehousing_id=#{warehousingId}
             </if>
@@ -54,7 +54,7 @@
                 and w.warehousing_buyer=#{warehousingBuyer}
             </if>
             <if test="procurementId !=null and procurementId>0">
-                and w.procurement_id=#{procurementId}
+                and w.procurement_id like concat('%',#{procurementId},'%')
             </if>
             <if test="warehousingDate!=null and warehousingDate!=''">
                 and w.warehousing_date=#{warehousingDate}

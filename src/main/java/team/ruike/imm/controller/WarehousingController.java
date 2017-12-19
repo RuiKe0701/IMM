@@ -1,14 +1,19 @@
 package team.ruike.imm.controller;
 
+
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import team.ruike.imm.entity.Employee;
+import team.ruike.imm.entity.User;
 import team.ruike.imm.entity.Warehousing;
+import team.ruike.imm.service.EmployeeService;
+import team.ruike.imm.service.UserService;
 import team.ruike.imm.service.WarehousingService;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -17,39 +22,65 @@ public class WarehousingController {
 
     @Autowired
     WarehousingService warehousingService;
+    @Autowired
+    EmployeeService employeeService;
+    @Autowired
+    UserService userService;
+
+    //查询全部
     @RequestMapping(value = "warehousing.do")
-    public String warehousing(Model model)
+    public String warehousing(Warehousing warehousing, Employee employee, User user, HttpSession session)
     {
-        return "page/warehouse/warehousing";
-    }
-
-    @RequestMapping(value = "/selectwarehousing.do")
-    public String select(Warehousing warehousing,HttpSession session) {
         List<Warehousing> warehousingList = warehousingService.selectWarehousing(warehousing);
+        List<Employee> employeeList = employeeService.selectEmployee(employee);
+        //List<User> userList = userService.selectUser(user);
         session.setAttribute("ware", warehousingList);
+        session.setAttribute("emp",employeeList);
+        //session.setAttribute("user",userList);
         return "page/warehouse/warehousing";
     }
 
-    @RequestMapping(value = "/updatess.do")
-    public String updates(Model model ,Warehousing warehousing){
-        int i =warehousingService.updateWarehousing(warehousing);
-        if(i>0){
-            return "crr";
+    /**
+     * 被选中的入库记录信息
+     */
+    @RequestMapping(value = "/warehousingId.do")
+    public void updatemerchandiseId(Warehousing warehousing, PrintWriter printWriter){
+        List<Warehousing> warehousings = warehousingService.selectWarehousing(warehousing);
+
+        if(warehousings.size()>0){
+            Warehousing m = warehousings.get(0);
+            String json= JSON.toJSONString(m);
+            printWriter.write(json);
+            printWriter.flush();
+            printWriter.close();
+        }else{
+            String json=JSON.toJSONString(0);
+            printWriter.write(json);
+            printWriter.flush();
+            printWriter.close();
         }
-        return "update";
     }
-    @RequestMapping(value = "/aa.do")
-    public String inserts(Model model,Warehousing warehousing){
-        System.out.println(warehousing.getWarehousingState());
-        Date date=new Date();
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-//        df.format(new Date());// new Date()为获取当前系统时间
-        warehousing.setWarehousingDate(new Date());
-//        System.out.println(warehousing.getWarehousingDate()+"/CONTROLLER");
-        int i = warehousingService.insertWarehousing(warehousing);
+    /* 删除商品信息
+   */
+    @RequestMapping(value = "/deleteWarehousing.do")
+    public void  deleteMerchandise(Warehousing warehousing,PrintWriter printWriter){
+        int i =0;
+        warehousing.setWarehousingState(1);
+        i=warehousingService.updateWarehousing(warehousing);
         if(i>0){
-            return "crr";
+            Warehousing s=new Warehousing();
+            s.setWarehousingState(1);
+            List<Warehousing> mm =warehousingService.selectWarehousing(s);
+            //返回值
+            String jsonString = JSON.toJSONString(mm);
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
         }
-        return "insert";
+
+        String jsonString = JSON.toJSONString(0);
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
     }
 }

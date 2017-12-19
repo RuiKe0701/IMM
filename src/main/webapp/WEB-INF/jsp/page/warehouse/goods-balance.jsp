@@ -63,7 +63,7 @@
             <div class="l" id="filter-menu">
                 <ul class="ul-inline fix" id="filterItems">
                     <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
-                        <input type="text"  name="merchandiseName">
+                        <input type="text"  name="about" placeholder="请输入查询关键字">
                     </li>
                     <li id="product" style="display: list-item;"><label>商品类型</label>
                         <select  name="productTypeId" style="width:115px;height: 32px">
@@ -81,7 +81,7 @@
                         </select><br>
                     </li>
                     <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
-                        <select  name="unitsId" style="width:115px;height: 32px" >
+                        <select  name="salesStatusId" style="width:115px;height: 32px" >
                             <option value="0">请选择</option>
                             <c:forEach items="${sale}" var="s">
                                 <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
@@ -110,11 +110,11 @@
             <th>商品售价（无税）</th>
             <th>销售状态</th>
             <th style="display: none">是否已删除</th>
-            <th>操作</th>
+            <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        <c:forEach var="m" items="${merc}">
+        <c:forEach items="${merc}" var="m">
             <tr id="${m.merchandiseId}">
                 <td><input type="checkbox" /></td>
                 <td style="display: none">${m.merchandiseId}</td>
@@ -122,16 +122,16 @@
                 <td>${m.merchandiseName}</td>
                 <td>${m.merchandiseSpecification}</td>
                 <td>${m.productType.productTypeName}</td>
-                <td>${m.units.unitsName}</td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${m.units.unitsName}</td>
                 <td>${m.merchandisePlaceOfOrigin}</td>
-                <td>${m.merchandiseSafetyStock}</td>
-                <td>${m.merchandiseActualQuntity}</td>
-                <td>${m.merchandiseSalsePrice}</td>
-                <td>${m.salesStatus.salesStatusName}</td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseSafetyStock}</td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseActualQuntity}</td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseSalsePrice}</td>
+                <td>&nbsp&nbsp&nbsp${m.salesStatus.salesStatusName}</td>
                 <td style="display: none">${m.merchandiseState}</td>
                 <td style="width: 120px;text-align: center">
                     <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
-                    <button type="button" id="${m.merchandiseId}" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
+                    <button type="button" id="deletemerchandise" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -338,7 +338,7 @@
             object.merchandiseSpecification=$("#updatemerchandiseSpecification").val()
             object.productTypeId=$("#updateproductTypeId").val();
             object.unitsId=$("#updateunitsId").val();
-            object.merchandisePlaceOfOsrigin=$("#updatemerchandisePlaceOfOsrigin").val();
+            object.merchandisePlaceOfOrigin=$("#updatemerchandisePlaceOfOsrigin").val();
             object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock").val();
             object.merchandiseActualQuntity=$("#updatemerchandiseActualQuntity").val();
             object.merchandiseSalsePrice=$("#updatemerchandiseSalsePrice").val();
