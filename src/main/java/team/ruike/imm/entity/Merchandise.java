@@ -59,6 +59,20 @@ public class Merchandise extends PagerParameter implements Serializable{
      * 是否已删除
      */
     private  Integer merchandiseState;
+
+    /**
+     * 查询多条
+     */
+    private String about;
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     /**
      * 商品单位信息
      */

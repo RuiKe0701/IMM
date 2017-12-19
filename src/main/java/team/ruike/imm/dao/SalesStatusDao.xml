@@ -36,10 +36,10 @@
             <if test="salesStatusState !=null and salesStatusState!=''">
                   sales_status_state =#{salesStatusState}
             </if>
-            <where>
-                sales_status_id=#{salesStatusId}
-            </where>
         </set>
+        <where>
+            sales_status_id=#{salesStatusId}
+        </where>
     </update>
 
     <insert id="insertSalesStatus" parameterType="salesStatus">

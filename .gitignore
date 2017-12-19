@@ -12,3 +12,4 @@ gen
 target/
 /.gitignore
 /src/main/resources/jdbc.properties
+/src/main/java/team/ruike/imm/dao/ClientDao.xml

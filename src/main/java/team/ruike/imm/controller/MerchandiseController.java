@@ -49,23 +49,13 @@ public class MerchandiseController {
         return "page/warehouse/goods-balance";
     }
 
+    /**
+     *上方搜索栏
+     */
     @RequestMapping(value = "merchandisemenu.do")
     public String merchandisemenu(Merchandise merchandise,HttpSession session){
-            if(merchandise!=null){
-                System.out.println(merchandise.getMerchandiseName());
-                System.out.println(merchandise.getProductTypeId());
-                System.out.println(merchandise.getUnitsId());
-                System.out.println(merchandise.getSalesStatusId());
-                //if(merchandise.getMerchandiseName()!=""&&merchandise.getProductTypeId()== 0 && merchandise.getUnitsId()==0 && merchandise.getMerchandiseState()==0){
-                    List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
-                    for(Merchandise m1:merchandises){
-                        m1.getMerchandiseName();
-                        m1.getProductTypeId();
-                        m1.getUnitsId();
-                        m1.getSalesStatusId();
-                    }
-                    session.setAttribute("merc",merchandises);
-            }
+        List<Merchandise> ab = merchandiseService.san(merchandise);
+        session.setAttribute("merc",ab);
         return  "page/warehouse/goods-balance";
     }
 
