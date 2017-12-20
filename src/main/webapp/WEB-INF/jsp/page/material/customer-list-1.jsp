@@ -112,10 +112,11 @@
     <div style="position: relative;left: 50px">
 
         <c:if test="${i==0}">
-        <form id="form" action="/client/clientAll.do?currentPage=1" >
-            <li style="position: absolute;left: 15%;top:-46.5%">
+        <form id="form" action="/client/cooperative.do" method="post" >
+            <input style="display: none" name="currentPage"  value="1" />
+            <li style="position: relative;left: 15%;top:-94px">
                 <button type="submit" class="btn btn-info">查找</button>
-                <input placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                <input name="clientName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
             </li>
         <table class="table table-striped" style="width: 1200px">
             <thead>
@@ -159,23 +160,23 @@
             </c:forEach>
         <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
                 <ul class="pagination" >
-                    <li><a href="/client/clientAll.do?currentPage=1">首页</a></li>
+                    <li><a href="/client/cooperative.do?currentPage=1">首页</a></li>
                     <c:if test="${pages.currentPage >1}">
-                        <li><a href="/client/clientAll.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
+                        <li><a href="/client/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
                     </c:if>
                     <c:if test="${pages.currentPage ==1}">
-                        <li style="display: none"><a href="/client/clientAll.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
+                        <li style="display: none"><a href="/client/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
                     </c:if>
                     <c:forEach var="a" items="${pages.pageBar}">
-                        <li><a href="/client/clientAll.do?currentPage=${a}">${a}</a></li>
+                        <li><a href="/client/cooperative.do?currentPage=${a}">${a}</a></li>
                     </c:forEach>
                     <c:if test="${pages.currentPage<pages.totalPage}">
-                        <li><a href="/client/clientAll.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
+                        <li><a href="/client/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
                     </c:if>
                     <c:if test="${pages.currentPage==pages.totalPage}">
-                        <li style="display: none"><a href="/client/clientAll.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
+                        <li style="display: none"><a href="/client/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
                     </c:if>
-                    <li><a href="/client/clientAll.do?currentPage=${pages.totalPage}">末页</a></li>
+                    <li><a href="/client/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
                     <br>
                     <li><a >共有${pages.totalRecord}条数据</a></li>
                     <li><a>共有${pages.totalPage}页</a></li>
@@ -185,11 +186,10 @@
         </table>
         </form>
         </c:if>
-
         <c:if test="${i==1}">
-        <form id="form" action="/client/noncooperation.do?currentPage=1" method="post" >
+        <form id="form" action="/client/noncooperation.do" method="post" >
             <input style="display: none" name="currentPage"  value="1" />
-            <li style="position: absolute;left: 15%;top:-49%">
+            <li style="position: relative;left: 15%;top:-94px">
                 <button type="submit" class="btn btn-info">查找</button>
                 <input name="clientName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
             </li>
@@ -211,7 +211,7 @@
             <tbody id="tbod">
                 <c:forEach items="${cc}" var="cc">
                     <tr id="${cc.clientId}"  class="clients">
-                        <td><input   runat="server" type="checkbox" value="${cc.clientId}" /></td>
+                        <td><input  class="clientId" runat="server" type="checkbox" value="${cc.clientId}" /></td>
                         <td  style="display: none">${cc.clientId}</td>
                         <td >${cc.clientName}</td>
                         <td >${cc.clientPersonInCharge}</td>
@@ -278,7 +278,7 @@
             <form id="insertClient">
             <div class="modal-body" style="width: 300px;height: 500px" >
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">客户名称</span>
+                        <span class="input-group-addon" style="width: 81px;">供应商名称</span>
                         <input  id="addname" name="clientName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                     </div>
                     <span  class="reminder" id="Divname">&nbsp;</span>
@@ -296,7 +296,7 @@
                 <span  class="reminder" id="Divpost">&nbsp;</span>
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">客户地址</span>
+                    <span class="input-group-addon" style="width: 81px;">供应商地址</span>
                     <input name="clientAddress"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
                 </div>
                <span   class="reminder" id="Divaddress">&nbsp;</span>

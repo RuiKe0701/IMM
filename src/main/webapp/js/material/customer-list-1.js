@@ -252,11 +252,11 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("添加成功")
                         $("#closeAdd").click();
                         var str = "";
                         if(data!=0){
-                            window.location.href="/client/clientAll.do";
-
+                            window.location.href="/client/cooperative.do";
                         }
                         $("#addname").val("");
                         $("#addpersonInCharge").val("");
@@ -318,27 +318,8 @@ $(function () {
                 $("#closeUpdate").click();
                 var str = "";
                 if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.clientId+" class='clients'>" +
-                            "                 <td><input  class=\"clientId\"  runat=\"server\" type=\"checkbox\" value="+item.clientId+" /></td>\n" +
-                            "                <td id=\"clientId\" style=\"display: none\">"+item.clientId+"</td>\n" +
-                            "                <td id=\"clientName\">"+item.clientName+"</td>\n" +
-                            "                <td id=\"clientPersonInCharge\">"+item.clientPersonInCharge+"</td>\n" +
-                            "                <td id=\"clientPost\">"+item.clientPost+"</td>\n" +
-                            "                <td id=\"clientPhone\">"+item.clientPhone+"</td>\n" +
-                            "                <td id=\"clientMobilePhone\">"+item.clientMobilePhone+"</td>\n" +
-                            "                <td id=\"clientFax\">"+item.clientFax+"</td>\n" +
-                            "                <td id=\"clientAddress\">"+item.clientAddress+"</td>\n" +
-                            "                <td id=\"clientFactoryAddress\">"+item.clientFactoryAddress+"</td>\n" +
-                            "                <td  id=\"clientState\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" onclick=\"gainclient("+item.clientId+")\"id=\""+item.clientId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
+                    alert("修改成功")
+                    window.location.href="/client/cooperative.do";
                 }
                 $("#updatename").val("");
                 $("#updatepersonInCharge").val("");
@@ -358,52 +339,20 @@ $(function () {
     })
     //查看终止合作的客户
     $("#termination").click(function () {
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#cooperation").css({'background':'#99CCFF','color':'#FFFFFF'});
-        //控制按钮不可点击
-        document.getElementById("btn-disable").setAttribute("disabled",true);
-        document.getElementById("addClient").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#btn-enable").attr("disabled",false);
-        var clientState=this.name;
         window.location.href="/client/noncooperation.do";
     })
     //查看在合作客户
     $("#cooperation").click(function () {
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#termination").css({'background':'#99CCFF','color':'#FFFFFF'});
-        var clientState=this.name;
-        //控制按钮不可点击
-        document.getElementById("btn-enable").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#addClient").attr("disabled",false);
-        $("#btn-disable").attr("disabled",false);
-        window.location.href="/client/clientAll.do?clientState="+clientState;
-        // $.ajax({
-        //     type:"post",
-        //     url:"/client/clientCooperation.do?clientState="+clientState,
-        //     dataType: "json",
-        //     success: function (data) {
-        //         var str = "";
-        //         if(data!=0){
-        //
-        //         }else {
-        //             alert("失败")
-        //         }
-        //     },
-        //     error: function () {
-        //         alert("系统异常，请稍后重试！");
-        //     }
-        // })
+        window.location.href="/client/cooperative.do";
     })
     //修改客户是否合作
     $("#btn-enable").click(function () {
         var clientList = new Array();
         $(".clients").each(function (index, date) {
-            var checkbox = $(date).find(".k");
+            var checkbox = $(date).find(".clientId");
             if(checkbox.is(':checked')){
                 //选中了
-                var id = $(date).find(".k").val();
+                var id = $(date).find(".clientId").val();
                 var object = new Object();
                 object.clientId = id;
                 clientList.push(object);

@@ -27,28 +27,9 @@ public class ClientController {
 
     @Autowired
     ClientService clientService;
-    /**
-     * 工具方法
-     * @param client
-     * @return
-     */
-    public List<Client> client(Client client){
-        List<Client> clients=clientService.selecrClient(client);
-        List<Client> sa=new ArrayList<Client>();
-        for (Client client1 : clients) {
-            if (client1.getClientState()==1){
-                client1.setState("已终止");
-            }else if(client1.getClientState()==0){
-                client1.setState("合作中");
-            }
-            sa.add(client1);
-        }
-        return sa;
-    }
-    //展示全部数据,Integer clientState && clientState==null
-    @RequestMapping(value="/clientAll.do")
-    public  String clientAll(HttpServletRequest request,Integer currentPage){
-        Client client=new Client();
+    //展示合作客户数据
+    @RequestMapping(value="/cooperative.do")
+    public  String cooperative(HttpServletRequest request,Integer currentPage,Client client){
         client.setClientState(0);
         if (currentPage==null ){
             client.setCurrentPage(1);
@@ -65,9 +46,15 @@ public class ClientController {
         return "page/material/customer-list-1";
     }
 
+    /**
+     * 展示不合作的客户
+     * @param request
+     * @param currentPage
+     * @param client
+     * @return
+     */
     @RequestMapping(value="/noncooperation.do")
     public  String noncooperation(HttpServletRequest request,Integer currentPage,Client client){
-
         client.setClientState(1);
         if (currentPage==null ){
             client.setCurrentPage(1);
@@ -95,10 +82,7 @@ public class ClientController {
             ArrayList<Client> clientArrayList =  JSON.parseObject(noncooperationClient, new TypeReference<ArrayList<Client>>(){});
                 i= clientService.noncooperation(clientArrayList);
             if(i>0){
-                Client c=new Client();
-                c.setClientState(1);
-                List<Client> clients=clientService.selecrClient(c);
-                String jsonString = JSON.toJSONString(clients);
+                String jsonString = JSON.toJSONString(1);
                 printWriter.write(jsonString);
         }
         printWriter.flush();
@@ -115,34 +99,10 @@ public class ClientController {
             ArrayList<Client> clientArrayList =  JSON.parseObject(cooperativeClients, new TypeReference<ArrayList<Client>>(){});
                 i= clientService.cooperative(clientArrayList);
             if(i>0){
-                Client c=new Client();
-                c.setClientState(0);
-                List<Client> clients=clientService.selecrClient(c);
                 //返回值
-                String jsonString = JSON.toJSONString(clients);
+                String jsonString = JSON.toJSONString(1);
                 printWriter.write(jsonString);
             }
-        printWriter.flush();
-        printWriter.close();
-    }
-
-
-
-    /**
-     * 查询终止合作的用户
-     * @param client
-     * @param printWriter
-     */
-    @RequestMapping(value = "/clientCooperation.do")
-    public void clientCooperation(Client client,PrintWriter printWriter){
-        List<Client> clients=client(client);
-        if (clients.size()>0){
-            String jsonString = JSON.toJSONString(clients);
-            printWriter.write(jsonString);
-        }else {
-            String jsonString = JSON.toJSONString(0);
-            printWriter.write(jsonString);
-        }
         printWriter.flush();
         printWriter.close();
     }
@@ -154,12 +114,9 @@ public class ClientController {
      */
     @RequestMapping(value = "/clientId.do")
     public void clientId(Client client,PrintWriter printWriter){
-        List<Client> clients=client(client);
+        List<Client> clients=clientService.selecrClient(client);
         if (clients.size()>0){
             String jsonString = JSON.toJSONString(clients);
-            printWriter.write(jsonString);
-        }else {
-            String jsonString = JSON.toJSONString(0);
             printWriter.write(jsonString);
         }
         printWriter.flush();
@@ -179,19 +136,7 @@ public class ClientController {
             i = clientService.updateClient(client);
         }
         if(i>0) {
-            List<Client> clients=null;
-            Client c=new Client();
-            c.setClientState(0);
-            clients = client(c);
-            if (clients.size() > 0) {
-                String jsonString = JSON.toJSONString(clients);
-                printWriter.write(jsonString);
-            } else {
-                String jsonString = JSON.toJSONString(0);
-                printWriter.write(jsonString);
-            }
-        }else {
-            String jsonString = JSON.toJSONString(0);
+            String jsonString = JSON.toJSONString(1);
             printWriter.write(jsonString);
         }
         printWriter.flush();
@@ -211,19 +156,8 @@ public class ClientController {
             i = clientService.insertClient(client);
         }
         if(i>0) {
-            Client client = new Client();
-            client.setClientState(0);
-            List<Client> clients = client(client);
-            if (clients.size() > 0) {
-                String jsonString = JSON.toJSONString(clients);
+                String jsonString = JSON.toJSONString(1);
                 printWriter.write(jsonString);
-            } else {
-                String jsonString = JSON.toJSONString(0);
-                printWriter.write(jsonString);
-            }
-        }else {
-            String jsonString = JSON.toJSONString(0);
-            printWriter.write(jsonString);
         }
         printWriter.flush();
         printWriter.close();

@@ -177,33 +177,33 @@ function checkUpdateFax() {
     return true;
 }
 
+
 $(function () {
-    //修改为不合作客户
+    //修改为不合作供应商
     $("#btn-disable").click(function () {
-        var supplierList = new Array();
+        var clientList = new Array();
         $(".clients").each(function (index, date) {
-            var checkbox = $(date).find(".k");
+            var checkbox = $(date).find(".clientId");
             if(checkbox.is(':checked')){
                 //选中了
-                var id = $(date).find(".k").val();
+                var id = $(date).find(".clientId").val();
                 var object = new Object();
-                object.supplierId = id;
-                supplierList.push(object);
-                var noncooperationSupplierList = JSON.stringify(supplierList);
+                object.clientId = id;
+                clientList.push(object);
+                var noncooperationClient = JSON.stringify(clientList);
                 $.ajax({
                     type: "post",
-                    url: "/supplier/noncooperationSupplier.do",
+                    url: "/client/noncooperationClient.do",
                     data: {
-                        "noncooperationSupplierList": noncooperationSupplierList
+                        "noncooperationClient": noncooperationClient
                     },
                     dataType: "json",
                     success: function (data) {
                         if(data!=0){
                             for(i in data){
-                                $("#"+data[i].supplierId).remove();
+                                $("#"+data[i].clientId).remove();
                             }
                         }
-                        alert("修改成功")
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -232,37 +232,32 @@ $(function () {
         if (!checkAddPhone()) flag = false;
         if (!checkAddFax()) flag = false;
         if(flag != false){
+            var clients = new Array();
+            var object =new Object();
+            object.clientName= $("#addname").val();
+            object.clientPersonInCharge= $("#addpersonInCharge").val();
+            object.clientPost= $("#addpost").val();
+            object.clientPhone= $("#addphone").val();
+            object.clientMobilePhone= $("#addmobilePhone").val();
+            object.clientFax= $("#addfax").val();
+            object.clientAddress= $("#addaddress").val();
+            object.clientFactoryAddress= $("#addfactoryAddress").val();
+            object.clientState= $("#addstate").val();
+            clients.push(object);
+            var clientList = JSON.stringify(clients);
             $.ajax({
                 type: "post",
-                url: "/supplier/addsupplier.do",
-                data: $("#form").serialize(),
+                url: "/client/cooperative.do",
+                data: {
+                    "clientList": clientList
+                },
                 dataType: "json",
                 success: function (data) {
+                    alert("添加成功")
                     $("#closeAdd").click();
                     var str = "";
                     if(data!=0){
-                        var da = eval(data);
-                        $("#tbod").html("");
-                        alert("adsa");
-                        $.each(da,function (i,item) {
-                            str+="<tr id="+item.supplierId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                                "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                                "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                                "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                                "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                                "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                                "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                                "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                                "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                                "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                                "                <td  id=\"State\">"+item.state+"</td>\n"+
-                                "                <td  >\n" +
-                                "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                                "                </td>\n" +
-                                "            </tr>";
-                        })
-                        $("#tbod").append(str);
+                        window.location.href="/client/clientAll.do";
                     }
                     $("#addname").val("");
                     $("#addpersonInCharge").val("");
@@ -280,7 +275,7 @@ $(function () {
             })
         }
     })
-    //修改客户信息
+    //修改供应商信息
     $("#updates").click(function () {
         $("#updatename").blur(checkUpdateName);
         $("#updatepersonInCharge").blur(checkUpdatePersonInCharge);
@@ -300,164 +295,81 @@ $(function () {
         if (!checkUpdatePhone()) flag = false;
         if (!checkUpdateFax()) flag = false;
         if(flag != false){
+            var clients = new Array();
+            var object =new Object();
+            object.clientId= $("#updateid").val();
+            object.clientName= $("#updatename").val();
+            object.clientPersonInCharge= $("#updatepersonInCharge").val();
+            object.clientPost= $("#updatepost").val();
+            object.clientAddress= $("#updateaddress").val();
+            object.clientFactoryAddress= $("#updatefactoryAddress").val();
+            object.clientMobilePhone= $("#updatemobilePhone").val();
+            object.clientPhone= $("#updatephone").val();
+            object.clientFax= $("#updatefax").val();
+            clients.push(object);
+            var clientList = JSON.stringify(clients);
             $.ajax({
                 type: "post",
-                url: "/supplier/updateSupplier.do",
-                data: $("#form").serialize(),
+                url: "/client/updatesClient.do",
+                data: {
+                    "clientList": clientList
+                },
                 dataType: "json",
                 success: function (data) {
                     $("#closeUpdate").click();
                     var str = "";
                     if(data!=0){
-                        var da = eval(data);
-                        $("#tbod").html("");
-                        $.each(da,function (i, item) {
-                            str+="<tr id="+item.supplierId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                                "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                                "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                                "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                                "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                                "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                                "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                                "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                                "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                                "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                                "                <td  id=\"State\">"+item.state+"</td>\n"+
-                                "                <td  >\n" +
-                                "                    <button type=\"button\" onclick=\"gainclient("+item.supplierId+")\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                                "                </td>\n" +
-                                "            </tr>";
-                        })
-                        $("#tbod").append(str);
+                        alert("修改成功")
+                        window.location.href="/client/cooperative.do";
                     }
-
+                    $("#updatename").val("");
+                    $("#updatepersonInCharge").val("");
+                    $("#updatepost").val("");
+                    $("#updatephone").val("");
+                    $("#updatemobilePhone").val("");
+                    $("#updatefax").val("");
+                    $("#updateaddress").val("");
+                    $("#updatefactoryAddress").val("");
+                    $("#updatestate").val("");
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
                 }
             })
-
         }
     })
     //查看终止合作的供应商
     $("#termination").click(function () {
-        var supplierState=this.name;
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#cooperation").css({'background':'#99CCFF','color':'#FFFFFF'});
-        //控制按钮不可点击
-        document.getElementById("btn-disable").setAttribute("disabled",true);
-        document.getElementById("addClient").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#btn-enable").attr("disabled",false);
-        $.ajax({
-            type:"post",
-            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
-            dataType: "json",
-            success: function (data) {
-                var str = "";
-                if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.supplierId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                            "                <td  id=\"State\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
-                }else {
-                    alert("失败")
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
+        window.location.href="/supplier/noncooperation.do";
     })
-    //查看在合作客户
+    //查看在合作供应商
     $("#cooperation").click(function () {
-        var supplierState=this.name;
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#termination").css({'background':'#99CCFF','color':'#FFFFFF'});
-        //控制按钮不可点击
-        document.getElementById("btn-enable").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#addClient").attr("disabled",false);
-        $("#btn-disable").attr("disabled",false);
-        $.ajax({
-            type:"post",
-            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
-            dataType: "json",
-            success: function (data) {
-                var str = "";
-                if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.supplierId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                            "                <td  id=\"State\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
-                }else {
-                    alert("失败")
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
+        window.location.href="/supplier/cooperative.do";
     })
-    // 修改为合作客户
+    //修改供应商是否合作
     $("#btn-enable").click(function () {
         var clientList = new Array();
         $(".clients").each(function (index, date) {
-            var checkbox = $(date).find(".k");
+            var checkbox = $(date).find(".clientId");
             if(checkbox.is(':checked')){
                 //选中了
-                var id = $(date).find(".k").val();
+                var id = $(date).find(".clientId").val();
                 var object = new Object();
-                object.supplierId = id;
+                object.clientId = id;
                 clientList.push(object);
-                var cooperativeSupplier = JSON.stringify(clientList);
+                var cooperativeClients = JSON.stringify(clientList);
                 $.ajax({
                     type: "post",
-                    url: "/supplier/cooperativeSupplier.do",
+                    url: "/client/cooperativeClient.do",
                     data: {
-                        "cooperativeSupplier": cooperativeSupplier
+                        "cooperativeClients": cooperativeClients
                     },
                     dataType: "json",
                     success: function (data) {
                         if(data!=0){
                             if(data!=0){
                                 for(i in data){
-                                    $("#"+data[i].supplierId).remove();
+                                    $("#"+data[i].clientId).remove();
                                 }
                             }
                         }
@@ -472,25 +384,34 @@ $(function () {
 })
 //获取要修改的信息
 function gainclient(val){
-
+    $("#updatename").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepost").val("");
+    $("#updateaddress").val("");
+    $("#updatefactoryAddress").val("");
+    $("#updatemobilePhone").val("");
+    $("#updatephone").val("");
+    $("#updatefax").val("");
     $.ajax({
         type: "post",
-        url: "/supplier/supplierId.do?supplierId="+val,
+        url: "/client/clientId.do?clientId="+val,
         dataType: "json",
         success: function (data) {
             if(data!=0){
                 $.each(data, function(i,item){
-                    $("#updateid").val(item.supplierId)
-                    $("#updatename").val(item.supplierName)
-                    $("#updatepersonInCharge").val(item.supplierPersonInCharge)
-                    $("#updatepost").val(item.supplierPost)
-                    $("#updateaddress").val(item.supplierAddress)
-                    $("#updatefactoryAddress").val(item.supplierFactoryAddress)
-                    $("#updatemobilePhone").val(item.supplierMobilePhone)
-                    $("#updatephone").val(item.supplierPhone)
-                    $("#updatefax").val(item.supplierFax)
+                    $("#updateid").val(item.clientId)
+                    $("#updatename").val(item.clientName)
+                    $("#updatepersonInCharge").val(item.clientPersonInCharge)
+                    $("#updatepost").val(item.clientPost)
+                    $("#updateaddress").val(item.clientAddress)
+                    $("#updatefactoryAddress").val(item.clientFactoryAddress)
+                    $("#updatemobilePhone").val(item.clientMobilePhone)
+                    $("#updatephone").val(item.clientPhone)
+                    $("#updatefax").val(item.clientFax)
                 });
             }
+
         },
         error: function () {
             alert("系统异常，请稍后重试！");

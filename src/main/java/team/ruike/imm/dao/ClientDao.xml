@@ -67,7 +67,6 @@
                 LIMIT #{currentPage},#{pageSize}
             </if>
         </where>
-
     </select>
     <!--指定条件修改客户信息-->
     <update id="updateClient" parameterType="client">

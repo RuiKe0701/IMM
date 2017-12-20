@@ -1,6 +1,7 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.Supplier;
+import team.ruike.imm.utility.Pages;
 
 import java.util.List;
 
@@ -14,6 +15,18 @@ public interface SupplierService {
      * @return
      */
     public List<Supplier> selectSuplier(Supplier supplier);
+    /**
+     * 分页
+     * @param
+     * @return
+     */
+    public List<Supplier> pagerSuplier(Supplier supplier);
+    /**
+     * 入参分页类
+     * @param
+     * @return
+     */
+    public Pages<Supplier> getPager(Supplier supplier, Integer currentPage);
 
     /**
      * 按条件修改指定供应商信息

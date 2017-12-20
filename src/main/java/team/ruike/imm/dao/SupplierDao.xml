@@ -56,6 +56,22 @@
         </if>
     </select>
 
+    <select id="pages" resultMap="clientMap">
+        select * from supplier
+        <where>
+            1=1
+            <if test="clientName!=null and  clientName!=''">
+                and supplier_name like concat('%',#{supplierName},'%')
+            </if>
+            <if test="clientState!=null">
+                and supplier_state=#{supplierState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
+    </select>
+
     <update id="updateSupplier" >
         update supplier
         <set>

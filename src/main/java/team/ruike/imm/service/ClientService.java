@@ -18,7 +18,6 @@ public interface ClientService {
      * @return
      */
     public List<Client> pagerClient(Client client);
-
     /**
      * 入参分页类
      * @param
