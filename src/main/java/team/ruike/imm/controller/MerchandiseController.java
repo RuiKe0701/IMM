@@ -59,10 +59,6 @@ public class MerchandiseController {
         return  "page/warehouse/goods-balance";
     }
 
-
-
-
-
     //按商品类型查询
     @RequestMapping(value = "/selectType.do")
     public void selectType(Merchandise merchandise,PrintWriter printWriter){
@@ -75,7 +71,6 @@ public class MerchandiseController {
             printWriter.close();
         }
     }
-
     /**
      * 查询被选中即将修改的商品的信息
      */
@@ -124,92 +119,15 @@ public class MerchandiseController {
     /* 删除商品信息
      */
     @RequestMapping(value = "/deleteMerchandise.do")
+    @ResponseBody
     public void  deleteMerchandise(Merchandise merchandises,PrintWriter printWriter){
-        int i =0;
+        System.out.println(merchandises.getMerchandiseId());
         merchandises.setMerchandiseState(1);
-            i=merchandiseService.updateMerchandise(merchandises);
-        if(i>0){
-            Merchandise s=new Merchandise();
-            s.setMerchandiseState(1);
-            List<Merchandise> mm =merchandiseService.selectMerchandise(s);
-            //返回值
-            String jsonString = JSON.toJSONString(mm);
-            printWriter.write(jsonString);
-            printWriter.flush();
-            printWriter.close();
-        }
-
-        String jsonString = JSON.toJSONString(0);
+        merchandiseService.updateMerchandise(merchandises);
+        String jsonString = JSON.toJSONString("1");
         printWriter.write(jsonString);
         printWriter.flush();
         printWriter.close();
+
     }
-//    @RequestMapping(value = "/dmerchandise.do")
-//    public String delete(Merchandise merchandise){
-//        int i =merchandiseService.updateMerchandise(merchandise);
-//        if(i>0){
-//            return "page/warehouse/goods-balance" ;
-//        }
-//        return null;
-//    }
-//    @RequestMapping(value = "iMerchandise.do")
-//    public String insertMerchandise(Merchandise merchandise){
-//        System.out.println(merchandise.getSalesStatus());
-//        int i =merchandiseService.insertMerchandise(merchandise);
-//        if(i>0){
-//            return null;
-//        }
-//        return null;
-//    }
-//    @RequestMapping(value = "insertMerchandises.do")
-//    public String insertMerchandise(HttpSession session){
-//        List<Units> u = unitsService.selectUnits(null);
-//        List<ProductType> t = productTypeService.selectProductType(null);
-//        if(u!=null && t!=null) {
-//            session.setAttribute("u",u);
-//            session.setAttribute("type",t);
-//            return null;
-//        }
-//        return null;
-//    }
-//    @RequestMapping(value = "suMerchandise.do")
-//    public String suMerchandise(Merchandise merchandise,HttpSession session){
-//        List<Merchandise> merchandises=merchandiseService.selectMerchandise(merchandise);
-//        if(merchandises!=null){
-//            session.setAttribute("m",merchandises);
-//            return null;
-//        }
-//        return null;
-//    }
-//    @RequestMapping(value = "aa.do")
-//    public String updateMerchandise(Merchandise merchandise){
-//        int m=merchandiseService.updateMerchandise(merchandise);
-//        if(m>0){
-//            return null;
-//        }
-//        return null;
-//    }
-//    @RequestMapping(value = "updateMerchandises.do")
-//    public String updateMerchandises(Merchandise mer,HttpSession session){
-//        session.setAttribute("m",mer);
-//        List<Units> u = unitsService.selectUnits(null);
-//        List<ProductType> t = productTypeService.selectProductType(null);
-//        if(u!=null && t!=null) {
-//            session.setAttribute("u", u);
-//            session.setAttribute("type", t);
-//            return null;
-//        }
-//        return null;
-//    }
-    //按商品名关键字查询
-//    @RequestMapping(value = "ajaxMerchand.do",produces="text/html;charset=UTF-8")
-//            @ResponseBody
-//            public Object ajaxMerchand(Merchandise merchandise){
-//            Merchandise merchandises=merchandiseService.selectOne(merchandise);
-//            return JSON.toJSONString(merchandises);
-//            }
-    //按单位查询
-    //@RequestMapping(value = "/merchandiseUnits.do")
-    //按销售状态查询
-    //@RequestMapping(value = "/merchandiseState.do")
 }

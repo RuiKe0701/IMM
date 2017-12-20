@@ -95,7 +95,7 @@
                 <set>
                     client_state=1
                 </set>
-                where client_id=#{client}
+                where client_id=#{client.clientId}
             </foreach>
     </update>
     <!--修改为合作客户-->

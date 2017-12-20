@@ -33,10 +33,10 @@ public class WarehousingController {
     {
         List<Warehousing> warehousingList = warehousingService.selectWarehousing(warehousing);
         List<Employee> employeeList = employeeService.selectEmployee(employee);
-        //List<User> userList = userService.selectUser(user);
+        List<User> userList = userService.userList(user);
         session.setAttribute("ware", warehousingList);
         session.setAttribute("emp",employeeList);
-        //session.setAttribute("user",userList);
+        session.setAttribute("u",userList);
         return "page/warehouse/warehousing";
     }
 
