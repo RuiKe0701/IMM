@@ -11,7 +11,7 @@
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
+    <script src="${request.contextPath }/js/jquery.dialog.js"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
     <style>
@@ -127,75 +127,50 @@
         <div class="cf">
 
             <div class="fr" style="position: absolute;top: 70px;right: 60px">
-                <button class="btn btn-default" id="toPo">生成购货订单</button>
+                <button class="btn btn-info" id="toPo"><span style="color: white">生成购货订单</span></button>
             </div>
         </div>
     </div>
-    <div class="grid-wrap">
-        <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-             style="width: 1354px;">
-            <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
+    <div>
+        <table class="table table-bordered" style="width: 1250px">
 
-            <div class="ui-jqgrid-view" id="gview_grid" style="width: 1354px;">
-                <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                     style="display: none;">
-                    <a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton" style="right: 0px;">
-                        <span class="ui-icon ui-icon-circle-triangle-n"></span>
-                    </a><span class="ui-jqgrid-title"></span>
-                </div>
-                <table class="table table-bordered" style="width: 1250px">
+            <thead>
+            <tr>
+                <th style="width: 25px;"><input type="checkbox" id="checkAll"></th>
+                <th style="display: none">销货商品id</th>
+                <th>销货商品名称</th>
+                <th>销货商品单位</th>
+                <th>销货商品数量</th>
+                <th>订单号</th>
+                <th>订单日期</th>
+                <th>待采购数量</th>
+                <th>本次采购数量</th>
+                <th>本次采购价格</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${salesInformations}" var="salesInfo">
+                <tr class="eachtr">
+                    <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
+                    <td class="merchandiseId" style="display: none">${salesInfo.merchandise.merchandiseId}</td>
+                    <td class="merchandiseName">${salesInfo.merchandise.merchandiseName}</td>
+                    <td style="display: none" class="unitsId">${salesInfo.units.unitsId}</td>
+                    <td class="unitsName">${salesInfo.units.unitsName}</td>
+                    <td class="siVolume">${salesInfo.siVolume}</td>
+                    <td class="salesId">${salesInfo.salesId}</td>
+                    <td class="salesDate"><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
+                    <td>${salesInfo.siVolume}</td>
+                    <td><input class="piVolume" type="text" style="border: none;height: 30px;text-align: center"></td>
+                    <td><input class="piActualPrice" type="text" style="border: none;height: 30px;text-align: center"></td>
+                    <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
+                </tr>
+            </c:forEach>
 
-                    <thead>
-                    <tr>
-                        <th style="width: 25px;"><input type="checkbox" id="checkAll"></th>
-                        <th style="display: none">销货商品id</th>
-                        <th>销货商品名称</th>
-                        <th>销货商品单位</th>
-                        <th>销货商品数量</th>
-                        <th>订单号</th>
-                        <th>订单日期</th>
-                        <th>待采购数量</th>
-                        <th>本次采购数量</th>
-                        <th>本次采购价格</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${salesInformations}" var="salesInfo">
-                        <tr class="eachtr">
-                            <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
-                            <td class="merchandiseId" style="display: none">${salesInfo.merchandise.merchandiseId}</td>
-                            <td class="merchandiseName">${salesInfo.merchandise.merchandiseName}</td>
-                            <td style="display: none" class="unitsId">${salesInfo.units.unitsId}</td>
-                            <td class="unitsName">${salesInfo.units.unitsName}</td>
-                            <td class="siVolume">${salesInfo.siVolume}</td>
-                            <td class="salesId">${salesInfo.salesId}</td>
-                            <td class="salesDate"><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
-                            <td>${salesInfo.siVolume}</td>
-                            <td><input class="piVolume" type="text" style="border: none;height: 30px;text-align: center"></td>
-                            <td><input class="piActualPrice" type="text" style="border: none;height: 30px;text-align: center"></td>
-                            <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
-                        </tr>
-                    </c:forEach>
-
-                    </tbody>
+            </tbody>
 
 
-                </table>
-
-                <div>
-                    <ul class="pagination" >
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        </table>
 
     </div>
 </div>

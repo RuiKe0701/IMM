@@ -14,7 +14,8 @@ public interface MerchandiseDao {
      */
     public List<Merchandise> selecrMerchandise(Merchandise merchandise);
     List<Merchandise> selectAll(Merchandise merchandise);
-
+    //查询当前库存小于安全库存
+    List<Merchandise> selectRelenish(Merchandise merchandise);
     /**
      * 按关键字查询出多个
      */

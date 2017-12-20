@@ -37,4 +37,8 @@ public class ProcurementInformationServiceImpl implements ProcurementInformation
     public void insertAll(List<ProcurementInformation> procurementInformations) {
         procurementInformationDao.insertAll(procurementInformations);
     }
+
+    public List<ProcurementInformation> selectReplenish() {
+        return procurementInformationDao.selectReplenish();
+    }
 }

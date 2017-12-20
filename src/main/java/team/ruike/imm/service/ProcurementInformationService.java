@@ -28,4 +28,6 @@ public interface ProcurementInformationService {
      * @return
      */
     public int insertProcurementInformation(ProcurementInformation procurementInformation);
+    //查询采购订单还未入库的订单
+    List<ProcurementInformation> selectReplenish();
 }
