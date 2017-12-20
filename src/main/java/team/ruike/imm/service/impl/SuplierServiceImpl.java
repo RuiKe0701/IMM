@@ -43,17 +43,17 @@ public class SuplierServiceImpl implements SupplierService {
     int pageSize=4;
     /**
      *  分页查询数据库
-     * @param client
+     * @param supplier
      * @return
      */
-    public List<Supplier> pagerSuplier(Supplier client) {
-        client.setPageSize(pageSize);
-        if (client.getCurrentPage()>1){
-            client.setCurrentPage((client.getCurrentPage()-1)*pageSize);
+    public List<Supplier> pagerSuplier(Supplier supplier) {
+        supplier.setPageSize(pageSize);
+        if (supplier.getCurrentPage()>1){
+            supplier.setCurrentPage((supplier.getCurrentPage()-1)*pageSize);
         }else {
-            client.setCurrentPage(0);
+            supplier.setCurrentPage(0);
         }
-        List<Supplier> count=supplierDao.pages(client);
+        List<Supplier> count=supplierDao.pages(supplier);
         return count;
     }
     /**
