@@ -322,7 +322,7 @@
                                 class="menu-pic information left"></span>
                             <span class="text">资料</span> </a> <span
                                 class="arrow" style="top: 363.409px; left: 121px; display: none;"></span>
-                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 52.9088px; left: 129px;">
+                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 202.9088px; left: 129px;">
                                  <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Customer-management">

@@ -56,6 +56,22 @@
         </if>
     </select>
 
+    <select id="pages" resultMap="clientMap">
+        select * from supplier
+        <where>
+            1=1
+            <if test="clientName!=null and  clientName!=''">
+                and supplier_name like concat('%',#{supplierName},'%')
+            </if>
+            <if test="clientState!=null">
+                and supplier_state=#{supplierState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
+    </select>
+
     <update id="updateSupplier" >
         update supplier
         <set>
@@ -103,7 +119,7 @@
             <set>
                 supplier_state=1
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
     <!--修改为合作客户-->
@@ -113,7 +129,7 @@
             <set>
                 supplier_state=0
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
 </mapper>

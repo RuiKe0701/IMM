@@ -20,7 +20,7 @@
         <where>
             1=1
             <if test="clientId!=null and  clientId>0">
-                 and client_id=#{clientId}
+                and client_id=#{clientId}
             </if>
             <if test="clientName!=null and  clientName!=''">
                 and client_name=#{clientName}
@@ -50,9 +50,23 @@
                 and client_state=#{clientState}
             </if>
         </where>
-        <if test="currentPage!=null and pageSize!=null">
-            LIMIT #{currentPage},#{pageSize}
-        </if>
+    </select>
+
+
+    <select id="pages" resultMap="clientMap">
+        select * from client
+        <where>
+            1=1
+            <if test="clientName!=null and  clientName!=''">
+                and client_name like concat('%',#{clientName},'%')
+            </if>
+            <if test="clientState!=null">
+                and client_state=#{clientState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
     </select>
     <!--指定条件修改客户信息-->
     <update id="updateClient" parameterType="client">
@@ -105,7 +119,7 @@
             <set>
                 client_state=0
             </set>
-            where client_id=#{client}
+            where client_id=#{client.clientId}
         </foreach>
     </update>
     <insert id="insertClient">

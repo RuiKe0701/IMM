@@ -18,7 +18,7 @@ public interface ClientDao {
      * 分页
      * @return
      */
-    public List<Client> pagerClient(Client client);
+    public List<Client> pages(Client client);
     /**
      * 指定条件修改客户信息
      * @param client
@@ -34,6 +34,6 @@ public interface ClientDao {
     public int insertClient(Client client);
 
 
-    public int noncooperation(List client);
-    public int cooperative(List client);
+    public int noncooperation(List<Client> client);
+    public int cooperative(List<Client> client);
 }

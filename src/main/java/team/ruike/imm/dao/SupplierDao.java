@@ -30,12 +30,12 @@ public interface SupplierDao {
      * @return
      */
     public int insertSuplier(Supplier supplier);
+
     /**
      * 分页
      * @return
      */
-    public List<Supplier> PagerSupplier(Supplier supplier);
-
-    public int noncooperation(List supplier);
-    public int cooperative(List supplier);
+    public List<Supplier> pages(Supplier supplier);
+    public int noncooperation(List<Supplier> supplier);
+    public int cooperative(List<Supplier> supplier);
 }
