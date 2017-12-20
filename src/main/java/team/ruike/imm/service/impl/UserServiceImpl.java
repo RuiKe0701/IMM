@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         return userDao.count();
     }
 
-    int pageSize=2;//设置每页显示数据数
+//    int pageSize=2;//设置每页显示数据数
     /**
      * 分页查询进入SQL语句
      * @return

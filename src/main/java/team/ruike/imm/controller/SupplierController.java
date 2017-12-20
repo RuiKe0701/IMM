@@ -1,17 +1,11 @@
 package team.ruike.imm.controller;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Supplier;
 import team.ruike.imm.service.SupplierService;
 import team.ruike.imm.utility.Pages;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,7 +30,7 @@ public class SupplierController {
         request.setAttribute("pages",pages);
         int i=0;
         request.setAttribute("i",i);
-        return "page/material/customer-list-1";
+        return "page/material/vendor-list-2";
     }
 
     /**
@@ -61,9 +55,8 @@ public class SupplierController {
         request.setAttribute("pp",pages);
         int i=1;
         request.setAttribute("i",i);
-        return "page/material/customer-list-1";
+        return "page/material/vendor-list-2";
     }
-
 //    /**
 //     * 修改为不合作客户
 //     * @param noncooperationClient
