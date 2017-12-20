@@ -31,6 +31,7 @@ public class StorageMove extends PagerParameter implements Serializable{
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date smDate;
+
     /**
      * 出库备注
      */
@@ -43,10 +44,7 @@ public class StorageMove extends PagerParameter implements Serializable{
      * 是否已删除
      */
     private Integer smState;
-    /**
-     * 入库记录表
-     */
-    private Warehousing warehousing;
+
     /**
      * 员工信息表
      */
@@ -122,14 +120,6 @@ public class StorageMove extends PagerParameter implements Serializable{
 
     public void setSmState(Integer smState) {
         this.smState = smState;
-    }
-
-    public Warehousing getWarehousing() {
-        return warehousing;
-    }
-
-    public void setWarehousing(Warehousing warehousing) {
-        this.warehousing = warehousing;
     }
 
     public Employee getEmployee() {

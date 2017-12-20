@@ -4,20 +4,12 @@
 <mapper namespace="team.ruike.imm.dao.StorageMoveDao">
         <resultMap id="storageMoveMap" type="storageMove">
             <result property="smId" column="sm_id" />
-            <result property="supplierProductPrice" column="sm_date" />
-            <result property="supplierProductState" column="sm_remarks" />
+            <result property="smBuyer" column="sm_buyer" />
+            <result property="salesId" column="sales_id"/>
+            <result property="smDate" column="sm_date"/>
+            <result property="smRemarks" column="sm_remarks"/>
+            <result property="smUserId" column="sm_user_id"/>
             <result property="smState" column="sm_state"/>
-
-            <collection property="warehousing" ofType="warehousing">
-                <result property="warehousingId;" column="warehousing_id" />
-                <result property="warehousingBatchNumber;" column="warehousing_batch_number" />
-                <result property="warehousingBuyer;" column="warehousing_buyer" />
-                <result property="procurement_Id" column="procurement_id" />
-                <result property="warehousingDate" column="warehousing_date" />
-                <result property="warehousingRemarks" column="warehousing_remarks"/>
-                <result property="supplierMobilePhone;" column="warehousing_employee_id" />
-                <result property="supplierFax" column="warehousing_state" />
-            </collection>
 
             <collection property="employee" ofType="employee">
                 <result column="employee_id" property="employeeId" />
@@ -36,10 +28,11 @@
                 <result column="client_id" property="clientId"/>
                 <result column="employee_id" property="employeeId"/>
                 <result column="sales_accomplish" property="salesAccomplish"/>
-                <result column="event_details_id" property="eventDetails_id"/>
+                <result column="event_details_id" property="eventDetailsId"/>
                 <result column="sales_activities" property="salesActivities"/>
                 <result column="sales_state" property="salesState"/>
             </collection>
+
             <collection property="user" ofType="user">
                 <result column="user_id" property="userId"/>
                 <result column="user_name" property="userName"/>
@@ -50,32 +43,29 @@
         </resultMap>
 
     <select id="selectStorageMove" resultMap="storageMoveMap" parameterType="storageMove">
-        select * from storage_move
+        select * from storage_move sm,employee e,sales s,user u
         <where>
-             1=1
+            sm.sales_id=s.sales_id and sm.sm_buyer=e.employee_id and sm.sm_user_id=u.user_id
             <if test="smId!=null and smId>0">
-                  and sm_id=#{smId}
-            </if>
-            <if test="warehousingId !=null and warehousingId!=''">
-                  and warehousing_id=#{warehousingId}
+                  and sm.sm_id=#{smId}
             </if>
             <if test="smBuyer !=null and smBuyer!=''">
-                  and sm_buyer =#{smBuyer}
+                  and sm.sm_buyer =#{smBuyer}
             </if>
             <if test="salesId!=null and salesId !=''">
-                  and sales_id =#{salesId}
+                  and sm.sales_id like concat('%',#{salesId},'%')
             </if>
             <if test="smDate !=null and smDate !=''">
-                  and sm_date =#{smDate}
+                  and sm.sm_date =#{smDate}
             </if>
             <if test="smRemarks !=null and smRemarks!=''">
-                  and sm_remarks=#{smRemarks}
+                  and sm.sm_remarks=#{smRemarks}
             </if>
             <if test="smUserId !=null and smUserId!=''">
-                  and sm_user_id =#{smUserId}
+                  and sm.sm_user_id =#{smUserId}
             </if>
             <if test="smState !=null and smState!=''">
-                  and sm_state =#{smState}
+                  and sm.sm_state =#{smState}
             </if>
         </where>
         <if test="currentPage!=null and pageSize!=null">
@@ -86,34 +76,32 @@
     <update id="updateStorageMove" parameterType="storageMove">
         update storage_move
         <set>
-            <if test="warehousingId !=null and warehousingId!=''">
-                 and warehousing_id=#{warehousingId}
-            </if>
             <if test="smBuyer !=null and smBuyer!=''">
-                 and sm_buyer =#{smBuyer}
+                 and sm.sm_buyer =#{smBuyer}
             </if>
             <if test="salesId!=null and salesId !=''">
-                 and sales_id =#{salesId}
+                 and sm.sales_id =#{salesId}
             </if>
             <if test="smDate !=null and smDate !=''">
-                 and sm_date =#{smDate}
+                 and sm.sm_date =#{smDate}
             </if>
             <if test="smRemarks !=null and smRemarks!=''">
-                 and sm_remarks=#{smRemarks}
+                 and sm.sm_remarks=#{smRemarks}
             </if>
             <if test="smUserId !=null and smUserId!=''">
-                 and sm_user_id =#{smUserId}
+                 and sm.sm_user_id =#{smUserId}
             </if>
             <if test="smState !=null and smState!=''">
-                 and sm_state =#{smState}
+                 and sm.sm_state =#{smState}
             </if>
         </set>
         <where>
-             sm_id=#{smId}
+            sm.sm_id=#{smId}
         </where>
     </update>
+
     <insert id="insertStorageMove" parameterType="storageMove">
-        insert into storage_move values(default,#{warehousingId},#{smBuyer},#{salesId},#{smDate},#{smRemarks},#{smUserId},#{smState})
+        insert into storage_move values(default,#{smBuyer},#{salesId},#{smDate},#{smRemarks},#{smUserId},#{smState})
     </insert>
 </mapper>
 

@@ -22,14 +22,13 @@ public class StorageMoveServiceImpl implements StorageMoveService{
     }
 
     public List<StorageMove> selectStorageMove(StorageMove storageMove) {
-        return null;
+        return storageMoveDao.selectStorageMove(storageMove);
     }
-
     public int updateStorageMove(StorageMove storageMove) {
-        return 0;
+        return storageMoveDao.updateStorageMove(storageMove);
     }
 
     public int insertStorageMove(StorageMove storageMove) {
-        return 0;
+        return storageMoveDao.insertStorageMove(storageMove);
     }
 }

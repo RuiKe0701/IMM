@@ -34,7 +34,9 @@ public class UserController {
             return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-//            return "index";
+//        session.setAttribute("a",7);
+//        session.setAttribute("s",17);
+//            return "asd";
         return "redirect:/user/pages.do";
     }
 

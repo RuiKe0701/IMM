@@ -38,7 +38,9 @@
                  units_state=#{unitsState},
             </if>
         </set>
-        where  units_id=#{unitsId}
+        <where>
+            units_id=#{unitsId}
+        </where>
     </update>
 
     <insert id="insertUnits" parameterType="units">

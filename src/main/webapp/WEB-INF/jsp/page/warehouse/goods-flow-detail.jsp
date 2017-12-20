@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--商品收发明细
   Created by IntelliJ IDEA.
   User: Administrator
@@ -79,11 +80,6 @@
                     <input id="hello" class="">
                     <span class="todate"> 至 </span>
                     <input id="end" class=""></li>
-
-
-                <li id="goods" style="display: list-item;"><label>仓库:</label>
-                    <span class="mod-choose-input" id="filter-goods">
-            <input type="text">
             <span class="ui-icon-ellipsis"></span></span></li>
                 <li id="billNum" style="display: list-item;"><label>商品</label>
                     <input type="text" value="" style="width:115px;">
@@ -93,10 +89,8 @@
             </ul>
         </div>
     </div>
-    <!-- no data -->
-    <div class="no-query"></div>
     <!-- grid begin -->
-    <div class="ui-print" style="display: none;">
+    <div class="ui-print">
         <!-- 列配置 -->
         <div class="cf box-flex">
             <div class="flex">
@@ -126,15 +120,15 @@
                         <thead>
                         <tr>
                             <th style="display: none">商品id</th>
-                            <th>商品类别</th>
-                            <th>商品编号</th>
+                            <th>商品编码</th>
                             <th>商品名称</th>
-                            <th>规格型号</th>
+                            <th>商品规格</th>
+                            <th>商品类型</th>
+                            <th>商品单位</th>
                             <th>日期</th>
                             <th>单据号</th>
                             <th>业务类型</th>
                             <th>往来单位</th>
-                            <th>单位</th>
                             <th>备注</th>
                             <th>操作</th>
                         </tr>
@@ -157,43 +151,7 @@
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
                         </tr>
-                        <tr>
-                            <td style="display: none"></td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>560001</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td style="width: 120px;text-align: center">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
-                        </tr>
-                        <tr>
-                            <td style="display: none"></td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td>560001</td>
-                            <td>560001</td>
-                            <td>Tanmay</td>
-                            <td style="width: 120px;text-align: center">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"data-target="#myModal">修改</button>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del">删除</button></td>
-                        </tr>
                         </tbody>
-
-
                     </table>
 
                     <div>

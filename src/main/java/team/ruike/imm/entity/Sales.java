@@ -49,7 +49,7 @@ public class Sales extends PagerParameter implements Serializable{
     /**
      *销售订单详情
      */
-    private List<SalesInformation> salesInformations;
+    private SalesInformation salesInformations;
     /**
      * 客户信息表
      */
@@ -58,10 +58,12 @@ public class Sales extends PagerParameter implements Serializable{
      * 业务员信息表
      */
     private Employee employee;
+
     /**
      * 活动信息表
      */
     private EventDetails eventDetails;
+
 
     public String getSalesId() {
         return salesId;
@@ -127,11 +129,11 @@ public class Sales extends PagerParameter implements Serializable{
         this.salesState = salesState;
     }
 
-    public List<SalesInformation> getSalesInformations() {
+    public SalesInformation getSalesInformations() {
         return salesInformations;
     }
 
-    public void setSalesInformations(List<SalesInformation> salesInformations) {
+    public void setSalesInformations(SalesInformation salesInformations) {
         this.salesInformations = salesInformations;
     }
 

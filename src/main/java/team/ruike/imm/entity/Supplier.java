@@ -59,18 +59,6 @@ public class Supplier extends PagerParameter implements Serializable{
      * 保存是否合作
      */
     private String State;
-    /**
-     * 保存修改的值
-     */
-    private List BulkChanges;
-
-    public List getBulkChanges() {
-        return BulkChanges;
-    }
-
-    public void setBulkChanges(List bulkChanges) {
-        BulkChanges = bulkChanges;
-    }
 
     public String getState() {
         return State;

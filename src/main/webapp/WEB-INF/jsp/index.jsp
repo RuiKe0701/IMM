@@ -200,7 +200,6 @@
                                                 <span class="hasList">调拨单
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Count-records">
@@ -208,7 +207,6 @@
                                                 <span class="hasList">盘点记录
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                     </ul>
@@ -217,26 +215,37 @@
                                     <ul class="sub-nav">
                                         <li class="" id="Goods-inventory-balance">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品库存管理
+                                                <span class="hasList">库存管理
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Goods-receipt-details">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发明细
+                                                <span class="hasList">收发明细
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
                                         <li class="" id="Send-and-receive-goods-summary">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品收发汇总
+                                                <span class="hasList">收发汇总
                                                  <span class="hide"></span>
                                                 </span>
-                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="warehousing">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">入库记录
+                                                 <span class="hide"></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="" id="storage_move">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">出库记录
+                                                 <span class="hide"></span>
+                                                </span>
                                             </a>
                                         </li>
                                     </ul>
@@ -313,7 +322,7 @@
                                 class="menu-pic information left"></span>
                             <span class="text">资料</span> </a> <span
                                 class="arrow" style="top: 363.409px; left: 121px; display: none;"></span>
-                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 52.9088px; left: 129px;">
+                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 202.9088px; left: 129px;">
                                  <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Customer-management">

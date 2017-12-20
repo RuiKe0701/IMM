@@ -22,6 +22,13 @@ public interface MerchandiseService {
      * @return
      */
     public Merchandise selectOne(Merchandise merchandise);
+
+    /**
+     * 按关键字查询
+     * @param merchandise
+     * @return
+     */
+    public List<Merchandise> san(Merchandise merchandise);
     /**
      * 按指定条件修改商品信息
      * @param merchandise

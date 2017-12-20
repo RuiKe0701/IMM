@@ -1,4 +1,4 @@
-<%--
+<%--出库
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017-12-07
@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,33 +59,25 @@
 
 <div class="wrapper">
     <!-- header -->
-    <form action="/merchandise/merchandisemenu.do" method="post">
+    <form action="/stoagemove/stoagemovemenu.do" method="post">
         <div class="mod-search cf" id="report-search">
             <div class="l" id="filter-menu">
                 <ul class="ul-inline fix" id="filterItems">
-                    <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
-                        <input type="text"  name="about" placeholder="请输入查询关键字">
+                    <li id="merchandiseForName" style="display: list-item;"><label>售货单号</label>
+                        <input type="text"  name="merchandiseName">
                     </li>
-                    <li id="product" style="display: list-item;"><label>商品类型</label>
+                    <li id="product" style="display: list-item;"><label>出库人</label>
                         <select  name="productTypeId" style="width:115px;height: 32px">
                             <option value="0">请选择</option>
                             <c:forEach items="${prod}" var="p">
                                 <option value="${p.productTypeId}">${p.productTypeName}</option>
                             </c:forEach>
                         </select><br></li>
-                    <li id="units" style="display: list-item;"><label>单位</label>
+                    <li id="units" style="display: list-item;"><label>经办人</label>
                         <select  name="unitsId" style="width:115px;height: 32px" >
                             <option value="0">请选择</option>
                             <c:forEach items="${unis}" var="u">
                                 <option value="${u.unitsId}" >${u.unitsName}</option>
-                            </c:forEach>
-                        </select><br>
-                    </li>
-                    <li id="salesstatus" style="display: list-item;"><label>销售状态</label>
-                        <select  name="salesStatusId" style="width:115px;height: 32px" >
-                            <option value="0">请选择</option>
-                            <c:forEach items="${sale}" var="s">
-                                <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
                             </c:forEach>
                         </select><br>
                     </li>
@@ -98,40 +91,30 @@
         <thead>
         <tr>
             <th></th>
-            <th style="display: none">商品id</th>
-            <th>商品编码</th>
-            <th>商品名称</th>
-            <th>商品规格</th>
-            <th>商品类型</th>
-            <th>商品单位</th>
-            <th>商品产地</th>
-            <th>安全存量</th>
-            <th>商品库存</th>
-            <th>商品售价（无税）</th>
-            <th>销售状态</th>
+            <%--style="display: none"--%>
+            <%--<th>出库编号</th>--%>
+            <th>出库人</th>
+            <th>售货单号</th>
+            <th>出库日期</th>
+            <th>出库备注</th>
+            <th>经办人</th>
             <th style="display: none">是否已删除</th>
-            <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        <c:forEach items="${merc}" var="m">
-            <tr id="${m.merchandiseId}">
+        <c:forEach var="s" items="${stor}">
+                <tr id="${s.smId}">
                 <td><input type="checkbox" /></td>
-                <td style="display: none">${m.merchandiseId}</td>
-                <td>${m.merchandiseCode}</td>
-                <td>${m.merchandiseName}</td>
-                <td>${m.merchandiseSpecification}</td>
-                <td>${m.productType.productTypeName}</td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${m.units.unitsName}</td>
-                <td>${m.merchandisePlaceOfOrigin}</td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseSafetyStock}</td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseActualQuntity}</td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp${m.merchandiseSalsePrice}</td>
-                <td>&nbsp&nbsp&nbsp${m.salesStatus.salesStatusName}</td>
-                <td style="display: none">${m.merchandiseState}</td>
+                <td>${s.employee.employeeName}</td>
+                <td>${s.salesId}</td>
+                <td><fmt:formatDate type="date" value="${s.smDate}" /></td>
+                <td>${s.smRemarks}</td>
+                <td>${s.user.userName}</td>
+                <td style="display: none">${s.smState}</td>
                 <td style="width: 120px;text-align: center">
-                    <button type="button" id="updatemerchandise" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
-                    <button type="button" id="deletemerchandise" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
+                    <button type="button" id="${s.smId}" onclick="updatemerchandise(${m.merchandiseId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myUpdate" ><span class="up">修改</span></button>
+                    <button type="button" id="${s.smId}" onclick="deletemerchandise(${m.merchandiseId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete" ><span  class="up">删除</span></button></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -338,7 +321,7 @@
             object.merchandiseSpecification=$("#updatemerchandiseSpecification").val()
             object.productTypeId=$("#updateproductTypeId").val();
             object.unitsId=$("#updateunitsId").val();
-            object.merchandisePlaceOfOrigin=$("#updatemerchandisePlaceOfOsrigin").val();
+            object.merchandisePlaceOfOsrigin=$("#updatemerchandisePlaceOfOsrigin").val();
             object.merchandiseSafetyStock=$("#updatemerchandiseSafetyStock").val();
             object.merchandiseActualQuntity=$("#updatemerchandiseActualQuntity").val();
             object.merchandiseSalsePrice=$("#updatemerchandiseSalsePrice").val();
@@ -375,7 +358,6 @@
             success: function (item) {
                 if(item!=0){
                     $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
-
                 }
             },
             error: function () {
@@ -390,8 +372,15 @@
                 url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
                 dataType: "json",
                 success: function (data) {
+                    if(data!=0){
+                       $.each(data,function (i,time) {
+                           $("#"+time.merchandiseId).remove();
+                       })
                         alert("商品信息删除成功")
-                        window.location.href="/merchandise/smerchandise.do";
+                        window.location.reload();
+                    }else {
+                        alert("商品信息删除失败")
+                    }
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");

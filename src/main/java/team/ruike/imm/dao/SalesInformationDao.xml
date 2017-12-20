@@ -10,6 +10,7 @@
         <result column="units_id" property="unitsId"/>
         <result column="si_actual_price" property="siActualPrice"/>
         <result column="si_state" property="siState"/>
+        <result column="si_totalprice" property="siTotalPrice"/>
         <association property="sales" javaType="sales" >
             <result column="sales_id" property="salesId"/>
             <result column="sales_date" property="salesDate"/>
@@ -50,7 +51,7 @@
     </select>
 
     <update id="updateSalesInformation" parameterType="salesInformation">
-        update supplier
+        update sales_information
         <set>
             <if test="salesId !=null and salesId!=''">
                   sales_id=#{salesId}
@@ -70,10 +71,10 @@
             <if test="siState!=null">
                   si_state=#{siState}
             </if>
-            <where>
-                si_id=#{siId}
-            </where>
         </set>
+        <where>
+            si_id=#{siId}
+        </where>
     </update>
 
     <insert id="insertSalesInformation" parameterType="salesInformation">

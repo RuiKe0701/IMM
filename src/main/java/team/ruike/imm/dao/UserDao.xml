@@ -22,6 +22,7 @@
     <select id="count" resultType="int">
         SELECT count(1) FROM user
     </select>
+
     <select id="selectUser" resultMap="userMap">
         SELECT * FROM user
         <where>
@@ -55,7 +56,9 @@
                 user_state=#{userState},
             </if>
         </set>
-        where user_id=#{userId}
+        <where>
+            user_id=#{userId}
+        </where>
     </update>
 
     <insert id="insertUser" parameterType="user">

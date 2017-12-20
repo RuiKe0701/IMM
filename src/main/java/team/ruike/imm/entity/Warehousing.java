@@ -44,6 +44,10 @@ public class Warehousing extends PagerParameter implements Serializable {
      * 是否已删除
      */
     private Integer warehousingState;
+//    /**
+//     * 关键字查询
+//     */
+//    private String about;
     /**
      * 员工信息
      */

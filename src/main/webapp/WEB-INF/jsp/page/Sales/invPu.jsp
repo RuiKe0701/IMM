@@ -195,7 +195,7 @@
                     <dd class="mr20 tc">
                         <label>单据日期:</label>
                         <input id="end" name="salesDate" class="">
-                    </dd>,
+                    </dd>
                     <dd id="identifier">
                         <label>&nbsp;&nbsp;&nbsp;&nbsp;单据编号:</label>
                         <input disabled="disabled" class="salesId" id="salesId" name="salesId" value="${salesId}"/>
