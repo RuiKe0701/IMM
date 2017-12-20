@@ -2,6 +2,8 @@ package team.ruike.imm.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import team.ruike.imm.entity.SalesInformation;
 import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.ProcurementInformationService;
 import team.ruike.imm.service.ProductTypeService;
+import team.ruike.imm.utility.Page;
 
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -34,14 +37,30 @@ public class ReplenishMentController {
     ProcurementInformationService procurementInformationService;
     @RequestMapping(value = "login.do")
     //跳转智能补货页面
-    public  String loginReplenishMent(Model model,Merchandise merchandise){
-        System.out.println(merchandise.getProductTypeId());
-        System.out.println(merchandise.getMerchandiseName());
+    public  String loginReplenishMent(Model model, Merchandise merchandise, Page page){
+        int startPage=page.getStart();
+        if(startPage==0){
+            startPage=page.getStart();
+        }else {
+            startPage=(page.getStart()-1)*5;
+        }
+        PageHelper.offsetPage(startPage,5);
+        List<Merchandise> merchandises=merchandiseService.selectRelenish(merchandise);
+        int total = (int) new PageInfo<Merchandise>(merchandises).getTotal();
+        int len=0;
+        if(total%5!=0){
+            len=(total/5)+1;
+        }else {
+            len=total/5;
+        }
+        page.caculateLast(total);
        List<ProductType> productTypeLists= productTypeService.selectProductType(null);
-       List<Merchandise> merchandises=merchandiseService.selectRelenish(merchandise);
+       //List<Merchandise> merchandises=merchandiseService.selectRelenish(merchandise);
        List<ProcurementInformation> procurementInformations=procurementInformationService.selectReplenish();
         model.addAttribute("productTypeLists",productTypeLists);
         model.addAttribute("merchandises",merchandises);
+        model.addAttribute("len",len);
+        model.addAttribute("totalPage",total);
         model.addAttribute("procurementInformations",procurementInformations);
         return "page/purchase/replenishMent";
     }

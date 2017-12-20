@@ -23,7 +23,9 @@
     <script src="${request.contextPath }/js/grid.js"></script>
     <script src="${request.contextPath }/js/plugins.js"></script>
     <script src="${request.contextPath }/js/jquery.dialog.js"></script>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/paging.css">
+    <script src="${pageContext.request.contextPath }/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/paging.js"></script>
     <style>
         th{
             text-align: center;
@@ -154,9 +156,36 @@
             </c:forEach>
             </tbody>
         </table>
+        <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
+            <ul class="pagination" >
+                <li><a href="?start=0">首页</a></li>
+                <%--<c:if test="${pages.currentPage >1}">--%>
+                    <li><a href="">&laquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage ==1}">--%>
+                    <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                <%--</c:if>--%>
+                <c:forEach begin="1" end="${len}" varStatus="status">
+                    <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                </c:forEach>
+                <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
+                    <li><a href="">&raquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
+                    <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
+                <%--</c:if>--%>
+                <li><a href="?start=${page.last}">末页</a></li>
+                <li><a >共有${totalPage}条数据</a></li>
+                <li><a>共有${len}页</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-<div class="powerFloat-gray-box dn" id="formulaBox"></div>
+<div >
+    <div></div>
+
+
+</div>
 <ul id="tree8402" class="ztree ztreeCombo showRoot" style="top: 143px; left: 524px; width: 250px; display: none;"></ul>
 <div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class=""></div>
 <script>
