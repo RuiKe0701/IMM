@@ -25,7 +25,11 @@
             <result column="units_state" property="unitsState" />
         </association>
     </resultMap>
-
+    <!--查询采购订单还未入库的订单-->
+    <select id="selectReplenish" resultMap="procurementInformationMap">
+        SELECT *FROM procurement_information
+        WHERE pi_state=0
+    </select>
     <!--指定条件查询采购订单详情-->
     <select id="selecrProcurementInformation" resultMap="procurementInformationMap">
         select * from procurement_information pi,procurement p,units u

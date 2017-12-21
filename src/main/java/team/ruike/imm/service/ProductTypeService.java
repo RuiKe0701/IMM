@@ -13,19 +13,19 @@ public interface ProductTypeService {
      * @param productType
      * @return
      */
-    public List<ProductType> selectProductType(ProductType productType);
+     List<ProductType> selectProductType(ProductType productType);
 
     /**
      * 按指定条件修改种类信息
      * @param productType
      * @return
      */
-    public int updateProductType(ProductType productType);
+     int updateProductType(ProductType productType);
 
     /**
      * 新增种类信息
      * @param productType
      * @return
      */
-    public int insertProductType(ProductType productType);
+     int insertProductType(ProductType productType);
 }

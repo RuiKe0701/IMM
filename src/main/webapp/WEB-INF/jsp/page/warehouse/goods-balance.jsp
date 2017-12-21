@@ -375,6 +375,7 @@
             success: function (item) {
                 if(item!=0){
                     $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+
                 }
             },
             error: function () {
@@ -389,15 +390,8 @@
                 url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
                 dataType: "json",
                 success: function (data) {
-                    if(data!=0){
-                       $.each(data,function (i,time) {
-                           $("#"+time.merchandiseId).remove();
-                       })
                         alert("商品信息删除成功")
-                        window.location.reload();
-                    }else {
-                        alert("商品信息删除失败")
-                    }
+                        window.location.href="/merchandise/smerchandise.do";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");

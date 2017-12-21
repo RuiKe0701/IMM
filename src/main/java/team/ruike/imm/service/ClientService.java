@@ -1,7 +1,7 @@
 package team.ruike.imm.service;
 
 import team.ruike.imm.entity.Client;
-import team.ruike.imm.utility.Pager;
+import team.ruike.imm.utility.Pages;
 
 import java.util.List;
 
@@ -14,17 +14,16 @@ public interface ClientService {
     public List<Client> selecrClient(Client client);
     /**
      * 分页
-     * @param currentPage
+     * @param
      * @return
      */
-    public List<Client> pagerClient(Integer currentPage);
-
+    public List<Client> pagerClient(Client client);
     /**
      * 入参分页类
-     * @param currentPage
+     * @param
      * @return
      */
-    public Pager<Client> getPager(Integer currentPage );
+    public Pages<Client> getPager(Client client,Integer currentPage);
     /**
      * 指定条件修改客户信息
      * @param client
@@ -43,6 +42,6 @@ public interface ClientService {
      * 批量修改
      * @return
      */
-    public int noncooperation(List client);
-    public int cooperative(List client);
+    public int noncooperation(List<Client> client);
+    public int cooperative(List<Client> client);
 }

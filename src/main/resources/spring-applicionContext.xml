@@ -20,6 +20,18 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 配置实体类全局变量-->
         <property name="typeAliasesPackage" value="team.ruike.imm.entity"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!-- config params as the following -->
+                        <value>
+                            param1=mysql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
     <!-- 扫描地址下所有文件-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

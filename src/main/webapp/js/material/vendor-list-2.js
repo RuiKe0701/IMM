@@ -177,33 +177,29 @@ function checkUpdateFax() {
     return true;
 }
 
+
 $(function () {
-    //修改为不合作客户
+    //修改为不合作供应商
     $("#btn-disable").click(function () {
-        var supplierList = new Array();
+        var clientList = new Array();
         $(".clients").each(function (index, date) {
-            var checkbox = $(date).find(".k");
+            var checkbox = $(date).find(".supplierId");
             if(checkbox.is(':checked')){
                 //选中了
-                var id = $(date).find(".k").val();
+                var id = $(date).find(".supplierId").val();
                 var object = new Object();
-                object.BulkChanges = id;
-                supplierList.push(object);
-                var noncooperationSupplierList = JSON.stringify(supplierList);
+                object.supplierId = id;
+                clientList.push(object);
+                var noncooperationClient = JSON.stringify(clientList);
                 $.ajax({
                     type: "post",
                     url: "/supplier/noncooperationSupplier.do",
                     data: {
-                        "noncooperationSupplierList": noncooperationSupplierList
+                        "noncooperation": noncooperationClient
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data!=0){
-                            for(i in data){
-                                $("#"+data[i].supplierId).remove();
-                            }
-                        }
-                        alert("修改成功")
+                        window.location.href="/supplier/cooperative.do";
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -234,35 +230,15 @@ $(function () {
         if(flag != false){
             $.ajax({
                 type: "post",
-                url: "/supplier/addsupplier.do",
-                data: $("#form").serialize(),
+                url: "/supplier/addSupplier.do",
+                data: $("#addsupplier").serialize(),
                 dataType: "json",
                 success: function (data) {
+                    alert("添加成功")
                     $("#closeAdd").click();
                     var str = "";
                     if(data!=0){
-                        var da = eval(data);
-                        $("#tbod").html("");
-                        alert("adsa");
-                        $.each(da,function (i,item) {
-                            str+="<tr id="+item.supplierId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                                "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                                "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                                "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                                "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                                "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                                "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                                "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                                "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                                "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                                "                <td  id=\"State\">"+item.state+"</td>\n"+
-                                "                <td  >\n" +
-                                "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                                "                </td>\n" +
-                                "            </tr>";
-                        })
-                        $("#tbod").append(str);
+                        window.location.href="/supplier/cooperative.do";
                     }
                     $("#addname").val("");
                     $("#addpersonInCharge").val("");
@@ -280,7 +256,7 @@ $(function () {
             })
         }
     })
-    //修改客户信息
+    //修改供应商信息
     $("#updates").click(function () {
         $("#updatename").blur(checkUpdateName);
         $("#updatepersonInCharge").blur(checkUpdatePersonInCharge);
@@ -303,164 +279,62 @@ $(function () {
             $.ajax({
                 type: "post",
                 url: "/supplier/updateSupplier.do",
-                data: $("#form").serialize(),
+                data:
+                    $("#updatesupplier").serialize(),
                 dataType: "json",
                 success: function (data) {
                     $("#closeUpdate").click();
                     var str = "";
                     if(data!=0){
-                        var da = eval(data);
-                        $("#tbod").html("");
-                        $.each(da,function (i, item) {
-                            str+="<tr id="+item.supplierId+" class='clients'>" +
-                                "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                                "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                                "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                                "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                                "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                                "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                                "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                                "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                                "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                                "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                                "                <td  id=\"State\">"+item.state+"</td>\n"+
-                                "                <td  >\n" +
-                                "                    <button type=\"button\" onclick=\"gainclient("+item.supplierId+")\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                                "                </td>\n" +
-                                "            </tr>";
-                        })
-                        $("#tbod").append(str);
+                        alert("修改成功")
+                        window.location.href="/supplier/cooperative.do";
                     }
-
+                    $("#updatename").val("");
+                    $("#updatepersonInCharge").val("");
+                    $("#updatepost").val("");
+                    $("#updatephone").val("");
+                    $("#updatemobilePhone").val("");
+                    $("#updatefax").val("");
+                    $("#updateaddress").val("");
+                    $("#updatefactoryAddress").val("");
+                    $("#updatestate").val("");
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
                 }
             })
-
         }
     })
     //查看终止合作的供应商
     $("#termination").click(function () {
-        var supplierState=this.name;
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#cooperation").css({'background':'#99CCFF','color':'#FFFFFF'});
-        //控制按钮不可点击
-        document.getElementById("btn-disable").setAttribute("disabled",true);
-        document.getElementById("addClient").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#btn-enable").attr("disabled",false);
-        $.ajax({
-            type:"post",
-            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
-            dataType: "json",
-            success: function (data) {
-                var str = "";
-                if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.supplierId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                            "                <td  id=\"State\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
-                }else {
-                    alert("失败")
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
+        window.location.href="/supplier/noncooperation.do";
     })
-    //查看在合作客户
+    //查看在合作供应商
     $("#cooperation").click(function () {
-        var supplierState=this.name;
-        $(this).css({'background':'#FFFFFF','color':'#000000'});
-        $("#termination").css({'background':'#99CCFF','color':'#FFFFFF'});
-        //控制按钮不可点击
-        document.getElementById("btn-enable").setAttribute("disabled",true);
-        //控制按钮恢复可点击
-        $("#addClient").attr("disabled",false);
-        $("#btn-disable").attr("disabled",false);
-        $.ajax({
-            type:"post",
-            url:"/supplier/supplierCooperation.do?supplierState="+supplierState,
-            dataType: "json",
-            success: function (data) {
-                var str = "";
-                if(data!=0){
-                    var da = eval(data);
-                    $("#tbod").html("");
-                    $.each(da,function (i, item) {
-                        str+="<tr id="+item.supplierId+" class='clients'>" +
-                            "                <td><input name=\"client.kk\" class=\"k\"  runat=\"server\" type=\"checkbox\" value="+item.supplierId+" /></td>\n" +
-                            "                <td id=\"supplierId\" style=\"display: none\">"+item.supplierId+"</td>\n" +
-                            "                <td id=\"supplierName\">"+item.supplierName+"</td>\n" +
-                            "                <td id=\"supplierPersonInCharge\">"+item.supplierPersonInCharge+"</td>\n" +
-                            "                <td id=\"supplierPost\">"+item.supplierPost+"</td>\n" +
-                            "                <td id=\"supplierPhone\">"+item.supplierPhone+"</td>\n" +
-                            "                <td id=\"supplierMobilePhone\">"+item.supplierMobilePhone+"</td>\n" +
-                            "                <td id=\"supplierFax\">"+item.supplierFax+"</td>\n" +
-                            "                <td id=\"supplierAddress\">"+item.supplierAddress+"</td>\n" +
-                            "                <td id=\"supplierFactoryAddress\">"+item.supplierFactoryAddress+"</td>\n" +
-                            "                <td  id=\"State\">"+item.state+"</td>\n"+
-                            "                <td  >\n" +
-                            "                    <button type=\"button\" id=\""+item.supplierId+"\" data-target=\"#update\" name=\"updateClient\"   class=\"btn btn-info btn-sm\" data-toggle=\"modal\"  ><span class=\"up\">修改</span></button>\n" +
-                            "                </td>\n" +
-                            "            </tr>";
-                    })
-                    $("#tbod").append(str);
-                }else {
-                    alert("失败")
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
+        window.location.href="/supplier/cooperative.do";
     })
-    // 修改为合作客户
+    //修改供应商为不合作合作
     $("#btn-enable").click(function () {
         var clientList = new Array();
         $(".clients").each(function (index, date) {
-            var checkbox = $(date).find(".k");
+            var checkbox = $(date).find(".supplierId");
             if(checkbox.is(':checked')){
                 //选中了
-                var id = $(date).find(".k").val();
+                var id = $(date).find(".supplierId").val();
                 var object = new Object();
-                object.BulkChanges = id;
+                object.supplierId = id;
                 clientList.push(object);
-                var cooperativeSupplier = JSON.stringify(clientList);
+                var noncooperation = JSON.stringify(clientList);
                 $.ajax({
                     type: "post",
                     url: "/supplier/cooperativeSupplier.do",
                     data: {
-                        "cooperativeSupplier": cooperativeSupplier
+                        "cooperative": noncooperation
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data!=0){
-                            if(data!=0){
-                                for(i in data){
-                                    $("#"+data[i].supplierId).remove();
-                                }
-                            }
-                        }
+                        window.location.href="/supplier/noncooperation.do";
+
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -472,7 +346,15 @@ $(function () {
 })
 //获取要修改的信息
 function gainclient(val){
-
+    $("#updatename").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepersonInCharge").val("");
+    $("#updatepost").val("");
+    $("#updateaddress").val("");
+    $("#updatefactoryAddress").val("");
+    $("#updatemobilePhone").val("");
+    $("#updatephone").val("");
+    $("#updatefax").val("");
     $.ajax({
         type: "post",
         url: "/supplier/supplierId.do?supplierId="+val,
@@ -491,6 +373,7 @@ function gainclient(val){
                     $("#updatefax").val(item.supplierFax)
                 });
             }
+
         },
         error: function () {
             alert("系统异常，请稍后重试！");

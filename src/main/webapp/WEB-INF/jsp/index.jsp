@@ -322,7 +322,7 @@
                                 class="menu-pic information left"></span>
                             <span class="text">资料</span> </a> <span
                                 class="arrow" style="top: 363.409px; left: 121px; display: none;"></span>
-                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 52.9088px; left: 129px;">
+                            <div class="sub-nav-wrap group-nav cf" style=" display: none;  top: 202.9088px; left: 129px;">
                                  <div class="nav-item"><h3>基础资料</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Customer-management">
@@ -357,34 +357,6 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class="" id="Shipping-address-management">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">发货地址管理
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                 </div>
-                                <div class="nav-item"><h3>辅助资料</h3>
-                                    <ul class="sub-nav">
-                                        <li class="" id="client-categories">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">客户类别
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Supplier-category">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">供应商类别
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
                                         <li class="" id="Product-category">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">商品类别
@@ -393,41 +365,8 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class="" id="Expenditure-category">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">支出类别
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Income-category">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">收入类别
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
-                                        <li class="" id="unit-of-measurement">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);"></i>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Document-coding-rules">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);"></i>
-                                            </a>
-                                        </li>
                                     </ul>
-                                </div>
-
+                                 </div>
                             </div>
                         </li>
                         <li class="menu-item item-cloudPos odd" data-subid="cloudPos"><a

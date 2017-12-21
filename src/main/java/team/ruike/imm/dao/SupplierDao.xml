@@ -56,6 +56,22 @@
         </if>
     </select>
 
+    <select id="pages" resultMap="supplierMap">
+        select * from supplier
+        <where>
+            1=1
+            <if test="supplierName!=null and  supplierName!=''">
+                and supplier_name like concat('%',#{supplierName},'%')
+            </if>
+            <if test="supplierState!=null">
+                and supplier_state=#{supplierState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
+    </select>
+
     <update id="updateSupplier" >
         update supplier
         <set>
@@ -92,7 +108,7 @@
         </where>
     </update>
 
-    <insert id="insertSupplier" parameterType="supplier">
+    <insert id="insertSuplier" parameterType="supplier">
         insert into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
     </insert>
 
@@ -103,7 +119,7 @@
             <set>
                 supplier_state=1
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
     <!--修改为合作客户-->
@@ -113,7 +129,7 @@
             <set>
                 supplier_state=0
             </set>
-            where supplier_id=#{supplier}
+            where supplier_id=#{supplier.supplierId}
         </foreach>
     </update>
 </mapper>

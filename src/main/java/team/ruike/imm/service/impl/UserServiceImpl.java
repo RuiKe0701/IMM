@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.UserDao;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.utility.Pager;
 import team.ruike.imm.service.UserService;
 
 import java.util.List;
@@ -17,15 +16,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
     /**
      *
      * @param user
@@ -53,7 +43,7 @@ public class UserServiceImpl implements UserService {
         return userDao.count();
     }
 
-    int pageSize=2;//设置每页显示数据数
+//    int pageSize=2;//设置每页显示数据数
     /**
      * 分页查询进入SQL语句
      * @return
@@ -70,17 +60,6 @@ public class UserServiceImpl implements UserService {
 //        }
 //        return userDao.selectUser(user);
 //    }
-    /**
-     * 分页信息进入Pager类
-     * @return
-     */
-    public Pager<User> getPager(Integer currentPage){
-        //查询全部信息
-        List<User> userList=userDao.selectUser(null);
-        //接收分页数据
-        Pager<User> pager=new Pager<User>(currentPage,pageSize,userList);
-        return pager;
-    }
 
 //    /**
 //     *pager分页辅助

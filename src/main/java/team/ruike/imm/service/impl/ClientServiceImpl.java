@@ -4,63 +4,66 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.ruike.imm.dao.ClientDao;
 import team.ruike.imm.entity.Client;
-import team.ruike.imm.utility.Pager;
 import team.ruike.imm.service.ClientService;
+import team.ruike.imm.utility.Pages;
 
 import java.util.List;
 @Service("clientService")
-public class ClientServiceImpl implements ClientService{
-    int pageSize=2;//设置每页显示数据数
+public class ClientServiceImpl   implements ClientService{
     @Autowired
     ClientDao clientDao;
-
-    public ClientDao getClientDao() {
-        return clientDao;
-    }
-
-    public void setClientDao(ClientDao clientDao) {
-        this.clientDao = clientDao;
-    }
-
     public List<Client> selecrClient(Client client) {
         return clientDao.selecrClient(client);
     }
+    int pageSize=4;
 
-    public List<Client> pagerClient(Integer currentPage) {
-        Client client=new Client();
-        client.setCurrentPage(currentPage);
-        //设置每页显示数据数
+    /**
+     *  分页查询数据库
+     * @param client
+     * @return
+     */
+    public List<Client> pagerClient(Client client) {
         client.setPageSize(pageSize);
-        if (currentPage>0){
-            //根据输入的页数查询
+        if (client.getCurrentPage()>1){
             client.setCurrentPage((client.getCurrentPage()-1)*pageSize);
-            return clientDao.selecrClient(client);
+        }else {
+            client.setCurrentPage(0);
         }
-        return clientDao.selecrClient(client);
+        List<Client> count=clientDao.pages(client);
+        return count;
     }
-
-    public Pager<Client> getPager(Integer currentPage) {
-        //查询全部信息
-        List<Client> userList=clientDao.selecrClient(null);
-        //接收分页数据
-        Pager<Client> pager=new Pager<Client>(currentPage,pageSize,userList);
-        return pager;
+    /**
+     * 分页类入参
+     * @param client
+     * @return
+     */
+    public Pages<Client> getPager(Client client,Integer currentPage) {
+        List<Client> count=null;
+        Client c=new Client();
+        if(client.getClientState()==1 || client.getClientState()==0){
+            c.setClientState(client.getClientState());
+             count=clientDao.pages(c);
+        }else {
+            count=clientDao.pages(null);
+        }
+        Pages<Client> pages=new Pages<Client>();
+        pages.setCurrentPage(currentPage);
+        pages.setList(count);
+        pages.setTotalRecord(count.size());
+        pages.setPageSize(pageSize);
+        return pages;
     }
 
     public int updateClient(Client client) {
         return clientDao.updateClient(client);
     }
-
-
     public int insertClient(Client client) {
         return clientDao.insertClient(client);
     }
-
-    public int noncooperation(List client) {
+    public int noncooperation(List<Client> client) {
         return clientDao.noncooperation(client);
     }
-
-    public int cooperative(List client) {
+    public int cooperative(List<Client> client) {
         return clientDao.cooperative(client);
     }
 }

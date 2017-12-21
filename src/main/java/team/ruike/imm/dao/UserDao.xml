@@ -22,6 +22,7 @@
     <select id="count" resultType="int">
         SELECT count(1) FROM user
     </select>
+
     <select id="selectUser" resultMap="userMap">
         SELECT * FROM user
         <where>

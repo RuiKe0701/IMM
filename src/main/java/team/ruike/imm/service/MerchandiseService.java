@@ -42,4 +42,6 @@ public interface MerchandiseService {
      * @return
      */
     public int insertMerchandise(Merchandise merchandise);
+    //查询当前库存小于安全库存
+    List<Merchandise> selectRelenish(Merchandise merchandise);
 }
