@@ -18,6 +18,7 @@ import org.jeecgframework.poi.excel.entity.vo.MapExcelConstants;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
 import java.util.*;
 
 import org.springframework.ui.ModelMap;
@@ -52,12 +53,16 @@ public class PurchaseOrderController {
     }
     @RequestMapping(value = "savePurchaseOrder.do")
     @ResponseBody
-    public  void  savePurchaseOrder(String purchaseorderList,String purchaseList){
+    public  void  savePurchaseOrder(String purchaseorderList,String purchaseList,PrintWriter printWriter){
         ArrayList<PurchaseOrder> purchaseOrders =  JSON.parseObject(purchaseorderList, new TypeReference<ArrayList<PurchaseOrder>>(){});
         List<PurchaseOrderInformation> purchaseOrderInformations =  JSON.parseObject(purchaseList, new TypeReference<ArrayList<PurchaseOrderInformation>>(){});
         PurchaseOrder order=purchaseOrders.get(0);
         int i= purchaseOrderService.savePurchaseOrder(order);
        purchaseOrderInformationService.batchInsertPurchaseOrder(purchaseOrderInformations);
+        String jsonString = JSON.toJSONString("1");
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
 
     }
     @RequestMapping("/MapExportExcel.do")

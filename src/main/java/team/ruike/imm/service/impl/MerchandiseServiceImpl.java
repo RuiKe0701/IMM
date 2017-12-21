@@ -21,7 +21,7 @@ public class MerchandiseServiceImpl implements MerchandiseService{
         this.merchandiseDao = merchandiseDao;
     }
 
-    public List<Merchandise> san(Merchandise merchandise) {
+    public List<Merchandise> sanMerchandise(Merchandise merchandise) {
         return merchandiseDao.sanMerchandise(merchandise);
     }
 

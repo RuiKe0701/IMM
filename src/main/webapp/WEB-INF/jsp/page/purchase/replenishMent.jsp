@@ -112,8 +112,8 @@
             </div>
             <div class="fr">
                 <a class="ui-btn-bill ui-btn-add ml10" id="toPo">生成购货订单</a>
-                <a href="#"
-                   class="ui-btn-bill ui-btn-hl ml10" id="export" target="_blank">导出</a>
+                <a href="/replenishMent/excel.do"
+                   class="ui-btn-bill ui-btn-hl ml10" id="export">导出</a>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
                 <%--</c:if>--%>
                 <li><a href="?start=${page.last}">末页</a></li>
-                <li><a >共有${totalPage}条数据</a></li>
+                <li><a >共有${totalPage}条数据</a></li>f
                 <li><a>共有${len}页</a></li>
             </ul>
         </div>
