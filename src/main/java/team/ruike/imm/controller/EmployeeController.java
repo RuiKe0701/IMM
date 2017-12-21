@@ -1,14 +1,19 @@
 package team.ruike.imm.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Employee;
+import team.ruike.imm.entity.Position;
 import team.ruike.imm.service.EmployeeService;
+import team.ruike.imm.service.PositionService;
+import team.ruike.imm.utility.Pages;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping(value = "employee")
@@ -17,182 +22,138 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+    @Autowired
+    PositionService positionService;
+    //展示合作客户数据
+    @RequestMapping(value="/cooperative.do")
+    public  String cooperative(HttpServletRequest request,Integer currentPage,Employee employee){
+        employee.setEmployeeState(0);
+        if (currentPage==null ){
+            employee.setCurrentPage(1);
+            currentPage=1;
+        }else {
+            employee.setCurrentPage(currentPage);
+        }
+        List<Employee> employees=employeeService.pagerEmployee(employee);
+        request.setAttribute("cooperative",employees);
+        Pages<Employee> pages=employeeService.getPager(employee,currentPage);
+        request.setAttribute("pages",pages);
+        List<Position> positions=positionService.selectPosition(null);
+        request.setAttribute("positions",positions);
+        int i=0;
+        request.setAttribute("i",i);
+        return "page/material/staff-list-4";
+    }
 
-//    //展示全部数据
-//    @RequestMapping(value="/employeeAll.do")
-//    public  String employeeAll(HttpServletRequest request){
-//        List<Employee> employee=employeeService.selectEmployee(null);
-//        request.setAttribute("employees",employee);
-//        return "page/material/staff-list-4";
-//    }
+    /**
+     * 展示不合作的客户
+     * @param request
+     * @param currentPage
+     * @param employee
+     * @return
+     */
+    @RequestMapping(value="/noncooperation.do")
+    public  String noncooperation(HttpServletRequest request,Integer currentPage,Employee employee){
+        employee.setEmployeeState(1);
+        if (currentPage==null ){
+            employee.setCurrentPage(1);
+            currentPage=1;
+        }else {
+            employee.setCurrentPage(currentPage);
+        }
+        List<Employee> employees=employeeService.pagerEmployee(employee);
+        request.setAttribute("noncooperation",employees);
+        Pages<Employee> pages=employeeService.getPager(employee,currentPage);
+        request.setAttribute("pp",pages);
+        List<Position> positions=positionService.selectPosition(null);
+        request.setAttribute("positions",positions);
+        int i=1;
+        request.setAttribute("i",i);
+        return "page/material/staff-list-4";
+    }
 
-//    /**
-//     * 修改为不合作客户
-//     * @param noncooperationClient
-//     * @param printWriter
-//     */
-//    @RequestMapping("/noncooperationClient.do")
-//    public void noncooperationClient(String noncooperationClient,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(noncooperationClient, new TypeReference<ArrayList<Client>>(){});
-//        for (Client client : clientArrayList) {
-//            i= clientService.noncooperation(client.getKk());
-//        }
-//        if(i>0){
-//            Client c=new Client();
-//            c.setClientState(1);
-//            List<Client> clients=clientService.selecrClient(c);
-//            //返回值
-//            String jsonString = JSON.toJSONString(clients);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//    /**
-//     * 修改为合作客户
-//     * @param cooperativeClients
-//     * @param printWriter
-//     */
-//    @RequestMapping("/cooperativeClient.do")
-//    public void cooperativeClient(String cooperativeClients,PrintWriter printWriter){
-//        int i=0;
-//        if (cooperativeClients.length()>0 ){
-//            ArrayList<Client> clientArrayList =  JSON.parseObject(cooperativeClients, new TypeReference<ArrayList<Client>>(){});
-//            for (Client client : clientArrayList) {
-//                i= clientService.cooperative(client.getKk());
-//            }
-//            if(i>0){
-//                Client c=new Client();
-//                c.setClientState(0);
-//                List<Client> clients=clientService.selecrClient(c);
-//                //返回值
-//                String jsonString = JSON.toJSONString(clients);
-//                printWriter.write(jsonString);
-//            }
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//
-//    /**
-//     * 工具方法
-//     * @param client
-//     * @return
-//     */
-//    public List<Client> client(Client client){
-//        List<Client> clients=clientService.selecrClient(client);
-//        List<Client> sa=new ArrayList<Client>();
-//        for (Client client1 : clients) {
-//            if (client1.getClientState()==1){
-//                client1.setState("已终止");
-//            }else if(client1.getClientState()==0){
-//                client1.setState("合作中");
-//            }
-//            sa.add(client1);
-//        }
-//        return sa;
-//    }
-//    /**
-//     * 查询终止合作的用户
-//     * @param client
-//     * @param printWriter
-//     */
-//    @RequestMapping(value = "/clientCooperation.do")
-//    public void clientCooperation(Client client,PrintWriter printWriter){
-//        List<Client> clients=client(client);
-//        if (clients.size()>0){
-//            String jsonString = JSON.toJSONString(clients);
-//            printWriter.write(jsonString);
-//        }else {
-//            String jsonString = JSON.toJSONString(0);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//    /**
-//     * 获取要修改的用户信息
-//     * @param client
-//     * @param printWriter
-//     */
-//    @RequestMapping(value = "/clientId.do")
-//    public void clientId(Client client,PrintWriter printWriter){
-//        List<Client> clients=client(client);
-//        if (clients.size()>0){
-//            String jsonString = JSON.toJSONString(clients);
-//            printWriter.write(jsonString);
-//        }else {
-//            String jsonString = JSON.toJSONString(0);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//    /**
-//     * 修改用户信息
-//     * @param clientList
-//     * @param printWriter
-//     */
-//    @RequestMapping(value = "/updatesClient.do")
-//    public  void updatesClient(String clientList,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-//        for (Client client : clientArrayList) {
-//            i = clientService.updateClient(client);
-//        }
-//        if(i>0) {
-//            List<Client> clients=null;
-//            Client c=new Client();
-//            c.setClientState(0);
-//            clients = client(c);
-//            if (clients.size() > 0) {
-//                String jsonString = JSON.toJSONString(clients);
-//                printWriter.write(jsonString);
-//            } else {
-//                String jsonString = JSON.toJSONString(0);
-//                printWriter.write(jsonString);
-//            }
-//        }else {
-//            String jsonString = JSON.toJSONString(0);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//
-//    /**
-//     * 添加用户信息
-//     * @return
-//     */
-//    @RequestMapping("/addClient.do")
-//    public void addClient(String clientList,PrintWriter printWriter){
-//        int i=0;
-//        System.out.println(clientList.length());
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-//        for (Client client : clientArrayList) {
-//            i = clientService.insertClient(client);
-//        }
-//        if(i>0) {
-//            Client client = new Client();
-//            client.setClientState(0);
-//            List<Client> clients = client(client);
-//            if (clients.size() > 0) {
-//                String jsonString = JSON.toJSONString(clients);
-//                printWriter.write(jsonString);
-//            } else {
-//                String jsonString = JSON.toJSONString(0);
-//                printWriter.write(jsonString);
-//            }
-//        }else {
-//            String jsonString = JSON.toJSONString(0);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
+    /**
+     * 修改为离职员工
+     * @param noncooperation
+     * @param printWriter
+     */
+    @RequestMapping("/noncooperationEmployee.do")
+    public void noncooperationEmployee(String noncooperation,PrintWriter printWriter){
+        int i=0;
+        ArrayList<Employee> supplierArrayList =  JSON.parseObject(noncooperation, new TypeReference<ArrayList<Employee>>(){});
+        i= employeeService.noncooperation(supplierArrayList);
+        if(i>0){
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+    /**
+     * 修改为在职员工
+     * @param cooperative
+     * @param printWriter
+     */
+    @RequestMapping("/cooperativeEmployee.do")
+    public void cooperativeEmployee(String cooperative,PrintWriter printWriter){
+        int i=0;
+        ArrayList<Employee> supplierArrayList =  JSON.parseObject(cooperative, new TypeReference<ArrayList<Employee>>(){});
+        i= employeeService.cooperative(supplierArrayList);
+        if(i>0){
+            //返回值
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+    /**
+     * 获取要修改的用户信息
+     * @param employee
+     * @param printWriter
+     */
+    @RequestMapping(value = "/EmployeeId.do")
+    public void EmployeeId(Employee employee,PrintWriter printWriter){
+        List<Employee> suppliers=employeeService.selectEmployee(employee);
+        if (suppliers.size()>0){
+            String jsonString = JSON.toJSONString(suppliers);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+    /**
+     * 修改用户信息
+     * @param employee
+     * @param printWriter
+     */
+    @RequestMapping(value = "/updateEmployee.do")
+    public  void updateEmployee(Employee employee,PrintWriter printWriter){
+        int i=0;
+        i = employeeService.updateEmployee(employee);
+        if(i>0) {
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+
+    /**
+     * 添加用户信息
+     * @return
+     */
+    @RequestMapping("/addEmployee.do")
+    public void addEmployee(Employee employee,PrintWriter printWriter){
+        int i = employeeService.insertEmployee(employee);
+        if(i>0) {
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
 }

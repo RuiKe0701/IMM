@@ -5,22 +5,19 @@
     <resultMap id="employeeMap" type="employee">
         <result column="employee_id" property="employeeId" />
         <result column="employee_name" property="employeeName" />
-
         <result column="employee_id_number" property="employeeIdNumber" />
         <result column="employee_mobile_phone" property="employeeMobilePhone" />
         <result column="employee_email" property="employeeEmail" />
         <result column="employee_address" property="employeeAddress" />
         <result column="employee_state" property="employeeState" />
-
+        <result column="position_id" property="positionId" />
         <collection property="position" ofType="position">
             <result property="positionId" column="position_id" />
             <result property="positionName" column="position_name" />
             <result property="positionState" column="position_state" />
         </collection>
     </resultMap>
-
-
-    <select id="selecrEmployee" resultMap="employeeMap">
+    <select id="selectEmployee" resultMap="employeeMap">
         select * from employee e,position p
         <where>
             e.position_id=p.position_id
@@ -53,8 +50,6 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
-
-
     <update id="updateEmployee" parameterType="employee">
         update employee
         <set>
@@ -85,10 +80,50 @@
         </set>
                 where employee_id=#{employeeId}
     </update>
-
-
     <insert id="insertEmployee" parameterType="employee">
         insert into employee (employee_name,position_id,employee_id_number,employee_mobile_phone,employee_email,employee_address,employee_state)
         values (#{employeeName},#{positionId},#{employeeIdNumber},#{employeeMobilePhone},#{employeeEmail},#{employeeAddress},#{employeeState});
     </insert>
+
+
+
+    <select id="pages" resultMap="employeeMap">
+        select * from employee e,position p
+        <where>
+            e.position_id=p.position_id
+            and
+            1=1
+            <if test="employeeName!=null and  employeeName!=''">
+                and e.employee_name like concat('%',#{employeeName},'%')
+            </if>
+
+            <if test="employeeState!=null">
+                and e.employee_state=#{employeeState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
+    </select>
+
+    <!--修改为离职员工-->
+    <update id="noncooperation" parameterType="java.util.List">
+        <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+            update employee
+            <set>
+                employee_state=1
+            </set>
+            where employee_id=#{client.employeeId}
+        </foreach>
+    </update>
+    <!--修改为在职与昂工-->
+    <update id="cooperative" parameterType="java.util.List">
+        <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+            update employee
+            <set>
+                employee_state=0
+            </set>
+            where employee_id=#{client.employeeId}
+        </foreach>
+    </update>
 </mapper>

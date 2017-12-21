@@ -19,7 +19,6 @@
 
     <title>精斗云云进销存</title>
     <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="${pageContext.request.contextPath }/css/select.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
@@ -367,7 +366,7 @@
                 <span class="reminder" id="reminderpost">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">供应商地址</span>
-                    <input name="supplierAddress;"   id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                    <input name="supplierAddress"   id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
                 </div>
                 <span class="reminder" id="reminderaddress">&nbsp;</span><br>
                 <div class="input-group">
