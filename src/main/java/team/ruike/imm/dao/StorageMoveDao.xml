@@ -46,6 +46,7 @@
         select * from storage_move sm,employee e,sales s,user u
         <where>
             sm.sales_id=s.sales_id and sm.sm_buyer=e.employee_id and sm.sm_user_id=u.user_id
+             and sm_state=0
             <if test="smId!=null and smId>0">
                   and sm.sm_id=#{smId}
             </if>

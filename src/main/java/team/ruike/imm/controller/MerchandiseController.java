@@ -91,7 +91,20 @@ public class MerchandiseController {
             printWriter.close();
         }
     }
+    /* 删除商品信息
+     */
+    @RequestMapping(value = "/deleteMerchandise.do")
+    @ResponseBody
+    public void  deleteMerchandise(Merchandise merchandises,PrintWriter printWriter){
+        System.out.println(merchandises.getMerchandiseId());
+        merchandises.setMerchandiseState(1);
+        merchandiseService.updateMerchandise(merchandises);
+        String jsonString = JSON.toJSONString("1");
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
 
+    }
     /**
      * 修改被选中的商品的信息
      */
@@ -116,18 +129,5 @@ public class MerchandiseController {
         printWriter.flush();
         printWriter.close();
     }
-    /* 删除商品信息
-     */
-    @RequestMapping(value = "/deleteMerchandise.do")
-    @ResponseBody
-    public void  deleteMerchandise(Merchandise merchandises,PrintWriter printWriter){
-        System.out.println(merchandises.getMerchandiseId());
-        merchandises.setMerchandiseState(1);
-        merchandiseService.updateMerchandise(merchandises);
-        String jsonString = JSON.toJSONString("1");
-        printWriter.write(jsonString);
-        printWriter.flush();
-        printWriter.close();
 
-    }
 }
