@@ -116,7 +116,7 @@
         <tbody id="tbody">
         <c:forEach items="${merc}" var="m">
             <tr id="${m.merchandiseId}">
-                <td><input type="checkbox" /></td>
+                <td><input type="checkbox" style="display: none"/></td>
                 <td style="display: none">${m.merchandiseId}</td>
                 <td>${m.merchandiseCode}</td>
                 <td>${m.merchandiseName}</td>
@@ -245,62 +245,6 @@
 <script src="../../js/jquery.min.js?v=2.1.4"></script>
 <script src="../../js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${pageContext.request.contextPath }/select/js/bootstrap-select.js"></script>
-<script>
-    laydate({elem: "#hello", event: "focus"});
-    var start = {
-        elem: "#start",
-        format: "YYYY/MM/DD hh:mm:ss",
-        min: laydate.now(),
-        max: "2099-06-16 23:59:59",
-        istime: true,
-        istoday: false,
-        choose: function (datas) {
-            end.min = datas;
-            end.start = datas
-        }
-    };
-    var end = {
-        elem: "#end",
-        format: "YYYY/MM/DD hh:mm:ss",
-        min: laydate.now(),
-        max: "2099-06-16 23:59:59",
-        istime: true,
-        istoday: false,
-        choose: function (datas) {
-            start.max = datas
-        }
-    };
-    laydate(start);
-    laydate(end);
-</script>
-<script>
-    laydate({elem: "#end", event: "focus"});
-    var start = {
-        elem: "#start",
-        format: "YYYY/MM/DD hh:mm:ss",
-        min: laydate.now(),
-        max: "2099-06-16 23:59:59",
-        istime: true,
-        istoday: false,
-        choose: function (datas) {
-            end.min = datas;
-            end.start = datas
-        }
-    };
-    var end = {
-        elem: "#end",
-        format: "YYYY/MM/DD hh:mm:ss",
-        min: laydate.now(),
-        max: "2099-06-16 23:59:59",
-        istime: true,
-        istoday: false,
-        choose: function (datas) {
-            start.max = datas
-        }
-    };
-    laydate(start);
-    laydate(end);
-</script>
 </body>
 <script>
     //获取要修改的信息

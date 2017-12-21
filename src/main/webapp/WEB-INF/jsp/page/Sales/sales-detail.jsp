@@ -24,6 +24,8 @@
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath }/js/paging.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/paging.css">
     <script type="text/javascript">
         $(function () {
 
@@ -130,7 +132,7 @@
         </div>
     </div>
 
-    <form id="form">
+    <form id="form" action="/detail/logindetailOrders.do"  method="post">
         <%--展示信息--%>
         <div style="position: relative;left: 50px">
             <table class="table table-striped" style="width: 1200px">
@@ -166,7 +168,7 @@
                             <td id="siActualPrice">${s.salesInformations.siActualPrice}</td>
                             <td id="siTotalPrice">${s.salesInformations.siTotalPrice}</td>
                             <td  >
-                                <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                                <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">删除</span></button>
                             </td>
                         </tr>
                     </c:if>
@@ -175,12 +177,37 @@
 
                 </tbody>
             </table>
+
+            <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
+                <ul class="pagination" >
+                    <li><a href="?start=0">首页</a></li>
+                    <%--<c:if test="${pages.currentPage >1}">--%>
+                    <li><a href="">&laquo;</a></li>
+                    <%--</c:if>--%>
+                    <%--<c:if test="${pages.currentPage ==1}">--%>
+                    <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                    <%--</c:if>--%>
+                    <c:forEach begin="1" end="${len}" varStatus="status">
+                        <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                    </c:forEach>
+                    <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
+                    <li><a href="">&raquo;</a></li>
+                    <%--</c:if>--%>
+                    <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
+                    <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
+                    <%--</c:if>--%>
+                    <li><a href="?start=${page.last}">末页</a></li>
+                    <li><a >共有${totalPage}条数据</a></li>f
+                    <li><a>共有${len}页</a></li>
+                </ul>
+            </div>
+
         </div>
     </form>
 
 
-
 </form>
+
 <script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>

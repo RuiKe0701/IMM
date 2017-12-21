@@ -78,7 +78,7 @@
                         </select><br>
                     </li>
                     <li id="date" style="display: list-item;"><label>入库日期</label>
-                        <input id="end"  name="procurementDate" class="">
+                        <input id="end"  name="warehousingDate" class="">
                     </li>
                     <div class="btns"><input class="ui-btn mrb ui-btn-search" id="filter-submit" type="submit"value="查询"></div>
                 </ul>
@@ -104,7 +104,7 @@
         <tbody id="tbody">
         <c:forEach var="w" items="${ware}">
                 <tr id="${w.warehousingId}">
-                <td><input type="checkbox" /></td>
+                <td><input type="checkbox"  style="display: none"/></td>
                 <td style="display: none">${w.warehousingId}</td>
                 <td>${w.warehousingBatchNumber}</td>
                 <td>${w.employee.employeeName}</td>
@@ -121,7 +121,7 @@
     </table>
 </div>
 <!--删除-->
-    <div  class="modal fade" id="myDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div  class="modal fade" id="myDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header">
@@ -174,9 +174,9 @@
     };
     laydate(start);
     laydate(end);
+    laydate({elem: "#end", event: "focus"});
 </script>
 <script>
-    laydate({elem: "#end", event: "focus"});
     var start = {
         elem: "#start",
         format: "YYYY/MM/DD hh:mm:ss",
@@ -219,19 +219,16 @@
         var currentdate = year + seperator1 + month + seperator1 + strDate;
         $("#end").val(currentdate);
     }
-    $(function () {
-        //获取当前日期给date控件赋值
-        GetNowDate();
-    })
+
         //获取删除的信息
-        function deletewarehousing(val) {
+    function deletewarehousing(val) {
             $.ajax({
                 type: "post",
                 url: "/warehousing/warehousingId.do?warehousingId="+val,
                 dataType: "json",
                 success: function (item) {
                     if(item!=0){
-                        $("#as").html("是否删除采购单号为：【"+item.warehousingName+"】的数据？");
+                        $("#as").html("是否删除入库单号为：【"+item.procurementId+"】的数据？");
                     }
                 },
                 error: function () {
@@ -239,29 +236,26 @@
                 }
             })
         //删除商品信息
-        $("#deletes").click(function () {
-            var merchandiseId=val;
-            $.ajax({
-                type: "post",
-                url: "/warehousing/deleteWarehousing.do?warehousingId="+warehousingId,
-                dataType: "json",
-                success: function (data) {
-                    if(data!=0){
-                       $.each(data,function (i,time) {
-                           $("#"+time.warehousingId).remove();
-                       })
-                        alert("入库记录删除成功")
-                        window.location.reload();
-                    }else {
-                        alert("入库记录删除失败")
-                    }
-                },
-                error: function () {
-                    alert("系统异常，请稍后重试！");
-                }
+         $("#deletes").click(function () {
+             var warehousingId=val;
+             $.ajax({
+                 type: "post",
+                 url: "/warehousing/deleteWarehousing.do?warehousingId="+warehousingId,
+                 dataType: "json",
+                 success: function (data) {
+                     alert("商品信息删除成功")
+                     window.location.href="/warehousing/warehousing.do";
+                 },
+                 error: function () {
+                     alert("系统异常，请稍后重试！");
+                 }
             })
         })
     }
+    $(function () {
+        //获取当前日期给date控件赋值
+        GetNowDate();
+    })
 </script>
 </body>
 </html>

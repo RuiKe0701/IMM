@@ -13,7 +13,7 @@ public interface EmployeeDao {
      * @param employee 员工信息
      * @return
      */
-    public List<Employee> selecrEmployee(Employee employee);
+    public List<Employee> selectEmployee(Employee employee);
 
     /**
      *指定条件修改员工信息
@@ -32,5 +32,8 @@ public interface EmployeeDao {
      * 分页
      * @return
      */
-    public List<Employee> PagerEmployee(Employee employee);
+    public List<Employee> pages(Employee employee);
+
+    public int noncooperation(List<Employee> employee);
+    public int cooperative(List<Employee> employee);
 }

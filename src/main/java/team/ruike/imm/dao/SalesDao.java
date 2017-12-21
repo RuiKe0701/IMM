@@ -43,4 +43,7 @@ public interface SalesDao {
      * @return
      */
     public List<Sales> PagerSales(Sales sales);
+
+
+
 }

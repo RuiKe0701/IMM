@@ -19,11 +19,7 @@ public class PositionController {
 
     @RequestMapping(value = "/sposition.do")
     public String selectposition(Position position,HttpSession session){
-        List<Position> positions=positionService.selectPosition(position);
-        if(position!=null){
-            session.setAttribute("position",positions);
-            return "select";
-        }
+        List<Position> positions=positionService.selectPosition(null);
         return "login";
     }
     @RequestMapping(value = "/iposition.do")

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.Employee;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.entity.Warehousing;
@@ -44,7 +45,7 @@ public class WarehousingController {
      * 被选中的入库记录信息
      */
     @RequestMapping(value = "/warehousingId.do")
-    public void updatemerchandiseId(Warehousing warehousing, PrintWriter printWriter){
+    public void updatewarehousingId(Warehousing warehousing, PrintWriter printWriter){
         List<Warehousing> warehousings = warehousingService.selectWarehousing(warehousing);
 
         if(warehousings.size()>0){
@@ -60,27 +61,16 @@ public class WarehousingController {
             printWriter.close();
         }
     }
-    /* 删除商品信息
+    /* 删除入库订单
    */
     @RequestMapping(value = "/deleteWarehousing.do")
+    @ResponseBody
     public void  deleteMerchandise(Warehousing warehousing,PrintWriter printWriter){
-        int i =0;
         warehousing.setWarehousingState(1);
-        i=warehousingService.updateWarehousing(warehousing);
-        if(i>0){
-            Warehousing s=new Warehousing();
-            s.setWarehousingState(1);
-            List<Warehousing> mm =warehousingService.selectWarehousing(s);
-            //返回值
-            String jsonString = JSON.toJSONString(mm);
+        warehousingService.updateWarehousing(warehousing);
+            String jsonString = JSON.toJSONString("1");
             printWriter.write(jsonString);
             printWriter.flush();
             printWriter.close();
-        }
-
-        String jsonString = JSON.toJSONString(0);
-        printWriter.write(jsonString);
-        printWriter.flush();
-        printWriter.close();
     }
 }
