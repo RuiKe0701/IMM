@@ -4,14 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import team.ruike.imm.entity.Client;
-import team.ruike.imm.entity.Employee;
-import team.ruike.imm.entity.Merchandise;
-import team.ruike.imm.entity.Sales;
-import team.ruike.imm.service.ClientService;
-import team.ruike.imm.service.EmployeeService;
-import team.ruike.imm.service.MerchandiseService;
-import team.ruike.imm.service.SalesService;
+import team.ruike.imm.entity.*;
+import team.ruike.imm.service.*;
 
 import java.util.List;
 
@@ -34,15 +28,23 @@ public class commodityController {
     @Autowired
     MerchandiseService merchandiseService;
 
+    @Autowired
+    ProductTypeService productTypeService;
+
     @RequestMapping("/loginCommodity.do")
     public String logindetailOrders(Model model){
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
+        List<ProductType> productTypeList = productTypeService.selectProductType(null);
+        for (ProductType productType : productTypeList) {
+            System.out.println(productType.getProductTypeName());
+        }
         List<Sales> salesList = salesService.selectSales(null);
         model.addAttribute("clientss",clientList);
         model.addAttribute("employeess",employeeList);
         model.addAttribute("merchandisess",merchandiseList);
+        model.addAttribute("productTypess",productTypeList);
         model.addAttribute("saless",salesList);
         return "page/Sales/sales-summary";
     }

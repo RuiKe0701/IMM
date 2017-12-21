@@ -102,13 +102,13 @@
 
 
                     <dd class="mr40" style="width: 280px">
-                        <label><span class="red">&nbsp;&nbsp;&nbsp;*</span>销售人员:</label>
+                        <label><span class="red">&nbsp;&nbsp;&nbsp;*</span>商品类别:</label>
                         <div class="input-group" style="width: 200px;float: right">
                             <select class="selectpicker show-tick form-control"
                                     style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
                                     data-live-search="true" id="employeeId" name="supplierId">
-                                <c:forEach items="${employeess}" var="em">
-                                    <option value="${em.employeeId}">${em.employeeName}</option>
+                                <c:forEach items="${productTypess}" var="pt">
+                                    <option value="${pt.productTypeId}">${pt.productTypeName}</option>
                                 </c:forEach>
                             </select>
                         </div>
