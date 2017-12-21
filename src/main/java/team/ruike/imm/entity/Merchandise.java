@@ -1,5 +1,8 @@
 package team.ruike.imm.entity;
 
+import com.baomidou.mybatisplus.annotations.TableName;
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecgframework.poi.excel.annotation.ExcelTarget;
 import team.ruike.imm.utility.PagerParameter;
 
 import java.io.Serializable;
@@ -9,22 +12,27 @@ import java.io.Serializable;
  *　@versrion 2.0
  * 商品信息
  */
+@ExcelTarget("Merchandise")
 public class Merchandise extends PagerParameter implements Serializable{
     /**
      * 商品编号
      */
+    @Excel(name = "商品编号" , needMerge = true)
     private Integer merchandiseId;
     /**
      * 商品编码；
      */
+    @Excel(name = "商品编码" , needMerge = true)
     private String merchandiseCode;
     /**
      *商品名称
      */
+    @Excel(name = "商品名称" , needMerge = true)
     private String merchandiseName;
     /**
      * 商品规格
      */
+    @Excel(name = "商品规格" , needMerge = true)
     private String merchandiseSpecification;
 
     /**
@@ -38,18 +46,22 @@ public class Merchandise extends PagerParameter implements Serializable{
     /**
      * 产地
      */
+    @Excel(name = "产地" , needMerge = true)
     private String merchandisePlaceOfOrigin;
     /**
      * 安全存量
      */
+    @Excel(name = "安全存量" , needMerge = true)
     private Integer merchandiseSafetyStock;
     /**
      * 当前数量
      */
+    @Excel(name = "当前数量" , needMerge = true)
     private Integer merchandiseActualQuntity;
     /**
      * 无税供价
      */
+    @Excel(name = "无税供价" , needMerge = true)
     private double merchandiseSalsePrice;
     /**
      * 销售状态

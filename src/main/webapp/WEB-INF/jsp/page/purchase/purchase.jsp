@@ -94,10 +94,8 @@
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data==1){
-                            alert("成功了");
+                            alert("保存成功");
                             window.location.href="/purchases/loginPurchaseOrder.do";
-                        }
                     }
                 });
             });
@@ -197,7 +195,7 @@
                             <table class="table table-bordered" >
                                 <caption>
                                     <button id="btnline" type="button" class="btn btn-primary ">添加行</button>
-                                    <button  id="daochu">导出</button>
+                                    <button  id="daochu" style="float: right">导出</button>
                                 </caption>
                                 <thead>
                                 <tr style="text-align: center">

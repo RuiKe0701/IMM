@@ -46,6 +46,11 @@ $(function () {
         $("#showiframe").css("display","block");
     });
     $("#purchase5").click(function () {
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
         document.getElementById("iff").src="page/purchase/purchaseDetails.html";
     });
     $("#purchase6").click(function () {
