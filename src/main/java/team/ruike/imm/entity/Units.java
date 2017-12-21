@@ -1,5 +1,6 @@
 package team.ruike.imm.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
 import team.ruike.imm.utility.PagerParameter;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Units extends PagerParameter implements Serializable{
     /**
      * 单位名称
      */
+    @Excel(name = "单位" , needMerge = true)
     private String unitsName;
     /**
      * 商品信息表

@@ -1,5 +1,6 @@
 package team.ruike.imm.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
 import team.ruike.imm.utility.PagerParameter;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class ProductType extends PagerParameter implements Serializable{
     /**
      * 种类名称
      */
+
     private String productTypeName;
 
     /**

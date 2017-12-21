@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecgframework.poi.excel.annotation.ExcelEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 import team.ruike.imm.utility.PagerParameter;
 
@@ -27,6 +29,7 @@ public class SalesInformation extends PagerParameter implements Serializable{
     /**
      * 销售数量
      */
+    @Excel(name = "销售数量" , needMerge = true)
     private Integer siVolume;
     /**
      * 单位
@@ -35,6 +38,7 @@ public class SalesInformation extends PagerParameter implements Serializable{
     /**
      * 售价
      */
+    @Excel(name = "售价" , needMerge = true)
     private double siActualPrice;
     /**
      * 是否已删除
@@ -43,10 +47,12 @@ public class SalesInformation extends PagerParameter implements Serializable{
     /**
      * 销售订单表
      */
+    @ExcelEntity(name = "销售订单表")
     private Sales sales;
     /**
      * 销售订单详情
      */
+    @ExcelEntity(name = "销售订单详情")
     private Merchandise merchandise;
     /**
      * 单位
@@ -56,7 +62,9 @@ public class SalesInformation extends PagerParameter implements Serializable{
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
+    @Excel(name = "商品名称" , needMerge = true)
     private String merchandiseName;
+    @Excel(name = "单位名称" , needMerge = true)
     private String unitsName;
     public String getMerchandiseName() {
         return merchandiseName;

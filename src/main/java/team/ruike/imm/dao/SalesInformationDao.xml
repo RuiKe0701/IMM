@@ -35,6 +35,9 @@
             <if test="merchandiseId!=null and merchandiseId!=''">
                 and si.merchandise_id=#{merchandiseId}
             </if>
+            <if test="merchandiseName!=null and merchandiseName!=''">
+                and si.merchandise_name=#{merchandiseName}
+            </if>
             <if test="startTime!=null and startTime!=''">
                 and s.sales_date>=#{startTime}
             </if>
