@@ -17,23 +17,40 @@ $(function () {
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
             $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>购货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
-
             $("#ons").css("display","none");
             $("#showiframe").css("display","block");
     });
 
     $("#purchase2").click(function () {
-        $("#tabManage").remove();
         $("#iff").attr("src","/purchaseOrder/loginPurchase.do");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
     });
     $("#purchase3").click(function () {
-        $("#tabManage").remove();
         $("#iff").attr("src","/purchases/showPurchaseSales.do");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
     });
     $("#purchase4").click(function () {
-        document.getElementById("iff").src="page/purchase/replenishment.html";
+        $("#iff").attr("src","/replenishMent/login.do");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
     });
     $("#purchase5").click(function () {
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
         document.getElementById("iff").src="page/purchase/purchaseDetails.html";
     });
     $("#purchase6").click(function () {

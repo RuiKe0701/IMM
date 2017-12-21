@@ -24,6 +24,60 @@
     <link href="${pageContext.request.contextPath }/css/bills.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
         $(function () {
+            $("#excel").click(function () {
+                var procurementInformation=new  Array();
+                var procurements=new Array();
+                var procurementInformationList=null;
+                var supplierId=$("#supplierId").val();
+                var procurementId=$("#procurementId").val();
+                var procurementDate=$("#end").val();
+                var procurementEmployeeId=$("#procurementEmployeeId").val();
+                var procurementList=new Object();
+                procurementList.supplierId=supplierId;
+                procurementList.procurementId=procurementId;
+                procurementList.procurementDate=procurementDate;
+                procurementList.procurementEmployeeId=procurementEmployeeId;
+                procurements.push(procurementList);
+                var procurement=JSON.stringify(procurements);
+                $(".trParam").each(function (index,data) {
+                    if($(data).find(".piVolume").val()==""){
+                        return false;
+                    }
+                    var procurementId=$(".procurementId").val();
+                    var merchandiseId=$(data).find(".selectpicker").val();
+                    var piVolume =$(data).find(".piVolume").val();
+                    var piActualPrice =$(data).find(".piActualPrice").val();
+                    var piTotalPrice =$(data).find(".piTotalPrice").val();
+                    var piRemarks =$(data).find(".piRemarks").val();
+                    var unitsId=$(data).find(".unitsId").val();
+                    var object = new Object();
+                    object.piVolume = piVolume;
+                    object.piActualPrice=piActualPrice;
+                    object.piTotalPrice=piTotalPrice;
+                    object.piRemarks=piRemarks;
+                    object.merchandiseId=merchandiseId;
+                    object.procurementId=procurementId;
+                    object.unitsId=unitsId;
+                    procurementInformation.push(object);
+                    procurementInformationList=JSON.stringify(procurementInformation);
+
+                });
+                $.ajax({
+                    type: "post",
+                    url: "/purchaseOrder/MapExportExcel.do",
+                    data:{
+                        "procurementInformationList":procurementInformationList,
+                        "procurementList":procurement
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if(data==1){
+                            alert("成功了");
+                            window.location.href="/purchases/loginPurchaseOrder.do";
+                        }
+                    }
+                });
+            });
             var i=7;
             $("#btnline").click(function () {
                 $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
@@ -153,7 +207,7 @@
 </head>
 
 <body style="">
-<form action="/purchases/saveSupplierorProcureMent.do" method="post">
+<form action="/purchases/saveSupplierorProcureMent.do" method="post" id="form">
 <div class="wrapper">
     <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
     <div class="bills cf">
@@ -195,7 +249,7 @@
                             <table class="table table-bordered" >
                                 <caption>
                                     <button id="btnline" type="button" class="btn btn-primary ">添加行</button>
-                                    <button  id="daochu">导出</button>
+                                    <button id="excel">导出</button>
                                 </caption>
                                 <thead>
                                 <tr style="text-align: center">

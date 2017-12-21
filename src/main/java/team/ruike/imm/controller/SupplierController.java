@@ -1,4 +1,6 @@
 package team.ruike.imm.controller;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,6 +8,8 @@ import team.ruike.imm.entity.Supplier;
 import team.ruike.imm.service.SupplierService;
 import team.ruike.imm.utility.Pages;
 import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -57,95 +61,88 @@ public class SupplierController {
         request.setAttribute("i",i);
         return "page/material/vendor-list-2";
     }
-//    /**
-//     * 修改为不合作客户
-//     * @param noncooperationClient
-//     * @param printWriter
-//     */
-//    @RequestMapping("/noncooperationClient.do")
-//    public void noncooperationClient(String noncooperationClient,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(noncooperationClient, new TypeReference<ArrayList<Client>>(){});
-//        i= clientService.noncooperation(clientArrayList);
-//        if(i>0){
-//            String jsonString = JSON.toJSONString(1);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//    /**
-//     * 修改为合作客户
-//     * @param cooperativeClients
-//     * @param printWriter
-//     */
-//    @RequestMapping("/cooperativeClient.do")
-//    public void cooperativeClient(String cooperativeClients,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(cooperativeClients, new TypeReference<ArrayList<Client>>(){});
-//        i= clientService.cooperative(clientArrayList);
-//        if(i>0){
-//            //返回值
-//            String jsonString = JSON.toJSONString(1);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//    /**
-//     * 获取要修改的用户信息
-//     * @param client
-//     * @param printWriter
-//     */
-//    @RequestMapping(value = "/clientId.do")
-//    public void clientId(Client client,PrintWriter printWriter){
-//        List<Client> clients=clientService.selecrClient(client);
-//        if (clients.size()>0){
-//            String jsonString = JSON.toJSONString(clients);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//    /**
-//     * 修改用户信息
-//     * @param clientList
-//     * @param printWriter
-//     */
-//    @RequestMapping(value = "/updatesClient.do")
-//    public  void updatesClient(String clientList,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-//        for (Client client : clientArrayList) {
-//            i = clientService.updateClient(client);
-//        }
-//        if(i>0) {
-//            String jsonString = JSON.toJSONString(1);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//
-//    /**
-//     * 添加用户信息
-//     * @return
-//     */
-//    @RequestMapping("/addClient.do")
-//    public void addClient(String clientList,PrintWriter printWriter){
-//        int i=0;
-//        ArrayList<Client> clientArrayList =  JSON.parseObject(clientList, new TypeReference<ArrayList<Client>>(){});
-//        for (Client client : clientArrayList) {
-//            i = clientService.insertClient(client);
-//        }
-//        if(i>0) {
-//            String jsonString = JSON.toJSONString(1);
-//            printWriter.write(jsonString);
-//        }
-//        printWriter.flush();
-//        printWriter.close();
-//    }
+    /**
+     * 修改为不合作客户
+     * @param noncooperation
+     * @param printWriter
+     */
+    @RequestMapping("/noncooperationSupplier.do")
+    public void noncooperationSupplier(String noncooperation,PrintWriter printWriter){
+        int i=0;
+        ArrayList<Supplier> supplierArrayList =  JSON.parseObject(noncooperation, new TypeReference<ArrayList<Supplier>>(){});
+        i= supplierService.noncooperation(supplierArrayList);
+        if(i>0){
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+    /**
+     * 修改为合作客户
+     * @param cooperative
+     * @param printWriter
+     */
+    @RequestMapping("/cooperativeSupplier.do")
+    public void cooperativeSupplier(String cooperative,PrintWriter printWriter){
+        int i=0;
+        ArrayList<Supplier> supplierArrayList =  JSON.parseObject(cooperative, new TypeReference<ArrayList<Supplier>>(){});
+        i= supplierService.cooperative(supplierArrayList);
+        if(i>0){
+            //返回值
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+    /**
+     * 获取要修改的用户信息
+     * @param supplier
+     * @param printWriter
+     */
+    @RequestMapping(value = "/supplierId.do")
+    public void supplierId(Supplier supplier,PrintWriter printWriter){
+        List<Supplier> suppliers=supplierService.selectSuplier(supplier);
+        if (suppliers.size()>0){
+            String jsonString = JSON.toJSONString(suppliers);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+    /**
+     * 修改用户信息
+     * @param supplier
+     * @param printWriter
+     */
+    @RequestMapping(value = "/updateSupplier.do")
+    public  void updateSupplier(Supplier supplier,PrintWriter printWriter){
+        int i=0;
+   i = supplierService.updateSupplier(supplier);
+        if(i>0) {
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
+
+
+    /**
+     * 添加用户信息
+     * @return
+     */
+    @RequestMapping("/addSupplier.do")
+    public void addSupplier(Supplier supplier,PrintWriter printWriter){
+        int i = supplierService.insertSuplier(supplier);
+        if(i>0) {
+            String jsonString = JSON.toJSONString(1);
+            printWriter.write(jsonString);
+        }
+        printWriter.flush();
+        printWriter.close();
+    }
 }

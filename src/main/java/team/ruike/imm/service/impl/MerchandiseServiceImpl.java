@@ -39,6 +39,10 @@ public class MerchandiseServiceImpl implements MerchandiseService{
         }
     }
 
+    public List<Merchandise> selectRelenish(Merchandise merchandise) {
+        return merchandiseDao.selectRelenish(merchandise);
+    }
+
     public List<Merchandise> selectAll(Merchandise merchandise) {
         return merchandiseDao.selectAll(merchandise);
     }

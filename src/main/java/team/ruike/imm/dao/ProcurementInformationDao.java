@@ -14,15 +14,17 @@ public interface ProcurementInformationDao {
      * @param procurementInformation 采购订单详情
      * @return
      */
-    public List<ProcurementInformation> selecrProcurementInformation(ProcurementInformation procurementInformation);
-    public  void insertAll(List<ProcurementInformation> procurementInformations);
+     List<ProcurementInformation> selecrProcurementInformation(ProcurementInformation procurementInformation);
+      void insertAll(List<ProcurementInformation> procurementInformations);
+     //查询采购订单还未入库的订单
+      List<ProcurementInformation> selectReplenish();
 
     /**
      * 指定条件修改采购订单详情
      * @param procurementInformation 采购订单详情
      * @return
      */
-    public int updateProcurementInformation(ProcurementInformation procurementInformation);
+     int updateProcurementInformation(ProcurementInformation procurementInformation);
 
     /**
      * 添加采购订单详情
