@@ -58,7 +58,6 @@ public class ReplenishMentController {
         }
         page.caculateLast(total);
        List<ProductType> productTypeLists= productTypeService.selectProductType(null);
-       //List<Merchandise> merchandises=merchandiseService.selectRelenish(merchandise);
        List<ProcurementInformation> procurementInformations=procurementInformationService.selectReplenish();
         model.addAttribute("productTypeLists",productTypeLists);
         model.addAttribute("merchandises",merchandises);
@@ -67,6 +66,9 @@ public class ReplenishMentController {
         model.addAttribute("procurementInformations",procurementInformations);
         return "page/purchase/replenishMent";
     }
+
+
+
     @RequestMapping(value = "generateOrders.do")
     @ResponseBody
     public void generateOrders(String salesInformationList, HttpSession session, PrintWriter printWriter){

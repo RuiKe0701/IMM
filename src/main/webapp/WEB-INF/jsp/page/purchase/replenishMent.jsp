@@ -159,21 +159,13 @@
         <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
             <ul class="pagination" >
                 <li><a href="?start=0">首页</a></li>
-                <%--<c:if test="${pages.currentPage >1}">--%>
                     <li><a href="">&laquo;</a></li>
-                <%--</c:if>--%>
-                <%--<c:if test="${pages.currentPage ==1}">--%>
                     <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
-                <%--</c:if>--%>
                 <c:forEach begin="1" end="${len}" varStatus="status">
                     <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
                 </c:forEach>
-                <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
                     <li><a href="">&raquo;</a></li>
-                <%--</c:if>--%>
-                <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
-                <%--</c:if>--%>
                 <li><a href="?start=${page.last}">末页</a></li>
                 <li><a >共有${totalPage}条数据</a></li>f
                 <li><a>共有${len}页</a></li>

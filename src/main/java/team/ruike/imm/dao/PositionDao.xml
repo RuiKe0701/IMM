@@ -13,6 +13,7 @@
         select * from position
         <where>
             1=1
+            and position_id !=1
             <if test="positionId!=null and positionId>0">
                 and position_id=#{positionId}
             </if>
