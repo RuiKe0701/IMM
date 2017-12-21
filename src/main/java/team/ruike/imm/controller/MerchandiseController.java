@@ -5,7 +5,6 @@ import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProductType;
@@ -54,7 +53,7 @@ public class MerchandiseController {
      */
     @RequestMapping(value = "merchandisemenu.do")
     public String merchandisemenu(Merchandise merchandise,HttpSession session){
-        List<Merchandise> ab = merchandiseService.san(merchandise);
+        List<Merchandise> ab = merchandiseService.sanMerchandise(merchandise);
         session.setAttribute("merc",ab);
         return  "page/warehouse/goods-balance";
     }

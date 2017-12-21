@@ -28,7 +28,7 @@ public interface MerchandiseService {
      * @param merchandise
      * @return
      */
-    public List<Merchandise> san(Merchandise merchandise);
+    public List<Merchandise> sanMerchandise(Merchandise merchandise);
     /**
      * 按指定条件修改商品信息
      * @param merchandise
