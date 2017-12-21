@@ -2,399 +2,402 @@
   Created by IntelliJ IDEA.
   User: HP
   Date: 2017-12-06
-  Time: 11:12
+  Time: 11:13
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<!-- saved from url=(0076)http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=supplytype -->
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" type="text/css">
+    <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
     <title>精斗云云进销存</title>
-
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
-
-    <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
-    <script type="text/javascript">
-        var _vds = _vds || [];
-        window._vds = _vds;
-        (function () {
-            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
-            (function () {
-                var vds = document.createElement('script');
-                vds.type = 'text/javascript';
-                vds.async = true;
-                vds.src = 'https://dn-growing.qbox.me/vds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(vds, s);
-            })();
-        })();
-    </script>
-
-    <script type="text/javascript">
-        var DOMAIN = document.domain;
-        var WDURL = "";
-        var SCHEME = "blue";
-        try {
-            var host = window.location.host;
-            var domainDot = host.indexOf('.');
-            var domain = host.substring(domainDot + 1, host.length);
-            document.domain = domain;
-        } catch (e) {
-        }
-        //ctrl+F5 增加版本号来清空iframe的缓存的
-        $(document).keydown(function (event) {
-            /* Act on the event */
-            if (event.keyCode === 116 && event.ctrlKey) {
-                var defaultPage = Public.getDefaultPage();
-                var href = defaultPage.location.href.split('?')[0] + '?';
-                var params = Public.urlParam();
-                params['version'] = Date.parse((new Date()));
-                for (i in params) {
-                    if (i && typeof i != 'function') {
-                        href += i + '=' + params[i] + '&';
-                    }
-                }
-                defaultPage.location.href = href;
-                event.preventDefault();
-            }
-        });
-    </script>
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
+    <%--<script src="${pageContext.request.contextPath }/js/material/staff-list-4.js"></script>--%>
 
     <style>
-        .manage-wrap {
-            margin: 0 auto;
-            width: 300px;
+        .chk-list {
+            line-height: 28px;
         }
-
-        .manage-wrap .ui-input {
-            width: 200px;
-            font-size: 14px;
+        .up{
+            position: relative;
+            top: -5px;
         }
-
-        .manage-wrap .hideFeild {
-            position: absolute;
-            top: 30px;
-            left: 80px;
-            width: 210px;
-            border: solid 1px #ccc;
-            background-color: #fff;
+        .reminder{
+            color: red;
         }
-
-        .ztreeDefault {
-            overflow-y: auto;
-            max-height: 240px;
-        }
-
-        .searchbox {
-            float: left;
-            font-size: 14px;
-        }
-
-        .searchbox li {
-            float: left;
-            margin-right: 10px;
-        }
-
-        #matchCon {
-            width: 140px;
-        }
-
-        .ui-input-ph {
-            color: #aaa;
-        }
-
-        .cur #custom-assisting .ui-combo-wrap {
-            background: #eaeaea;
-            border-color: #c1c1c1;
-        }
-
-        .cur #custom-assisting input {
-            background: #eaeaea;
-            font-weight: bold;
-        }
-
-        .ui-droplist-wrap .selected {
-            background-color: #d2d2d2;
-        }
-
-        .input-txt {
-            font-size: 14px;
-        }
-
-        .ui-droplist-wrap .list-item {
-            font-size: 14px;
+        li{
+            list-style-type:none;
         }
     </style>
+    <script>
+        $(function () {
+            var i=$("#control").val();
+            if(i==0){
+                document.getElementById("btn-enable").setAttribute("disabled",true);
+                //控制按钮恢复可点击
+                $("#addClient").attr("disabled",false);
+                $("#btn-disable").attr("disabled",false);
+            }
+            if(i==1){
+                document.getElementById("btn-disable").setAttribute("disabled",true);
+                document.getElementById("addClient").setAttribute("disabled",true);
+                //控制按钮恢复可点击
+                $("#btn-enable").attr("disabled",false);
+            }
+        })
+    </script>
 </head>
-<body style="">
-<div class="wrapper">
-    <div class="mod-toolbar-top cf">
-        <div class="left">
-            <!--<div class="mod-crumb fl"><span class="cur"></span></div>-->
-            <div id="assisting-category-select" class="ui-tab-select">
-                <strong class="tit">类别</strong>
-                <ul class="ui-tab mrb">
-                    <li data-id="customertype">客户</li>
-                    <li data-id="supplytype" >供应商</li>
-                    <li data-id="trade"  class="cur">商品</li>
-                    <li data-id="paccttype">支出</li>
-                    <li data-id="raccttype">收入</li>
-                </ul>
-                <span class="fl mrb dn">
-               <span id="custom-assisting"><span class="ui-combo-wrap" style="width: 168px;"><input type="text"
-                                                                                                    class="input-txt"
-                                                                                                    autocomplete="off"
-                                                                                                    readonly="readonly"
-                                                                                                    style="cursor: default; width: 142px;"><span
-                       class="trigger"></span></span></span>
-            </span>
-                <ul class="searchbox cf">
-                    <li>
-                        <input type="text" id="matchCon" class="ui-input ui-input-ph matchCon" value="输入类别名称查询">
+<div style="">
+    <input style="display: none" id="control" value="${i}" />
+    <div class="bill-ser-top">
+        <ul class="ul-inline cf">
+            <li class="chk-list" id="chk-ischecked" style="display: list-item;position: relative;left: 60px;">
+                <div >
+                    <button type="button" id="cooperation" name="0" class="btn btn-info" data-toggle="modal" >
+                        <span class="">商品类型</span></button>
+                    <button type="button" id="termination" name="1" class="btn btn-info" data-toggle="modal">
+                        <span class="">商品单位</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="wrapper btc" style="z-index:0;height: 600px" >
+        <div class="bill-ser-botm cf">
+            <div class="fr ml10">
+                <button type="button" id="addClient" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
+                <a class="btn btn-info"name="jin" id="btn-disable"><span class="">在用类型</span></a>
+                <a class="btn btn-info" id="btn-enable"><span class="">弃用类型</span></a>
+            </div>
+        </div>
+        <%--展示信息--%>
+        <div style="position: relative;left: 50px">
+                <form id="form" action="/employee/cooperative.do" method="post" >
+                    <input style="display: none" name="currentPage"  value="1" />
+                    <li style="position: relative;left: 15%;top:-94px">
+                        <button type="submit" class="btn btn-info">查找</button>
+                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
                     </li>
-                    <li><a class="ui-btn mrb ui-btn-search" id="search">查询</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="fr"><a href="http://vip2-gd.youshang.com/settings/category-list.jsp?typeNumber=supplytype#"
-                           class="ui-btn ui-btn-sp mrb ui-btn-add" id="btn-add">新增</a><a class="ui-btn ui-btn-normal"
-                                                                                         id="btn-refresh">刷新</a></div>
-    </div>
-    <div class="grid-wrap">
-        <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-             style="width: 1354px;">
-            <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
-            <div class="loading ui-state-default ui-state-active" id="load_grid" style="display: none;">读取中...</div>
-            <div class="ui-jqgrid-view" id="gview_grid" style="width: 1354px;">
-                <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                     style="display: none;"><a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
-                                               style="right: 0px;"><span
-                        class="ui-icon ui-icon-circle-triangle-n"></span></a><span class="ui-jqgrid-title"></span></div>
-                <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1354px;">
-                    <div class="ui-jqgrid-hbox">
-                        <table class="ui-jqgrid-htable" style="width:270px" role="grid" aria-labelledby="gbox_grid"
-                               cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr class="ui-jqgrid-labels" role="rowheader">
-                                <th id="grid_operate" role="columnheader"
-                                    class="ui-state-default ui-th-column ui-th-ltr" style="width: 60px;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_operate" class="ui-jqgrid-sortable">操作<span class="s-ico"
-                                                                                                   style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_name" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 200px;"><span class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                                style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_name" class="ui-jqgrid-sortable">类别<span class="s-ico"
-                                                                                                style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_id" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 150px; display: none;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_id" class="ui-jqgrid-sortable">id<span class="s-ico"
-                                                                                              style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_level" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 150px; display: none;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_level" class="ui-jqgrid-sortable">level<span class="s-ico"
-                                                                                                    style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_parentId" role="columnheader"
-                                    class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 150px; display: none;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_parentId" class="ui-jqgrid-sortable">parentId<span class="s-ico"
-                                                                                                          style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_parentName" role="columnheader"
-                                    class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 150px; display: none;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_parentName" class="ui-jqgrid-sortable">parentName<span
-                                            class="s-ico" style="display:none"><span sort="asc"
-                                                                                     class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                                <th id="grid_detail" role="columnheader" class="ui-state-default ui-th-column ui-th-ltr"
-                                    style="width: 150px; display: none;"><span
-                                        class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                        style="cursor: col-resize;">&nbsp;</span>
-                                    <div id="jqgh_grid_detail" class="ui-jqgrid-sortable">是否叶<span class="s-ico"
-                                                                                                   style="display:none"><span
-                                            sort="asc"
-                                            class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                            sort="desc"
-                                            class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                    </div>
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="ui-jqgrid-bdiv" style="height: 500px; width: 1354px;">
-                    <div style="position:relative;">
-                        <div></div>
-                        <table id="grid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid"
-                               aria-multiselectable="false" aria-labelledby="gbox_grid" class="ui-jqgrid-btable"
-                               style="width: 270px;">
-                            <tbody>
-                            <tr class="jqgfirstrow" role="row" style="height:auto">
-                                <td role="gridcell" style="height:0px;width:60px;"></td>
-                                <td role="gridcell" style="height:0px;width:200px;"></td>
-                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                                <td role="gridcell" style="height:0px;width:150px;display:none;"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
-            <div id="page" class="ui-state-default ui-jqgrid-pager ui-corner-bottom" dir="ltr" style="width: 1354px;">
-                <div id="pg_page" class="ui-pager-control" role="group">
-                    <table cellspacing="0" cellpadding="0" border="0" class="ui-pg-table"
-                           style="width:100%;table-layout:fixed;height:100%;" role="row">
-                        <tbody>
+                    <%--商品类型--%>
+                    <table class="table table-striped" style="width: 450px">
+                        <thead>
                         <tr>
-                            <td id="page_left" align="left"></td>
-                            <td id="page_center" align="center" style="white-space:pre;">
-                                <table cellspacing="0" cellpadding="0" border="0" style="table-layout:auto;"
-                                       class="ui-pg-table">
-                                    <tbody>
-                                    <tr></tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td id="page_right" align="right">
-                                <div dir="ltr" style="text-align:right" class="ui-paging-info">无数据显示</div>
-                            </td>
+                            <th></th>
+                            <th>类型名称</th>
+                            <th>类型状态</th>
+                            <th>操作</th>
                         </tr>
+                        </thead>
+                        <tbody >
+                        <%--<c:forEach items="${cooperative}" var="s">--%>
+                            <tr id="${s.employeeId}"  class="clients">
+                                <td><input class="employeeId"  runat="server" type="checkbox" value="${s.employeeId}" /></td>
+                                <td id="employeeId" style="display: none">12321</td>
+                                <td id="employeeName">gdfggd</td>
+                                <td id="positionId">dgfdg</td>
+                                <c:if test="${s.employeeState==0}">
+                                    <td  id="employeeState">在职</td>
+                                </c:if>
+                                <c:if test="${s.employeeState==1}">
+                                    <td  id="employeeState">离职</td>
+                                </c:if>
+                                <td>
+                                    <button type="button" onclick="gainclient(${s.employeeId})"id="${s.employeeId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                                </td>
+                            </tr>
+                        <%--</c:forEach>--%>
+                        <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
+                            <ul class="pagination" >
+                                <li><a href="/employee/cooperative.do?currentPage=1">首页</a></li>
+                                <c:if test="${pages.currentPage >1}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
+                                </c:if>
+                                <c:if test="${pages.currentPage ==1}">
+                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
+                                </c:if>
+                                <c:forEach var="a" items="${pages.pageBar}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${a}">${a}</a></li>
+                                </c:forEach>
+                                <c:if test="${pages.currentPage<pages.totalPage}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
+                                </c:if>
+                                <c:if test="${pages.currentPage==pages.totalPage}">
+                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
+                                </c:if>
+                                <li><a href="/employee/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
+                                <br>
+                                <li><a >共有${pages.totalRecord}条数据</a></li>
+                                <li><a>共有${pages.totalPage}页</a></li>
+                            </ul>
+                        </div>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!--没有应用他的JS，看情况调整再用-->
-<!--<script src="../../js/judgment/categoryList.js"></script>-->
-<div id="COMBO_WRAP">
-    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 168px; display: none;">
-        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
-            <div class="list-item" data-value="">选择其他</div>
-        </div>
-    </div>
-</div>
-
-
-<div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
-    <table class="ui_border">
-        <tbody>
-        <tr>
-            <td class="ui_lt"></td>
-            <td class="ui_t"></td>
-            <td class="ui_rt"></td>
-        </tr>
-        <tr>
-            <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
+                    <%--商品单位--%>
+                    <table class="table table-striped" style="width: 450px; position: relative; left:500px; top: -57px;" >
+                        <thead>
                         <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
+                            <th></th>
+                            <th>单位名称</th>
+                            <th>单位状态</th>
+                            <th>操作</th>
                         </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
+                        </thead>
+                        <tbody >
+                        <%--<c:forEach items="${cooperative}" var="s">--%>
+                            <tr id="${s.employeeId}"  class="clients">
+                                <td><input class="employeeId"  runat="server" type="checkbox" value="${s.employeeId}" /></td>
+                                <td id="employeeId" style="display: none">5345</td>
+                                <td id="employeeName">dgfd</td>
+                                <td id="positionId">n}vnbn</td>
+                                <c:if test="${s.employeeState==0}">
+                                    <td  id="employeeState">在职</td>
+                                </c:if>
+                                <c:if test="${s.employeeState==1}">
+                                    <td  id="employeeState">离职</td>
+                                </c:if>
+                                <td>
+                                    <button type="button" onclick="gainclient(${s.employeeId})"id="${s.employeeId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                                </td>
+                            </tr>
+                        <%--</c:forEach>--%>
+                        <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
+                            <ul class="pagination" >
+                                <li><a href="/employee/cooperative.do?currentPage=1">首页</a></li>
+                                <c:if test="${pages.currentPage >1}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
+                                </c:if>
+                                <c:if test="${pages.currentPage ==1}">
+                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
+                                </c:if>
+                                <c:forEach var="a" items="${pages.pageBar}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${a}">${a}</a></li>
+                                </c:forEach>
+                                <c:if test="${pages.currentPage<pages.totalPage}">
+                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
+                                </c:if>
+                                <c:if test="${pages.currentPage==pages.totalPage}">
+                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
+                                </c:if>
+                                <li><a href="/employee/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
+                                <br>
+                                <li><a >共有${pages.totalRecord}条数据</a></li>
+                                <li><a>共有${pages.totalPage}页</a></li>
+                            </ul>
+                        </div>
                         </tbody>
                     </table>
+                </form>
+
+
+            <c:if test="${i==1}">
+                <form id="form" action="/employee/noncooperation.do" method="post" >
+                    <input style="display: none" name="currentPage"  value="1" />
+                    <li style="position: relative;left: 15%;top:-94px">
+                        <button type="submit" class="btn btn-info">查找</button>
+                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                    </li>
+                    <table class="table table-striped" style="width: 1200px">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>员工名称</th>
+                            <th>职位名称</th>
+                            <th>身份证号</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <c:forEach items="${noncooperation}" var="n">
+                            <tr id="${n.employeeId}"  class="clients">
+                                <td><input class="employeeId"  runat="server" type="checkbox" value="${n.employeeId}" /></td>
+                                <td id="employeeId" style="display: none">${n.employeeId}</td>
+                                <td id="employeeName">${n.employeeName}</td>
+                                <td id="positionId">${n.position.positionName}</td>
+                                <c:if test="${n.employeeState==0}">
+                                    <td  id="employeeState">在职</td>
+                                </c:if>
+                                <c:if test="${n.employeeState==1}">
+                                    <td  id="employeeState">离职</td>
+                                </c:if>
+                            </tr>
+                        </c:forEach>
+                        <div  style="position: absolute;left: 75%;top: 150%">
+                            <ul class="pagination" >
+                                <li><a href="/employee/noncooperation.do?currentPage=1">首页</a></li>
+                                <c:if test="${pp.currentPage >1}">
+                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;</a></li>
+                                </c:if>
+                                <c:if test="${pp.currentPage ==1}">
+                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;${pp.currentPage-1}</a></li>
+                                </c:if>
+                                <c:forEach var="a" items="${pp.pageBar}">
+                                    <li><a href="/employee/noncooperation.do?currentPage=${a}">${a}</a></li>
+                                </c:forEach>
+                                <c:if test="${pp.currentPage<pp.totalPage}">
+                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;</a></li>
+                                </c:if>
+                                <c:if test="${pp.currentPage==pp.totalPage}">
+                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;${pp.currentPage+1}</a></li>
+                                </c:if>
+                                <li><a href="/employee/noncooperation.do?currentPage=${pp.totalPage}">末页</a></li>
+                                <br>
+                                <li><a >共有${pp.totalRecord}条数据</a></li>
+                                <li><a>共有${pp.totalPage}页</a></li>
+                            </ul>
+                        </div>
+                        </tbody>
+                    </table>
+                </form>
+            </c:if>
+        </div>
+    </div>
+  </div>
+<!-- 新增 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="addemployee">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModabel">
+                    新增员工信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 500px" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">员工名称</span>
+                    <input  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
                 </div>
-            </td>
-            <td class="ui_r"></td>
-        </tr>
-        <tr>
-            <td class="ui_lb"></td>
-            <td class="ui_b"></td>
-            <td class="ui_rb" style="cursor: auto;"></td>
-        </tr>
-        </tbody>
-    </table>
+                <span  class="reminder" id="Divname">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">职位名称</span>
+                    <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
+                        <c:forEach  var="p" items="${positions}">
+                            <option value="${p.positionId}" >${p.positionName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">身份证号</span>
+                    <input onkeyup="value=value.replace(/[^\a-\z\A-\Z]/g,'')" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="Divpost">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">移动电话</span>
+                    <input onkeyup="value=value.replace(/\D/g,'')" name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                </div>
+                <span   class="reminder" id="Divaddress">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
+                    <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">联络地址</span>
+                    <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon" style="width: 81px;">是否已删除</span>
+                    <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="insert" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+
+<!-- 修改 -->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="updateemployee">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="updateTime">
+                        修改用户信息
+                    </h4>
+                </div>
+                <div class="modal-body" style="width: 300px;height: 500px" >
+                    <input id="updateid" name="employeeId" style="display: none"/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">员工名称</span>
+                        <input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"  name="employeeName" id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                    </div>
+                    <span class="reminder" id="remindername">&nbsp;</span><br>
+                    <div class="input-group" style="border: 10px; bordercolor:#000000">
+                        <span class="input-group-addon" style="width: 81px;">职位信息</span>
+                        <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
+                            <c:forEach  var="p" items="${positions}">
+                                <option value="${p.positionId}" >${p.positionName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <span class="reminder" id="reminderpersonInCharge">&nbsp;</span><br>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">身份证号</span>
+                        <input onkeyup="value=value.replace(/[\W]/g,'') " name="employeeIdNumber"  id="updatepost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                    </div>
+                    <span class="reminder" id="reminderpost">&nbsp;</span><br>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">移动电话</span>
+                        <input onkeyup="value=value.replace(/[\W]/g,'') " name="employeeMobilePhone"   id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                    </div>
+                    <span class="reminder" id="reminderaddress">&nbsp;</span><br>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
+                        <input onkeyup="value=value.replace(/[\W]/g,'') " name="employeeEmail"  id="updatefactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
+                    </div>
+                    <span class="reminder" id="reminderfactoryAddress">&nbsp;</span><br>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">联络地址</span>
+                        <input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" name="employeeAddress"  id="updatemobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    </div>
+                    <span class="reminder" id="remindermobilePhone">&nbsp;</span><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeUpdate" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" id="updates" class="btn btn-primary">
+                        提交修改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
 </div>
 </body>
+
 </html>

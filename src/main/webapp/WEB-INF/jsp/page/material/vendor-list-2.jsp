@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" type="text/css">
     <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-
     <title>精斗云云进销存</title>
-    <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
