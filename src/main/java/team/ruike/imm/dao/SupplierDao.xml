@@ -60,10 +60,10 @@
         select * from supplier
         <where>
             1=1
-            <if test="clientName!=null and  clientName!=''">
+            <if test="supplierName!=null and  supplierName!=''">
                 and supplier_name like concat('%',#{supplierName},'%')
             </if>
-            <if test="clientState!=null">
+            <if test="supplierState!=null">
                 and supplier_state=#{supplierState}
             </if>
             <if test="currentPage!=null and pageSize!=null">
@@ -108,7 +108,7 @@
         </where>
     </update>
 
-    <insert id="insertSupplier" parameterType="supplier">
+    <insert id="insertSuplier" parameterType="supplier">
         insert into supplier values(default,#{supplierName},#{supplierPersonInCharge},#{supplierPost},#{supplierPhone},#{supplierMobilePhone},#{supplierFax},#{supplierAddress},#{supplierFactoryAddress},#{supplierState})
     </insert>
 
