@@ -61,6 +61,7 @@ public class StorageMoveController {
     @RequestMapping(value = "/deletestorageMove.do")
     @ResponseBody
     public void  deletestorageMove(StorageMove storageMove,PrintWriter printWriter){
+
         storageMove.setSmState(1);
         storageMoveService.updateStorageMove(storageMove);
         String jsonString = JSON.toJSONString("1");

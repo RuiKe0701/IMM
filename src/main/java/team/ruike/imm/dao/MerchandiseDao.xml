@@ -60,8 +60,12 @@
         inner join units u on m.units_id=u.units_id
         inner join sales_status s on m.sales_status_id=s.sales_status_id
         <where>
-        concat(m.merchandise_name,'!,(%!)#',m.merchandise_code,'!,(%!)#', m.merchandise_specification,'*!,(%!)#',merchandise_place_of_origin,'*!,(%!)#',merchandise_salse_price)
-        like CONCAT('%12%')
+        concat(m.merchandise_name,
+            '!,(%!)#',m.merchandise_code,
+            '!,(%!)#', m.merchandise_specification,
+            '*!,(%!)#',merchandise_place_of_origin,
+            '*!,(%!)#',merchandise_salse_price)
+        like CONCAT('%',#{about},'%')
             <if test="merchandiseId!=null and merchandiseId>0">
                 and m.merchandise_id=#{merchandiseId}
             </if>
