@@ -61,8 +61,8 @@
         inner join sales_status s on m.sales_status_id=s.sales_status_id
         <where>
         concat(m.merchandise_name,
-            '!,(%!)#',m.merchandise_code,
-            '!,(%!)#', m.merchandise_specification,
+            m.merchandise_code,
+            ')(*)*(!,(%!)#', m.merchandise_specification,
             '*!,(%!)#',merchandise_place_of_origin,
             '*!,(%!)#',merchandise_salse_price)
         like CONCAT('%',#{about},'%')

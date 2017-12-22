@@ -359,11 +359,19 @@
                                         </li>
                                         <li class="" id="Product-category">
                                             <a href="javascript:void(0);">
-                                                <span class="hasList">商品类别
-                                                 <span class="hide"></span>
-                                                </span>
+                                                    <span class="hasList">商品类别
+                                                     <span class="hide"></span>
+                                                    </span>
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
+                                        <li class="" id="unitsAndType">
+                                            <a href="javascript:void(0);">
+                                                    <span class="hasList">单位与商品类别
+                                                     <span class="hide"></span>
+                                                    </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                         </li>
                                     </ul>
                                  </div>
