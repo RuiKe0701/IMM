@@ -1,5 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!-- saved from url=(0092)http://vip2-gd.youshang.com/report/pu-detail-new.jsp?beginDate=2017-11-01&endDate=2017-11-21 -->
 <html>
@@ -60,32 +62,32 @@
 </head>
 <body style="">
 <div class="wrapper">
-<form action="" method="post">
+<form action="/purchaseDetails/login.do" method="post">
     <div class="mod-search cf" id="report-search">
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
-                <li id="date" style="display: list-item;"><label>单据日期:</label>
-                    <input id="hello" class="">
+                <li id="date" style="display: list-item; "><label>单据日期:</label>
+                    <input id="hello" name="startTime" class="">
                     <span class="todate"> 至 </span>
-                    <input id="end" class="">
+                    <input id="end" name="endTime" class="">
                 </li>
-                <li id="supplier" style="display: list-item;"><label>供应商:</label>
+                <li id="supplier" style=""><label>供应商:</label>
                     <span class="mod-choose-input" id="filter-supplier">
-                        <input type="text"  id="supplierAuto" autocomplete="off">
+                        <input type="text" name="supplierName" id="supplierAuto">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
-                <li id="goods" style="display: list-item;">
+                <li  style="float: left">
                     <label>商品:</label>
                     <span class="mod-choose-input" id="filter-goods">
-                        <input type="text"  id="goodsAuto" autocomplete="off">
+                        <input type="text" name="merchandiseName" id="goodsAuto">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
                 <li  style="display: list-item;">
                     <label>订单编号:</label>
                     <span class="mod-choose-input" >
-                        <input type="text"   autocomplete="off">
+                        <input type="text"  name="procurementId" autocomplete="off">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
@@ -113,33 +115,34 @@
                         <tr>
                             <th style="width: 25px;"><input type="checkbox" class="checkAll"></th>
                             <th style="display: none">销货商品id</th>
+                            <th>采购单号</th>
                             <th>商品名称</th>
                             <th>商品单位</th>
-                            <th>商品规格</th>
-                            <th>安全存量</th>
-                            <th>采购在订量</th>
-                            <th>库存余额</th>
-                            <th>建议购数量</th>
-                            <th>建议采购价格</th>
+                            <th>采购日期</th>
+                            <th>采购人</th>
+                            <th>供应商</th>
+                            <th>采购数量</th>
+                            <th>采购价格</th>
+                            <th>采购状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${merchandises}" var="merchand">
+                        <c:forEach items="${procurementInformations}" var="procure">
                             <tr class="eachtr">
                                 <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
-                                <td class="merchandiseId" style="display:none;">${merchand.merchandiseId}</td>
-                                <td class="merchandiseName">${merchand.merchandiseName}</td>
-                                <td class="unitsId" style="display: none">${merchand.unitsId}</td>
-                                <td class="unitsName">${merchand.units.unitsName}</td>
-                                <td style="">${merchand.merchandiseSpecification}</td>
-                                <td class="merchandiseSafetyStock">${merchand.merchandiseSafetyStock}</td>
-                                <td class="prv"><c:forEach items="${procurementInformations}" var="pro">
-                                    <c:if test="${merchand.merchandiseId==pro.merchandiseId}">${pro.piVolume}</c:if>
-                                </c:forEach></td>
-                                <td class="merchandiseActualQuntity">${merchand.merchandiseActualQuntity}</td>
-                                <td class="piVolume"></td>
-                                <td><input style="border: none;height: 30px;text-align: center;background-color: transparent" class="piActualPrice" value="${merchand.merchandiseSalsePrice}"/></td>
+                                <td>${procure.procurementId}</td>
+                                <td >${procure.merchandise.merchandiseName}</td>
+                                <td>${procure.units.unitsName}</td>
+                                <td class=""><fmt:formatDate value="${procure.procurement.procurementDate}" pattern="yyyy-MM-dd"/> </td>
+                                <td style="">${procure.procurement.procurementEmployee.employeeName}</td>
+                                <td class="prv">${procure.procurement.supplier.supplierName}</td>
+                                <td class="merchandiseActualQuntity">${procure.piVolume}</td>
+                                <td class="piVolume">${procure.piActualPrice}</td>
+                                <td><c:if test="${procure.piState==0}">未入库</c:if>
+                                    <c:if test="${procure.piState==1}">已提交</c:if>
+                                    <c:if test="${procure.piState==2}">已入库</c:if>
+                                </td>
                                 <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
                             </tr>
                         </c:forEach>
