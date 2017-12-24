@@ -78,26 +78,26 @@
         update storage_move
         <set>
             <if test="smBuyer !=null and smBuyer!=''">
-                 and sm.sm_buyer =#{smBuyer}
+                  sm_buyer =#{smBuyer}
             </if>
             <if test="salesId!=null and salesId !=''">
-                 and sm.sales_id =#{salesId}
+                  sales_id =#{salesId}
             </if>
             <if test="smDate !=null and smDate !=''">
-                 and sm.sm_date =#{smDate}
+                  sm_date =#{smDate}
             </if>
             <if test="smRemarks !=null and smRemarks!=''">
-                 and sm.sm_remarks=#{smRemarks}
+                  sm_remarks=#{smRemarks}
             </if>
             <if test="smUserId !=null and smUserId!=''">
-                 and sm.sm_user_id =#{smUserId}
+                  sm_user_id =#{smUserId}
             </if>
             <if test="smState !=null and smState!=''">
-                 and sm.sm_state =#{smState}
+                  sm_state =#{smState}
             </if>
         </set>
         <where>
-            sm.sm_id=#{smId}
+            sm_id=#{smId}
         </where>
     </update>
 

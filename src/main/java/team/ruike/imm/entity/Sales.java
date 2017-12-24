@@ -1,4 +1,5 @@
 package team.ruike.imm.entity;
+import org.jeecgframework.poi.excel.annotation.Excel;
 import org.springframework.format.annotation.DateTimeFormat;
 import team.ruike.imm.utility.PagerParameter;
 
@@ -15,6 +16,7 @@ public class Sales extends PagerParameter implements Serializable{
     /**
      *  订单编号
      */
+    @Excel(name = "订单编号" , needMerge = true)
     private String salesId;
     /**
      *  销售日期

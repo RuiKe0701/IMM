@@ -203,51 +203,14 @@
 </body>
 <script>
     //获取删除的信息
-    function deletewarehousing(val) {
+    function deletestorageMove(val) {
         $.ajax({
             type: "post",
-            url: "/stoagemove/storageMoveId.do?storageMoveId="+val,
+            url: "/stoagemove/storageMoveId.do?smId="+val,
             dataType: "json",
             success: function (item) {
                 if(item!=0){
-                    $("#as").html("是否删除出库单号为：【"+item.salesd+"】的数据？");
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
-
-            var merchandiseId=val;
-            $.ajax({
-                type: "post",
-                url: "/merchandise/deleteMerchandise.do?merchandiseId="+storageMoveId,
-                dataType: "json",
-                success: function (data) {
-                    if(data!=0){
-                       $.each(data,function (i,time) {
-                           $("#"+time.storageMoveId).remove();
-                       })
-                        alert("商品信息删除成功")
-                        window.location.reload();
-                    }else {
-                        alert("商品信息删除失败")
-                    }
-                },
-                error: function () {
-                    alert("系统异常，请稍后重试！");
-                }
-            })
-    }
-    //获取删除的信息
-    function deletewarehousing(val) {
-        $.ajax({
-            type: "post",
-            url: "/warehousing/warehousingId.do?warehousingId="+val,
-            dataType: "json",
-            success: function (item) {
-                if(item!=0){
-                    $("#as").html("是否删除入库单号为：【"+item.procurementId+"】的数据？");
+                    $("#as").html("是否删除出库单号为：【"+item.salesId+"】的数据？");
                 }
             },
             error: function () {
@@ -256,14 +219,14 @@
         })
         //删除商品信息
         $("#deletes").click(function () {
-            var warehousingId=val;
+            var smId=val;
             $.ajax({
                 type: "post",
-                url: "/warehousing/deleteWarehousing.do?warehousingId="+warehousingId,
+                url: "/stoagemove/deletestorageMove.do?smId="+smId,
                 dataType: "json",
                 success: function (data) {
                     alert("商品信息删除成功")
-                    window.location.href="/warehousing/warehousing.do";
+                    window.location.href="/storageMove/sstoagemove.do";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
