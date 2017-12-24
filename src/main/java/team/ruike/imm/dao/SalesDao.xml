@@ -11,6 +11,7 @@
         <result column="event_details_id" property="eventDetailsId"/>
         <result column="sales_activities" property="salesActivities"/>
         <result column="sales_state" property="salesState"/>
+        <result column="merchandise_id" property="merchandiseId"/>
 
 
         <collection property="salesInformations" ofType="salesInformation">
@@ -74,28 +75,31 @@
         <where>
             s.client_id=c.client_id and s.employee_id=e.employee_id and s.sales_id = s_i.sales_id
             <if test="salesId!=null and salesId>0">
-                   and sales_id=#{salesId}
+                   and s.sales_id=#{salesId}
             </if>
             <if test="salesDate !=null and salesDate!=''">
-                   and sales_date=#{salesDate}
+                   and s.sales_date=#{salesDate}
             </if>
             <if test="clientId !=null and clientId>0">
-                   and client_id =#{clientId}
+                   and s.client_id =#{clientId}
             </if>
             <if test="employeeId!=null and employeeId>0">
-                 and employee_id =#{employeeId}
+                 and s.employee_id =#{employeeId}
             </if>
             <if test="salesAccomplish!=null and salesAccomplish>0">
-                 and sales_accomplish =#{salesAccomplish}
+                 and s.sales_accomplish =#{salesAccomplish}
             </if>
             <if test="eventDetailsId!=null and eventDetailsId>=0">
-                and event_details_id =#{eventDetailsId}
+                and s.event_details_id =#{eventDetailsId}
             </if>
             <if test="salesActivities!=null and salesActivities>=0">
-                and sales_activities=#{salesActivities}
+                and s.sales_activities=#{salesActivities}
             </if>
             <if test="salesState !=null">
-                and sales_state=#{salesState}
+                and s.sales_state=#{salesState}
+            </if>
+            <if test="merchandiseId !=null and merchandiseId>0">
+                and s_i.merchandise_id=#{merchandiseId}
             </if>
         </where>
         <if test="currentPage!=null and pageSize!=null">
