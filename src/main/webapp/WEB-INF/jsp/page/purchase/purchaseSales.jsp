@@ -6,14 +6,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/select/dist/css/bootstrap-select.css">
+    <link href="${request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
     <script src="${request.contextPath }/js/jquery.dialog.js"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/paging.css">
+    <script src="${pageContext.request.contextPath }/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/paging.js"></script>
     <style>
         th{
             text-align: center;
@@ -39,9 +43,9 @@
             //全选
             $("#checkAll").click(function () {
                 if(this.checked){
-                    $("[type='checkbox']").prop("checked", true);
+                    $(".ck").prop("checked", true);
                 }else{
-                    $("[type='checkbox']").prop("checked", false);
+                    $(".ck").prop("checked", false);
                 }
             });
             $("#toPo").click(function () {
@@ -95,26 +99,21 @@
 <body style="">
 
 <div class="bill-ser-top">
-    <form action="/saleInformation/selectAllSaleInformation.do" method="post">
+    <form action="/purchases/showPurchaseSales.do" method="post">
     <div style="height: 30px;"></div>
     <ul class="ul-inline cf">
-        <li style="float: left;width: 130px">
-
-            <select  class="selectpicker show-tick form-control" style="width:130px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true" id="merchandiseId" name="merchandiseId">
-              <option value="0">请选择药品</option>
-              <c:forEach items="${merchands}" var="mercha">
-                  <option value="${mercha.merchandiseId}">${mercha.merchandiseName}</option>
-              </c:forEach>
-            </select>
+        <li >
+            <label>&nbsp;&nbsp;&nbsp;商品名称:</label>
+            <input type="text"  name="merchandiseName"/>
         </li>
-        <li style="float: left">
+        <li >
             <label>&nbsp;&nbsp;&nbsp;交货日期:</label>
             <input id="hello"  name="startTime">
             <i>-</i>
             <input id="end" class="" name="endTime">
         </li>
-        <li style="float: left">
-            <input type="radio" id="check" name="siState" value="1" checked="checked" onclick="this.value=this.checked?1:0"><label> 已采购完订单不显示</label>
+        <li >
+            <input type="checkbox" id="check" name="siState" value="1"  onclick="this.value=this.checked?1:0"><label> 已采购完订单不显示</label>
             <input type="submit" class="ui-btn ui-btn-search" href="" id="search" value="查询"/>
         </li>
     </ul>
@@ -122,18 +121,16 @@
     </form>
 </div>
 <div class="wrapper btc">
-    <div style="height: 50px;"></div>
     <div class="bill-ser-botm">
         <div class="cf">
-
             <div class="fr" style="position: absolute;top: 70px;right: 60px">
                 <button class="btn btn-info" id="toPo"><span style="color: white">生成购货订单</span></button>
+                <a href="/purchases/excel.do" class="btn btn-default" id="export">导出</a>
             </div>
         </div>
     </div>
     <div>
         <table class="table table-bordered" style="width: 1250px">
-
             <thead>
             <tr>
                 <th style="width: 25px;"><input type="checkbox" id="checkAll"></th>
@@ -161,8 +158,8 @@
                     <td class="salesId">${salesInfo.salesId}</td>
                     <td class="salesDate"><fmt:formatDate value="${salesInfo.sales.salesDate}" pattern="yyyy-MM-dd"/> </td>
                     <td>${salesInfo.siVolume}</td>
-                    <td><input class="piVolume" type="text" style="border: none;height: 30px;text-align: center"></td>
-                    <td><input class="piActualPrice" type="text" style="border: none;height: 30px;text-align: center"></td>
+                    <td><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piVolume" type="text" style="border: none;height: 30px;text-align: center"></td>
+                    <td><input  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="piActualPrice" type="text" style="border: none;height: 30px;text-align: center"></td>
                     <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
                 </tr>
             </c:forEach>
@@ -171,6 +168,29 @@
 
 
         </table>
+        <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
+            <ul class="pagination" >
+                <li><a href="?start=0">首页</a></li>
+                <%--<c:if test="${pages.currentPage >1}">--%>
+                <li><a href="">&laquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage ==1}">--%>
+                <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                <%--</c:if>--%>
+                <c:forEach begin="1" end="${len}" varStatus="status">
+                    <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                </c:forEach>
+                <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
+                <li><a href="">&raquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
+                <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
+                <%--</c:if>--%>
+                <li><a href="?start=${page.last}">末页</a></li>
+                <li><a >共有${totalPage}条数据</a></li>
+                <li><a>共有${len}页</a></li>
+            </ul>
+        </div>
 
     </div>
 </div>

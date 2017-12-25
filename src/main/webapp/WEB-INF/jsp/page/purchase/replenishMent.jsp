@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
 
     <link href="${request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <link href="${request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
@@ -86,10 +86,9 @@
             <span class="ui-tree-wrap" style="width:145px">
                 <select name="productTypeId" style="height: 30px;width:145px">
                     <option value="0">请选择</option>
-                    <c:forEach items="${productTypeLists}" var="product">
-                        <option value="${product.productTypeId}">${product.productTypeName}</option>
-                    </c:forEach>
-
+                            <c:forEach items="${productTypeLists}" var="product">
+                                 <option  value="${product.productTypeId}">${product.productTypeName}</option>
+                             </c:forEach>
                 </select>
                 <span class="trigger"></span>
             </span>
@@ -101,6 +100,8 @@
           <i class="ui-icon-ellipsis"></i>
         </span>
         </li>
+
+
         <li><input type="submit" class="mrb ui-btn ui-btn-search" id="search" value="查询"></li>
     </ul>
 </div>
@@ -158,16 +159,24 @@
         </table>
         <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
             <ul class="pagination" >
-                <li><a href="?start=0">首页</a></li>
+                <li><a href="?start=0&productTypeId=${merchandise.productTypeId}">首页</a></li>
+                <%--<c:if test="${pages.currentPage >1}">--%>
                     <li><a href="">&laquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage ==1}">--%>
                     <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                <%--</c:if>--%>
                 <c:forEach begin="1" end="${len}" varStatus="status">
-                    <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                    <li><a href="?start=${page.start=status.index}&productTypeId=${merchandise.productTypeId}">${status.index}</a></li>
                 </c:forEach>
+                <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
                     <li><a href="">&raquo;</a></li>
+                <%--</c:if>--%>
+                <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
-                <li><a href="?start=${page.last}">末页</a></li>
-                <li><a >共有${totalPage}条数据</a></li>f
+                <%--</c:if>--%>
+                <li><a href="?start=${page.last}&productTypeId=${merchandise.productTypeId}">末页</a></li>
+                <li><a >共有${totalPage}条数据</a></li>
                 <li><a>共有${len}页</a></li>
             </ul>
         </div>

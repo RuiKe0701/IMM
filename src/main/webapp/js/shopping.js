@@ -46,15 +46,20 @@ $(function () {
         $("#showiframe").css("display","block");
     });
     $("#purchase5").click(function () {
+        $("#iff").attr("src","/purchaseDetails/login.do");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
         $("#ons").css("display","none");
         $("#showiframe").css("display","block");
-        document.getElementById("iff").src="page/purchase/purchaseDetails.html";
     });
     $("#purchase6").click(function () {
-        document.getElementById("iff").src="page/purchase/procurementSummary.html";
+        $("#iff").attr("src","/procurementSummary/login.do");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
     });
     $("#purchase7").click(function () {
         document.getElementById("iff").src="page/purchase/purchasePayment.html";

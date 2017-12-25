@@ -29,4 +29,12 @@ public interface SalesService {
     public int insertSalesForPu(Sales sales);
 
     String salesId();
+
+
+    /**
+     * 按指定条件查询销售订单-郭旭-勿动
+     * @param sales
+     * @return
+     */
+    List<Sales> selectSalesForThis(Sales sales);
 }

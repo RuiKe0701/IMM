@@ -54,4 +54,8 @@ public class SalesServiceImpl implements SalesService{
     }
 
     public int insertSalesForPu(Sales sales) { return salesDao.insertSalesForPu(sales); }
+
+    public List<Sales> selectSalesForThis(Sales sales) {
+        return salesDao.selectSalesForThis(sales);
+    }
 }

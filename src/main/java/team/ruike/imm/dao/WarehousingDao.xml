@@ -45,7 +45,7 @@
         <where>
             <!--w.warehousing_buyer=u.user_id and-->
             w.procurement_id=p.procurement_id and w.warehousing_buyer=e.employee_id and u.user_id=w.warehousing_user_id
-             and w.warehousing_state=0
+            and w.warehousing_state=0
             <if test="warehousingId!=null and warehousingId>0">
                 and w.warehousing_id=#{warehousingId}
             </if>

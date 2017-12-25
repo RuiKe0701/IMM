@@ -2,6 +2,7 @@ package team.ruike.imm.entity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecgframework.poi.excel.annotation.ExcelEntity;
 import org.jeecgframework.poi.excel.annotation.ExcelTarget;
 import team.ruike.imm.utility.PagerParameter;
 
@@ -88,6 +89,7 @@ public class Merchandise extends PagerParameter implements Serializable{
     /**
      * 商品单位信息
      */
+    @ExcelEntity(name = "商品单位信息")
     private Units units;
     /**
      * 商品类型

@@ -1,78 +1,35 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2017/12/25
+  Time: 16:44
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!-- saved from url=(0093)http://vip2-gd.youshang.com/report/pu-summary-new.jsp?beginDate=2017-11-01&endDate=2017-11-21 -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
 
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="../../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../../css/print.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/need/laydate.css">
-    <link type="text/css" rel="stylesheet"
-          href="../../js/plugins/layer/laydate/skins/default/laydate.css"
-          id="LayDateSkin">
-    <link href="../../css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="../../js/vds.js"></script>
-    <script src="../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../js/json3.min.js"></script>
-    <script src="../../js/vue.js"></script>
-    <script src="../../js/shopping.js"></script>
-    <script src="../../js/common.js"></script>
-    <script src="../../js/grid.js"></script>
-    <script src="../../js/plugins.js"></script>
-    <script src="../../js/jquery.dialog.js"></script>
-    <script type="text/javascript">
-        var _vds = _vds || [];
-        window._vds = _vds;
-        (function () {
-            _vds.push(['setAccountId', '9bc3c61326fa7ba9']);
-            (function () {
-                var vds = document.createElement('script');
-                vds.type = 'text/javascript';
-                vds.async = true;
-                vds.src = 'https://dn-growing.qbox.me/vds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(vds, s);
-            })();
-        })();
-    </script>
-
-    <script type="text/javascript">
-        var DOMAIN = document.domain;
-        var WDURL = "";
-        var SCHEME = "blue";
-        try {
-            var host = window.location.host;
-            var domainDot = host.indexOf('.');
-            var domain = host.substring(domainDot + 1, host.length);
-            document.domain = domain;
-        } catch (e) {
-        }
-        //ctrl+F5 增加版本号来清空iframe的缓存的
-        $(document).keydown(function (event) {
-            /* Act on the event */
-            if (event.keyCode === 116 && event.ctrlKey) {
-                var defaultPage = Public.getDefaultPage();
-                var href = defaultPage.location.href.split('?')[0] + '?';
-                var params = Public.urlParam();
-                params['version'] = Date.parse((new Date()));
-                for (i in params) {
-                    if (i && typeof i != 'function') {
-                        href += i + '=' + params[i] + '&';
-                    }
-                }
-                defaultPage.location.href = href;
-                event.preventDefault();
-            }
-        });
-    </script>
-
-    <link rel="stylesheet" href="../../css/report.css">
+    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
+    <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
+    <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common.js"></script>
+    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
+    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/report.css">
     <style>
         .ui-icon-ellipsis {
             right: 5px;
@@ -83,7 +40,7 @@
         }
 
         .no-query {
-            background: url("../../img/no_query.png") no-repeat scroll 100px 60px #fff;
+            background: url("${pageContext.request.contextPath }/img/no_query.png") no-repeat scroll 100px 60px #fff;
             background-position: center;
             border: 1px solid #ddd;
             border-top: none;
@@ -99,12 +56,10 @@
     <div class="mod-search cf" id="report-search">
         <div class="l" id="filter-menu">
             <ul class="ul-inline fix" id="filterItems">
-
                 <li id="date" style="display: list-item;"><label>单据日期:</label>
-                    <input id="hello" class="">
+                    <input id="hello" name="startTime" class="">
                     <span class="todate"> 至 </span>
-                    <input id="end" class="">
-
+                    <input id="end" name="endTime" class="">
                 <li id="goods" style="display: list-item;"><label>商品:</label>
                     <span class="mod-choose-input" id="filter-goods">
                         <input type="text" class="ui-input" id="goodsAuto" autocomplete="off">
@@ -115,29 +70,16 @@
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
-
                 <li id="filter"><label>供应商类别</label><span id="catorage"></span></li>
-                <li id="goodsfilter" style="display: list-item;">
-                    <label>商品类别:</label>
-                    <span class="ui-tree-wrap" style="width:145px">
-                        <input type="text" class="input-txt" style="width:119px" id="filterCat" autocomplete="off" placeholder="类别" value="">
-                        <span class="trigger"></span>
-                    </span>
-                </li>
                 <div class="btns"><a class="ui-btn mrb ui-btn-search" id="filter-submit">查询</a></div>
             </ul>
         </div>
     </div>
-    <!-- no data -->
-    <div class="no-query"></div>
-    <!-- grid begin -->
-    <div class="ui-print" style="display: none;">
+
+    <div class="ui-print" >
         <!-- 列配置 -->
         <div class="cf box-flex">
             <div class="flex">
-                <span id="config" class="ui-config"><a
-                        href="http://vip2-gd.youshang.com/report/pu-summary-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                        class="ui-icon-config-new"></a>列设置</span>
             </div>
             <div class="grid-title flex">采购汇总表</div>
             <div class="fr">
@@ -487,10 +429,10 @@
         </tbody>
     </table>
 </div>
-<script src="../../js/jquery.min.js?v=2.1.4"></script>
-<script src="../../js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../../js/content.min.js?v=1.0.0"></script>
-<script src="../../js/plugins/layer/laydate/laydate.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>
+<script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

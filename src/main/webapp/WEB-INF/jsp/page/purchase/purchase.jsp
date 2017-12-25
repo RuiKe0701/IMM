@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
@@ -116,6 +116,29 @@
                 }
 
             })
+            $("#daochu").click(function () {
+                var procurementInformation=new  Array();
+                var purchase=null;
+                $(".trParam").each(function (index,date) {
+                    var purchaseOrderId=$(date).find(".purchaseOrderId").val();
+                    var merchandiseId=$(date).find(".merchandiseId").val();
+                    var unitsId=$(date).find(".unitsId").val();
+                    var poiVolume=$(date).find(".poiVolume").val();
+                    var poiActualPrice=$(date).find(".poiActualPrice").val();
+                    var poiTotalPrice=$(date).find(".poiTotalPrice").val();
+                    var poiRemarks=$(date).find(".poiRemarks").val();
+                    var obj=new Object();
+                    obj.purchaseOrderId=purchaseOrderId;obj.merchandiseId=merchandiseId;
+                    obj.unitsId=unitsId;obj.poiVolume=poiVolume;
+                    obj.poiActualPrice=poiActualPrice;obj.poiTotalPrice=poiTotalPrice;
+                    obj.poiRemarks=poiRemarks;
+                    procurementInformation.push(obj);
+                    purchase=JSON.stringify(procurementInformation);
+                });
+                alert("暂未实现");
+               // var a=purchase;
+               // window.location.href="/purchases/purchasesExcel.do?a="+a;
+            })
         })
     </script>
     <style>
@@ -195,7 +218,7 @@
                             <table class="table table-bordered" >
                                 <caption>
                                     <button id="btnline" type="button" class="btn btn-primary ">添加行</button>
-                                    <button  id="daochu" style="float: right">导出</button>
+                                    <input  id="daochu" class="btn btn-default  btn-sm" style="float: right;width: 60px" value="导出"/>
                                 </caption>
                                 <thead>
                                 <tr style="text-align: center">

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">

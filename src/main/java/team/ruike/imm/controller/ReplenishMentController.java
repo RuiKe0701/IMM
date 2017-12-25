@@ -24,6 +24,7 @@ import team.ruike.imm.utility.Page;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,13 +62,12 @@ public class ReplenishMentController {
        List<ProcurementInformation> procurementInformations=procurementInformationService.selectReplenish();
         model.addAttribute("productTypeLists",productTypeLists);
         model.addAttribute("merchandises",merchandises);
+        model.addAttribute("merchandise",merchandise);
         model.addAttribute("len",len);
         model.addAttribute("totalPage",total);
         model.addAttribute("procurementInformations",procurementInformations);
         return "page/purchase/replenishMent";
     }
-
-
 
     @RequestMapping(value = "generateOrders.do")
     @ResponseBody
@@ -83,8 +83,9 @@ public class ReplenishMentController {
     public  String excel(ModelMap map){
         List<Merchandise> merchandises=merchandiseService.selectRelenish(null);
         map.put(NormalExcelConstants.CLASS, Merchandise.class);
-        map.put(NormalExcelConstants.FILE_NAME, "用户导出测试");
-        ExportParams ep = new ExportParams("历史总包滚存分析1", "历史总包滚存分析2");
+        map.put(NormalExcelConstants.FILE_NAME, "智能补货");
+        Date now = new Date();
+        ExportParams ep = new ExportParams("智能补货单","创建时间" + now.toLocaleString(), "智能补货");
         map.put(NormalExcelConstants.PARAMS, ep);
         map.put(NormalExcelConstants.DATA_LIST, merchandises);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;

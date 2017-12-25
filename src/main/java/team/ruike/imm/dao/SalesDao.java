@@ -46,4 +46,13 @@ public interface SalesDao {
 
 
 
+    /**
+     * 指定条件查询销售订单-Guoxu-勿动
+     * @param sales 销售订单
+     * @return
+     */
+    public List<Sales> selectSalesForThis(Sales sales);
+
+
+
 }

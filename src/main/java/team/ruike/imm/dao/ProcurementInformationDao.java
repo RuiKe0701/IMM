@@ -18,7 +18,8 @@ public interface ProcurementInformationDao {
       void insertAll(List<ProcurementInformation> procurementInformations);
      //查询采购订单还未入库的订单
       List<ProcurementInformation> selectReplenish();
-
+    //查询所有购货订单和购货详情订单
+    List<ProcurementInformation> selectAllProcureMent(ProcurementInformation procurementInformation);
     /**
      * 指定条件修改采购订单详情
      * @param procurementInformation 采购订单详情
@@ -37,4 +38,6 @@ public interface ProcurementInformationDao {
      * @return
      */
     public List<ProcurementInformation> PagerProcurementInformation(ProcurementInformation procurementInformation);
+    //批量修改购货详情订单
+    int generateUpdateProcurementInfo(List<ProcurementInformation> information);
 }
