@@ -39,7 +39,7 @@
     </select>
     <!--查询所有购货订单和详情订单-->
     <select id="selectAllProcureMent" resultMap="procurementInformationMap">
-        SELECT pri.*,mer.merchandise_name,unit.units_name,emp.employee_name,pr.procurement_date,su.supplier_name FROM procurement_information pri
+        SELECT pri.*,pr.procurement_state,mer.merchandise_name,unit.units_name,emp.employee_name,pr.procurement_date,su.supplier_name FROM procurement_information pri
         INNER JOIN procurement pr ON pri.procurement_id=pr.procurement_id
         INNER JOIN employee emp ON emp.employee_id=pr.procurement_employee_id
         INNER JOIN merchandise mer ON pri.merchandise_id=mer.merchandise_id
@@ -54,6 +54,9 @@
             </if>
             <if test="procurementId!=null and procurementId!=''">
                 and pri.procurement_id=#{procurementId}
+            </if>
+            <if test="piState!=null and piState>=0">
+                and pr.procurement_state=#{piState}
             </if>
         </where>
     </select>
@@ -134,6 +137,12 @@
         <foreach collection="list" item="procurementInformations" index="index" separator="," >
             (#{procurementInformations.procurementId},#{procurementInformations.merchandiseId},#{procurementInformations.piActualPrice},#{procurementInformations.piVolume},#{procurementInformations.unitsId},0,#{procurementInformations.piTotalPrice},#{procurementInformations.piRemarks})
         </foreach>
-
     </insert>
+    <!--批量修改购货详情订单-->
+    <update id="generateUpdateProcurementInfo">
+        UPDATE procurement_information SET pi_state=1 WHERE procurement_id in
+        <foreach collection="list" item="information" index="index" open="(" separator="," close=")" >
+            #{information.procurementId}
+        </foreach>
+    </update>
 </mapper>

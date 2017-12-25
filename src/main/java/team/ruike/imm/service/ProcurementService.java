@@ -28,4 +28,5 @@ public interface ProcurementService {
      */
     public int insertProcurement(Procurement procurement);
     String purchaseId(String param);
+    int generateUpdateProcurement(List<Procurement> procurements);
 }

@@ -33,4 +33,6 @@ public interface ProcurementInformationService {
     List<ProcurementInformation> selectReplenish();
     //查询所有购货订单和购货详情订单
     List<ProcurementInformation>  selectAllProcureMent(ProcurementInformation procurementInformation);
+    //批量修改购货订单
+    int generateUpdateProcurementInfo(List<ProcurementInformation> information);
 }
