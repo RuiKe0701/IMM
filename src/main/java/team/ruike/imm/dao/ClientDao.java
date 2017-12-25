@@ -1,5 +1,6 @@
 package team.ruike.imm.dao;
 import team.ruike.imm.entity.Client;
+import team.ruike.imm.entity.Employee;
 import team.ruike.imm.entity.User;
 
 import java.util.List;
@@ -8,32 +9,31 @@ import java.util.List;
  * @version 1.0
  */
 public interface ClientDao {
+    int count(Client client);
     /**
      * 指定条件查询客户信息
      * @param client 客户信息
      * @return
      */
-    public List<Client> selecrClient(Client client);
+     List<Client> selecrClient(Client client);
     /**
      * 分页
      * @return
      */
-    public List<Client> pages(Client client);
+     List<Client> pages(Client client);
     /**
      * 指定条件修改客户信息
      * @param client
      * @return
      */
-    public int updateClient(Client client);
+     int updateClient(Client client);
 
     /**
      * 添加客户信息
      * @param client
      * @return
      */
-    public int insertClient(Client client);
-
-
-    public int noncooperation(List<Client> client);
-    public int cooperative(List<Client> client);
+     int insertClient(Client client);
+     int noncooperation(List<Client> client);
+     int cooperative(List<Client> client);
 }

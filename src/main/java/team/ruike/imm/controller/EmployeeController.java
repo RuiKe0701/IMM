@@ -12,6 +12,7 @@ import team.ruike.imm.service.PositionService;
 import team.ruike.imm.utility.Pages;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +25,20 @@ public class EmployeeController {
     EmployeeService employeeService;
     @Autowired
     PositionService positionService;
-    //展示合作客户数据
+
+    //展示在职员工数据
     @RequestMapping(value="/cooperative.do")
-    public  String cooperative(HttpServletRequest request,Integer currentPage,Employee employee){
+    public  String cooperative(HttpServletRequest request, HttpSession session, Integer currentPage, Employee employee){
         employee.setEmployeeState(0);
+            session.setAttribute("name",employee.getEmployeeName());
         if (currentPage==null ){
             employee.setCurrentPage(1);
             currentPage=1;
         }else {
             employee.setCurrentPage(currentPage);
         }
-        List<Employee> employees=employeeService.pagerEmployee(employee);
-        request.setAttribute("cooperative",employees);
+        List<Employee> e=employeeService.pagerEmployee(employee);
+        request.setAttribute("cooperative",e);
         Pages<Employee> pages=employeeService.getPager(employee,currentPage);
         request.setAttribute("pages",pages);
         List<Position> positions=positionService.selectPosition(null);
@@ -46,15 +49,16 @@ public class EmployeeController {
     }
 
     /**
-     * 展示不合作的客户
+     * 展示不在职员工的数据
      * @param request
      * @param currentPage
      * @param employee
      * @return
      */
     @RequestMapping(value="/noncooperation.do")
-    public  String noncooperation(HttpServletRequest request,Integer currentPage,Employee employee){
+    public  String noncooperation(HttpServletRequest request, HttpSession session,Integer currentPage,Employee employee){
         employee.setEmployeeState(1);
+
         if (currentPage==null ){
             employee.setCurrentPage(1);
             currentPage=1;
@@ -64,11 +68,12 @@ public class EmployeeController {
         List<Employee> employees=employeeService.pagerEmployee(employee);
         request.setAttribute("noncooperation",employees);
         Pages<Employee> pages=employeeService.getPager(employee,currentPage);
-        request.setAttribute("pp",pages);
+        request.setAttribute("pages",pages);
         List<Position> positions=positionService.selectPosition(null);
         request.setAttribute("positions",positions);
         int i=1;
         request.setAttribute("i",i);
+        session.setAttribute("nonname",employee.getEmployeeName());
         return "page/material/staff-list-4";
     }
 

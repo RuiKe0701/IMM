@@ -153,32 +153,33 @@
                                 </td>
                             </tr>
                         </c:forEach>
-                        <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
-                            <ul class="pagination" >
-                                <li><a href="/supplier/cooperative.do?currentPage=1">首页</a></li>
-                                <c:if test="${pages.currentPage >1}">
-                                    <li><a href="/supplier/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage ==1}">
-                                    <li style="display: none"><a href="/supplier/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pages.pageBar}">
-                                    <li><a href="/supplier/cooperative.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pages.currentPage<pages.totalPage}">
-                                    <li><a href="/supplier/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage==pages.totalPage}">
-                                    <li style="display: none"><a href="/supplier/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/supplier/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pages.totalRecord}条数据</a></li>
-                                <li><a>共有${pages.totalPage}页</a></li>
-                            </ul>
-                        </div>
                         </tbody>
                     </table>
+                    <div class="ads" id="dsa" style="position: absolute;left: 800px;top: 340px">
+                        <ul class="pagination" >
+                            <li><a href="/supplier/cooperative.do?currentPage=1">首页</a></li>
+                            <c:if test="${pages.currentPage >1}">
+                                <li><a href="/supplier/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
+                            </c:if>
+                            <c:if test="${pages.currentPage ==1}">
+                                <li style="display: none"><a href="/supplier/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
+                            </c:if>
+                            <c:forEach var="a" items="${pages.pageBar}">
+                                <li><a href="/supplier/cooperative.do?currentPage=${a}">${a}</a></li>
+                            </c:forEach>
+                            <c:if test="${pages.currentPage<pages.totalPage}">
+                                <li><a href="/supplier/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
+                            </c:if>
+                            <c:if test="${pages.currentPage==pages.totalPage}">
+                                <li style="display: none"><a href="/supplier/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
+                            </c:if>
+                            <li><a href="/supplier/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
+                            <br>
+                            <li><a >共有${pages.totalRecord}条数据</a></li>
+                            <li><a>共有${pages.totalPage}页</a></li>
+                        </ul>
+                    </div>
+
                 </form>
             </c:if>
             <c:if test="${i==1}">
@@ -225,32 +226,33 @@
                                 </c:if>
                             </tr>
                         </c:forEach>
-                        <div  style="position: absolute;left: 75%;top: 150%">
-                            <ul class="pagination" >
-                                <li><a href="/supplier/noncooperation.do?currentPage=1">首页</a></li>
-                                <c:if test="${pp.currentPage >1}">
-                                    <li><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage ==1}">
-                                    <li style="display: none"><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;${pp.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pp.pageBar}">
-                                    <li><a href="/supplier/noncooperation.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pp.currentPage<pp.totalPage}">
-                                    <li><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage==pp.totalPage}">
-                                    <li style="display: none"><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;${pp.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/supplier/noncooperation.do?currentPage=${pp.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pp.totalRecord}条数据</a></li>
-                                <li><a>共有${pp.totalPage}页</a></li>
-                            </ul>
-                        </div>
-                        </tbody>
+                         </tbody>
                     </table>
+                    <div  style="position: absolute;left: 800px;top: 340px">
+                        <ul class="pagination" >
+                            <li><a href="/supplier/noncooperation.do?currentPage=1">首页</a></li>
+                            <c:if test="${pp.currentPage >1}">
+                                <li><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;</a></li>
+                            </c:if>
+                            <c:if test="${pp.currentPage ==1}">
+                                <li style="display: none"><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;${pp.currentPage-1}</a></li>
+                            </c:if>
+                            <c:forEach var="a" items="${pp.pageBar}">
+                                <li><a href="/supplier/noncooperation.do?currentPage=${a}">${a}</a></li>
+                            </c:forEach>
+                            <c:if test="${pp.currentPage<pp.totalPage}">
+                                <li><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;</a></li>
+                            </c:if>
+                            <c:if test="${pp.currentPage==pp.totalPage}">
+                                <li style="display: none"><a href="/supplier/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;${pp.currentPage+1}</a></li>
+                            </c:if>
+                            <li><a href="/supplier/noncooperation.do?currentPage=${pp.totalPage}">末页</a></li>
+                            <br>
+                            <li><a >共有${pp.totalRecord}条数据</a></li>
+                            <li><a>共有${pp.totalPage}页</a></li>
+                        </ul>
+                    </div>
+
                 </form>
             </c:if>
         </div>
