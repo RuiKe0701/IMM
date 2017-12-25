@@ -37,9 +37,6 @@ public class DetailsController {
 
     @RequestMapping("/logindetailOrders.do")
     public String logindetailOrders(Model model, Sales sales,Page page){
-        System.out.println("getClientId"+sales.getClientId());
-        System.out.println("EmployeeId"+sales.getEmployeeId());
-        System.out.println("MerchandiseId"+sales.getMerchandiseId());
 
         int startPage=page.getStart();
         if(startPage==0){
@@ -49,7 +46,8 @@ public class DetailsController {
         }
         PageHelper.offsetPage(startPage,5);
 
-        List<Sales> salesList = salesService.selectSales(sales);
+
+        List<Sales> salesList = salesService.selectSalesForThis(sales);
         for (Sales sales1 : salesList) {
             System.out.println(sales1.getSalesAccomplish());
         }
@@ -61,6 +59,8 @@ public class DetailsController {
             len=total/5;
         }
         page.caculateLast(total);
+
+
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);

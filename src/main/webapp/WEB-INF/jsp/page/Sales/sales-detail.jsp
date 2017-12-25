@@ -118,14 +118,14 @@
                     </dd>
 
 
-                    <dd class="mr20 tc">
-                        <label>单据日期:</label>
-                        <input id="hello" name="salesDateHello" class="">
-                    </dd>
-                    <dd class="mr20 tc">
-                        <label>至:</label>
-                        <input id="end" name="salesDateEnd" class="">
-                    </dd>
+                    <%--<dd class="mr20 tc">--%>
+                        <%--<label>单据日期:</label>--%>
+                        <%--<input id="hello" name="salesDateHello" class="">--%>
+                    <%--</dd>--%>
+                    <%--<dd class="mr20 tc">--%>
+                        <%--<label>至:</label>--%>
+                        <%--<input id="end" name="salesDateEnd" class="">--%>
+                    <%--</dd>--%>
 
                     <button type="submit" class="btn btn-info">查找</button>
                 </dl>
@@ -183,7 +183,7 @@
 
             <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
                 <ul class="pagination" >
-                    <li><a href="?start=0">首页</a></li>
+                    <li><a href="?start=0&clientId=${sales.clientId}&employeeId=${sales.employeeId}&merchandiseId=${sales.merchandiseId}">首页</a></li>
                     <%--<c:if test="${pages.currentPage >1}">--%>
                     <li><a href="">&laquo;</a></li>
                     <%--</c:if>--%>
@@ -191,7 +191,7 @@
                     <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
                     <%--</c:if>--%>
                     <c:forEach begin="1" end="${len}" varStatus="status">
-                        <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                        <li><a href="?start=${page.start=status.index}&clientId=${sales.clientId}&employeeId=${sales.employeeId}&merchandiseId=${sales.merchandiseId}">${status.index}</a></li>
                     </c:forEach>
                     <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
                     <li><a href="">&raquo;</a></li>
@@ -199,7 +199,7 @@
                     <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
                     <%--</c:if>--%>
-                    <li><a href="?start=${page.last}">末页</a></li>
+                    <li><a href="?start=${page.last}&clientId=${sales.clientId}&employeeId=${sales.employeeId}&merchandiseId=${sales.merchandiseId}">末页</a></li>
                     <li><a >共有${totalPage}条数据</a></li>f
                     <li><a>共有${len}页</a></li>
                 </ul>
