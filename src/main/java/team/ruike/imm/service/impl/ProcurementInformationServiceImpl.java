@@ -45,4 +45,7 @@ public class ProcurementInformationServiceImpl implements ProcurementInformation
     public List<ProcurementInformation> selectReplenish() {
         return procurementInformationDao.selectReplenish();
     }
+    public int generateUpdateProcurementInfo(List<ProcurementInformation> information) {
+        return procurementInformationDao.generateUpdateProcurementInfo(information);
+    }
 }

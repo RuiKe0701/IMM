@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -80,7 +80,7 @@
                                         <li class="" id="purchase5"><a href="#"> <span>采购明细表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
-                                        <li class="" ><a href="#"> <span>采购汇总表<span
+                                        <li class="" id="purchase6"><a href="#"> <span>采购汇总表<span
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 

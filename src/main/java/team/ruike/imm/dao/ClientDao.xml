@@ -52,13 +52,40 @@
         </where>
     </select>
 
-
+    <select id="count" resultType="int"  parameterType="employee">
+        select count(*) from client
+        <where>
+            <if test="clientName!=null and  clientName!=''">
+                concat(client_person_in_charge,
+                '!,(%!)#',client_name,
+                '!,(%!)#',client_mobile_phone,
+                '*!,(%!)#',client_phone,
+                '*!,(%!)#',client_factory_address,
+                '*!,(%!)#',client_address,
+                '*!,(%!)#',client_post,
+                '*!,(%!)#',client_fax
+                )
+                like CONCAT('%',#{clientName},'%')
+            </if>
+            <if test="clientState!=null">
+                and client_state=#{clientState}
+            </if>
+        </where>
+    </select>
     <select id="pages" resultMap="clientMap">
         select * from client
         <where>
-            1=1
             <if test="clientName!=null and  clientName!=''">
-                and client_name like concat('%',#{clientName},'%')
+                concat(client_person_in_charge,
+                '!,(%!)#',client_name,
+                '!,(%!)#',client_mobile_phone,
+                '*!,(%!)#',client_phone,
+                '*!,(%!)#',client_factory_address,
+                '*!,(%!)#',client_address,
+                '*!,(%!)#',client_post,
+                '*!,(%!)#',client_fax
+                )
+                like CONCAT('%',#{clientName},'%')
             </if>
             <if test="clientState!=null">
                 and client_state=#{clientState}

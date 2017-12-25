@@ -9,7 +9,7 @@ public class Pages <T> implements Serializable{
     private int totalRecord;        //总记录数
     private int pageSize ;       //页面显示的数目
     private Integer totalPage;          //总页码数
-    private int currentPage=1 ;    //当前页码
+    private int currentPage ;    //当前页码
     private int previousPage;       //前一页
     private int nextPage;           //后一页
     private int[] pageBar;          //条目数

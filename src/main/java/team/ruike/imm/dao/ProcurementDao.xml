@@ -91,5 +91,11 @@
         insert into procurement (procurement_id,procurement_date,supplier_id,procurement_employee_id)
         values (#{procurementId},#{procurementDate},#{supplierId},#{procurementEmployeeId});
     </insert>
-
+    <!--批量修改采购订单-->
+    <update id="generateUpdateProcurement">
+        UPDATE procurement SET procurement_state=1 WHERE procurement_id in
+        <foreach collection="list" item="procurements" index="index" open="(" separator="," close=")" >
+            #{procurements.procurementId}
+        </foreach>
+    </update>
 </mapper>

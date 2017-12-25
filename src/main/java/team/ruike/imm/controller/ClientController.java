@@ -29,7 +29,7 @@ public class ClientController {
     ClientService clientService;
     //展示合作客户数据
     @RequestMapping(value="/cooperative.do")
-    public  String cooperative(HttpServletRequest request,Integer currentPage,Client client){
+    public  String cooperative(HttpServletRequest request,HttpSession session,Integer currentPage,Client client){
         client.setClientState(0);
         if (currentPage==null ){
             client.setCurrentPage(1);
@@ -43,6 +43,7 @@ public class ClientController {
         request.setAttribute("pages",pages);
         int i=0;
         request.setAttribute("i",i);
+        session.setAttribute("cooname",client.getClientName());
         return "page/material/customer-list-1";
     }
 
@@ -54,7 +55,7 @@ public class ClientController {
      * @return
      */
     @RequestMapping(value="/noncooperation.do")
-    public  String noncooperation(HttpServletRequest request,Integer currentPage,Client client){
+    public  String noncooperation(HttpServletRequest request,HttpSession session,Integer currentPage,Client client){
         client.setClientState(1);
         if (currentPage==null ){
             client.setCurrentPage(1);
@@ -63,11 +64,15 @@ public class ClientController {
             client.setCurrentPage(currentPage);
         }
         List<Client> clients=clientService.pagerClient(client);
+        for (Client client1 : clients) {
+            System.out.println(client1.getClientName());
+        }
         request.setAttribute("cc",clients);
         Pages<Client> pages=clientService.getPager(client,currentPage);
-        request.setAttribute("pp",pages);
+        request.setAttribute("pages",pages);
         int i=1;
         request.setAttribute("i",i);
+        session.setAttribute("nonname",client.getClientName());
         return "page/material/customer-list-1";
     }
 

@@ -36,4 +36,7 @@ public interface ProcurementDao {
      * @return
      */
     public List<Procurement> PagerProcurement(Procurement procurement);
+    //批量修改购货订单
+    int generateUpdateProcurement(List<Procurement> procurements);
+
 }

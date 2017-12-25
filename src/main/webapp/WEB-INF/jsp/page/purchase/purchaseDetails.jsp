@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
     <link href="${request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <link href="${request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
@@ -25,6 +25,8 @@
     <script src="${request.contextPath }/js/plugins.js"></script>
     <script src="${request.contextPath }/js/jquery.dialog.js"></script>
     <script src="${request.contextPath }/js/shopping.js"></script>
+    <link rel="stylesheet" type="text/css" href="${request.contextPath }/css/sweet-alert.css">
+    <script src="${request.contextPath }/js/sweet-alert.min.js"></script>
     <link rel="stylesheet" href="${request.contextPath }/css/report.css">
     <style>
         .ui-icon-ellipsis {
@@ -73,25 +75,33 @@
                 </li>
                 <li id="supplier" style=""><label>供应商:</label>
                     <span class="mod-choose-input" id="filter-supplier">
-                        <input type="text" name="supplierName" id="supplierAuto">
+                        <input  style="height: 31px;" type="text" name="supplierName" id="supplierAuto">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
                 <li  style="float: left">
                     <label>商品:</label>
                     <span class="mod-choose-input" id="filter-goods">
-                        <input type="text" name="merchandiseName" id="goodsAuto">
+                        <input  style="height: 31px;" type="text" name="merchandiseName" id="goodsAuto">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
                 <li  style="display: list-item;">
                     <label>订单编号:</label>
                     <span class="mod-choose-input" >
-                        <input type="text"  name="procurementId" autocomplete="off">
+                        <input  style="height: 31px;" type="text"  name="procurementId" autocomplete="off">
                         <span class="ui-icon-ellipsis"></span>
                     </span>
                 </li>
-
+                <li style="display: list-item;">
+                    <label>采购状态:</label>
+                    <select style="width: 100px;height: 31px;font-size: 14px" name="piState">
+                        <option value="-1">请选择</option>
+                        <option value="0">未入库</option>
+                        <option value="1">已提交</option>
+                        <option value="2">已入库</option>
+                    </select>
+                </li>
                 <div class="btns"><input type="submit" class="ui-btn mrb ui-btn-search" id="filter" value="搜索"></div>
             </ul>
         </div>
@@ -103,7 +113,8 @@
             <br/><br/>
             <div class="fr">
                 <a href="#" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
-                <a href="#" class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>
+                <a href="#" class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>&nbsp;&nbsp;&nbsp;
+                <button class=" ui-btn ui-btn-search btn-sm mrb f1" id="allxiugai">批量修改</button>
             </div>
         </div>
         <div class="grid-wrap" id="grid-wrap" style="height: 1200px;">
@@ -131,7 +142,7 @@
                         <c:forEach items="${procurementInformations}" var="procure">
                             <tr class="eachtr">
                                 <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
-                                <td>${procure.procurementId}</td>
+                                <td class="procurementId">${procure.procurementId}</td>
                                 <td >${procure.merchandise.merchandiseName}</td>
                                 <td>${procure.units.unitsName}</td>
                                 <td class=""><fmt:formatDate value="${procure.procurement.procurementDate}" pattern="yyyy-MM-dd"/> </td>
@@ -139,35 +150,49 @@
                                 <td class="prv">${procure.procurement.supplier.supplierName}</td>
                                 <td class="merchandiseActualQuntity">${procure.piVolume}</td>
                                 <td class="piVolume">${procure.piActualPrice}</td>
-                                <td><c:if test="${procure.piState==0}">未入库</c:if>
-                                    <c:if test="${procure.piState==1}">已提交</c:if>
-                                    <c:if test="${procure.piState==2}">已入库</c:if>
+                                <td class="piState"><c:if test="${procure.procurement.procurementState==0}">未入库</c:if>
+                                    <c:if test="${procure.procurement.procurementState==1}">已提交</c:if>
+                                    <c:if test="${procure.procurement.procurementState==2}">已入库</c:if>
                                 </td>
-                                <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
+                                <td style="width: 120px;text-align: center">
+                                    <button type="button" class="btn btn-info " data-toggle="modal" data-target="#del" >提交</button>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
+
             </div>
+            <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 500px;">
+                <ul class="pagination" >
+                    <li><a href="?start=0&productTypeId=${merchandise.productTypeId}">首页</a></li>
+                    <%--<c:if test="${pages.currentPage >1}">--%>
+                    <li><a href="">&laquo;</a></li>
+                    <%--</c:if>--%>
+                    <%--<c:if test="${pages.currentPage ==1}">--%>
+                    <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                    <%--</c:if>--%>
+                    <c:forEach begin="1" end="${len}" varStatus="status">
+                        <li><a href="?start=${page.start=status.index}">${status.index}</a></li>
+                    </c:forEach>
+                    <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
+                    <li><a href="">&raquo;</a></li>
+                    <%--</c:if>--%>
+                    <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
+                    <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
+                    <%--</c:if>--%>
+                    <li><a href="?start=${page.last}&productTypeId=${merchandise.productTypeId}">末页</a></li>
+                    <li><a >共有${totalPage}条数据</a></li>
+                    <li><a>共有${len}页</a></li>
+                </ul>
+            </div>
+
         </div>
     </div>
     <!-- grid end -->
 </div>
 
 
-<div id="COMBO_WRAP">
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="display: none; position: absolute; top: 0px; z-index: 1000;">
-        <div class="droplist" style="position: relative; overflow: auto;"></div>
-    </div>
-    <div class="ui-droplist-wrap" style="position: absolute; top: 0px; z-index: 1000; width: 175px; display: none;">
-        <div class="droplist" style="position: relative; overflow: auto; height: 26px;">
-            <div class="list-item" data-value="129609203891259700">CK001 默认仓库</div>
-        </div>
-    </div>
-</div>
 <div class="pika-single is-hidden is-bound" style=""></div>
 <div class="pika-single is-hidden is-bound" style=""></div>
 <ul id="tree9043" class="ztree ztreeCombo showRoot" style="max-height: 200px; top: 143px; left: 524px; width: 250px;">
@@ -188,43 +213,7 @@
         </tr>
         <tr>
             <td class="ui_l"></td>
-            <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;">视窗</div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;">
-                                    <div class="ui_loading"><span>loading...</span></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </td>
+            <td class="ui_c"></td>
             <td class="ui_r"></td>
         </tr>
         <tr>
@@ -240,6 +229,51 @@
 <script src="${request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${request.contextPath }/js/content.min.js?v=1.0.0"></script>
 <script src="${request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
+<script>
+    $(function () {
+        $("#allxiugai").click(function () {
+            var procure=new Array();
+            var procureInfo=new Array();
+            var prochreInfoList=null;
+            var procureList=null;
+            $(".eachtr").each(function (index,data){
+                if($(data).find(".ck").is(':checked')){
+                    var name=$(this).find(".piState").html();
+                    if(name.trim()=="已提交"){
+                        alert("您选的已有提交，请重新选择");
+                        return false;
+                    }else {
+                        var procurementId=$(data).find(".procurementId").html();
+                        var obj=new Object();
+                        obj.procurementId=procurementId;
+                        procure.push(obj);
+                        procureInfo.push(obj);
+                        procureList=JSON.stringify(procure);
+                        prochreInfoList=JSON.stringify(procureInfo);
+                    }
+                }
+
+            });
+            $.ajax({
+                type: "post",
+                url: "/purchaseDetails/generateProcurement.do",
+                data:{
+                    "procureList":procureList,
+                    "prochreInfoList":prochreInfoList
+                },
+                dataType: "json",
+                success:function () {
+                    swal(
+                        {
+                            title:"修改成功",
+                            type:"info"
+                        }
+                    );
+                }
+            })
+        })
+    })
+</script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

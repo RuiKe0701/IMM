@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <title>精斗云云进销存</title>
+    <title>恒辉医药进销存</title>
 
     <link href="${request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <link href="${request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
