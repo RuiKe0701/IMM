@@ -37,6 +37,10 @@ public class DetailsController {
 
     @RequestMapping("/logindetailOrders.do")
     public String logindetailOrders(Model model, Sales sales,Page page){
+        System.out.println("getClientId"+sales.getClientId());
+        System.out.println("EmployeeId"+sales.getEmployeeId());
+        System.out.println("MerchandiseId"+sales.getMerchandiseId());
+
         int startPage=page.getStart();
         if(startPage==0){
             startPage=page.getStart();

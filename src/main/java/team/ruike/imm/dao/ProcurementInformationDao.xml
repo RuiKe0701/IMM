@@ -6,9 +6,9 @@
         <result column="pi_id" property="piId" />
         <result column="merchandise_id" property="merchandiseId" />
         <result column="pi_actual_price" property="piActualPrice" />
+        <result column="procurement_id" property="procurementId"></result>
         <result column="pi_volume" property="piVolume" />
-        <result column="si_actual_price" property="siActualPrice" />
-        <result column="si_state" property="piState" />
+        <result column="pi_state" property="piState" />
         <result column="pi_totalPrice" property="piTotalPrice"/>
         <result column="pi_remarks" property="piRemarks"/>
         <association property="procurement" javaType="procurement">
@@ -18,17 +18,44 @@
             <result column="procurement_employee_id" property="procurementEmployeeId" />
             <result column="procurement_accomplish" property="procurementAccomplish" />
             <result column="procurement_state" property="procurementState" />
+            <association property="procurementEmployee" javaType="employee">
+                <result column="employee_name" property="employeeName" />
+            </association>
+            <association property="supplier" javaType="supplier">
+                <result column="supplier_name" property="supplierName" />
+            </association>
         </association>
         <association property="units" javaType="units">
-            <result column="units_id" property="unitsId" />
             <result column="units_name" property="unitsName" />
-            <result column="units_state" property="unitsState" />
+        </association>
+        <association property="merchandise" javaType="merchandise">
+            <result column="merchandise_name" property="merchandiseName"></result>
         </association>
     </resultMap>
     <!--查询采购订单还未入库的订单-->
     <select id="selectReplenish" resultMap="procurementInformationMap">
         SELECT *FROM procurement_information
         WHERE pi_state=0
+    </select>
+    <!--查询所有购货订单和详情订单-->
+    <select id="selectAllProcureMent" resultMap="procurementInformationMap">
+        SELECT pri.*,mer.merchandise_name,unit.units_name,emp.employee_name,pr.procurement_date,su.supplier_name FROM procurement_information pri
+        INNER JOIN procurement pr ON pri.procurement_id=pr.procurement_id
+        INNER JOIN employee emp ON emp.employee_id=pr.procurement_employee_id
+        INNER JOIN merchandise mer ON pri.merchandise_id=mer.merchandise_id
+        INNER JOIN units unit ON unit.units_id=pri.units_id
+        INNER JOIN supplier su ON pr.supplier_id=su.supplier_id
+        <where>
+            <if test="startTime!=null and startTime!=''">
+                and pr.procurement_date>=#{startTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and pr.procurement_date &lt;=#{endTime}
+            </if>
+            <if test="procurementId!=null and procurementId!=''">
+                and pri.procurement_id=#{procurementId}
+            </if>
+        </where>
     </select>
     <!--指定条件查询采购订单详情-->
     <select id="selecrProcurementInformation" resultMap="procurementInformationMap">

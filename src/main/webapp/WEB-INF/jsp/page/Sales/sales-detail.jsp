@@ -67,7 +67,7 @@
 </head>
 
 <body style="">
-<form  >
+<form  action="/detail/logindetailOrders.do"  method="post">
 
     <div class="wrapper">
         <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
@@ -75,12 +75,12 @@
             <div class="con-header">
                 <dl class="cf">
                     <dd class="mr40" style="width: 240px">
-                        <input type="text" name="EmployeeId" style="display:none;" value="${user.userId}"/>
                         <label><span class="red">*</span>客户:</label>
                         <div class="input-group" style="width: 200px;float: right">
                             <select class="selectpicker show-tick form-control"
                                     style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
                                     data-live-search="true"   id="clientId" name="clientId">
+                                <option value="0">请选择</option>
                                 <c:forEach items="${clientss}" var="cl">
                                     <option value="${cl.clientId}">${cl.clientName}</option>
                                 </c:forEach>
@@ -89,12 +89,12 @@
                     </dd>
 
                     <dd class="mr40" style="width: 240px">
-                        <input type="text" name="EmployeeId" style="display:none;" value="${user.userId}"/>
                         <label><span class="red">*</span>商品:</label>
                         <div class="input-group" style="width: 200px;float: right">
                             <select class="selectpicker show-tick form-control"
                                     style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
                                     data-live-search="true"   id="merchandiseId" name="merchandiseId">
+                                <option value="0">请选择</option>
                                 <c:forEach items="${merchandisess}" var="mls">
                                     <option value="${mls.merchandiseId}">${mls.merchandiseName}</option>
                                 </c:forEach>
@@ -108,13 +108,15 @@
                         <div class="input-group" style="width: 200px;float: right">
                             <select class="selectpicker show-tick form-control"
                                     style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
-                                    data-live-search="true" id="employeeId" name="supplierId">
+                                    data-live-search="true" id="employeeId" name="employeeId">
+                                <option value="0">请选择</option>
                                 <c:forEach items="${employeess}" var="em">
                                     <option value="${em.employeeId}">${em.employeeName}</option>
                                 </c:forEach>
                             </select>
                         </div>
                     </dd>
+
 
                     <dd class="mr20 tc">
                         <label>单据日期:</label>
@@ -124,6 +126,7 @@
                         <label>至:</label>
                         <input id="end" name="salesDateEnd" class="">
                     </dd>
+
                     <button type="submit" class="btn btn-info">查找</button>
                 </dl>
                 <hr class="hrcls">
@@ -132,7 +135,7 @@
         </div>
     </div>
 
-    <form id="form" action="/detail/logindetailOrders.do"  method="post">
+    <form id="form">
         <%--展示信息--%>
         <div style="position: relative;left: 50px">
             <table class="table table-striped" style="width: 1200px">

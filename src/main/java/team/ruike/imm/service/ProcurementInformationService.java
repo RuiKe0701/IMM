@@ -15,6 +15,7 @@ public interface ProcurementInformationService {
      */
     public List<ProcurementInformation> selectProcurementInformation(ProcurementInformation procurementInformation);
     void  insertAll(List<ProcurementInformation> procurementInformations);
+
     /**
      * 按指定条件修改采购订单详情
      * @param procurementInformation
@@ -30,4 +31,6 @@ public interface ProcurementInformationService {
     public int insertProcurementInformation(ProcurementInformation procurementInformation);
     //查询采购订单还未入库的订单
     List<ProcurementInformation> selectReplenish();
+    //查询所有购货订单和购货详情订单
+    List<ProcurementInformation>  selectAllProcureMent(ProcurementInformation procurementInformation);
 }
