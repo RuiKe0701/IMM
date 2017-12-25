@@ -66,6 +66,19 @@ public class Sales extends PagerParameter implements Serializable{
      */
     private EventDetails eventDetails;
 
+    /**
+     * 药品信息
+     */
+    private Integer merchandiseId;
+
+
+    public Integer getMerchandiseId() {
+        return merchandiseId;
+    }
+
+    public void setMerchandiseId(Integer merchandiseId) {
+        this.merchandiseId = merchandiseId;
+    }
 
     public String getSalesId() {
         return salesId;
