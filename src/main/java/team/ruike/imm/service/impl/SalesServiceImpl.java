@@ -58,4 +58,6 @@ public class SalesServiceImpl implements SalesService{
     public List<Sales> selectSalesForThis(Sales sales) {
         return salesDao.selectSalesForThis(sales);
     }
+
+    public List<Sales> selectSalesForThisToAll(Sales sales) { return salesDao.selectSalesForThisToAll(sales); }
 }

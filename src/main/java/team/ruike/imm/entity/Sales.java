@@ -71,6 +71,31 @@ public class Sales extends PagerParameter implements Serializable{
      */
     private Integer merchandiseId;
 
+    /**
+     * 销售笔数-郭旭
+     */
+    private Integer countAllForThis;
+
+    /**
+     * 销售总金额-郭旭
+     */
+    private double allPriceForThis;
+
+    public Integer getCountAllForThis() {
+        return countAllForThis;
+    }
+
+    public void setCountAllForThis(Integer countAllForThis) {
+        this.countAllForThis = countAllForThis;
+    }
+
+    public double getAllPriceForThis() {
+        return allPriceForThis;
+    }
+
+    public void setAllPriceForThis(double allPriceForThis) {
+        this.allPriceForThis = allPriceForThis;
+    }
 
     public Integer getMerchandiseId() {
         return merchandiseId;

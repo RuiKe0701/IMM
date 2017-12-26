@@ -12,6 +12,8 @@
         <result column="sales_activities" property="salesActivities"/>
         <result column="sales_state" property="salesState"/>
         <result column="merchandise_id" property="merchandiseId"/>
+        <result column="count_All" property="countAllForThis"/>
+        <result column="all_Price" property="allPriceForThis"/>
 
 
         <collection property="salesInformations" ofType="salesInformation">
@@ -178,6 +180,26 @@
                 and s_i.merchandise_id=#{merchandiseId}
             </if>
         </where>
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
+    </select>
+
+
+    <select id="selectSalesForThisToAll" resultMap="salesMap" parameterType="sales">
+        select  count(s.client_id) as count_All,s.client_id,SUM(s_i.si_totalprice) as all_Price,c.client_name
+        from sales s,sales_information s_i,client c
+        <where>
+            s.sales_id=s_i.sales_id
+            and s.client_id=c.client_id
+            and s.sales_accomplish=1
+            and s_i.si_state=0
+            <if test="clientId !=null and clientId>0">
+                and s.client_id =#{clientId}
+            </if>
+        </where>
+        group by c.client_name
+        ORDER BY all_Price desc
         <if test="currentPage!=null and pageSize!=null">
             LIMIT #{currentPage},#{pageSize}
         </if>
