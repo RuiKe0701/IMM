@@ -6,23 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import team.ruike.imm.entity.Client;
-import team.ruike.imm.entity.Employee;
-import team.ruike.imm.entity.Merchandise;
-import team.ruike.imm.entity.Sales;
+import team.ruike.imm.entity.*;
 import team.ruike.imm.service.*;
 import team.ruike.imm.utility.Page;
 
-import javax.swing.*;
 import java.util.List;
 
 /**
- *商品明细表
+ *销售汇总表（按销售人员)
  * By-Guoxu
  */
 @Controller
-@RequestMapping("detail")
-public class DetailsController {
+@RequestMapping("salesperson")
+public class SalespersonController {
     @Autowired
     SalesService salesService;
 
@@ -35,9 +31,11 @@ public class DetailsController {
     @Autowired
     MerchandiseService merchandiseService;
 
-    @RequestMapping("/logindetailOrders.do")
-    public String logindetailOrders(Model model, Sales sales,Page page){
+    @Autowired
+    ProductTypeService productTypeService;
 
+    @RequestMapping("/loginSalesperson.do")
+    public String logindetailOrders(Model model, Sales sales, Page page){
         int startPage=page.getStart();
         if(startPage==0){
             startPage=page.getStart();
@@ -45,6 +43,7 @@ public class DetailsController {
             startPage=(page.getStart()-1)*5;
         }
         PageHelper.offsetPage(startPage,5);
+
 
 
         List<Sales> salesList = salesService.selectSalesForThis(sales);
@@ -59,15 +58,16 @@ public class DetailsController {
         page.caculateLast(total);
 
 
-        List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
         List<Merchandise> merchandiseList = merchandiseService.selectMerchandise(null);
-        model.addAttribute("clientss",clientList);
+        List<ProductType> productTypeList = productTypeService.selectProductType(null);
+
         model.addAttribute("employeess",employeeList);
         model.addAttribute("merchandisess",merchandiseList);
+        model.addAttribute("productTypess",productTypeList);
         model.addAttribute("len",len);
         model.addAttribute("totalPage",total);
         model.addAttribute("saless",salesList);
-        return "page/Sales/sales-detail";
+        return "page/Sales/sales-summary-sales";
     }
 }

@@ -10,19 +10,21 @@ import team.ruike.imm.entity.Client;
 import team.ruike.imm.entity.Employee;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.Sales;
-import team.ruike.imm.service.*;
+import team.ruike.imm.service.ClientService;
+import team.ruike.imm.service.EmployeeService;
+import team.ruike.imm.service.MerchandiseService;
+import team.ruike.imm.service.SalesService;
 import team.ruike.imm.utility.Page;
 
-import javax.swing.*;
 import java.util.List;
 
 /**
- *商品明细表
+ *销售利润表
  * By-Guoxu
  */
 @Controller
-@RequestMapping("detail")
-public class DetailsController {
+@RequestMapping("salesProfit")
+public class SalesProfitController {
     @Autowired
     SalesService salesService;
 
@@ -35,8 +37,8 @@ public class DetailsController {
     @Autowired
     MerchandiseService merchandiseService;
 
-    @RequestMapping("/logindetailOrders.do")
-    public String logindetailOrders(Model model, Sales sales,Page page){
+    @RequestMapping("/loginSalesProfit.do")
+    public String logindetailOrders(Model model, Sales sales, Page page){
 
         int startPage=page.getStart();
         if(startPage==0){
@@ -47,7 +49,7 @@ public class DetailsController {
         PageHelper.offsetPage(startPage,5);
 
 
-        List<Sales> salesList = salesService.selectSalesForThis(sales);
+        List<Sales> salesList = salesService.selectSalesForProfit(sales);
 
         int total = (int) new PageInfo<Sales>(salesList).getTotal();
         int len=0;
@@ -68,6 +70,6 @@ public class DetailsController {
         model.addAttribute("len",len);
         model.addAttribute("totalPage",total);
         model.addAttribute("saless",salesList);
-        return "page/Sales/sales-detail";
+        return "page/Sales/sale-profit-detail";
     }
 }
