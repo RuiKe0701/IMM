@@ -16,12 +16,12 @@ import team.ruike.imm.service.SalesService;
 import java.util.List;
 
 /**
- *销售汇总表（按销售人员)
+ *销售汇总表（按客户）
  * By-Guoxu
  */
 @Controller
-@RequestMapping("salesperson")
-public class salespersonController {
+@RequestMapping("summaryClient")
+public class SummaryClientController {
     @Autowired
     SalesService salesService;
 
@@ -34,7 +34,7 @@ public class salespersonController {
     @Autowired
     MerchandiseService merchandiseService;
 
-    @RequestMapping("/loginSalesperson.do")
+    @RequestMapping("/loginSummaryClient.do")
     public String logindetailOrders(Model model){
         List<Client> clientList = clientService.selecrClient(null);
         List<Employee> employeeList = employeeService.selectEmployee(null);
@@ -44,6 +44,6 @@ public class salespersonController {
         model.addAttribute("employeess",employeeList);
         model.addAttribute("merchandisess",merchandiseList);
         model.addAttribute("saless",salesList);
-        return "page/Sales/sales-summary-sales";
+        return "page/Sales/sales-summary-customer-new";
     }
 }

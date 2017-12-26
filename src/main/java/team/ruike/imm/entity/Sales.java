@@ -67,7 +67,7 @@ public class Sales extends PagerParameter implements Serializable{
     private EventDetails eventDetails;
 
     /**
-     * 药品信息
+     * 药品信息ID
      */
     private Integer merchandiseId;
 
@@ -80,6 +80,20 @@ public class Sales extends PagerParameter implements Serializable{
      * 销售总金额-郭旭
      */
     private double allPriceForThis;
+
+
+    /**
+     * 药品类型ID
+     */
+    private  Integer productTypeId;
+
+    public Integer getProductTypeId() {
+        return productTypeId;
+    }
+
+    public void setProductTypeId(Integer productTypeId) {
+        this.productTypeId = productTypeId;
+    }
 
     public Integer getCountAllForThis() {
         return countAllForThis;

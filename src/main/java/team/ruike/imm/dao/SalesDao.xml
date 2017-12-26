@@ -14,6 +14,7 @@
         <result column="merchandise_id" property="merchandiseId"/>
         <result column="count_All" property="countAllForThis"/>
         <result column="all_Price" property="allPriceForThis"/>
+        <result column="product_type_id" property="productTypeId"/>
 
 
         <collection property="salesInformations" ofType="salesInformation">
@@ -69,6 +70,7 @@
 
     </resultMap>
 
+    <!--全部查询-郭旭-->
     <select id="selectSales" resultMap="salesMap" parameterType="sales">
         select * from sales s,client c,employee e,( SELECT si.*,m.merchandise_name,u.units_name,s.sales_date FROM sales_information si
         INNER JOIN sales s ON si.sales_id=s.sales_id
@@ -145,10 +147,14 @@
         insert into sales(sales_id,sales_date,client_id,employee_id,sales_accomplish) values(#{salesId},#{salesDate},#{clientId},#{employeeId},1)
     </insert>
 
+
+    <!--关键销售查询-->
     <select id="selectSalesForThis" resultMap="salesMap" parameterType="sales">
-        select * from sales s,client c,employee e,( SELECT si.*,m.merchandise_name,u.units_name,s.sales_date FROM sales_information si
+        select * from sales s,client c,employee e,( SELECT si.*,m.merchandise_name,u.units_name,s.sales_date,p_y.product_type_name,p_y.product_type_id
+        FROM sales_information si
         INNER JOIN sales s ON si.sales_id=s.sales_id
         INNER JOIN merchandise m ON m.merchandise_id=si.merchandise_id
+        INNER JOIN product_type p_y on p_y.product_type_id=m.product_type_id
         INNER JOIN units u ON u.units_id=si.units_id ) as  s_i
         <where>
             s.sales_accomplish=1 and s.client_id=c.client_id and s.employee_id=e.employee_id and s.sales_id = s_i.sales_id
@@ -179,6 +185,9 @@
             <if test="merchandiseId !=null and merchandiseId>0">
                 and s_i.merchandise_id=#{merchandiseId}
             </if>
+            <if test="productTypeId !=null and productTypeId>0">
+                and s_i.product_type_id=#{productTypeId}
+            </if>
         </where>
         ORDER BY s.sales_date desc
         <if test="currentPage!=null and pageSize!=null">
@@ -186,7 +195,7 @@
         </if>
     </select>
 
-
+    <!--销售排行专用-->
     <select id="selectSalesForThisToAll" resultMap="salesMap" parameterType="sales">
         select  count(s.client_id) as count_All,s.client_id,SUM(s_i.si_totalprice) as all_Price,c.client_name
         from sales s,sales_information s_i,client c
