@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("receiptDetail")
-public class receiptDetailController {
+public class ReceiptDetailController {
     @Autowired
     SalesService salesService;
 
@@ -74,6 +74,6 @@ public class receiptDetailController {
         model.addAttribute("len",len);
         model.addAttribute("totalPage",total);
         model.addAttribute("saless",salesList);
-        return "page/Sales/sales-detail";
+        return "page/Sales/sale-receipt-detail";
     }
 }

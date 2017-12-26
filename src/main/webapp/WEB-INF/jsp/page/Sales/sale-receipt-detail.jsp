@@ -67,7 +67,7 @@
 </head>
 
 <body style="">
-<form  action="/detail/logindetailOrders.do"  method="post">
+<form  action="/saleReceipt/loginSaleReceipt.do"  method="post">
 
     <div class="wrapper">
         <div class="mod-toolbar-top mr0 cf dn" id="toolTop"></div>
@@ -88,19 +88,6 @@
                         </div>
                     </dd>
 
-                    <dd class="mr40" style="width: 240px">
-                        <label><span class="red">*</span>商品:</label>
-                        <div class="input-group" style="width: 200px;float: right">
-                            <select class="selectpicker show-tick form-control"
-                                    style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px"
-                                    data-live-search="true"   id="merchandiseId" name="merchandiseId">
-                                <option value="0">请选择</option>
-                                <c:forEach items="${merchandisess}" var="mls">
-                                    <option value="${mls.merchandiseId}">${mls.merchandiseName}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </dd>
 
 
                     <dd class="mr40" style="width: 280px">
@@ -141,17 +128,12 @@
             <table class="table table-striped" style="width: 1200px">
                 <thead>
                 <tr>
+                    <th>客户</th>
+                    <th>业务员</th>
                     <th>销售日期</th>
                     <th>订单编号</th>
-                    <th>业务员</th>
-                    <th>客户</th>
-                    <th>商品编号</th>
-                    <th>商品名称</th>
-                    <th>单位</th>
-                    <th>数量</th>
-                    <th>单价</th>
                     <th>销售收入</th>
-                    <th>操作</th>
+
                 </tr>
                 </thead>
                 <tbody id="tbod">
@@ -160,19 +142,11 @@
                 <c:forEach items="${saless}" var="s">
                     <c:if test="${s.salesState==0}">
                         <tr id="${s.salesId}"  class="saless">
+                            <td id="clientName">${s.client.clientName}</td>
+                            <td id="employeeName">${s.employee.employeeName}</td>
                             <td id="salesDate"><fmt:formatDate type="date" value="${s.salesDate}" /></td>
                             <td id="salesId">${s.salesId}</td>
-                            <td id="employeeName">${s.employee.employeeName}</td>
-                            <td id="clientName">${s.client.clientName}</td>
-                            <td id="merchandiseIds">${s.salesInformations.merchandiseId}</td>
-                            <td id="merchandiseName">${s.salesInformations.merchandise.merchandiseName}</td>
-                            <td id="unitsName">${s.salesInformations.units.unitsName}</td>
-                            <td id="siVolume">${s.salesInformations.siVolume}</td>
-                            <td id="siActualPrice">${s.salesInformations.siActualPrice}</td>
                             <td id="siTotalPrice">${s.salesInformations.siTotalPrice}</td>
-                            <td  >
-                                <button type="button" onclick="gainclient(${c.clientId})"id="${c.clientId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">删除</span></button>
-                            </td>
                         </tr>
                     </c:if>
                 </c:forEach>
