@@ -180,6 +180,7 @@
                 and s_i.merchandise_id=#{merchandiseId}
             </if>
         </where>
+        ORDER BY s.sales_date desc
         <if test="currentPage!=null and pageSize!=null">
             LIMIT #{currentPage},#{pageSize}
         </if>
