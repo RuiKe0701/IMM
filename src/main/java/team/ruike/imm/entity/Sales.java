@@ -81,6 +81,18 @@ public class Sales extends PagerParameter implements Serializable{
      */
     private double allPriceForThis;
 
+    /**
+     * 销售总笔数-郭旭-销售利润
+     */
+    private Integer countAllForProfit;
+
+    public Integer getCountAllForProfit() {
+        return countAllForProfit;
+    }
+
+    public void setCountAllForProfit(Integer countAllForProfit) {
+        this.countAllForProfit = countAllForProfit;
+    }
 
     /**
      * 药品类型ID

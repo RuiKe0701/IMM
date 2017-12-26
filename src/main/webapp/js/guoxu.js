@@ -117,6 +117,19 @@ $(function () {
     });
 
 
+    $("#sales-profit").click(function () {
+        alert("销售利润表");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        // $("#iframs").before().append("<li tabid=\"purchase-purchaseOrder\" class=\"l-selected\"><a>销货订单</a><div class=\"l-tab-links-item-left\"></div><div class=\"l-tab-links-item-right\"></div><div id='aaa' class=\"l-tab-links-item-close\"></div></li> <li id=\"tabManage\"></li>");
+        $("#iff").attr("src", "/salesProfit/loginSalesProfit.do");
+
+        $("#ons").css("display", "none");
+        $("#showiframe").css("display", "block");
+
+    });
+
 
 
 
