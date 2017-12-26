@@ -16,6 +16,8 @@
         <result column="all_Price" property="allPriceForThis"/>
         <result column="product_type_id" property="productTypeId"/>
         <result column="all_volume" property="countAllForProfit"/>
+        <result column="m_cost" property="cost"/>
+        <result column="m_profit" property="profit"/>
 
 
         <collection property="salesInformations" ofType="salesInformation">
@@ -217,15 +219,18 @@
     </select>
 
 
-    <!--销售排行专用-->
+    <!--销售利润专用-->
     <select id="selectSalesForProfit" resultMap="salesMap" parameterType="sales">
-        select s.sales_date, s.sales_id,SUM(s_i.si_totalprice) as all_Price,SUM(s_i.si_volume) as all_volume  ,
-            c.client_id,e.employee_id,c.client_name,e.employee_name,s.sales_state
-        from sales s,sales_information s_i,client c,employee e
+        select s.sales_date, s.sales_id,c.client_id,e.employee_id,c.client_name,e.employee_name,s.sales_state,
+        SUM(s_i.si_totalprice) as all_Price,SUM(s_i.si_volume) as all_volume,
+        SUM(s_i.si_volume * m.merchandise_salse_price) as m_cost,
+        SUM(s_i.si_totalprice) - SUM(s_i.si_volume * m.merchandise_salse_price)  as m_profit
+        from sales s,sales_information s_i,client c,employee e,merchandise m
         <where>
             s.sales_id=s_i.sales_id
             and s.client_id=c.client_id
             and s.employee_id=e.employee_id
+            and s_i.merchandise_id=m.merchandise_id
             and s.sales_accomplish=1
             <if test="clientId !=null and clientId>0">
                 and s.client_id =#{clientId}

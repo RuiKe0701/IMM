@@ -133,8 +133,8 @@
                     <th>订单编号</th>
                     <th>总数量</th>
                     <th>总销量收入</th>
-
-
+                    <th>总销量成本</th>
+                    <th>总销量利润</th>
 
                 </tr>
                 </thead>
@@ -148,11 +148,10 @@
                             <td id="clientName">${s.client.clientName}</td>
                             <td id="employeeName">${s.employee.employeeName}</td>
                             <td id="salesId">${s.salesId}</td>
-                            <td id="salesIds">${s.countAllForProfit}</td>
-                            <td id="salesIdss">${s.allPriceForThis}</td>
-
-
-
+                            <td id="countAllForProfit">${s.countAllForProfit}</td>
+                            <td id="allPriceForThis">${s.allPriceForThis}</td>
+                            <td id="cost">${s.cost}</td>
+                            <td id="profit">${s.profit}</td>
                         </tr>
                     </c:if>
                 </c:forEach>
@@ -180,7 +179,7 @@
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
                     <%--</c:if>--%>
                     <li><a href="?start=${page.last}&clientId=${sales.clientId}&employeeId=${sales.employeeId}">末页</a></li>
-                    <li><a >共有${totalPage}条数据</a></li>f
+                    <li><a >共有${totalPage}条数据</a></li>
                     <li><a>共有${len}页</a></li>
                 </ul>
             </div>

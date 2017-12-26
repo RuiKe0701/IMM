@@ -86,6 +86,32 @@ public class Sales extends PagerParameter implements Serializable{
      */
     private Integer countAllForProfit;
 
+    /**
+     * 销售成本-郭旭-销售利润
+     */
+    private double cost;
+
+    /**
+     * 销售利润-郭旭-销售利润
+     */
+    private double profit;
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
     public Integer getCountAllForProfit() {
         return countAllForProfit;
     }
