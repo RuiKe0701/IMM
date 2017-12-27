@@ -64,16 +64,19 @@ public class SuplierServiceImpl implements SupplierService {
     public Pages<Supplier> getPager(Supplier supplier, Integer currentPage) {
         List<Supplier> count=null;
         Supplier c=new Supplier();
+        int i=0;
         if(supplier.getSupplierState()==1 || supplier.getSupplierState()==0){
             c.setSupplierState(supplier.getSupplierState());
-            count=supplierDao.pages(c);
+            i=supplierDao.count(supplier);
         }else {
-            count=supplierDao.pages(null);
+            c.setSupplierState(supplier.getSupplierState());
+            count=supplierDao.pages(c);
+            i=supplierDao.count(c);
         }
         Pages<Supplier> pages=new Pages<Supplier>();
         pages.setCurrentPage(currentPage);
         pages.setList(count);
-        pages.setTotalRecord(count.size());
+        pages.setTotalRecord(i);
         pages.setPageSize(pageSize);
         return pages;
     }

@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css" type="text/css">
     <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-
     <title>精斗云云进销存</title>
-
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
@@ -30,9 +28,7 @@
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
-    <script src="${pageContext.request.contextPath }/js/material/staff-list-4.js"></script>
-    <script type="${pageContext.request.contextPath }/javascript" src="js/jquery.js"></script>
-    <script type="${pageContext.request.contextPath }/javascript" src="js/jquery.idTabs.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/material/goods-list-3.js"></script>
     <style>
         .chk-list {
             line-height: 28px;
@@ -47,8 +43,13 @@
         li{
             list-style-type:none;
         }
+        .input-group-addon{
+            width: 70px;
+        }
+        .form-control{
+            width: 950px;
+        }
     </style>
-
     <script>
         $(function () {
             var i=$("#control").val();
@@ -66,6 +67,7 @@
             }
         })
     </script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/common/pagination.css" media="screen">
 </head>
 <div style="">
     <input style="display: none" id="control" value="${i}" />
@@ -75,9 +77,9 @@
                 <div >
 
                     <button type="button" id="cooperation" name="0" class="btn btn-info" data-toggle="modal" >
-                        <span class="">在职</span></button>
+                        <span class="">在售商品</span></button>
                     <button type="button" id="termination" name="1" class="btn btn-info" data-toggle="modal">
-                        <span class="">离职</span>
+                        <span class="">下架商品</span>
                     </button>
                 </div>
             </li>
@@ -87,8 +89,8 @@
         <div class="bill-ser-botm cf">
             <div class="fr ml10">
                 <button type="button" id="addClient" class="btn btn-info" data-toggle="modal" data-target="#myModal" ><span class="">新增</span></button>
-                <a class="btn btn-info"name="jin" id="btn-disable"><span class="">离职员工</span></a>
-                <a class="btn btn-info" id="btn-enable"><span class="">在职员工</span></a>
+                <a class="btn btn-info"name="jin" id="btn-disable"><span class="">调整在售</span></a>
+                <a class="btn btn-info" id="btn-enable"><span class="">调整下架</span></a>
             </div>
         </div>
         <div class="grid-wrap">
@@ -107,246 +109,737 @@
             </div>
 
         </div>
+        <%-- method="post"--%>
+
         <%--展示信息--%>
-        <div style="position: relative;left: 50px">
+        <div style="position: relative;left: 20px">
             <c:if test="${i==0}">
-                <form id="form" action="/employee/cooperative.do" method="post" >
+                <form id="form" action="/merchandise/cooperative.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;top:-94px;left: 200px">
                         <button type="submit" class="btn btn-info">查找</button>
-                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                        <input class="coosupplierName" value="${cooname}" name="merchandiseName" placeholder ="编码/名称/规格/产地等" class="input-medium search-query" type="text" />
                     </li>
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
                         <tr>
                             <th></th>
-                            <th>员工名称</th>
-                            <th>职位名称</th>
+                            <th>商品编码</th>
+                            <th>商品名称</th>
+                            <th>商品规格</th>
+                            <th>商品类型</th>
+                            <th>单位信息</th>
+                            <th>产地</th>
+                            <th>安全存量</th>
+                            <th>当前数量</th>
+                            <th>无税售价</th>
+                            <th>是否缺货</th>
+                            <th>是否在售</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody >
-                        <c:forEach items="${cooperative}" var="s">
-                            <tr id="${s.employeeId}"  class="clients">
-                                <td><input class="employeeId"  runat="server" type="checkbox" value="${s.employeeId}" /></td>
-                                <td id="employeeId" style="display: none">${s.employeeId}</td>
-                                <td id="employeeName">${s.employeeName}</td>
-                               <c:if test="${s.employeeState==0}">
-                                    <td  id="employeeState">在职</td>
+                        <c:forEach items="${merch}" var="s">
+                            <tr id="${s.merchandiseId}"  class="clients">
+                                <td><input class="merchandiseId"  runat="server" type="checkbox" value="${s.merchandiseId}" /></td>
+                                 <td id="merchandiseId" style="display: none">${s.merchandiseId}</td>
+                                <td id="merchandiseCode">${s.merchandiseCode}</td>
+                                <td id="merchandiseName">${s.merchandiseName}</td>
+                                <td id="merchandiseSpecification">${s.merchandiseSpecification}</td>
+                                <td id="productTypeId">${s.productType.productTypeName}</td>
+                                <td id="unitsId">${s.units.unitsName}</td>
+                                <td id="merchandisePlaceOfOrigin">${s.merchandisePlaceOfOrigin}</td>
+                                <td id="merchandiseSafetyStock">${s.merchandiseSafetyStock}</td>
+                                <td id="merchandiseActualQuntity">${s.merchandiseActualQuntity}</td>
+                                <td id="merchandiseSalsePrice">${s.merchandiseSalsePrice}</td>
+                                <td id="salesStatusId">${s.salesStatus.salesStatusName}</td>
+                                <c:if test="${s.merchandiseState==0}">
+                                    <td  id="merchandiseState">在售</td>
                                 </c:if>
-                                <c:if test="${s.employeeState==1}">
-                                    <td  id="employeeState">离职</td>
+                                <c:if test="${s.merchandiseState==1}">
+                                    <td  id="merchandiseState">下架</td>
                                 </c:if>
-                                <td>
-                                    <button type="button" onclick="gainclient(${s.employeeId})"id="${s.employeeId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
+                                <td  >
+                                    <button type="button" onclick="gainclient(${s.merchandiseId})"id="${s.merchandiseId}" data-target="#update" name="updateClient"   class="btn btn-info btn-sm" data-toggle="modal"  ><span class="up">修改</span></button>
                                 </td>
                             </tr>
                         </c:forEach>
-                        <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
-                            <ul class="pagination" >
-                                <li><a href="/employee/cooperative.do?currentPage=1">首页</a></li>
-                                <c:if test="${pages.currentPage >1}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage ==1}">
-                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pages.pageBar}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pages.currentPage<pages.totalPage}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage==pages.totalPage}">
-                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/employee/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pages.totalRecord}条数据</a></li>
-                                <li><a>共有${pages.totalPage}页</a></li>
-                            </ul>
-                        </div>
                         </tbody>
                     </table>
+                    <div class="ads" id="dsa" style="position: absolute;left: 800px;top: 340px">
+                        <ul class="pagination" >
+                            <div class="M-box2"></div>
+                            <script>
+                                $(function(){
+                                    $('.M-box2').pagination({
+                                        coping:true,
+                                        homePage:'首页',
+                                        endPage:'末页',
+                                        prevContent:'上页',
+                                        nextContent:'下页',
+                                    });
+                                });
+                            </script>
+                                <%--分页--%>
+                            <script>
+                                (function (factory) {
+                                    if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
+                                        // AMD或CMD
+                                        define(["jquery"], factory);
+                                    } else if (typeof module === 'object' && module.exports) {
+                                        // Node/CommonJS
+                                        module.exports = function (root, jQuery) {
+                                            if (jQuery === undefined) {
+                                                if (typeof window !== 'undefined') {
+                                                    jQuery = require('jquery');
+                                                } else {
+                                                    jQuery = require('jquery')(root);
+                                                }
+                                            }
+                                            factory(jQuery);
+                                            return jQuery;
+                                        };
+                                    } else {
+                                        //Browser globals
+                                        factory(jQuery);
+                                    }
+                                }(function ($) {
+                                    //配置参数
+                                    var defaults = {
+                                        totalData: ${pages.totalRecord}, //数据总条数
+                                        showData: ${pages.pageSize}, //每页显示的条数
+                                        pageCount: ${pages.totalPage}, //总页数,默认为9
+                                        current: ${pages.currentPage}, //当前第几页
+                                        prevCls: 'prev', //上一页class
+                                        nextCls: 'next', //下一页class
+                                        prevContent: '<', //上一页内容
+                                        nextContent: '>', //下一页内容
+                                        activeCls: 'active', //当前页选中状态
+                                        coping: false, //首页和尾页
+                                        isHide: false, //当前页数为0页或者1页时不显示分页
+                                        homePage: '', //首页节点内容
+                                        endPage: '', //尾页节点内容
+                                        keepShowPN: false, //是否一直显示上一页下一页
+                                        count: 1, //当前页前后分页个数
+                                        jump: false, //跳转到指定页数
+                                        jumpIptCls: 'jump-ipt', //文本框内容
+                                        jumpBtnCls: 'jump-btn', //跳转按钮
+                                        jumpBtn: '跳转', //跳转按钮文本
+                                        callback: function () {} //回调
+                                    };
+
+                                    var Pagination = function (element, options) {
+                                        //全局变量
+                                        var opts = options, //配置
+                                            current, //当前页
+                                            $document = $(document),
+                                            $obj = $(element); //容器
+
+                                        /**
+                                         * 设置总页数
+                                         * @param {int} page 页码
+                                         * @return opts.pageCount 总页数配置
+                                         */
+                                        this.setPageCount = function (page) {
+                                            return opts.pageCount = page;
+                                        };
+
+                                        /**
+                                         * 获取总页数
+                                         * 如果配置了总条数和每页显示条数，将会自动计算总页数并略过总页数配置，反之
+                                         * @return {int} 总页数
+                                         */
+                                        this.getPageCount = function () {
+                                            return opts.totalData && opts.showData ? Math.ceil(parseInt(opts.totalData) / opts.showData) : opts.pageCount;
+                                        };
+
+                                        /**
+                                         * 获取当前页
+                                         * @return {int} 当前页码
+                                         */
+                                        this.getCurrent = function () {
+                                            return current;
+                                        };
+
+                                        /**
+                                         * 填充数据
+                                         * @param {int} 页码
+                                         */
+                                        this.filling = function (index) {
+                                            var html = '';
+                                            current = parseInt(index) || parseInt(opts.current); //当前页码
+                                            var pageCount = this.getPageCount(); //获取的总页数
+                                            if (opts.keepShowPN || current > 1) { //上一页
+                                                html += '<a href="javascript:;" class="' + opts.prevCls + '">' + opts.prevContent + '</a>';
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.prevCls) && $obj.find('.' + opts.prevCls).remove();
+                                                }
+                                            }
+                                            if (current >= opts.count + 2 && current != 1 && pageCount != opts.count) {
+                                                var home = opts.coping && opts.homePage ? opts.homePage : '1';
+                                                html += opts.coping ? '<a href="javascript:;" data-page="1">' + home + '</a>' : '';
+                                            }
+                                            var start = (current - opts.count) <= 1 ? 1 : (current - opts.count);
+                                            var end = (current + opts.count) >= pageCount ? pageCount : (current + opts.count);
+                                            for (; start <= end; start++) {
+                                                if (start <= pageCount && start >= 1) {
+                                                    if (start != current) {
+                                                        html += '<a href="javascript:;" data-page="' + start + '">' + start + '</a>';
+                                                    } else {
+                                                        html += '<span class="' + opts.activeCls + '">' + start + '</span>';
+                                                    }
+                                                }
+                                            }
+                                            if (current + opts.count < pageCount && current >= 1 && pageCount > opts.count) {
+                                                var end = opts.coping && opts.endPage ? opts.endPage : pageCount;
+                                                html += opts.coping ? '<a href="javascript:;" data-page="' + pageCount + '">' + end + '</a>' : '';
+                                            }
+                                            if (opts.keepShowPN || current < pageCount) { //下一页
+                                                html += '<a href="javascript:;" class="' + opts.nextCls + '">' + opts.nextContent + '</a>'
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.nextCls) && $obj.find('.' + opts.nextCls).remove();
+                                                }
+                                            }
+                                            html += opts.jump ? '<input type="text" class="' + opts.jumpIptCls + '"><a href="javascript:;" class="' + opts.jumpBtnCls + '">' + opts.jumpBtn + '</a>' : '';
+                                            $obj.empty().html(html);
+                                        };
+
+                                        //绑定事件
+                                        this.eventBind = function () {
+                                            var that = this;
+                                            var pageCount = that.getPageCount(); //总页数
+                                            var index = 1;
+                                            $obj.off().on('click', 'a', function () {
+                                                if ($(this).hasClass(opts.nextCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() >= pageCount) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) + 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.prevCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() <= 1) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) - 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.jumpBtnCls)) {
+                                                    if ($obj.find('.' + opts.jumpIptCls).val() !== '') {
+                                                        index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    index = parseInt($(this).data('page'));
+                                                }
+                                                that.filling(index);
+                                                typeof opts.callback === 'function' && opts.callback(that);
+                                                //页码数
+                                                var name=$(".coosupplierName").val();
+                                                window.location.href="/merchandise/cooperative.do?currentPage="+index+"&merchandiseName="+name;
+                                            });
+                                            //输入跳转的页码
+                                            $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
+                                                var $this = $(this);
+                                                var val = $this.val();
+                                                var reg = /[^\d]/g;
+                                                if (reg.test(val)) $this.val(val.replace(reg, ''));
+                                                (parseInt(val) > pageCount) && $this.val(pageCount);
+                                                if (parseInt(val) === 0) $this.val(1); //最小值为1
+                                            });
+                                            //回车跳转指定页码
+                                            $document.keydown(function (e) {
+                                                if (e.keyCode == 13 && $obj.find('.' + opts.jumpIptCls).val()) {
+                                                    var index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    that.filling(index);
+                                                    typeof opts.callback === 'function' && opts.callback(that);
+                                                }
+                                            });
+                                        };
+                                        //初始化
+                                        this.init = function () {
+                                            this.filling(opts.current);
+                                            this.eventBind();
+                                            if (opts.isHide && this.getPageCount() == '1' || this.getPageCount() == '0') $obj.hide();
+                                        };
+                                        this.init();
+                                    };
+
+                                    $.fn.pagination = function (parameter, callback) {
+                                        if (typeof parameter == 'function') { //重载
+                                            callback = parameter;
+                                            parameter = {};
+                                        } else {
+                                            parameter = parameter || {};
+                                            callback = callback || function () {};
+                                        }
+                                        var options = $.extend({}, defaults, parameter);
+                                        return this.each(function () {
+                                            var pagination = new Pagination(this, options);
+                                            callback(pagination);
+                                        });
+
+                                    };
+                                }));
+                            </script>
+                        </ul>
+                    </div>
+
                 </form>
             </c:if>
             <c:if test="${i==1}">
-                <form id="form" action="/employee/noncooperation.do" method="post" >
+                <form id="form" action="/supplier/noncooperation.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
-                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                        <input class="nonsupplierName" value="${noncname}"  name="merchandiseName" placeholder ="编码/名称/规格/产地等" class="input-medium search-query" type="text" />
                     </li>
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
                         <tr>
                             <th></th>
-                            <th>员工名称</th>
-                            <th>职位名称</th>
+                            <th>商品编码</th>
+                            <th>商品名称</th>
+                            <th>商品规格</th>
+                            <th>商品类型</th>
+                            <th>单位信息</th>
+                            <th>产地</th>
+                            <th>安全存量</th>
+                            <th>当前数量</th>
+                            <th>无税售价</th>
+                            <th>是否缺货</th>
+                            <th>是否在售</th>
                         </tr>
                         </thead>
-                        <tbody >
-                        <c:forEach items="${noncooperation}" var="n">
-                            <tr id="${n.employeeId}"  class="clients">
-                                <td><input class="employeeId"  runat="server" type="checkbox" value="${n.employeeId}" /></td>
-                                <td id="employeeId" style="display: none">${n.employeeId}</td>
-                                <td id="employeeName">${n.employeeName}</td>
-                                <c:if test="${n.employeeState==0}">
-                                    <td  id="employeeState">在职</td>
+                        <tbody id="tbod">
+                        <c:forEach items="${merch}" var="m">
+                            <tr id="${m.merchandiseId}"  class="clients">
+                                <td><input class="merchandiseId"  runat="server" type="checkbox" value="${m.merchandiseId}" /></td>
+                                <td id="merchandiseId" style="display: none">${m.merchandiseId}</td>
+                                <td id="merchandiseCode">${m.merchandiseCode}</td>
+                                <td id="merchandiseName">${m.merchandiseName}</td>
+                                <td id="merchandiseSpecification">${m.merchandiseSpecification}</td>
+                                <td id="productTypeId">${m.productType.productTypeName}</td>
+                                <td id="unitsId">${m.units.unitsName}</td>
+                                <td id="merchandisePlaceOfOrigin">${m.merchandisePlaceOfOrigin}</td>
+                                <td id="merchandiseSafetyStock">${m.merchandiseSafetyStock}</td>
+                                <td id="merchandiseActualQuntity">${m.merchandiseActualQuntity}</td>
+                                <td id="merchandiseSalsePrice">${m.merchandiseSalsePrice}</td>
+                                <td id="salesStatusId">${m.salesStatus.salesStatusName}</td>
+                                <c:if test="${m.merchandiseState==0}">
+                                    <td  id="merchandiseState">在售</td>
                                 </c:if>
-                                <c:if test="${n.employeeState==1}">
-                                    <td  id="employeeState">离职</td>
+                                <c:if test="${m.merchandiseState==1}">
+                                    <td  id="merchandiseState">下架</td>
                                 </c:if>
                             </tr>
                         </c:forEach>
-                        <div  style="position: absolute;left: 75%;top: 150%">
-                            <ul class="pagination" >
-                                <li><a href="/employee/noncooperation.do?currentPage=1">首页</a></li>
-                                <c:if test="${pp.currentPage >1}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage ==1}">
-                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;${pp.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pp.pageBar}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pp.currentPage<pp.totalPage}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage==pp.totalPage}">
-                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;${pp.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/employee/noncooperation.do?currentPage=${pp.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pp.totalRecord}条数据</a></li>
-                                <li><a>共有${pp.totalPage}页</a></li>
-                            </ul>
-                        </div>
                         </tbody>
                     </table>
+                    <div  style="position: absolute;left: 800px;top: 340px">
+                        <ul class="pagination" >
+                            <div class="M-box2"></div>
+                            <script>
+                                $(function(){
+                                    $('.M-box2').pagination({
+                                        coping:true,
+                                        homePage:'首页',
+                                        endPage:'末页',
+                                        prevContent:'上页',
+                                        nextContent:'下页',
+                                    });
+                                });
+                            </script>
+                                <%--分页--%>
+                            <script>
+                                (function (factory) {
+                                    if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
+                                        // AMD或CMD
+                                        define(["jquery"], factory);
+                                    } else if (typeof module === 'object' && module.exports) {
+                                        // Node/CommonJS
+                                        module.exports = function (root, jQuery) {
+                                            if (jQuery === undefined) {
+                                                if (typeof window !== 'undefined') {
+                                                    jQuery = require('jquery');
+                                                } else {
+                                                    jQuery = require('jquery')(root);
+                                                }
+                                            }
+                                            factory(jQuery);
+                                            return jQuery;
+                                        };
+                                    } else {
+                                        //Browser globals
+                                        factory(jQuery);
+                                    }
+                                }(function ($) {
+                                    //配置参数
+                                    var defaults = {
+                                        totalData: ${pages.totalRecord}, //数据总条数
+                                        showData: ${pages.pageSize}, //每页显示的条数
+                                        pageCount: ${pages.totalPage}, //总页数,默认为9
+                                        current: ${pages.currentPage}, //当前第几页
+                                        prevCls: 'prev', //上一页class
+                                        nextCls: 'next', //下一页class
+                                        prevContent: '<', //上一页内容
+                                        nextContent: '>', //下一页内容
+                                        activeCls: 'active', //当前页选中状态
+                                        coping: false, //首页和尾页
+                                        isHide: false, //当前页数为0页或者1页时不显示分页
+                                        homePage: '', //首页节点内容
+                                        endPage: '', //尾页节点内容
+                                        keepShowPN: false, //是否一直显示上一页下一页
+                                        count: 1, //当前页前后分页个数
+                                        jump: false, //跳转到指定页数
+                                        jumpIptCls: 'jump-ipt', //文本框内容
+                                        jumpBtnCls: 'jump-btn', //跳转按钮
+                                        jumpBtn: '跳转', //跳转按钮文本
+                                        callback: function () {} //回调
+                                    };
+
+                                    var Pagination = function (element, options) {
+                                        //全局变量
+                                        var opts = options, //配置
+                                            current, //当前页
+                                            $document = $(document),
+                                            $obj = $(element); //容器
+
+                                        /**
+                                         * 设置总页数
+                                         * @param {int} page 页码
+                                         * @return opts.pageCount 总页数配置
+                                         */
+                                        this.setPageCount = function (page) {
+                                            return opts.pageCount = page;
+                                        };
+
+                                        /**
+                                         * 获取总页数
+                                         * 如果配置了总条数和每页显示条数，将会自动计算总页数并略过总页数配置，反之
+                                         * @return {int} 总页数
+                                         */
+                                        this.getPageCount = function () {
+                                            return opts.totalData && opts.showData ? Math.ceil(parseInt(opts.totalData) / opts.showData) : opts.pageCount;
+                                        };
+
+                                        /**
+                                         * 获取当前页
+                                         * @return {int} 当前页码
+                                         */
+                                        this.getCurrent = function () {
+                                            return current;
+                                        };
+                                        /**
+                                         * 填充数据
+                                         * @param {int} 页码
+                                         */
+                                        this.filling = function (index) {
+                                            var html = '';
+                                            current = parseInt(index) || parseInt(opts.current); //当前页码
+                                            var pageCount = this.getPageCount(); //获取的总页数
+                                            if (opts.keepShowPN || current > 1) { //上一页
+                                                html += '<a href="javascript:;" class="' + opts.prevCls + '">' + opts.prevContent + '</a>';
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.prevCls) && $obj.find('.' + opts.prevCls).remove();
+                                                }
+                                            }
+                                            if (current >= opts.count + 2 && current != 1 && pageCount != opts.count) {
+                                                var home = opts.coping && opts.homePage ? opts.homePage : '1';
+                                                html += opts.coping ? '<a href="javascript:;" data-page="1">' + home + '</a>' : '';
+                                            }
+                                            var start = (current - opts.count) <= 1 ? 1 : (current - opts.count);
+                                            var end = (current + opts.count) >= pageCount ? pageCount : (current + opts.count);
+                                            for (; start <= end; start++) {
+                                                if (start <= pageCount && start >= 1) {
+                                                    if (start != current) {
+                                                        html += '<a href="javascript:;" data-page="' + start + '">' + start + '</a>';
+                                                    } else {
+                                                        html += '<span class="' + opts.activeCls + '">' + start + '</span>';
+                                                    }
+                                                }
+                                            }
+                                            if (current + opts.count < pageCount && current >= 1 && pageCount > opts.count) {
+                                                var end = opts.coping && opts.endPage ? opts.endPage : pageCount;
+                                                html += opts.coping ? '<a href="javascript:;" data-page="' + pageCount + '">' + end + '</a>' : '';
+                                            }
+                                            if (opts.keepShowPN || current < pageCount) { //下一页
+                                                html += '<a href="javascript:;" class="' + opts.nextCls + '">' + opts.nextContent + '</a>'
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.nextCls) && $obj.find('.' + opts.nextCls).remove();
+                                                }
+                                            }
+                                            html += opts.jump ? '<input type="text" class="' + opts.jumpIptCls + '"><a href="javascript:;" class="' + opts.jumpBtnCls + '">' + opts.jumpBtn + '</a>' : '';
+                                            $obj.empty().html(html);
+                                        };
+                                        //绑定事件
+                                        this.eventBind = function () {
+                                            var that = this;
+                                            var pageCount = that.getPageCount(); //总页数
+                                            var index = 1;
+                                            $obj.off().on('click', 'a', function () {
+                                                if ($(this).hasClass(opts.nextCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() >= pageCount) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) + 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.prevCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() <= 1) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) - 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.jumpBtnCls)) {
+                                                    if ($obj.find('.' + opts.jumpIptCls).val() !== '') {
+                                                        index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    index = parseInt($(this).data('page'));
+                                                }
+                                                that.filling(index);
+                                                typeof opts.callback === 'function' && opts.callback(that);
+                                                //页码数
+                                                var name=$(".nonsupplierName").val();
+                                                window.location.href="/supplier/noncooperation.do?currentPage="+index+"&merchandiseName="+name;
+                                            });
+                                            //输入跳转的页码
+                                            $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
+                                                var $this = $(this);
+                                                var val = $this.val();
+                                                var reg = /[^\d]/g;
+                                                if (reg.test(val)) $this.val(val.replace(reg, ''));
+                                                (parseInt(val) > pageCount) && $this.val(pageCount);
+                                                if (parseInt(val) === 0) $this.val(1); //最小值为1
+                                            });
+                                            //回车跳转指定页码
+                                            $document.keydown(function (e) {
+                                                if (e.keyCode == 13 && $obj.find('.' + opts.jumpIptCls).val()) {
+                                                    var index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    that.filling(index);
+                                                    typeof opts.callback === 'function' && opts.callback(that);
+                                                }
+                                            });
+                                        };
+                                        //初始化
+                                        this.init = function () {
+                                            this.filling(opts.current);
+                                            this.eventBind();
+                                            if (opts.isHide && this.getPageCount() == '1' || this.getPageCount() == '0') $obj.hide();
+                                        };
+                                        this.init();
+                                    };
+                                    $.fn.pagination = function (parameter, callback) {
+                                        if (typeof parameter == 'function') { //重载
+                                            callback = parameter;
+                                            parameter = {};
+                                        } else {
+                                            parameter = parameter || {};
+                                            callback = callback || function () {};
+                                        }
+                                        var options = $.extend({}, defaults, parameter);
+                                        return this.each(function () {
+                                            var pagination = new Pagination(this, options);
+                                            callback(pagination);
+                                        });
+                                    };
+                                }));
+                            </script>
+                        </ul>
+                    </div>
                 </form>
             </c:if>
         </div>
     </div>
-
-
-    <!-- 新增 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form class="modal-content" id="addemployee">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModabel">
-                        新增员工信息
-                    </h4>
-                </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">员工名称</span>
-                        <input  id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divname">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">职位名称</span>
-                        <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
-                            <c:forEach  var="p" items="${positions}">
-                                <option value="${p.positionId}" >${p.positionName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">身份证号</span>
-                        <input name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divpost">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                        <input name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                    </div>
-                    <span   class="reminder" id="Divaddress">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
-                        <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">联络地址</span>
-                        <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
-                    <div class="input-group" style="display: none">
-                        <span class="input-group-addon" style="width: 81px;">是否已删除</span>
-                        <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" id="insert" class="btn btn-primary">
-                        提交新增
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
 </div>
+<!-- 新增 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="addMerchandise">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModabel">
+                    新增商品信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 500px" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品编码</span>
+                    <input  id="addmerchandiseCode" name="merchandiseCode" placeholder="请输入50字以内信息"type="text"  class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmerchandiseCode">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品名称</span>
+                    <input name="merchandiseName" id="addmerchandiseName"placeholder="请输入50字以内信息" type="text" class="form-control"  style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmerchandiseName">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品规格</span>
+                    <input name="merchandiseSpecification"  id="addmerchandiseSpecification" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmerchandiseSpecification">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品类型</span>
+                    <select id="addproductType" name="productTypeId" class="form-control"   style="width:487px;opacity:1;">
+                        <c:forEach  var="p" items="${prod}">
+                            <option value="${p.productTypeId}" >${p.productTypeName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span   class="reminder" id="DivaproductType">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">商品单位</span>
+                    <select id="addunitsId" name="unitsId" class="form-control"   style="width:487px;opacity:1;">
+                        <c:forEach  var="p" items="${unis}">
+                            <option value="${p.unitsId}" >${p.unitsName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span  class="reminder" id="DivunitsId">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">销售状态</span>
+                    <select id="addsalesStatus" name="salesStatusId" class="form-control"   style="width:487px;opacity:1;">
+                        <c:forEach  var="p" items="${sale}">
+                            <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span class="reminder" id="DivsalesStatus">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">产地</span>
+                    <input name="merchandisePlaceOfOrigin"  id="addmerchandisePlaceOfOrigin"  type="text" class="form-control" placeholder="请输入50字以内信息" style="width:510px;">
+                </div>
+                <span  class="reminder" id="DivmerchandisePlaceOfOrigin">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">安全存量</span>
+                    <input name="merchandiseSafetyStock" onkeyup="value=value.replace(/[^\d]/g,'')" id="addmerchandiseSafetyStock"  type="text" class="form-control" placeholder="请输入数字" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmerchandiseSafetyStock">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">当前数量</span>
+                    <input name="merchandiseActualQuntity" onkeyup="value=value.replace(/[^\d]/g,'')" id="addmerchandiseActualQuntity"  type="text" class="form-control" placeholder="请输入数字"  style="width:487px;">
+                </div>
+                <span class="reminder" id="DivmerchandiseActualQuntity">&nbsp;</span> <br>
+
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">无税供价</span>
+                    <input name="merchandiseSalsePrice" onkeyup="value=value.replace(/[^\d\.]/g,'')" id="addmerchandiseSalsePrice" type="text" class="form-control" placeholder="请输入数字"  style="width:487px;">
+                </div>
+                <span class="reminder" id="DivmerchandiseSalsePrice">&nbsp;</span> <br>
+
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon" style="width: 81px;">是否已删除</span>
+                    <input name="merchandiseState" id="addmerchandiseState" type="text" value="0" class="form-control"  style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="insert" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+
 <!-- 修改 -->
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="updateemployee">
+        <form id="updateMerchandise">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
                     <h4 class="modal-title" id="updateTime">
-                        修改用户信息
+                        修改商品信息
                     </h4>
                 </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
-                    <input id="updateid" name="employeeId" style="display: none"/>
+                <div  class="modal-body" style="width: 300px;height: 500px" >
+                    <input id="updatemerchandiseId" name="merchandiseId" type="hidden" />
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">员工名称</span>
-                        <input  name="employeeName" id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                        <span class="input-group-addon">商品编码</span>
+                        <input  id="updatemerchandiseCode"style="width: 400px" name="merchandiseCode" type="text" placeholder="请输入50字以内信息" class="form-control" >
                     </div>
-                    <span class="reminder" id="remindername">&nbsp;</span><br>
-                    <div class="input-group" style="border: 10px; bordercolor:#000000">
-                        <span class="input-group-addon" style="width: 81px;">职位信息</span>
-                        <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
-                            <c:forEach  var="p" items="${positions}">
-                                <option value="${p.positionId}" >${p.positionName}</option>
+                    <span  class="reminder" id="remindermerchandiseCode">&nbsp;</span>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon" >商品名称</span>
+                        <input name="merchandiseName"style="width: 400px" id="updatemerchandiseName"placeholder="请输入50字以内信息" type="text" class="form-control"  >
+                    </div>
+                    <span  class="reminder" id="remindermerchandiseName">&nbsp;</span>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">商品规格</span>
+                        <input name="merchandiseSpecification"style="width: 400px"  id="updatemerchandiseSpecification" type="text"placeholder="请输入50字以内信息" class="form-control">
+                    </div>
+                    <span  class="reminder" id="remindermerchandiseSpecification">&nbsp;</span>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">商品类型</span>
+                        <select id="updateproductType"style="width: 405px" name="productTypeId" class="form-control"  >
+                            <c:forEach  var="p" items="${prod}">
+                                <option value="${p.productTypeId}" >${p.productTypeName}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <span class="reminder" id="reminderpersonInCharge">&nbsp;</span><br>
+                    <span   class="reminder" id="reminderaproductType">&nbsp;</span>
+                    <br>
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">身份证号</span>
-                        <input name="employeeIdNumber"  id="updatepost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                        <span class="input-group-addon">商品单位</span>
+                        <select id="updateunitsId" style="width: 405px" name="unitsId" class="form-control"  >
+                            <c:forEach  var="p" items="${unis}">
+                                <option value="${p.unitsId}" >${p.unitsName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-                    <span class="reminder" id="reminderpost">&nbsp;</span><br>
+                    <span  class="reminder" id="reminderunitsId">&nbsp;</span> <br>
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                        <input name="employeeMobilePhone"   id="updateaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                        <span class="input-group-addon" >销售状态</span>
+                        <select id="updatesalesStatus" style="width: 405px" name="salesStatusId" class="form-control"   >
+                            <c:forEach  var="p" items="${sale}">
+                                <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-                    <span class="reminder" id="reminderaddress">&nbsp;</span><br>
+                    <span class="reminder" id="remindersalesStatus">&nbsp;</span> <br>
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
-                        <input name="employeeEmail"  id="updatefactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
+                        <span class="input-group-addon" >产地</span>
+                        <input name="merchandisePlaceOfOrigin" style="width: 430px" id="updatemerchandisePlaceOfOrigin"  type="text" class="form-control" placeholder="请输入50字以内信息" >
                     </div>
-                    <span class="reminder" id="reminderfactoryAddress">&nbsp;</span><br>
+                    <span  class="reminder" id="remindermerchandisePlaceOfOrigin">&nbsp;</span> <br>
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">联络地址</span>
-                        <input name="employeeAddress"  id="updatemobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                        <span class="input-group-addon" >安全存量</span>
+                        <input name="merchandiseSafetyStock"  onkeyup="value=value.replace(/[^\d\.]/g,'')" style="width: 400px" id="updatemerchandiseSafetyStock"  type="text" class="form-control" placeholder="请输入数字" >
                     </div>
-                    <span class="reminder" id="remindermobilePhone">&nbsp;</span><br>
+                    <span  class="reminder" id="remindermerchandiseSafetyStock">&nbsp;</span> <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">当前数量</span>
+                        <input name="merchandiseActualQuntity" onkeyup="value=value.replace(/[^\d\.]/g,'')" style="width: 400px" id="updatemerchandiseActualQuntity"  type="text" class="form-control" placeholder="请输入数字" >
+                    </div>
+                    <span class="reminder" id="remindermerchandiseActualQuntity">&nbsp;</span> <br>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">无税供价</span>
+                        <input name="merchandiseSalsePrice"onkeyup="value=value.replace(/[^\d\.]/g,'')"  style="width: 400px" id="updatemerchandiseSalsePrice" type="text" class="form-control" placeholder="请输入数字">
+                    </div>
+                    <span class="reminder" id="remindermerchandiseSalsePrice">&nbsp;</span> <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="closeUpdate" class="btn btn-default" data-dismiss="modal">关闭
@@ -360,5 +853,4 @@
     </div><!-- /.modal -->
 </div>
 </body>
-
 </html>

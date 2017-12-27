@@ -14,6 +14,7 @@
         <result column="units_id" property="unitsId"/>
         <result column="sales_status_id" property="salesStatusId"/>
         <result column="Product_type_id" property="productTypeId"/>
+        <result column="sumstock" property="sumStock"/>
         <association property="productType" javaType="productType">
             <result column="Product_type_id" property="productTypeId" />
             <result column="Product_type_name" property="productTypeName" />
@@ -30,6 +31,16 @@
             <result column="sales_status_state" property="salesStatusState" />
         </association>
     </resultMap>
+
+    <select id="sumstock" resultType="int">
+        select COUNT(*) sumstock from merchandise
+        <where>
+            merchandise_state=0
+            and merchandise_actual_quntity &lt; merchandise_safety_stock
+        </where>
+    </select>
+
+
     <!--nsc 查询所有商品-->
     <select id="selectAll" resultMap="merchandiseMap">
         SELECT * FROM merchandise m
@@ -155,7 +166,6 @@
         </if>
          order by m.merchandise_id asc
     </select>
-
     <!--指定条件修改商品信息-->
     <update id="updateMerchandise" parameterType="merchandise">
         update merchandise
@@ -196,15 +206,98 @@
         </set>
         where merchandise_id=#{merchandiseId}
     </update>
-
-
-
     <!--增加商品信息-->
     <insert id="insertMerchandise" parameterType="merchandise">
-        insert into merchandise (merchandise-code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
+        insert into merchandise (merchandise_code,merchandise_name,merchandise_specification,product_type_id,units_id,merchandise_place_of_origin,merchandise_safety_stock,merchandise_actual_quntity,merchandise_salse_price,sales_status_id,merchandise_state)
         values (#{merchandiseCode},#{merchandiseName},#{merchandiseSpecification},#{productTypeId},#{unitsId},#{merchandisePlaceOfOrigin},#{merchandiseSafetyStock},#{merchandiseActualQuntity},#{merchandiseSalsePrice},#{salesStatusId},#{merchandiseState});
     </insert>
     <select id="selectOne">
         select * from merchandise
     </select>
+
+    <select id="count" resultType="int" >
+        select count(*) from merchandise
+        <where>
+            <if test="merchandiseName!=null and  merchandiseName!=''">
+                concat(merchandise_code,
+                '!,(%!)#',merchandise_name,
+                '!,(%!)#',merchandise_specification,
+                '*!,(%!)#',merchandise_place_of_origin,
+                '*!,(%!)#',merchandise_safety_stock,
+                '*!,(%!)#',merchandise_actual_quntity,
+                '*!,(%!)#',merchandise_salse_price
+                )
+                like CONCAT('%',#{merchandiseName},'%')
+            </if>
+            <if test="merchandiseState!=null">
+                and merchandise_state=#{merchandiseState}
+            </if>
+        </where>
+    </select>
+    <select id="pagerMerchandise" resultMap="merchandiseMap">
+        select * from merchandise m,product_type p,units u,sales_status s
+        <where>
+            m.product_type_id=p.product_type_id
+            and m.units_id=u.units_id
+            and m.sales_status_id=s.sales_status_id
+            <if test="merchandiseName!=null and  merchandiseName!=''">
+                and   concat(m.merchandise_code,
+                '!,(%!)#',m.merchandise_name,
+                '!,(%!)#',m.merchandise_specification,
+                '*!,(%!)#',m.merchandise_place_of_origin,
+                '*!,(%!)#',m.merchandise_safety_stock,
+                '*!,(%!)#',m.merchandise_actual_quntity,
+                '*!,(%!)#',m.merchandise_salse_price
+                )
+                like CONCAT('%',#{merchandiseName},'%')
+            </if>
+            <if test="merchandiseState!=null">
+                and m.merchandise_state=#{merchandiseState}
+            </if>
+            <if test="currentPage!=null and pageSize!=null">
+                LIMIT #{currentPage},#{pageSize}
+            </if>
+        </where>
+    </select>
+    <!--修改为不合作客户-->
+    <update id="noncooperation" parameterType="java.util.List">
+        <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+            update merchandise
+            <set>
+                merchandise_state=1
+            </set>
+            where merchandise_id=#{client.merchandiseId}
+        </foreach>
+    </update>
+    <!--修改为合作客户-->
+    <update id="cooperative" parameterType="java.util.List">
+        <foreach collection="list" item="client" index="index" open="" close="" separator=";" >
+            update merchandise
+            <set>
+                merchandise_state=0
+            </set>
+            where merchandise_id=#{client.merchandiseId}
+        </foreach>
+    </update>
+
+
+
+    <!--查询当前库存小于安全库存并且 缺货状态没有修改的-->
+    <select id="insufficientMerchandise" resultMap="merchandiseMap">
+        SELECT m.*,u.units_name FROM merchandise m
+        INNER JOIN units u
+        ON u.units_id=m.units_id
+        WHERE  m.merchandise_actual_quntity &lt;= m.merchandise_safety_stock
+        and merchandise_state!=0
+    </select>
+    <!-- 修改缺货状态成缺货-->
+    <update id="insufficient" parameterType="java.util.List">
+        <foreach collection="list" item="merchandise" index="index" open="" close="" separator=";" >
+            update merchandise
+            <set>
+                sales_status_id=1
+            </set>
+            where merchandise_id=#{merchandise.merchandiseId}
+        </foreach>
+    </update>
 </mapper>

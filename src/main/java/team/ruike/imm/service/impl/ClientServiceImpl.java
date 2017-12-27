@@ -49,7 +49,6 @@ public class ClientServiceImpl   implements ClientService{
             count=clientDao.pages(c);
             i=clientDao.count(c);
         }
-
         Pages<Client> pages=new Pages<Client>();
         pages.setCurrentPage(currentPage);
         pages.setList(count);
