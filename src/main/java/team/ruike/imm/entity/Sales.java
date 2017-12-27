@@ -67,10 +67,87 @@ public class Sales extends PagerParameter implements Serializable{
     private EventDetails eventDetails;
 
     /**
-     * 药品信息
+     * 药品信息ID
      */
     private Integer merchandiseId;
 
+    /**
+     * 销售笔数-郭旭
+     */
+    private Integer countAllForThis;
+
+    /**
+     * 销售总金额-郭旭
+     */
+    private double allPriceForThis;
+
+    /**
+     * 销售总笔数-郭旭-销售利润
+     */
+    private Integer countAllForProfit;
+
+    /**
+     * 销售成本-郭旭-销售利润
+     */
+    private double cost;
+
+    /**
+     * 销售利润-郭旭-销售利润
+     */
+    private double profit;
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public Integer getCountAllForProfit() {
+        return countAllForProfit;
+    }
+
+    public void setCountAllForProfit(Integer countAllForProfit) {
+        this.countAllForProfit = countAllForProfit;
+    }
+
+    /**
+     * 药品类型ID
+     */
+    private  Integer productTypeId;
+
+    public Integer getProductTypeId() {
+        return productTypeId;
+    }
+
+    public void setProductTypeId(Integer productTypeId) {
+        this.productTypeId = productTypeId;
+    }
+
+    public Integer getCountAllForThis() {
+        return countAllForThis;
+    }
+
+    public void setCountAllForThis(Integer countAllForThis) {
+        this.countAllForThis = countAllForThis;
+    }
+
+    public double getAllPriceForThis() {
+        return allPriceForThis;
+    }
+
+    public void setAllPriceForThis(double allPriceForThis) {
+        this.allPriceForThis = allPriceForThis;
+    }
 
     public Integer getMerchandiseId() {
         return merchandiseId;
