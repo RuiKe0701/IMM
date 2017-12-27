@@ -14,23 +14,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>恒辉医药进销存</title>
 
-    <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
-    <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/css/print.css" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/need/laydate.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
     <link href="${pageContext.request.contextPath }/css/ui.min.css" rel="stylesheet">
-    <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/vue.js"></script>
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
-    <script src="${pageContext.request.contextPath }/js/common.js"></script>
-    <script src="${pageContext.request.contextPath }/js/grid.js"></script>
-    <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/report.css">
     <style>
+        th{
+            text-align: center;
+        }
+        td{
+            text-align: center;
+        }
         .ui-icon-ellipsis {
             right: 5px;
         }
@@ -38,44 +36,41 @@
         #grid tr {
             cursor: pointer;
         }
-
-        .no-query {
-            background: url("${pageContext.request.contextPath }/img/no_query.png") no-repeat scroll 100px 60px #fff;
-            background-position: center;
-            border: 1px solid #ddd;
-            border-top: none;
-            height: 402px;
-            margin-right: 0;
-        }
-
     </style>
 </head>
 <body style="">
 <div class="wrapper">
     <!-- header -->
-    <div class="mod-search cf" id="report-search">
-        <div class="l" id="filter-menu">
-            <ul class="ul-inline fix" id="filterItems">
-                <li id="date" style="display: list-item;"><label>单据日期:</label>
-                    <input id="hello" name="startTime" class="">
+    <form action="/procurementSummary/login.do">
+    <div >
+        <div>
+            <ul >
+                <li style="float: left;position:relative;top:15px" ><label>单据日期:</label>
+                    <input id="hello" name="startTime" class="" style="height: 25px">
                     <span class="todate"> 至 </span>
-                    <input id="end" name="endTime" class="">
-                <li id="goods" style="display: list-item;"><label>商品:</label>
+                    <input id="end" name="endTime" class="" style="height: 25px">
+                <li style="float: left;position:relative;top:15px" ><label>商品:</label>
                     <span class="mod-choose-input" id="filter-goods">
-                        <input type="text" class="ui-input" id="goodsAuto" autocomplete="off">
+                        <input name="piRemarks" type="text" class="ui-input" style="height: 25px">
                         <span class="ui-icon-ellipsis"></span></span></li>
-                <li id="supplier" style="display: list-item;"><label>供应商:</label>
-                    <span class="mod-choose-input" id="filter-supplier">
-                        <input type="text" class="ui-input" id="supplierAuto" autocomplete="off">
-                        <span class="ui-icon-ellipsis"></span>
-                    </span>
+                <li style="float: left;position:relative;top:15px">
+                    <label>供应商:</label>
+                    <input style="position: absolute;top: -1px;left: 60px;width: 160px;height: 25px" name="supplierName" type="text" class="form-control" id="test_data" autocomplete="off" data-id="" alt="43345" >
+                                <div class="input-group-btn">
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu" style="padding-top: 0px; max-height: 375px; max-width: 800px; overflow: auto; width: auto; transition: 0.3s; left: -490px; right: auto; min-width: 555px;">
+                                        <table class="table table-condensed table-sm" style="margin:0">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </ul>
+                                </div>
                 </li>
-                <li id="filter"><label>供应商类别</label><span id="catorage"></span></li>
-                <div class="btns"><a class="ui-btn mrb ui-btn-search" id="filter-submit">查询</a></div>
+                <div class="btns" style="position: absolute;right: 150px;top: 20px"><input type="submit" class="ui-btn mrb ui-btn-search" value="查询"></div>
             </ul>
         </div>
     </div>
-
+    </form>
+    <div style="height: 55px"></div>
     <div class="ui-print" >
         <!-- 列配置 -->
         <div class="cf box-flex">
@@ -83,265 +78,50 @@
             </div>
             <div class="grid-title flex">采购汇总表</div>
             <div class="fr">
-                <a href="http://vip2-gd.youshang.com/report/pu-summary-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                   class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
-                <a href="http://vip2-gd.youshang.com/report/pu-summary-new.jsp?beginDate=2017-11-01&amp;endDate=2017-11-21#"
-                   class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>
+                <a href="#" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
+                <a href="#" class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>
             </div>
         </div>
         <div class="grid-wrap" id="grid-wrap" style="height: 486px;">
-            <!-- <div class="grid-title">采购汇总表（）</div> -->
-            <div class="grid-subtitle">日期: 2017-11-01 至 2017-11-27</div>
-            <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr" style="width: 1170px;">
-                <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
-                <div class="loading ui-state-default ui-state-active" id="load_grid" style="display: none;">读取中...</div>
-                <div class="ui-jqgrid-view" id="gview_grid" style="width: 1170px;">
-                    <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                         style="display: none;"><a role="link"
-                                                   class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
-                                                   style="right: 0px;"><span
-                            class="ui-icon ui-icon-circle-triangle-n"></span></a><span class="ui-jqgrid-title"></span>
-                    </div>
-                    <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1170px;">
-                        <div class="ui-jqgrid-hbox">
-                            <table class="ui-jqgrid-htable" style="width:1345px" role="grid" aria-labelledby="gbox_grid"
-                                   cellspacing="0" cellpadding="0" border="0">
-                                <thead>
-                                <tr class="ui-jqgrid-labels" role="rowheader">
-                                    <th id="grid_assistName" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_assistName" class="ui-jqgrid-sortable">商品类别<span
-                                                class="s-ico" style="display:none"><span sort="asc"
-                                                                                         class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_invNo" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_invNo" class="ui-jqgrid-sortable">商品编号<span class="s-ico"
-                                                                                                       style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_invName" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 200px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_invName" class="ui-jqgrid-sortable">商品名称<span class="s-ico"
-                                                                                                         style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_spec" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 60px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_spec" class="ui-jqgrid-sortable">规格型号<span class="s-ico"
-                                                                                                      style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_location" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_location" class="ui-jqgrid-sortable">仓库<span class="s-ico"
-                                                                                                        style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_secondUnit" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_secondUnit" class="ui-jqgrid-sortable">副单位<span class="s-ico"
-                                                                                                           style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_secondQty" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_secondQty" class="ui-jqgrid-sortable">副单位数<span class="s-ico"
-                                                                                                           style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_unit" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 100px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_unit" class="ui-jqgrid-sortable">基本单位<span class="s-ico"
-                                                                                                      style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_qty" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 80px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_qty" class="ui-jqgrid-sortable">基本数量<span class="s-ico"
-                                                                                                     style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_unitPrice" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_unitPrice" class="ui-jqgrid-sortable">单价<span class="s-ico"
-                                                                                                         style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
-                                    <th id="grid_amount" role="columnheader"
-                                        class="ui-state-default ui-th-column ui-th-ltr" style="width: 120px;"><span
-                                            class="ui-jqgrid-resize ui-jqgrid-resize-ltr" style="cursor: col-resize;">&nbsp;</span>
-                                        <div id="jqgh_grid_amount" class="ui-jqgrid-sortable">采购金额<span class="s-ico"
-                                                                                                        style="display:none"><span
-                                                sort="asc"
-                                                class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                sort="desc"
-                                                class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                        </div>
-                                    </th>
+            <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr" style="width: 1201px;height: 450px">
+                <table class="table table-bordered" style="width: 1200px">
 
+                    <thead>
+                    <tr>
+                        <th style="width: 25px;"><input type="checkbox" class="checkAll"></th>
+                        <th style="display: none">销货商品id</th>
+                        <th>供应商</th>
+                        <th>商品类别</th>
+                        <th>商品编号</th>
+                        <th>商品名称</th>
+                        <th>规格型号</th>
+                        <th>商品单位</th>
+                        <th>商品数量</th>
+                        <th>商品单价</th>
+                        <th>商品总价</th>
+                        <th>采购人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${procurementInformationList}" var="procure">
+                        <tr class="eachtr">
+                            <td style="width: 25px;text-align: center"><input class="ck" type="checkbox"></td>
+                            <td class="procurementId">${procure.procurement.supplier.supplierName}</td>
+                            <td >${procure.merchandise.productType.productTypeName}</td>
+                            <td>${procure.merchandise.merchandiseId}</td>
+                            <td class="">${procure.merchandise.merchandiseName}</td>
+                            <td style="">${procure.merchandise.merchandiseSpecification}</td>
+                            <td class="prv">${procure.units.unitsName}</td>
+                            <td class="merchandiseActualQuntity">${procure.piVolume}</td>
+                            <td>${procure.piActualPrice}</td>
+                            <td class="piVolume">${procure.piTotalPrice}</td>
+                            <td class="piState">${procure.procurement.procurementEmployee.employeeName}</td>
 
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="ui-jqgrid-bdiv" style="height: 284.551px; width: 1170px;">
-                        <div style="position:relative;">
-                            <div></div>
-                            <table id="grid" tabindex="0" cellspacing="0" cellpadding="0" border="0" role="grid"
-                                   aria-multiselectable="false" aria-labelledby="gbox_grid" class="ui-jqgrid-btable"
-                                   style="width: 1170px;">
-                                <tbody>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 
-                                <tr role="row" id="1" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr">
-                                    <td role="gridcell" style="text-align:center;width: 90px;" aria-describedby="grid_assistName">耗材</td>
-                                    <td role="gridcell" style="text-align:center;width: 90px;" aria-describedby="grid_invNo">00100100001</td>
-                                    <td role="gridcell" style="text-align:center;width: 233px;" aria-describedby="grid_invName">乌啦啦益生菌</td>
-                                    <td role="gridcell" style="text-align:center;width: 66.5px;" aria-describedby="grid_spec">袋</td>
-                                    <td role="gridcell" style="text-align:center;width: 90px;" aria-describedby="grid_location">成都仓库</td>
-                                    <td role="gridcell" style="text-align:center;width: 90px;" aria-describedby="grid_secondUnit">1箱</td>
-                                    <td role="gridcell" style="text-align:center;width: 90px;" aria-describedby="grid_secondQty">1.0000个1</td>
-                                    <td role="gridcell" style="text-align:center;width: 113px;" aria-describedby="grid_unit">个1</td>
-                                    <td role="gridcell" style="text-align:center;width: 89.5px;" aria-describedby="grid_qty">1.0000</td>
-                                    <td role="gridcell" style="text-align:right;" aria-describedby="grid_unitPrice">&nbsp;</td>
-
-                                </tr>
-                                <tr role="row" id="2" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"> <td role="gridcell" style="text-align:center;" aria-describedby="grid_assistName">耗材</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_invNo">00100100001</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_invName">乌啦啦益生菌</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_spec">袋</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_location">成都仓库</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_secondUnit">1箱</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_secondQty">1.0000个1</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_unit">个1</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_qty">1.0000</td>
-                                    <td role="gridcell" style="text-align:right;" aria-describedby="grid_unitPrice">&nbsp;</td></tr>
-                                <tr role="row" id="3" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"> <td role="gridcell" style="text-align:center;" aria-describedby="grid_assistName">耗材</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_invNo">00100100001</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_invName">乌啦啦益生菌</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_spec">袋</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_location">成都仓库</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_secondUnit">1箱</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_secondQty">1.0000个1</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_unit">个1</td>
-                                    <td role="gridcell" style="text-align:center;" aria-describedby="grid_qty">1.0000</td>
-                                    <td role="gridcell" style="text-align:right;" aria-describedby="grid_unitPrice">&nbsp;</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="ui-jqgrid-sdiv" style="width: 1170px;">
-                        <div class="ui-jqgrid-hbox">
-                            <table role="grid" style="width:1345px" class="ui-jqgrid-ftable" cellspacing="0"
-                                   cellpadding="0" border="0">
-                                <tbody>
-                                <tr role="row" class="ui-widget-content footrow footrow-ltr">
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 80px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_assistName">合计:
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 80px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_invNo">&nbsp;
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 200px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_invName">&nbsp;
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 60px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_spec">&nbsp;
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 80px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_location">&nbsp;
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 80px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_secondUnit">&nbsp;
-                                    </td>
-                                    <td role="gridcell"
-                                        style="text-align: center; width: 80px; border-right-color: rgb(255, 255, 255);"
-                                        aria-describedby="grid_secondQty">&nbsp;
-                                    </td>
-                                    <td role="gridcell" style="text-align:center;width: 100px;"
-                                        aria-describedby="grid_unit">&nbsp;
-                                    </td>
-                                    <td role="gridcell" style="text-align:center;width: 80px;"
-                                        aria-describedby="grid_qty">4
-                                    </td>
-                                    <td role="gridcell" style="text-align:right;width: 120px;"
-                                        aria-describedby="grid_unitPrice">0
-                                    </td>
-                                    <td role="gridcell" style="text-align:right;width: 120px;"
-                                        aria-describedby="grid_amount">0
-                                    </td>
-                                    <td role="gridcell" style="text-align:right;width: 100px;"
-                                        aria-describedby="grid_tax">0
-                                    </td>
-                                    <td role="gridcell" style="text-align:right;width: 100px;"
-                                        aria-describedby="grid_taxAmount">0
-                                    </td>
-                                    <td role="gridcell" style="display:none;width: 150px;"
-                                        aria-describedby="grid_locationNo">&nbsp;
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-jqgrid-resize-mark" id="rs_mgrid">&nbsp;</div>
             </div>
         </div>
     </div>
@@ -429,10 +209,36 @@
         </tbody>
     </table>
 </div>
-<script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
-<script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath }/js/nisicheng/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/nisicheng/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/content.min.js?v=1.0.0"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap-suggest.js"></script>
+<script src="${pageContext.request.contextPath }/js/demo.js?ver=20160422"></script>
+<script src="${pageContext.request.contextPath }/js/tether.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
+<script>
+    $(function () {
+        var dataList = {value: []};
+        <c:forEach items="${suppliers}" var="sup">
+        dataList.value.push({
+            id:${sup.supplierId},
+            word:"${sup.supplierName}"
+        });
+        </c:forEach>
+
+        $("#test_data").bsSuggest({
+            indexId: 1,  //data.value 的第几个数据，作为input输入框的内容
+            indexKey: 1, //data.value 的第几个数据，作为input输入框的内容
+            data: dataList
+        }).on('onDataRequestSuccess', function (e, result) {
+            console.log('从 json.data 参数中获取，不会触发 onDataRequestSuccess 事件', result);
+        }).on('onSetSelectValue', function (e, keyword, data) {
+            console.log('onSetSelectValue: ', keyword, data);
+        }).on('onUnsetSelectValue', function () {
+            console.log("onUnsetSelectValue");
+        });
+    })
+</script>
 <script>
     laydate({elem: "#hello", event: "focus"});
     var start = {

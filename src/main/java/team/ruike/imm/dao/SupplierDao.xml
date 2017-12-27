@@ -24,7 +24,7 @@
                   and supplier_id=#{supplierId}
             </if>
             <if test="supplierName !=null and supplierName!=''">
-                  and supplier_Name=#{supplierName}
+                  and supplier_Name like concat('%',#{supplierName},'%')
             </if>
             <if test="supplierPersonInCharge !=null and supplierPersonInCharge!=''">
                   and supplier_person_in_charge =#{supplierPersonInCharge}

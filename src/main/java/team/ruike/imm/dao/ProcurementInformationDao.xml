@@ -29,13 +29,22 @@
             <result column="units_name" property="unitsName" />
         </association>
         <association property="merchandise" javaType="merchandise">
-            <result column="merchandise_name" property="merchandiseName"></result>
+            <result column="merchandise_id" property="merchandiseId"/>
+            <result column="merchandise_name" property="merchandiseName"/>
+            <result column="merchandise_specification" property="merchandiseSpecification"/>
+            <association property="productType" javaType="productType">
+                <result column="product_type_name" property="productTypeName"/>
+            </association>
         </association>
     </resultMap>
+
+
+
     <!--查询采购订单还未入库的订单-->
     <select id="selectReplenish" resultMap="procurementInformationMap">
-        SELECT *FROM procurement_information
-        WHERE pi_state=0
+        SELECT SUM(pi_volume) pi_volume,pr.procurement_id,pr.merchandise_id,pr.pi_actual_price FROM procurement_information pr
+        WHERE pr.pi_state=0
+        GROUP BY pr.merchandise_id
     </select>
     <!--查询所有购货订单和详情订单-->
     <select id="selectAllProcureMent" resultMap="procurementInformationMap">
@@ -145,4 +154,32 @@
             #{information.procurementId}
         </foreach>
     </update>
+    <!--根据商品查询一个月的购货-->
+    <select id="selectProcurementByProcurementId" resultMap="procurementInformationMap">
+        SELECT SUM(pri.pi_volume) pi_volume,SUM(pri.pi_totalPrice) pi_totalPrice,em.employee_name,m.merchandise_id,m.merchandise_specification,pt.product_type_name,sup.supplier_name,SUM(pri.pi_actual_price) pi_actual_price,pri.procurement_id,pri.merchandise_id,m.merchandise_name,un.units_name,pri.pi_remarks,pr.procurement_date
+        FROM procurement_information  pri
+        INNER JOIN merchandise m ON m.merchandise_id=pri.merchandise_id
+        INNER JOIN procurement pr ON pr.procurement_id=pri.procurement_id
+        INNER JOIN units un ON un.units_id=pri.units_id
+        INNER JOIN supplier sup ON sup.supplier_id=pr.supplier_id
+        INNER JOIN product_type pt ON pt.product_type_id=m.product_type_id
+        INNER JOIN employee em ON em.employee_id=pr.procurement_employee_id
+        <!--WHERE DATE_FORMAT( pr.procurement_date,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')-->
+        <where>
+            <if test="startTime==null || startTime=='' and endTime==null || endTime==''">
+               and DATE_FORMAT( pr.procurement_date,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                and pr.procurement_date>=#{startTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and pr.procurement_date &lt;=#{endTime}
+            </if>
+            <if test="piRemarks!=null and piRemarks!=''">
+              and  m.merchandise_name like concat('%',#{piRemarks},'%')
+            </if>
+
+        </where>
+        GROUP BY pri.merchandise_id
+    </select>
 </mapper>

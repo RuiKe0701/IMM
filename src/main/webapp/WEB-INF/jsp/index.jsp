@@ -84,7 +84,7 @@
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
-                                        <li class="" ><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
+                                        <li class="" id="purchase7" ><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
                                     </ul>
                                 </div>

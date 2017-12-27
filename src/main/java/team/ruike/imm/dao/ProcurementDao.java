@@ -15,6 +15,7 @@ public interface ProcurementDao {
      */
     public List<Procurement> selecrProcurement(Procurement procurement);
     List<Procurement> selectAll(Procurement procurement);
+    List<Procurement> selectll(Procurement procurement);
 
     //查询所有购货订单和购货详情订单
     List<Procurement> selectAllProcureMent(Procurement procurement);
@@ -38,5 +39,6 @@ public interface ProcurementDao {
     public List<Procurement> PagerProcurement(Procurement procurement);
     //批量修改购货订单
     int generateUpdateProcurement(List<Procurement> procurements);
+
 
 }

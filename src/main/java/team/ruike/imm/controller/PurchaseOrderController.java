@@ -8,16 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.*;
-import team.ruike.imm.service.MerchandiseService;
-import team.ruike.imm.service.PurchaseOrderInformationService;
-import team.ruike.imm.service.PurchaseOrderService;
-import team.ruike.imm.service.SupplierService;
+import team.ruike.imm.service.*;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.params.ExcelExportEntity;
 import org.jeecgframework.poi.excel.entity.vo.MapExcelConstants;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -36,16 +34,18 @@ public class PurchaseOrderController {
     MerchandiseService merchandiseService;
     @Autowired
     SupplierService supplierService;
+
     @Autowired
-    PurchaseOrderService purchaseOrderService;
+    ProcurementService procurementService;
     @Autowired
-    PurchaseOrderInformationService purchaseOrderInformationService;
+    ProcurementInformationService procurementInformationService;
     //加载购货单页面
     @RequestMapping(value = "loginPurchase.do")
     public String loginPurchase(Model model){
+
         List<Supplier> list = supplierService.selectSuplier(null);
         List<Merchandise> merchandises=merchandiseService.selectAll(null);
-        String id=purchaseOrderService.purchaseId();
+        String id=procurementService.purchaseId("GH");
         model.addAttribute("purId",id);
         model.addAttribute("merchandises",merchandises);
         model.addAttribute("supps", list);
@@ -53,16 +53,16 @@ public class PurchaseOrderController {
     }
     @RequestMapping(value = "savePurchaseOrder.do")
     @ResponseBody
-    public  void  savePurchaseOrder(String purchaseorderList,String purchaseList,PrintWriter printWriter){
-        ArrayList<PurchaseOrder> purchaseOrders =  JSON.parseObject(purchaseorderList, new TypeReference<ArrayList<PurchaseOrder>>(){});
-        List<PurchaseOrderInformation> purchaseOrderInformations =  JSON.parseObject(purchaseList, new TypeReference<ArrayList<PurchaseOrderInformation>>(){});
-        PurchaseOrder order=purchaseOrders.get(0);
-        int i= purchaseOrderService.savePurchaseOrder(order);
-       purchaseOrderInformationService.batchInsertPurchaseOrder(purchaseOrderInformations);
+    public  void  savePurchaseOrder(String purchaseorderList,String purchaseList,PrintWriter printWriter,HttpSession session){
+        ArrayList<Procurement> pr =  JSON.parseObject(purchaseorderList, new TypeReference<ArrayList<Procurement>>(){});
+        Procurement p=pr.get(0);
+        int i=procurementService.insertProcurement(p);
+        ArrayList<ProcurementInformation> procurementInformations =  JSON.parseObject(purchaseList, new TypeReference<ArrayList<ProcurementInformation>>(){});
+        procurementInformationService.insertAll(procurementInformations);
+        session.setAttribute("salesInformationArrayList",null);
         String jsonString = JSON.toJSONString("1");
         printWriter.write(jsonString);
         printWriter.flush();
         printWriter.close();
-
     }
 }
