@@ -13,27 +13,28 @@ public interface EmployeeDao {
      * @param employee 员工信息
      * @return
      */
-    public List<Employee> selectEmployee(Employee employee);
+     List<Employee> selectEmployee(Employee employee);
 
+    int count(Employee employee);
     /**
      *指定条件修改员工信息
      * @param employee
      * @return099
      */
-    public int updateEmployee(Employee employee);
+     int updateEmployee(Employee employee);
 
     /**
      *增加员工信息
      * @param employee
      * @return
      */
-    public int insertEmployee(Employee employee);
+     int insertEmployee(Employee employee);
     /**
      * 分页
      * @return
      */
-    public List<Employee> pages(Employee employee);
+     List<Employee> pages(Employee employee);
 
-    public int noncooperation(List<Employee> employee);
-    public int cooperative(List<Employee> employee);
+     int noncooperation(List<Employee> employee);
+     int cooperative(List<Employee> employee);
 }

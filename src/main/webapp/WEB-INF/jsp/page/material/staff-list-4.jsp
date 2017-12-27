@@ -17,6 +17,11 @@
     <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/paging.css">
+    <script src="${pageContext.request.contextPath }/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/paging.js"></script>
+
+
     <title>精斗云云进销存</title>
     <link rel="icon" href="http://vip2-gd.youshang.com/css/blue/img/favicon.png" type="image/x-icon">
     <link href="${pageContext.request.contextPath }/css/common.css" rel="stylesheet" type="text/css">
@@ -30,6 +35,9 @@
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <script src="${pageContext.request.contextPath }/js/material/staff-list-4.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/common/pagination.css" media="screen">
+
 
     <style>
         .chk-list {
@@ -63,6 +71,8 @@
             }
         })
     </script>
+
+
 </head>
 <div style="">
     <input style="display: none" id="control" value="${i}" />
@@ -105,13 +115,13 @@
 
         </div>
         <%--展示信息--%>
-        <div style="position: relative;left: 50px">
+        <div style="position: relative;left: 20px">
             <c:if test="${i==0}">
                 <form id="form" action="/employee/cooperative.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
-                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                        <input class="ename" name="employeeName" value="${name}" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
                     </li>
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
@@ -149,40 +159,238 @@
                                 </td>
                             </tr>
                         </c:forEach>
-                        <div class="ads" id="dsa" style="position: absolute;left: 75%;top:150%">
-                            <ul class="pagination" >
-                                <li><a href="/employee/cooperative.do?currentPage=1">首页</a></li>
-                                <c:if test="${pages.currentPage >1}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage ==1}">
-                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage-1}">&laquo;${pages.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pages.pageBar}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pages.currentPage<pages.totalPage}">
-                                    <li><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pages.currentPage==pages.totalPage}">
-                                    <li style="display: none"><a href="/employee/cooperative.do?currentPage=${pages.currentPage+1}">&raquo;${pages.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/employee/cooperative.do?currentPage=${pages.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pages.totalRecord}条数据</a></li>
-                                <li><a>共有${pages.totalPage}页</a></li>
-                            </ul>
-                        </div>
                         </tbody>
                     </table>
+                    <div  style="position: absolute;left: 700px;top:340px">
+                        <ul class="pagination" >
+                            <div class="M-box2"></div>
+                            <script>
+                                $(function(){
+                                    $('.M-box2').pagination({
+                                        coping:true,
+                                        homePage:'首页',
+                                        endPage:'末页',
+                                        prevContent:'上页',
+                                        nextContent:'下页',
+                                    });
+                                });
+                            </script>
+                                <%--分页--%>
+                            <script>
+                                (function (factory) {
+                                    if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
+                                        // AMD或CMD
+                                        define(["jquery"], factory);
+                                    } else if (typeof module === 'object' && module.exports) {
+                                        // Node/CommonJS
+                                        module.exports = function (root, jQuery) {
+                                            if (jQuery === undefined) {
+                                                if (typeof window !== 'undefined') {
+                                                    jQuery = require('jquery');
+                                                } else {
+                                                    jQuery = require('jquery')(root);
+                                                }
+                                            }
+                                            factory(jQuery);
+                                            return jQuery;
+                                        };
+                                    } else {
+                                        //Browser globals
+                                        factory(jQuery);
+                                    }
+                                }(function ($) {
+                                    //配置参数
+                                    var defaults = {
+                                        totalData: ${pages.totalRecord}, //数据总条数
+                                        showData: ${pages.pageSize}, //每页显示的条数
+                                        pageCount: ${pages.totalPage}, //总页数,默认为9
+                                        current: ${pages.currentPage}, //当前第几页
+                                        prevCls: 'prev', //上一页class
+                                        nextCls: 'next', //下一页class
+                                        prevContent: '<', //上一页内容
+                                        nextContent: '>', //下一页内容
+                                        activeCls: 'active', //当前页选中状态
+                                        coping: false, //首页和尾页
+                                        isHide: false, //当前页数为0页或者1页时不显示分页
+                                        homePage: '', //首页节点内容
+                                        endPage: '', //尾页节点内容
+                                        keepShowPN: false, //是否一直显示上一页下一页
+                                        count: 1, //当前页前后分页个数
+                                        jump: false, //跳转到指定页数
+                                        jumpIptCls: 'jump-ipt', //文本框内容
+                                        jumpBtnCls: 'jump-btn', //跳转按钮
+                                        jumpBtn: '跳转', //跳转按钮文本
+                                        callback: function () {} //回调
+                                    };
+
+                                    var Pagination = function (element, options) {
+                                        //全局变量
+                                        var opts = options, //配置
+                                            current, //当前页
+                                            $document = $(document),
+                                            $obj = $(element); //容器
+
+                                        /**
+                                         * 设置总页数
+                                         * @param {int} page 页码
+                                         * @return opts.pageCount 总页数配置
+                                         */
+                                        this.setPageCount = function (page) {
+                                            return opts.pageCount = page;
+                                        };
+
+                                        /**
+                                         * 获取总页数
+                                         * 如果配置了总条数和每页显示条数，将会自动计算总页数并略过总页数配置，反之
+                                         * @return {int} 总页数
+                                         */
+                                        this.getPageCount = function () {
+                                            return opts.totalData && opts.showData ? Math.ceil(parseInt(opts.totalData) / opts.showData) : opts.pageCount;
+                                        };
+
+                                        /**
+                                         * 获取当前页
+                                         * @return {int} 当前页码
+                                         */
+                                        this.getCurrent = function () {
+                                            return current;
+                                        };
+
+                                        /**
+                                         * 填充数据
+                                         * @param {int} 页码
+                                         */
+                                        this.filling = function (index) {
+                                            var html = '';
+                                            current = parseInt(index) || parseInt(opts.current); //当前页码
+                                            var pageCount = this.getPageCount(); //获取的总页数
+                                            if (opts.keepShowPN || current > 1) { //上一页
+                                                html += '<a href="javascript:;" class="' + opts.prevCls + '">' + opts.prevContent + '</a>';
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.prevCls) && $obj.find('.' + opts.prevCls).remove();
+                                                }
+                                            }
+                                            if (current >= opts.count + 2 && current != 1 && pageCount != opts.count) {
+                                                var home = opts.coping && opts.homePage ? opts.homePage : '1';
+                                                html += opts.coping ? '<a href="javascript:;" data-page="1">' + home + '</a>' : '';
+                                            }
+                                            var start = (current - opts.count) <= 1 ? 1 : (current - opts.count);
+                                            var end = (current + opts.count) >= pageCount ? pageCount : (current + opts.count);
+                                            for (; start <= end; start++) {
+                                                if (start <= pageCount && start >= 1) {
+                                                    if (start != current) {
+                                                        html += '<a href="javascript:;" data-page="' + start + '">' + start + '</a>';
+                                                    } else {
+                                                        html += '<span class="' + opts.activeCls + '">' + start + '</span>';
+                                                    }
+                                                }
+                                            }
+                                            if (current + opts.count < pageCount && current >= 1 && pageCount > opts.count) {
+                                                var end = opts.coping && opts.endPage ? opts.endPage : pageCount;
+                                                html += opts.coping ? '<a href="javascript:;" data-page="' + pageCount + '">' + end + '</a>' : '';
+                                            }
+                                            if (opts.keepShowPN || current < pageCount) { //下一页
+                                                html += '<a href="javascript:;" class="' + opts.nextCls + '">' + opts.nextContent + '</a>'
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.nextCls) && $obj.find('.' + opts.nextCls).remove();
+                                                }
+                                            }
+                                            html += opts.jump ? '<input type="text" class="' + opts.jumpIptCls + '"><a href="javascript:;" class="' + opts.jumpBtnCls + '">' + opts.jumpBtn + '</a>' : '';
+                                            $obj.empty().html(html);
+                                        };
+
+                                        //绑定事件
+                                        this.eventBind = function () {
+                                            var that = this;
+                                            var pageCount = that.getPageCount(); //总页数
+                                            var index = 1;
+                                            $obj.off().on('click', 'a', function () {
+                                                if ($(this).hasClass(opts.nextCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() >= pageCount) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) + 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.prevCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() <= 1) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) - 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.jumpBtnCls)) {
+                                                    if ($obj.find('.' + opts.jumpIptCls).val() !== '') {
+                                                        index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    index = parseInt($(this).data('page'));
+                                                }
+                                                that.filling(index);
+                                                typeof opts.callback === 'function' && opts.callback(that);
+                                                //页码数
+                                                var name=$(".ename").val();
+                                                window.location.href="/employee/cooperative.do?currentPage="+index+"&employeeName="+name;
+                                            });
+                                            //输入跳转的页码
+                                            $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
+                                                var $this = $(this);
+                                                var val = $this.val();
+                                                var reg = /[^\d]/g;
+                                                if (reg.test(val)) $this.val(val.replace(reg, ''));
+                                                (parseInt(val) > pageCount) && $this.val(pageCount);
+                                                if (parseInt(val) === 0) $this.val(1); //最小值为1
+                                            });
+                                            //回车跳转指定页码
+                                            $document.keydown(function (e) {
+                                                if (e.keyCode == 13 && $obj.find('.' + opts.jumpIptCls).val()) {
+                                                    var index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    that.filling(index);
+                                                    typeof opts.callback === 'function' && opts.callback(that);
+                                                }
+                                            });
+                                        };
+                                        //初始化
+                                        this.init = function () {
+                                            this.filling(opts.current);
+                                            this.eventBind();
+                                            if (opts.isHide && this.getPageCount() == '1' || this.getPageCount() == '0') $obj.hide();
+                                        };
+                                        this.init();
+                                    };
+
+                                    $.fn.pagination = function (parameter, callback) {
+                                        if (typeof parameter == 'function') { //重载
+                                            callback = parameter;
+                                            parameter = {};
+                                        } else {
+                                            parameter = parameter || {};
+                                            callback = callback || function () {};
+                                        }
+                                        var options = $.extend({}, defaults, parameter);
+                                        return this.each(function () {
+                                            var pagination = new Pagination(this, options);
+                                            callback(pagination);
+                                        });
+
+                                    };
+                                }));
+                            </script>
+                        </ul>
+                    </div>
+
                 </form>
             </c:if>
             <c:if test="${i==1}">
                 <form id="form" action="/employee/noncooperation.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
-                        <input name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
+                        <input class="ename" value="${nonname}" name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
                     </li>
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
@@ -216,107 +424,303 @@
                                 </c:if>
                             </tr>
                         </c:forEach>
-                        <div  style="position: absolute;left: 75%;top: 150%">
-                            <ul class="pagination" >
-                                <li><a href="/employee/noncooperation.do?currentPage=1">首页</a></li>
-                                <c:if test="${pp.currentPage >1}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage ==1}">
-                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage-1}">&laquo;${pp.currentPage-1}</a></li>
-                                </c:if>
-                                <c:forEach var="a" items="${pp.pageBar}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${a}">${a}</a></li>
-                                </c:forEach>
-                                <c:if test="${pp.currentPage<pp.totalPage}">
-                                    <li><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;</a></li>
-                                </c:if>
-                                <c:if test="${pp.currentPage==pp.totalPage}">
-                                    <li style="display: none"><a href="/employee/noncooperation.do?currentPage=${pp.currentPage+1}">&raquo;${pp.currentPage+1}</a></li>
-                                </c:if>
-                                <li><a href="/employee/noncooperation.do?currentPage=${pp.totalPage}">末页</a></li>
-                                <br>
-                                <li><a >共有${pp.totalRecord}条数据</a></li>
-                                <li><a>共有${pp.totalPage}页</a></li>
-                            </ul>
-                        </div>
                         </tbody>
                     </table>
+                    <div  style="position: absolute;left: 700px;top: 340px">
+                        <ul class="pagination" >
+                            <div class="M-box2"></div>
+                            <script>
+                                $(function(){
+                                    $('.M-box2').pagination({
+                                        coping:true,
+                                        homePage:'首页',
+                                        endPage:'末页',
+                                        prevContent:'上页',
+                                        nextContent:'下页'
+                                    });
+                                });
+                            </script>
+                                <%--分页--%>
+                            <script>
+                                (function (factory) {
+                                    if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
+                                        // AMD或CMD
+                                        define(["jquery"], factory);
+                                    } else if (typeof module === 'object' && module.exports) {
+                                        // Node/CommonJS
+                                        module.exports = function (root, jQuery) {
+                                            if (jQuery === undefined) {
+                                                if (typeof window !== 'undefined') {
+                                                    jQuery = require('jquery');
+                                                } else {
+                                                    jQuery = require('jquery')(root);
+                                                }
+                                            }
+                                            factory(jQuery);
+                                            return jQuery;
+                                        };
+                                    } else {
+                                        //Browser globals
+                                        factory(jQuery);
+                                    }
+                                }(function ($) {
+                                    //配置参数
+                                    var defaults = {
+                                        totalData: ${pages.totalRecord}, //数据总条数
+                                        showData: ${pages.pageSize}, //每页显示的条数
+                                        pageCount: ${pages.totalPage}, //总页数,默认为9
+                                        current: ${pages.currentPage}, //当前第几页
+                                        prevCls: 'prev', //上一页class
+                                        nextCls: 'next', //下一页class
+                                        prevContent: '<', //上一页内容
+                                        nextContent: '>', //下一页内容
+                                        activeCls: 'active', //当前页选中状态
+                                        coping: false, //首页和尾页
+                                        isHide: false, //当前页数为0页或者1页时不显示分页
+                                        homePage: '', //首页节点内容
+                                        endPage: '', //尾页节点内容
+                                        keepShowPN: false, //是否一直显示上一页下一页
+                                        count: 1, //当前页前后分页个数
+                                        jump: false, //跳转到指定页数
+                                        jumpIptCls: 'jump-ipt', //文本框内容
+                                        jumpBtnCls: 'jump-btn', //跳转按钮
+                                        jumpBtn: '跳转', //跳转按钮文本
+                                        callback: function () {} //回调
+                                    };
+
+                                    var Pagination = function (element, options) {
+                                        //全局变量
+                                        var opts = options, //配置
+                                            current, //当前页
+                                            $document = $(document),
+                                            $obj = $(element); //容器
+
+                                        /**
+                                         * 设置总页数
+                                         * @param {int} page 页码
+                                         * @return opts.pageCount 总页数配置
+                                         */
+                                        this.setPageCount = function (page) {
+                                            return opts.pageCount = page;
+                                        };
+
+                                        /**
+                                         * 获取总页数
+                                         * 如果配置了总条数和每页显示条数，将会自动计算总页数并略过总页数配置，反之
+                                         * @return {int} 总页数
+                                         */
+                                        this.getPageCount = function () {
+                                            return opts.totalData && opts.showData ? Math.ceil(parseInt(opts.totalData) / opts.showData) : opts.pageCount;
+                                        };
+
+                                        /**
+                                         * 获取当前页
+                                         * @return {int} 当前页码
+                                         */
+                                        this.getCurrent = function () {
+                                            return current;
+                                        };
+
+                                        /**
+                                         * 填充数据
+                                         * @param {int} 页码
+                                         */
+                                        this.filling = function (index) {
+                                            var html = '';
+                                            current = parseInt(index) || parseInt(opts.current); //当前页码
+                                            var pageCount = this.getPageCount(); //获取的总页数
+                                            if (opts.keepShowPN || current > 1) { //上一页
+                                                html += '<a href="javascript:;" class="' + opts.prevCls + '">' + opts.prevContent + '</a>';
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.prevCls) && $obj.find('.' + opts.prevCls).remove();
+                                                }
+                                            }
+                                            if (current >= opts.count + 2 && current != 1 && pageCount != opts.count) {
+                                                var home = opts.coping && opts.homePage ? opts.homePage : '1';
+                                                html += opts.coping ? '<a href="javascript:;" data-page="1">' + home + '</a>' : '';
+                                            }
+                                            var start = (current - opts.count) <= 1 ? 1 : (current - opts.count);
+                                            var end = (current + opts.count) >= pageCount ? pageCount : (current + opts.count);
+                                            for (; start <= end; start++) {
+                                                if (start <= pageCount && start >= 1) {
+                                                    if (start != current) {
+                                                        html += '<a href="javascript:;" data-page="' + start + '">' + start + '</a>';
+                                                    } else {
+                                                        html += '<span class="' + opts.activeCls + '">' + start + '</span>';
+                                                    }
+                                                }
+                                            }
+                                            if (current + opts.count < pageCount && current >= 1 && pageCount > opts.count) {
+                                                var end = opts.coping && opts.endPage ? opts.endPage : pageCount;
+                                                html += opts.coping ? '<a href="javascript:;" data-page="' + pageCount + '">' + end + '</a>' : '';
+                                            }
+                                            if (opts.keepShowPN || current < pageCount) { //下一页
+                                                html += '<a href="javascript:;" class="' + opts.nextCls + '">' + opts.nextContent + '</a>'
+                                            } else {
+                                                if (opts.keepShowPN == false) {
+                                                    $obj.find('.' + opts.nextCls) && $obj.find('.' + opts.nextCls).remove();
+                                                }
+                                            }
+                                            html += opts.jump ? '<input type="text" class="' + opts.jumpIptCls + '"><a href="javascript:;" class="' + opts.jumpBtnCls + '">' + opts.jumpBtn + '</a>' : '';
+                                            $obj.empty().html(html);
+                                        };
+
+                                        //绑定事件
+                                        this.eventBind = function () {
+                                            var that = this;
+                                            var pageCount = that.getPageCount(); //总页数
+                                            var index = 1;
+                                            $obj.off().on('click', 'a', function () {
+                                                if ($(this).hasClass(opts.nextCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() >= pageCount) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) + 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.prevCls)) {
+                                                    if ($obj.find('.' + opts.activeCls).text() <= 1) {
+                                                        $(this).addClass('disabled');
+                                                        return false;
+                                                    } else {
+                                                        index = parseInt($obj.find('.' + opts.activeCls).text()) - 1;
+                                                    }
+                                                } else if ($(this).hasClass(opts.jumpBtnCls)) {
+                                                    if ($obj.find('.' + opts.jumpIptCls).val() !== '') {
+                                                        index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    } else {
+                                                        return;
+                                                    }
+                                                } else {
+                                                    index = parseInt($(this).data('page'));
+                                                }
+                                                that.filling(index);
+                                                typeof opts.callback === 'function' && opts.callback(that);
+                                                //页码数
+                                                var name=$(".ename").val();
+                                                window.location.href="/employee/noncooperation.do?currentPage="+index+"&employeeName="+name;
+                                            });
+                                            //输入跳转的页码
+                                            $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
+                                                var $this = $(this);
+                                                var val = $this.val();
+                                                var reg = /[^\d]/g;
+                                                if (reg.test(val)) $this.val(val.replace(reg, ''));
+                                                (parseInt(val) > pageCount) && $this.val(pageCount);
+                                                if (parseInt(val) === 0) $this.val(1); //最小值为1
+                                            });
+                                            //回车跳转指定页码
+                                            $document.keydown(function (e) {
+                                                if (e.keyCode == 13 && $obj.find('.' + opts.jumpIptCls).val()) {
+                                                    var index = parseInt($obj.find('.' + opts.jumpIptCls).val());
+                                                    that.filling(index);
+                                                    typeof opts.callback === 'function' && opts.callback(that);
+                                                }
+                                            });
+                                        };
+                                        //初始化
+                                        this.init = function () {
+                                            this.filling(opts.current);
+                                            this.eventBind();
+                                            if (opts.isHide && this.getPageCount() == '1' || this.getPageCount() == '0') $obj.hide();
+                                        };
+                                        this.init();
+                                    };
+
+                                    $.fn.pagination = function (parameter, callback) {
+                                        if (typeof parameter == 'function') { //重载
+                                            callback = parameter;
+                                            parameter = {};
+                                        } else {
+                                            parameter = parameter || {};
+                                            callback = callback || function () {};
+                                        }
+                                        var options = $.extend({}, defaults, parameter);
+                                        return this.each(function () {
+                                            var pagination = new Pagination(this, options);
+                                            callback(pagination);
+                                        });
+
+                                    };
+                                }));
+                            </script>
+                        </ul>
+                    </div>
                 </form>
             </c:if>
         </div>
 
     </div>
     <%-- 分页--%>
+ </div>
+<!-- 新增 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="addemployee">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModabel">
+                    新增员工信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 350px" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">员工名称</span>
+                    <input  id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="Divname">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">职位名称</span>
+                    <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:487px;opacity:1;">
+                        <c:forEach  var="p" items="${positions}">
+                            <option value="${p.positionId}" >${p.positionName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">身份证号</span>
+                    <input name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="Divpost">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">移动电话</span>
+                    <input name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                </div>
+                <span   class="reminder" id="Divaddress">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
+                    <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">联络地址</span>
+                    <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon" style="width: 81px;">是否已删除</span>
+                    <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="insert" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->
 
-
-    <!-- 新增 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form class="modal-content" id="addemployee">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModabel">
-                        新增员工信息
-                    </h4>
-                </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">员工名称</span>
-                        <input  id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divname">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">职位名称</span>
-                        <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
-                            <c:forEach  var="p" items="${positions}">
-                                <option value="${p.positionId}" >${p.positionName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">身份证号</span>
-                        <input name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divpost">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                        <input name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                    </div>
-                    <span   class="reminder" id="Divaddress">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
-                        <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">联络地址</span>
-                        <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
-                    <div class="input-group" style="display: none">
-                        <span class="input-group-addon" style="width: 81px;">是否已删除</span>
-                        <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" id="insert" class="btn btn-primary">
-                        提交新增
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
 <!-- 修改 -->
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -330,7 +734,7 @@
                         修改用户信息
                     </h4>
                 </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
+                <div class="modal-body" style="width: 300px;height: 400px" >
                     <input id="updateid" name="employeeId" style="display: none"/>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">员工名称</span>
@@ -339,7 +743,7 @@
                     <span class="reminder" id="remindername">&nbsp;</span><br>
                     <div class="input-group" style="border: 10px; bordercolor:#000000">
                         <span class="input-group-addon" style="width: 81px;">职位信息</span>
-                            <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
+                            <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:487px;opacity:1;">
                                 <c:forEach  var="p" items="${positions}">
                                 <option value="${p.positionId}" >${p.positionName}</option>
                                 </c:forEach>

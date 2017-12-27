@@ -40,16 +40,19 @@ public class ClientServiceImpl   implements ClientService{
     public Pages<Client> getPager(Client client,Integer currentPage) {
         List<Client> count=null;
         Client c=new Client();
-        if(client.getClientState()==1 || client.getClientState()==0){
-            c.setClientState(client.getClientState());
-             count=clientDao.pages(c);
+        int i=0;
+        if(client.getClientName()!=null && client.getClientName()!=""){
+            count=clientDao.pages(client);
+            i=clientDao.count(client);
         }else {
-            count=clientDao.pages(null);
+            c.setClientState(client.getClientState());
+            count=clientDao.pages(c);
+            i=clientDao.count(c);
         }
         Pages<Client> pages=new Pages<Client>();
         pages.setCurrentPage(currentPage);
         pages.setList(count);
-        pages.setTotalRecord(count.size());
+        pages.setTotalRecord(i);
         pages.setPageSize(pageSize);
         return pages;
     }

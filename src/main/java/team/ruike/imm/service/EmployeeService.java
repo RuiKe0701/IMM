@@ -29,7 +29,6 @@ public interface EmployeeService {
      * @return
      */
     public List<Employee> selectEmployee(Employee employee);
-
     /**
      * 按指定条件修改员工信息
      * @param employee

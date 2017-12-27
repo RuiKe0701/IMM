@@ -200,7 +200,7 @@
                     <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
                     <%--</c:if>--%>
                     <li><a href="?start=${page.last}&clientId=${sales.clientId}&employeeId=${sales.employeeId}&merchandiseId=${sales.merchandiseId}">末页</a></li>
-                    <li><a >共有${totalPage}条数据</a></li>f
+                    <li><a >共有${totalPage}条数据</a></li>
                     <li><a>共有${len}页</a></li>
                 </ul>
             </div>

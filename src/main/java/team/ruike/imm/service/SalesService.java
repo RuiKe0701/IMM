@@ -37,4 +37,19 @@ public interface SalesService {
      * @return
      */
     List<Sales> selectSalesForThis(Sales sales);
+
+    /**
+     * 指定条件查询销售排行表-Guoxu-勿动
+     * @param sales 销售订单
+     * @return
+     */
+    public List<Sales> selectSalesForThisToAll(Sales sales);
+
+
+    /**
+     * 指定条件查询销售利润表-Guoxu-勿动
+     * @param sales 销售订单
+     * @return
+     */
+    public List<Sales> selectSalesForProfit(Sales sales);
 }

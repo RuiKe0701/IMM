@@ -9,29 +9,52 @@ import java.util.List;
  * @version 1.0
  */
 public interface MerchandiseDao {
-    /**
-     * 指定条件查询商品信息
-     */
-    public List<Merchandise> selecrMerchandise(Merchandise merchandise);
+
+    int sumstock();
+
     List<Merchandise> selectAll(Merchandise merchandise);
     //查询当前库存小于安全库存
     List<Merchandise> selectRelenish(Merchandise merchandise);
     /**
      * 按关键字查询出多个
      */
-    public List<Merchandise> sanMerchandise(Merchandise merchandise);
+     List<Merchandise> sanMerchandise(Merchandise merchandise);
 
     /**
      *指定条件修改商品信息
      */
-    public int updateMerchandise(Merchandise merchandise);
+     int updateMerchandise(Merchandise merchandise);
 
     /**
      *增加商品信息
      */
-    public int insertMerchandise(Merchandise merchandise);
+     int insertMerchandise(Merchandise merchandise);
+
+
+    List<Merchandise> selecrMerchandise(Merchandise merchandise);
     /**
      * 分页
+     * @return
      */
-    public List<Merchandise> PagerMerchandise(Merchandise merchandise);
+    List<Merchandise> Merchandise(Merchandise merchandise);
+
+
+    int count(Merchandise merchandise);
+    List<Merchandise> pagerMerchandise(Merchandise merchandise);
+    int noncooperation(List<Merchandise> merchandise);
+    int cooperative(List<Merchandise> merchandise);
+
+    /**
+     * 修改为缺货
+     * @param merchandise
+     * @return
+     */
+    int insufficient(List<Merchandise> merchandise);
+
+    /**
+     * 查询当前库存小于安全库存并且 缺货状态没有修改的
+     * @param merchandise
+     * @return
+     */
+    List<Merchandise> insufficientMerchandise(Merchandise merchandise);
 }

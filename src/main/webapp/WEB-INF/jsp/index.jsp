@@ -113,14 +113,14 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class="" id="Original-document">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">原始单据
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
+                                        <%--<li class="" id="Original-document">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">原始单据--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                                <%--<i href="javascript:void(0);">查询</i>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
 
                                     </ul>
                                 </div>
@@ -144,14 +144,14 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class="" id="Sales-summary-client">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">销售汇总表（按客户）
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
+                                        <%--<li class="" id="Sales-summary-client">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">销售汇总表（按客户）--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                                <%--<i href="javascript:void(0);">查询</i>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li class="" id="Sales-summary-salesperson">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">销售汇总表（按销售人员）
@@ -518,7 +518,7 @@
                                                             class="panel hide" data-color="#fc8556" data-id="" right="">
                                                             <span class="name"
                                                                   style="background-color: #f79b67">库存预警</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${stock}</div>
                                                         </li>
                                                         <li style="margin-left: 20px; background-color: rgb(248, 187, 57); border: 1px solid rgb(233, 169, 16); width: 220px; display: list-item;"
                                                             class="panel hide" data-color="#f8bb39"

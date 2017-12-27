@@ -100,6 +100,19 @@ public class Merchandise extends PagerParameter implements Serializable{
      */
     private SalesStatus salesStatus;
 
+    /**
+     * 有多少条商品库存预警
+     */
+    private  Integer sumStock;
+
+    public Integer getSumStock() {
+        return sumStock;
+    }
+
+    public void setSumStock(Integer sumStock) {
+        this.sumStock = sumStock;
+    }
+
     public Integer getMerchandiseId() {
         return merchandiseId;
     }
