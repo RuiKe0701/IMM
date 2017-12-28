@@ -18,6 +18,9 @@
         <result column="all_volume" property="countAllForProfit"/>
         <result column="m_cost" property="cost"/>
         <result column="m_profit" property="profit"/>
+        <result column="all_Volume" property="allVolume"/>
+        <result column="all_Month" property="allMonth"/>
+
 
 
         <collection property="salesInformations" ofType="salesInformation">
@@ -292,6 +295,17 @@
         </if>
     </select>
 
+
+    <!--首页每月销售总数目专用-->
+    <select id="selectForMonth" resultMap="salesMap" parameterType="sales">
+        select month(s.sales_date) as all_Month ,SUM(s_i.si_volume) as all_Volume
+        from sales s,sales_information s_i
+        <where>
+            s.sales_id=s_i.sales_id
+            and year(s.sales_date)=2017
+        </where>
+        group by year(s.sales_date),month(s.sales_date)
+    </select>
 
 
 </mapper>
