@@ -731,7 +731,7 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="updateTime">
-                        修改用户信息
+                        修改员工信息
                     </h4>
                 </div>
                 <div class="modal-body" style="width: 300px;height: 400px" >

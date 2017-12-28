@@ -22,12 +22,21 @@
     <script src="${pageContext.request.contextPath }/js/shopping.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/report.css">
+    <script language="javascript" src="${request.contextPath }/js/jquery.jqprint-0.3.js"></script>
+    <script language="javascript">
+        function aa(){
+            $("#ddd").jqprint();
+        }
+    </script>
     <style>
         th{
             text-align: center;
         }
         td{
             text-align: center;
+        }
+        li{
+            list-style: none;
         }
         .ui-icon-ellipsis {
             right: 5px;
@@ -78,12 +87,12 @@
             </div>
             <div class="grid-title flex">采购汇总表</div>
             <div class="fr">
-                <a href="#" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
-                <a href="#" class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>
+                <input type="button" onclick="aa()" style="float: right" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export" value="导出"/>
+                <input type="button" onclick="aa()" style="float: right" class="ui-btn ui-btn-print btn-sm fl" id="btn-print" value="打印"/>
             </div>
         </div>
         <div class="grid-wrap" id="grid-wrap" style="height: 486px;">
-            <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr" style="width: 1201px;height: 450px">
+            <div id="ddd" class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr" style="width: 1201px;height: 450px">
                 <table class="table table-bordered" style="width: 1200px">
 
                     <thead>
@@ -121,6 +130,29 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <div  style="position: absolute;right: 100px;top: 370px;">
+                    <ul class="pagination" >
+                        <li><a href="?start=0&productTypeId=${merchandise.productTypeId}">首页</a></li>
+                        <%--<c:if test="${pages.currentPage >1}">--%>
+                        <li><a href="">&laquo;</a></li>
+                        <%--</c:if>--%>
+                        <%--<c:if test="${pages.currentPage ==1}">--%>
+                        <li style="display: none"><a href="">&laquo;${pages.currentPage-1}</a></li>
+                        <%--</c:if>--%>
+                        <c:forEach begin="1" end="${len}" varStatus="status">
+                            <li><a href="?start=${page.start=status.index}&productTypeId=${merchandise.productTypeId}">${status.index}</a></li>
+                        </c:forEach>
+                        <%--<c:if test="${pages.currentPage<pages.totalPage}">--%>
+                        <li><a href="">&raquo;</a></li>
+                        <%--</c:if>--%>
+                        <%--<c:if test="${pages.currentPage==pages.totalPage}">--%>
+                        <li style="display: none"><a href="">&raquo;${pages.currentPage+1}</a></li>
+                        <%--</c:if>--%>
+                        <li><a href="?start=${page.last}&productTypeId=${merchandise.productTypeId}">末页</a></li>
+                        <li><a >共有${totalPage}条数据</a></li>
+                        <li><a>共有${len}页</a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>
@@ -144,14 +176,8 @@
 <div class="pika-single is-hidden is-bound" style=""></div>
 <div class="pika-single is-hidden is-bound" style=""></div>
 <ul id="tree1164" class="ztree ztreeCombo showRoot" style="top: 143px; left: 524px; width: 250px;">
-    <li id="tree1164_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="tree1164_1_switch" title=""
-                                                                                       class="button level0 switch root_docu"
-                                                                                       treenode_switch=""></span><a
-            id="tree1164_1_a" class="level0" treenode_a="" onclick="" target="_blank" style=""><span id="tree1164_1_ico"
-                                                                                                     title=""
-                                                                                                     treenode_ico=""
-                                                                                                     class="button ico_docu"
-                                                                                                     style=""></span><span
+    <li id="tree1164_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="tree1164_1_switch" title="" class="button level0 switch root_docu" treenode_switch=""></span><a
+            id="tree1164_1_a" class="level0" treenode_a="" onclick="" target="_blank" style=""><span id="tree1164_1_ico" title="" treenode_ico="" class="button ico_docu" style=""></span><span
             id="tree1164_1_span">全部</span></a></li>
 </ul>
 <div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
@@ -165,39 +191,7 @@
         <tr>
             <td class="ui_l"></td>
             <td class="ui_c">
-                <div class="ui_inner">
-                    <table class="ui_dialog">
-                        <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_title_bar">
-                                    <div class="ui_title" unselectable="on" style="cursor: move;"></div>
-                                    <div class="ui_title_buttons"><a class="ui_min" href="javascript:void(0);"
-                                                                     title="最小化" style="display: none;"><b
-                                            class="ui_min_b"></b></a><a class="ui_max" href="javascript:void(0);"
-                                                                        title="最大化" style="display: none;"><b
-                                            class="ui_max_b"></b></a><a class="ui_res" href="javascript:void(0);"
-                                                                        title="还原"><b class="ui_res_b"></b><b
-                                            class="ui_res_t"></b></a><a class="ui_close" href="javascript:void(0);"
-                                                                        title="关闭(esc键)" style="display: inline-block;">×</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ui_icon" style="display: none;"></td>
-                            <td class="ui_main" style="width: auto; height: auto;">
-                                <div class="ui_content" style="padding: 10px;"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="ui_buttons" style="display: none;"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="ui_inner"></div>
             </td>
             <td class="ui_r"></td>
         </tr>

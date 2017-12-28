@@ -141,6 +141,7 @@ function checkUpdateFactoryAddress() {
         $divID.html("送货地址不能为空");
         return false;
     }
+
     return true;
 }
 //验证修改移动电话
@@ -150,7 +151,6 @@ function checkUpdateMobilePhone() {
     $divID.html("");
     if ($fname.val() == "") {
         $divID.html("移动电话不能为空");
-        return false;
     }
     return true;
 }
@@ -198,11 +198,8 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data!=0){
-                            for(i in data){
-                                $("#"+data[i].clientId).remove();
-                            }
-                        }
+                        alert("禁用成功")
+                        window.location.href="/client/noncooperation.do";
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");
@@ -307,6 +304,16 @@ $(function () {
             object.clientFax= $("#updatefax").val();
             clients.push(object);
             var clientList = JSON.stringify(clients);
+            $("#updatename").val("");
+            $("#updatepersonInCharge").val("");
+            $("#updatepost").val("");
+            $("#updatephone").val("");
+            $("#updatemobilePhone").val("");
+            $("#updatefax").val("");
+            $("#updateaddress").val("");
+            $("#updatefactoryAddress").val("");
+            $("#updatestate").val("");
+            $("#closeUpdate").click();
         $.ajax({
             type: "post",
             url: "/client/updatesClient.do",
@@ -315,21 +322,12 @@ $(function () {
             },
             dataType: "json",
             success: function (data) {
-                $("#closeUpdate").click();
+                alert("修改成功");
                 var str = "";
                 if(data!=0){
-                    alert("修改成功")
+
                     window.location.href="/client/cooperative.do";
                 }
-                $("#updatename").val("");
-                $("#updatepersonInCharge").val("");
-                $("#updatepost").val("");
-                $("#updatephone").val("");
-                $("#updatemobilePhone").val("");
-                $("#updatefax").val("");
-                $("#updateaddress").val("");
-                $("#updatefactoryAddress").val("");
-                $("#updatestate").val("");
             },
             error: function () {
                 alert("系统异常，请稍后重试！");
@@ -345,7 +343,7 @@ $(function () {
     $("#cooperation").click(function () {
         window.location.href="/client/cooperative.do";
     })
-    //修改客户是否合作
+    //修改客户为合作
     $("#btn-enable").click(function () {
         var clientList = new Array();
         $(".clients").each(function (index, date) {
@@ -365,13 +363,8 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
-                        if(data!=0){
-                            if(data!=0){
-                                for(i in data){
-                                    $("#"+data[i].clientId).remove();
-                                }
-                            }
-                        }
+                        alert("启用成功")
+                        window.location.href="/client/cooperative.do";
                     },
                     error: function () {
                         alert("系统异常，请稍后重试！");

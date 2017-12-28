@@ -65,4 +65,11 @@ public class PurchaseOrderController {
         printWriter.flush();
         printWriter.close();
     }
+    //暂未实现
+    @RequestMapping(value = "MapExportExcel.do")
+    public String MapExportExcel(String procurement){
+        ArrayList<Procurement> pr =  JSON.parseObject(procurement, new TypeReference<ArrayList<Procurement>>(){});
+        System.out.println(pr);
+        return "";
+    }
 }

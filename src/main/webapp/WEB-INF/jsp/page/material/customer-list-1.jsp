@@ -664,7 +664,7 @@
 <!-- 新增 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
@@ -674,9 +674,9 @@
                 </h4>
             </div>
             <form id="insertClient">
-            <div class="modal-body" style="width: 300px;height: 500px" >
+            <div class="modal-body" style="width: 300px;height: 450px" >
                     <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">供应商名称</span>
+                        <span class="input-group-addon" style="width: 81px;">客户名称</span>
                         <input  id="addname" name="clientName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:477px;">
                     </div>
                     <span  class="reminder" id="Divname">&nbsp;</span>
@@ -694,7 +694,7 @@
                 <span  class="reminder" id="Divpost">&nbsp;</span>
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">供应商地址</span>
+                    <span class="input-group-addon" style="width: 81px;">客户地址</span>
                     <input name="clientAddress"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:477px;">
                 </div>
                <span   class="reminder" id="Divaddress">&nbsp;</span>
@@ -706,17 +706,17 @@
                 <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                    <input name="clientMobilePhone"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input name="clientMobilePhone" onkeyup="value=value.replace(/\D/g,'')" id="addmobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
                <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
-                    <input name="clientPhone" id="addphone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:520px;">
+                    <input name="clientPhone" id="addphone"onkeyup="value=value.replace(/\D/g,'')" type="text" class="form-control" placeholder="请输入正确号码" style="width:520px;">
                 </div>
                 <span  class="reminder" id="Divphone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
-                    <input name="clientFax" id="addfax" value="暂无" type="text" class="form-control" placeholder="请输入正确号码"  style="width:520px;">
+                    <input name="clientFax" id="addfax"onkeyup="value=value.replace(/\D/g,'')" type="text" class="form-control" placeholder="请输入正确号码"  style="width:520px;">
                 </div>
                 <span class="reminder" id="Divfax">&nbsp;</span> <br>
                 <div class="input-group" style="display: none">
@@ -732,7 +732,7 @@
                     提交新增
                 </button>
             </div>
-        </form>
+        </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
@@ -748,8 +748,8 @@
                     修改客户信息
                 </h4>
             </div>
-            <div class="modal-body" style="width: 300px;height: 500px" >
-                <input id="updateid" style="display: none"-/>
+            <div class="modal-body" style="width: 300px;height: 450px" >
+                <input id="updateid" style="display: none"/>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">客户名称</span>
                     <input  id="updatename" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
@@ -777,17 +777,17 @@
                 <span class="reminder" id="reminderfactoryAddress">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                    <input  id="updatemobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input  id="updatemobilePhone"  type="text" onkeyup="value=value.replace(/\D/g,'')" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
                 <span class="reminder" id="remindermobilePhone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
-                    <input  id="updatephone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:510px;">
+                    <input  id="updatephone"  type="text" onkeyup="value=value.replace(/\D/g,'')" class="form-control" placeholder="请输入正确号码" style="width:510px;">
                 </div>
                 <span class="reminder" id="reminderphone">&nbsp;</span><br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
-                    <input  id="updatefax"  type="text" class="form-control" placeholder="请输入正确号码"  style="width:510px;">
+                    <input  id="updatefax"  type="text" onkeyup="value=value.replace(/\D/g,'')" class="form-control" placeholder="请输入正确号码"  style="width:510px;">
                 </div>
                 <span class="reminder" id="reminderfax">&nbsp;</span><br>
             </div>

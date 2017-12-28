@@ -68,7 +68,11 @@ public class MerchandiseServiceImpl   implements MerchandiseService{
         List<Merchandise> count=null;
         Merchandise e=new Merchandise();
         int i=0;
-        if(merchandise.getMerchandiseName()!=null && merchandise.getMerchandiseName()!=""){
+        if(merchandise.getMerchandiseName()!=null
+                && merchandise.getMerchandiseName()!=""
+                || merchandise.getUnitsId()>0 ||  merchandise.getUnitsId()!=null
+                || merchandise.getProductTypeId()>0 || merchandise.getProductTypeId()!=null
+                || merchandise.getSalesStatusId()>0 || merchandise.getSalesStatusId()!=null){
             count=merchandiseDao.pagerMerchandise(merchandise);
             i=merchandiseDao.count(merchandise);
         }else {

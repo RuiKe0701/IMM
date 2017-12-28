@@ -665,7 +665,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModabel">
-                    新增用户信息
+                    新增供应商信息
                 </h4>
             </div>
             <div class="modal-body" style="width: 300px;height: 500px" >
@@ -688,7 +688,7 @@
                 <span  class="reminder" id="Divpost">&nbsp;</span>
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">客户地址</span>
+                    <span class="input-group-addon" style="width: 81px;">供应商地址</span>
                     <input name="supplierAddress"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
                 </div>
                 <span   class="reminder" id="Divaddress">&nbsp;</span>
@@ -700,17 +700,17 @@
                 <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                    <input name="supplierMobilePhone"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                    <input name="supplierMobilePhone"  id="addmobilePhone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
                 </div>
                 <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">电话</span>
-                    <input name="supplierPhone" id="addphone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:515px;">
+                    <input name="supplierPhone" id="addphone"  type="text" class="form-control" placeholder="请输入正确号码" style="width:515px;">
                 </div>
                 <span  class="reminder" id="Divphone">&nbsp;</span> <br>
                 <div class="input-group">
                     <span class="input-group-addon" style="width: 81px;">传真</span>
-                    <input name="supplierFax" id="addfax" value="暂无" type="text" class="form-control" placeholder="请输入正确号码"  style="width:515px;">
+                    <input name="supplierFax" id="addfax"  type="text" class="form-control" placeholder="请输入正确号码"  style="width:515px;">
                 </div>
                 <span class="reminder" id="Divfax">&nbsp;</span> <br>
                 <div class="input-group" style="display: none">
@@ -738,7 +738,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="updateTime">
-                    修改用户信息
+                    修改供应商信息
                 </h4>
             </div>
             <div class="modal-body" style="width: 300px;height: 500px" >

@@ -1,5 +1,7 @@
 package team.ruike.imm.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecgframework.poi.excel.annotation.ExcelEntity;
 import team.ruike.imm.utility.PagerParameter;
 
 import java.io.Serializable;
@@ -26,6 +28,7 @@ public class ProcurementInformation extends PagerParameter implements Serializab
     /**
      * 采购订单编号
      */
+    @Excel(name = "采购订单编号" , needMerge = true)
     private String procurementId;
     /**
      * 商品编号
@@ -35,10 +38,12 @@ public class ProcurementInformation extends PagerParameter implements Serializab
     /**
      * 采购价格
      */
+    @Excel(name = "采购价格" , needMerge = true)
     private double piActualPrice;
     /**
      * 采购数量
      */
+    @Excel(name = "采购数量" , needMerge = true)
     private Integer piVolume;
 
     /**
@@ -49,6 +54,7 @@ public class ProcurementInformation extends PagerParameter implements Serializab
     /**
      * 售价
      */
+    @Excel(name = "采购价格" , needMerge = true)
     private double siActualPrice;
     /**
      * 是否已删除
@@ -94,14 +100,17 @@ public class ProcurementInformation extends PagerParameter implements Serializab
     /**
      * 单位信息
      */
+    @ExcelEntity(name = "单位信息")
     private Units units;
     /**
      * 商品信息
      */
+    @ExcelEntity(name = "商品信息")
     private Merchandise merchandise;
     /**
      * 采购订单信息
      */
+    @ExcelEntity(name = "采购订单信息")
     private Procurement procurement;
 
     public Integer getPiId() {
