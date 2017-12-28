@@ -58,12 +58,20 @@
                 //控制按钮恢复可点击
                 $("#addClient").attr("disabled",false);
                 $("#btn-disable").attr("disabled",false);
+
+                $("#selectsalesStatusId").val(${cooSalesStatusId});
+                $("#selectproductTypeId").val(${cooProductTypeId});
+                $("#selectunitsId").val(${cooUnitsId});
             }
             if(i==1){
                 document.getElementById("btn-disable").setAttribute("disabled",true);
                 document.getElementById("addClient").setAttribute("disabled",true);
                 //控制按钮恢复可点击
                 $("#btn-enable").attr("disabled",false);
+
+                $("#nonsalesStatusId").val(${nonSalesStatusId});
+                $("#nonproductTypeId").val(${nonProductTypeId});
+                $("#nonunitsId").val(${nonUnitsId});
             }
         })
     </script>
@@ -110,16 +118,45 @@
 
         </div>
         <%-- method="post"--%>
-
         <%--展示信息--%>
         <div style="position: relative;left: 20px">
             <c:if test="${i==0}">
                 <form id="form" action="/merchandise/cooperative.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;top:-94px;left: 200px">
+                    <li style="position: relative;top:-94px;left: 220px;border: 10px">
                         <button type="submit" class="btn btn-info">查找</button>
                         <input class="coosupplierName" value="${cooname}" name="merchandiseName" placeholder ="编码/名称/规格/产地等" class="input-medium search-query" type="text" />
                     </li>
+
+                    <div style=" position: absolute;top:-94px;left:470px" class="input-group">
+                        <span class="input-group-addon" style="width: 61px;">缺货状态</span>
+                        <select id="selectsalesStatusId" name="salesStatusId" class="form-control" style="width:90px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${sale}">
+                                <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div style=" position: absolute;top:-94px;left:660px" class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">商品类型</span>
+                        <select  id="selectproductTypeId" name="productTypeId" class="form-control"   style="width:110px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${prod}">
+                                <option value="${p.productTypeId}" >${p.productTypeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div style=" position: absolute;top:-94px;left: 870px" class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">商品单位</span>
+                        <select id="selectunitsId" name="unitsId" class="form-control"   style="width:90px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${unis}">
+                                <option value="${p.unitsId}" >${p.unitsName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
                         <tr>
@@ -339,7 +376,12 @@
                                                 typeof opts.callback === 'function' && opts.callback(that);
                                                 //页码数
                                                 var name=$(".coosupplierName").val();
-                                                window.location.href="/merchandise/cooperative.do?currentPage="+index+"&merchandiseName="+name;
+                                                var salesStatusId= $("#selectsalesStatusId").val();
+                                                var productTypeId=$("#selectproductTypeId").val();
+                                                var unitsId=$("#selectunitsId").val();
+                                                window.location.href="/merchandise/cooperative.do?currentPage="+index+
+                                                    "&merchandiseName="+name+"&productTypeId="+productTypeId+"&salesStatusId="+salesStatusId+
+                                                    "&unitsId="+unitsId;
                                             });
                                             //输入跳转的页码
                                             $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
@@ -391,12 +433,43 @@
                 </form>
             </c:if>
             <c:if test="${i==1}">
-                <form id="form" action="/supplier/noncooperation.do" method="post" >
+                <form id="form" action="/merchandise/noncooperation.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
                     <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
                         <input class="nonsupplierName" value="${noncname}"  name="merchandiseName" placeholder ="编码/名称/规格/产地等" class="input-medium search-query" type="text" />
                     </li>
+
+                    <div style=" position: absolute;top:-94px;left:470px" class="input-group">
+                        <span class="input-group-addon" style="width: 61px;">缺货状态</span>
+                        <select id="nonsalesStatusId" name="salesStatusId" class="form-control" style="width:90px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${sale}">
+                                <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div style=" position: absolute;top:-94px;left:660px" class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">商品类型</span>
+                        <select  id="nonproductTypeId" name="productTypeId" class="form-control"   style="width:110px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${prod}">
+                                <option value="${p.productTypeId}" >${p.productTypeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div style=" position: absolute;top:-94px;left: 870px" class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">商品单位</span>
+                        <select id="nonunitsId" name="unitsId" class="form-control"   style="width:90px;">
+                            <option value="0">请选择</option>
+                            <c:forEach  var="p" items="${unis}">
+                                <option value="${p.unitsId}" >${p.unitsName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
                     <table class="table table-striped" style="width: 1200px">
                         <thead>
                         <tr>
@@ -609,8 +682,13 @@
                                                 that.filling(index);
                                                 typeof opts.callback === 'function' && opts.callback(that);
                                                 //页码数
+                                                var salesStatusId= $("#nonsalesStatusId").val();
+                                               var productTypeId= $("#nonproductTypeId").val();
+                                                var unitsId= $("#nonunitsId").val();
                                                 var name=$(".nonsupplierName").val();
-                                                window.location.href="/supplier/noncooperation.do?currentPage="+index+"&merchandiseName="+name;
+                                                window.location.href="/merchandise/noncooperation.do?currentPage="+index+"&merchandiseName="+name+
+                                                    "&productTypeId="+productTypeId+"&salesStatusId="+salesStatusId+
+                                                    "&unitsId="+unitsId;
                                             });
                                             //输入跳转的页码
                                             $obj.on('input propertychange', '.' + opts.jumpIptCls, function () {
@@ -712,7 +790,7 @@
                 </div>
                 <span  class="reminder" id="DivunitsId">&nbsp;</span> <br>
                 <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">销售状态</span>
+                    <span class="input-group-addon" style="width: 81px;">是否缺货</span>
                     <select id="addsalesStatus" name="salesStatusId" class="form-control"   style="width:487px;opacity:1;">
                         <c:forEach  var="p" items="${sale}">
                             <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
@@ -811,7 +889,7 @@
                     </div>
                     <span  class="reminder" id="reminderunitsId">&nbsp;</span> <br>
                     <div class="input-group">
-                        <span class="input-group-addon" >销售状态</span>
+                        <span class="input-group-addon" >是否缺货</span>
                         <select id="updatesalesStatus" style="width: 405px" name="salesStatusId" class="form-control"   >
                             <c:forEach  var="p" items="${sale}">
                                 <option value="${p.salesStatusId}" >${p.salesStatusName}</option>

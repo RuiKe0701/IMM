@@ -358,14 +358,6 @@
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
-                                        <li class="" id="Product-category">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">商品类别
-                                                 <span class="hide"></span>
-                                                </span>
-                                                <i href="javascript:void(0);">查询</i>
-                                            </a>
-                                        </li>
                                     </ul>
                                  </div>
                             </div>
@@ -486,7 +478,7 @@
                             </li>
                             <li class=""><a href="#"
                                             class=" icon-circle-arrow-left"></a></li>
-                            <li class=""><a href="/retreat.do"  <%-- 退出按钮 --%>
+                            <li class=""><a href="/user/retreat.do"  <%-- 退出按钮 --%>
                                             class=" icon-off"></a></li>
                         </ul>
                     </div>

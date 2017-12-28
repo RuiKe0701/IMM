@@ -227,12 +227,7 @@ $(function () {
                     $("#updateemployee").serialize(),
                 dataType: "json",
                 success: function (data) {
-                    $("#closeUpdate").click();
-                    var str = "";
-                    if(data!=0){
-                        alert("修改成功")
-                        window.location.href="/employee/cooperative.do";
-                    }
+                    alert("修改成功")
                     $("#updatename").val("");
                     $("#updatepersonInCharge").val("");
                     $("#updatepost").val("");
@@ -242,6 +237,13 @@ $(function () {
                     $("#updateaddress").val("");
                     $("#updatefactoryAddress").val("");
                     $("#updatestate").val("");
+                    $("#closeUpdate").click();
+                    var str = "";
+                    if(data!=0){
+
+                        window.location.href="/employee/cooperative.do";
+                    }
+
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
@@ -277,6 +279,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("修改成功")
                         window.location.href="/employee/noncooperation.do";
                     },
                     error: function () {

@@ -159,7 +159,7 @@ function checkUpdatePhone() {
 
 
 $(function () {
-    //添加客户信息
+    //添加商品信息
     $("#insert").click(function () {
         $("#addmerchandiseName").blur(checkAddName);
         $("#addmerchandiseCode").blur(checkAddPersonInCharge);
@@ -234,16 +234,16 @@ $(function () {
                     $("#closeUpdate").click();
                     var str = "";
                     if(data!=0){
-
+                        $("#updatemerchandiseName").val("");
+                        $("#updatemerchandiseCode").val("");
+                        $("#updatemerchandiseSpecification").val("");
+                        $("#updatemerchandisePlaceOfOrigin").val("");
+                        $("#updatemerchandiseSafetyStock").val("");
+                        $("#updatemerchandiseActualQuntity").val("");
+                        $("#updatemerchandiseSalsePrice").val("");
                         window.location.href="/merchandise/cooperative.do";
                     }
-                    $("#updatemerchandiseName").val("");
-                    $("#updatemerchandiseCode").val("");
-                    $("#updatemerchandiseSpecification").val("");
-                    $("#updatemerchandisePlaceOfOrigin").val("");
-                    $("#updatemerchandiseSafetyStock").val("");
-                    $("#updatemerchandiseActualQuntity").val("");
-                    $("#updatemerchandiseSalsePrice").val("");
+
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
@@ -279,6 +279,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("下架成功")
                         window.location.href="/merchandise/cooperative.do";
                     },
                     error: function () {
@@ -308,6 +309,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("上架成功")
                         window.location.href="/merchandise/noncooperation.do";
                     },
                     error: function () {

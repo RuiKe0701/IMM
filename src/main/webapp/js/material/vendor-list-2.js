@@ -199,6 +199,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("修改成功")
                         window.location.href="/supplier/cooperative.do";
                     },
                     error: function () {
@@ -286,18 +287,11 @@ $(function () {
                     $("#closeUpdate").click();
                     var str = "";
                     if(data!=0){
+
                         alert("修改成功")
                         window.location.href="/supplier/cooperative.do";
                     }
-                    $("#updatename").val("");
-                    $("#updatepersonInCharge").val("");
-                    $("#updatepost").val("");
-                    $("#updatephone").val("");
-                    $("#updatemobilePhone").val("");
-                    $("#updatefax").val("");
-                    $("#updateaddress").val("");
-                    $("#updatefactoryAddress").val("");
-                    $("#updatestate").val("");
+
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
@@ -333,6 +327,7 @@ $(function () {
                     },
                     dataType: "json",
                     success: function (data) {
+                        alert("修改成功")
                         window.location.href="/supplier/noncooperation.do";
 
                     },
