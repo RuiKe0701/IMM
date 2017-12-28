@@ -28,7 +28,8 @@
     <script src="../../js/plugins.js"></script>
     <script src="../../js/jquery.dialog.js"></script>
     <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/need/laydate.css">
-    <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
+    <link type="text/css" rel="stylesheet" href="../../js/plugins/layer/laydate/skins/default/laydate.css"
+          id="LayDateSkin">
 </head>
 <body style="">
 <div class="bill-ser-top">
@@ -41,110 +42,47 @@
             <input id="end" class="">
         </li>
         <li>
-            <label>仓库:</label>
-            <input type="text" id="saleOrderNumber">
-        </li>
-        <li>
             <label>商品:</label>
-            <input type="text" id="hasPurReady" />
+            <input type="text" id="hasPurReady"/>
             <a class="ui-btn ui-btn-search" id="search">查询</a>
         </li>
     </ul>
 </div>
 <div class="wrapper btc">
-    <div class="bill-ser-botm">
-        <div class="cf">
-            <div class="ui-config-box">
-                <span id="config" class="ui-config"><a
-                        href="#"
-                        class="ui-icon-config-new"></a>列设置</span>
-            </div>
-        </div>
+    <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
+         style="display: none;">
+        <a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton" style="right: 0px;">
+            <span class="ui-icon ui-icon-circle-triangle-n"></span>
+        </a><span class="ui-jqgrid-title"></span>
     </div>
-    <div class="grid-wrap">
-        <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr"
-             style="width: 1354px;">
-            <div class="ui-widget-overlay jqgrid-overlay" id="lui_grid"></div>
-
-            <div class="ui-jqgrid-view" id="gview_grid" style="width: 1354px;">
-                <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                     style="display: none;">
-                    <a role="link" class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton" style="right: 0px;">
-                        <span class="ui-icon ui-icon-circle-triangle-n"></span>
-                    </a><span class="ui-jqgrid-title"></span>
-                </div>
-                <table class="table table-striped" style="width: 1200px">
-
-                    <thead>
-                    <tr>
-                        <th style="display: none">商品id</th>
-                        <th>盘点时间</th>
-                        <th>盘点编号</th>
-                        <th>盘点仓库</th>
-                        <th>盘点结果</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td style="display: none"></td>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-                        <td>Tanmay</td>
-
-                        <td style="width: 120px;text-align: center">
-                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >修改</button>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#del" >删除</button></td>
-                    </tr>
-                    <tr>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-
-                        <td>Bangalore</td>
-                        <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
-                            <button type="button" class="btn btn-warning btn-sm">删除</button></td>
-                    </tr>
-                    <tr>
-                        <td>Tanmay</td>
-                        <td>Bangalore</td>
-                        <td>560001</td>
-
-                        <td>Bangalore</td>
-                        <td style="width: 120px;text-align: center"><button type="button" class="btn btn-info btn-sm" >修改</button>
-                            <button type="button" class="btn btn-warning btn-sm">删除</button></td>
-                    </tr>
-
-                    </tbody>
-
-
-                </table>
-
-                <div>
-                    <ul class="pagination" >
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <table class="table table-striped" style="width: 1200px">
+        <thead>
+        <tr>
+            <th style="display: none">商品id</th>
+            <th>盘点时间</th>
+            <th>盘点编号</th>
+            <th>盘点结果</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Tanmay</td>
+            <td>Bangalore</td>
+            <td>560001</td>
+            <td style="width: 120px;text-align: center">
+                <button type="button" class="btn btn-info btn-sm">修改</button>
+                <button type="button" class="btn btn-warning btn-sm">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-
-
-
 
 <div style="left: 0px; top: 0px; visibility: hidden; position: absolute;" class="">
 
-    <div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -179,14 +117,16 @@
                         <span class="input-group-addon" style="width: 81px;">订单日期</span>
                         <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
                     </div>
-                    <br/>  <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">库存</span>
-                    <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
-                </div>
-                    <br/>  <div class="input-group">
-                    <span class="input-group-addon" style="width: 81px;">购货日期</span>
-                    <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
-                </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">库存</span>
+                        <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width: 81px;">购货日期</span>
+                        <input type="text" class="form-control" placeholder="twitterhandle" style="width:487px;">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success">
@@ -200,14 +140,14 @@
         </div><!-- /.modal -->
     </div>
 
-    <div  class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
+    <div class="modal fade" id="del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" >
+                    <h4 class="modal-title">
                         确定删除吗
                     </h4>
                 </div>
