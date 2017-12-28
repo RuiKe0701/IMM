@@ -118,10 +118,13 @@
             <div class="tabList">
                 <c:forEach items="${p}" var="p">
                     <div style="display: none">${p.productTypeId}</div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div style="border-style: solid;border-width: 0px 100px"  >${p.productTypeName}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" id="updateproductType" onclick="updateproductType(${p.productTypeId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#productTypeUpdate"><span class="up">修改</span></button>
-                    <button type="button" id="deleteproductType" onclick="deleteproductType(${p.productTypeId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
+
+                    <div style="width: 300px;float: left"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${p.productTypeName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+                    <div style="float: left">
+                        <button type="button" id="updateproductType" onclick="updateproductType(${p.productTypeId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#productTypeUpdate"><span class="up">修改</span></button>
+                        <button type="button" id="deleteproductType" onclick="deleteproductType(${p.productTypeId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
+                    </div>
                     </br>
                 </c:forEach>
             </div>
@@ -227,7 +230,7 @@
                 <div class="input-group">
                     <input id="updatesalesStatusId" type="text" style="display:none;">
                     <span class="input-group-addon" style="width: 81px;">销售状态名称</span>
-                    <input maxlength='2' id="updatesalesStatusName" type="text" class="form-control" style="width:400px;">
+                    <input maxlength='3' id="updatesalesStatusName" type="text" class="form-control" style="width:400px;">
                 </div>
                 <br>
             </div>
@@ -383,6 +386,7 @@
 </script>
 <!-- 代码部分end -->
 </body>
+
 <script>
     //获取要修改的单位名
     function updateunits(val) {
@@ -515,6 +519,105 @@
                         alert("商品信息修改成功")
                         window.location.href="/unitsandtype/units.do";
                     }
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
+    //获取删除的单位名
+    function deletemerchandise(val) {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletes").click(function () {
+            var merchandiseId=val;
+            $.ajax({
+                type: "post",
+                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+                dataType: "json",
+                success: function (data) {
+                    alert("商品信息删除成功")
+                    window.location.href="/merchandise/smerchandise.do/";
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
+    //获取删除的商品类型名
+    function deletemerchandise(val) {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletes").click(function () {
+            var merchandiseId=val;
+            $.ajax({
+                type: "post",
+                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+                dataType: "json",
+                success: function (data) {
+                    alert("商品信息删除成功")
+                    window.location.href="/merchandise/smerchandise.do/";
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
+    //获取删除的销售状态名
+    function deletemerchandise(val) {
+        $.ajax({
+            type: "post",
+            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
+
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletes").click(function () {
+            var merchandiseId=val;
+            $.ajax({
+                type: "post",
+                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+                dataType: "json",
+                success: function (data) {
+                    alert("商品信息删除成功")
+                    window.location.href="/merchandise/smerchandise.do/";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
