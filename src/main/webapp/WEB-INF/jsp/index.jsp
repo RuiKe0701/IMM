@@ -950,6 +950,7 @@
 </script>
 
 <script type="text/javascript">
+    var ar = ${requestScope.arr};
     Highcharts.chart('containers', {
         chart: {
             type: 'column'
@@ -996,8 +997,8 @@
             }
         },
         series: [{
-            name: 'Berlin',
-            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+            name: '销售数量',
+            data: ar
 
         }]
     });

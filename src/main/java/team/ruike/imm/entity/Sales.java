@@ -96,6 +96,28 @@ public class Sales extends PagerParameter implements Serializable{
      */
     private double profit;
 
+
+
+    private double allVolume;
+
+    private double allMonth;
+
+    public double getAllMonth() {
+        return allMonth;
+    }
+
+    public void setAllMonth(double allMonth) {
+        this.allMonth = allMonth;
+    }
+
+    public double getAllVolume() {
+        return allVolume;
+    }
+
+    public void setAllVolume(double allVolume) {
+        this.allVolume = allVolume;
+    }
+
     public double getProfit() {
         return profit;
     }

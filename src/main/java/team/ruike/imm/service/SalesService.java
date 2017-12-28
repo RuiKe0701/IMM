@@ -59,4 +59,12 @@ public interface SalesService {
      * @return
      */
     public List<Sales> selectSalesForProfit(Sales sales);
+
+
+    /**
+     * 首页每月销售总数目
+     * @param sales
+     * @return
+     */
+    public List<Sales> selectForMonth(Sales sales);
 }

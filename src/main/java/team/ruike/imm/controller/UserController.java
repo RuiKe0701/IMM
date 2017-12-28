@@ -6,14 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Merchandise;
+import team.ruike.imm.entity.Sales;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.MerchandiseService;
+import team.ruike.imm.service.SalesService;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping(value = "/user")
@@ -24,6 +27,9 @@ public class UserController {
     UserService userService;
     @Autowired
     MerchandiseService merchandiseService;
+
+    @Autowired
+    SalesService salesService;
     /**
      * 登录验证
      * @param user
@@ -42,6 +48,12 @@ public class UserController {
                 if (merchandiseList.size()>0) {
                    merchandiseService.insufficient(merchandiseList);
                 }
+                List<Sales> salesList = salesService.selectForMonth(null);
+                Double[] doubles = new Double[12];
+                for (int i = 0; i < doubles.length; i++) {
+                    doubles[i]=salesList.get(i).getAllVolume();
+                }
+                request.setAttribute("arr",Arrays.toString(doubles));
                 return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
