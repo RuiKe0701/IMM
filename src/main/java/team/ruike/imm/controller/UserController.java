@@ -11,6 +11,7 @@ import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.ProcurementInformationService;
+import team.ruike.imm.service.ProcurementService;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ public class UserController {
     MerchandiseService merchandiseService;
     @Autowired
     ProcurementInformationService procurementInformationService;
+    @Autowired
+    ProcurementService procurementService;
     /**
      * 登录验证
      * @param user
@@ -38,12 +41,14 @@ public class UserController {
     @RequestMapping(value="/login.do")
     public  String login(Model model,User user, HttpSession session, HttpServletRequest request){
             User u=userService.selectUser(user);
+            int procurementSize=procurementService.procurementSize().size();
             if (u.getUserName()!="无"){
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
               List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
               session.setAttribute("user",u);
               model.addAttribute("procurlist",procurlist);
+              model.addAttribute("procurementSize",procurementSize);
                 //获得小于商品安全存量的商品数量
                 request.setAttribute("stock",stock);
                 if (merchandiseList.size()>0) {

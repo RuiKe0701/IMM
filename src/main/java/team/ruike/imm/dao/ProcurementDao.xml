@@ -60,6 +60,9 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
+    <select id="procurementSize" resultMap="procurementMap">
+        SELECT * FROM procurement WHERE procurement_date=NOW();
+    </select>
     <select id="selectAll" resultMap="procurementMap">
         SELECT * FROM procurement WHERE procurement_id LIKE "GHD%"
     </select>

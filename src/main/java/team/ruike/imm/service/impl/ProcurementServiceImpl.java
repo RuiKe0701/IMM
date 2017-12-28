@@ -63,4 +63,7 @@ public class ProcurementServiceImpl implements ProcurementService {
     public int generateUpdateProcurement(List<Procurement> procurements) {
         return procurementDao.generateUpdateProcurement(procurements);
     }
+    public List<Procurement> procurementSize(){
+        return procurementDao.procurementSize();
+    }
 }
