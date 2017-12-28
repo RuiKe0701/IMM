@@ -137,6 +137,11 @@ public class MerchandiseController {
     @RequestMapping(value="/cooperative.do")
     public  String cooperative(HttpServletRequest request,HttpSession session,Integer currentPage,Merchandise merchandises){
         merchandises.setMerchandiseState(0);
+        if(merchandises.getUnitsId()==null || merchandises.getProductTypeId()==null ||  merchandises.getSalesStatusId()==null){
+            merchandises.setProductTypeId(0);
+            merchandises.setSalesStatusId(0);
+            merchandises.setUnitsId(0);
+        }
         if (currentPage==null ){
             merchandises.setCurrentPage(1);
             currentPage=1;
@@ -145,9 +150,7 @@ public class MerchandiseController {
         }
         //分页查询商品信息
         List<Merchandise> merchandise=merchandiseService.pagerMerchandise(merchandises);
-        for (Merchandise merchandise1 : merchandise) {
-            System.out.println(merchandise1.getMerchandiseName());
-        }
+
         request.setAttribute("merch",merchandise);
         //获取分页信息
         Pages<Merchandise> pages=merchandiseService.getPager(merchandises,currentPage);
@@ -163,6 +166,9 @@ public class MerchandiseController {
         session.setAttribute("sale",salesStatuses);
         request.setAttribute("i",0);
         session.setAttribute("cooname",merchandises.getMerchandiseName());
+        session.setAttribute("cooProductTypeId",merchandises.getProductTypeId());
+        session.setAttribute("cooSalesStatusId",merchandises.getSalesStatusId());
+        session.setAttribute("cooUnitsId",merchandises.getUnitsId());
         return "page/material/goods-list-3";
     }
 
@@ -176,6 +182,11 @@ public class MerchandiseController {
     @RequestMapping(value="/noncooperation.do")
     public  String noncooperation(HttpServletRequest request, HttpSession session, Integer currentPage,Merchandise merchandises){
         merchandises.setMerchandiseState(1);
+        if(merchandises.getUnitsId()==null || merchandises.getProductTypeId()==null ||  merchandises.getSalesStatusId()==null){
+            merchandises.setProductTypeId(0);
+            merchandises.setSalesStatusId(0);
+            merchandises.setUnitsId(0);
+        }
         if (currentPage==null ){
             merchandises.setCurrentPage(1);
             currentPage=1;
@@ -199,6 +210,9 @@ public class MerchandiseController {
         session.setAttribute("sale",salesStatuses);
         request.setAttribute("i",1);
         session.setAttribute("nonname",merchandises.getMerchandiseName());
+        session.setAttribute("nonProductTypeId",merchandises.getProductTypeId());
+        session.setAttribute("nonSalesStatusId",merchandises.getSalesStatusId());
+        session.setAttribute("nonUnitsId",merchandises.getUnitsId());
         return "page/material/goods-list-3";
     }
 

@@ -100,14 +100,12 @@ public class ClientController {
      */
     @RequestMapping("/cooperativeClient.do")
     public void cooperativeClient(String cooperativeClients,PrintWriter printWriter){
-        int i=0;
             ArrayList<Client> clientArrayList =  JSON.parseObject(cooperativeClients, new TypeReference<ArrayList<Client>>(){});
-                i= clientService.cooperative(clientArrayList);
-            if(i>0){
+        int  i= clientService.cooperative(clientArrayList);
                 //返回值
-                String jsonString = JSON.toJSONString(1);
+                String jsonString = JSON.toJSONString(i);
                 printWriter.write(jsonString);
-            }
+
         printWriter.flush();
         printWriter.close();
     }

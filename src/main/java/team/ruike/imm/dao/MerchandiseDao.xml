@@ -13,7 +13,7 @@
         <result column="merchandise_state" property="merchandiseState" />
         <result column="units_id" property="unitsId"/>
         <result column="sales_status_id" property="salesStatusId"/>
-        <result column="Product_type_id" property="productTypeId"/>
+        <result column="product_type_id" property="productTypeId"/>
         <result column="sumstock" property="sumStock"/>
         <association property="productType" javaType="productType">
             <result column="Product_type_id" property="productTypeId" />
@@ -39,8 +39,6 @@
             and merchandise_actual_quntity &lt; merchandise_safety_stock
         </where>
     </select>
-
-
     <!--nsc 查询所有商品-->
     <select id="selectAll" resultMap="merchandiseMap">
         SELECT * FROM merchandise m
@@ -229,6 +227,15 @@
                 )
                 like CONCAT('%',#{merchandiseName},'%')
             </if>
+            <if test="productTypeId!=null and  productTypeId>0">
+              and  product_type_id=#{productTypeId}
+            </if>
+            <if test="salesStatusId!=null and salesStatusId>0">
+                and sales_status_id=#{salesStatusId}
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                and  units_id=#{unitsId}
+            </if>
             <if test="merchandiseState!=null">
                 and merchandise_state=#{merchandiseState}
             </if>
@@ -250,6 +257,15 @@
                 '*!,(%!)#',m.merchandise_salse_price
                 )
                 like CONCAT('%',#{merchandiseName},'%')
+            </if>
+            <if test="productTypeId!=null and  productTypeId>0">
+                and   m.product_type_id=#{productTypeId}
+            </if>
+            <if test="salesStatusId!=null and salesStatusId>0">
+                and  m.sales_status_id=#{salesStatusId}
+            </if>
+            <if test="unitsId!=null and unitsId>0">
+                and m.units_id=#{unitsId}
             </if>
             <if test="merchandiseState!=null">
                 and m.merchandise_state=#{merchandiseState}
@@ -279,9 +295,6 @@
             where merchandise_id=#{client.merchandiseId}
         </foreach>
     </update>
-
-
-
     <!--查询当前库存小于安全库存并且 缺货状态没有修改的-->
     <select id="insufficientMerchandise" resultMap="merchandiseMap">
         SELECT m.*,u.units_name FROM merchandise m

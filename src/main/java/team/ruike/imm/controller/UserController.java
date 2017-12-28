@@ -53,7 +53,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/retreat.do")
-    public String retreat(){
+    public String retreat(HttpSession session){
+        session.removeAttribute("user");
         return "login";
     }
 
