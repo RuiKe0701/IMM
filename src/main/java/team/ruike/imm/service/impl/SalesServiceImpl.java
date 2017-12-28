@@ -26,7 +26,6 @@ public class SalesServiceImpl implements SalesService{
         return salesDao.selectSales(sales);
     }
 
-
     public String salesId() {
         String aa="XS";
         List<Sales> list= selectSales(null);
@@ -40,10 +39,6 @@ public class SalesServiceImpl implements SalesService{
         aa+=size;
         return aa;
     }
-
-
-
-
 
     public int updateSales(Sales sales) {
         return salesDao.updateSales(sales);

@@ -2,18 +2,18 @@ package team.ruike.imm.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import team.ruike.imm.entity.Merchandise;
-import team.ruike.imm.entity.ProductType;
-import team.ruike.imm.entity.SalesStatus;
-import team.ruike.imm.entity.Units;
+import team.ruike.imm.entity.*;
 import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.ProductTypeService;
 import team.ruike.imm.service.SalesStatusService;
 import team.ruike.imm.service.UnitsService;
+import team.ruike.imm.utility.Page;
 
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -36,15 +36,16 @@ public class MerchandiseController {
      * 查询商品信息
      */
     @RequestMapping(value = "/smerchandise.do")
-    public String select(Merchandise merchandise, HttpSession session){
+    public String select(Merchandise merchandise, HttpSession session, Page page){
+
         List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
         List<Units> unitses = unitsService.selectUnits(null);
         List<ProductType> productTypes = productTypeService.selectProductType(null);
         List<SalesStatus> salesStatuses=salesStatusService.selectSalesStatus(null);
-        session.setAttribute("merc", merchandises);
         session.setAttribute("unis",unitses);
         session.setAttribute("prod",productTypes);
         session.setAttribute("sale",salesStatuses);
+        session.setAttribute("merc", merchandises);
         return "page/warehouse/goods-balance";
     }
 
@@ -52,10 +53,19 @@ public class MerchandiseController {
      *上方搜索栏
      */
     @RequestMapping(value = "merchandisemenu.do")
-    public String merchandisemenu(Merchandise merchandise,HttpSession session){
+    public String merchandisemenu(Merchandise merchandise,Units units,ProductType productType ,HttpSession session ){
+
         List<Merchandise> ab = merchandiseService.sanMerchandise(merchandise);
-        session.setAttribute("merc",ab);
-        return  "page/warehouse/goods-balance";
+        List<Units> unitses = unitsService.selectUnits(null);
+        List<ProductType> productTypes = productTypeService.selectProductType(null);
+        List<SalesStatus> salesStatuses=salesStatusService.selectSalesStatus(null);
+        session.setAttribute("unis",unitses);
+        session.setAttribute("prod",productTypes);
+        session.setAttribute("sale",salesStatuses);
+        session.setAttribute("merc", ab);
+
+        return "page/warehouse/goods-balance";
+
     }
 
     //按商品类型查询
@@ -95,7 +105,6 @@ public class MerchandiseController {
     @RequestMapping(value = "/deleteMerchandise.do")
     @ResponseBody
     public void  deleteMerchandise(Merchandise merchandises,PrintWriter printWriter){
-        System.out.println(merchandises.getMerchandiseId());
         merchandises.setMerchandiseState(1);
         merchandiseService.updateMerchandise(merchandises);
         String jsonString = JSON.toJSONString("1");

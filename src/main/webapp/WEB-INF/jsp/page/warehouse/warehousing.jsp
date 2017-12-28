@@ -109,7 +109,7 @@
                 <td>${w.warehousingBatchNumber}</td>
                 <td>${w.employee.employeeName}</td>
                 <td>${w.procurement.procurementId}</td>
-                <td><fmt:formatDate type="date" value="${w.warehousingDate}" /></td>
+                <td>  </td>
                 <td>${w.warehousingRemarks}</td>
                 <td>${w.user.userName}</td>
                 <td style="display: none">${w.warehousingState}</td>
@@ -122,24 +122,24 @@
 </div>
 <!--删除-->
 <div  class="modal fade" id="myDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="as"></h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="deletes" class="btn btn-danger" data-dismiss="modal">
-                        确定
-                    </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        取消
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="as"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deletes" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 <script src="${pageContext.request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
@@ -220,7 +220,7 @@
         $("#end").val(currentdate);
     }
 
-        //获取删除的信息
+    //获取删除的信息
     function deletewarehousing(val) {
             $.ajax({
                 type: "post",

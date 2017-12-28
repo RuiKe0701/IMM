@@ -73,7 +73,7 @@
                 and m.merchandise_code=#{merchandiseCode}
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
-                and m.merchandise_name like concat('%',#{merchandiseName},'%')
+                and m.merchandise_name = #{merchandiseName}
             </if>
             <if test="merchandiseSpecification!=null and merchandiseSpecification!=''">
                 and m.merchandise_specification=#{merchandiseSpecification}
@@ -113,6 +113,7 @@
         select * from merchandise m,product_type p,units u,sales_status s
         <where>
              m.product_type_id=p.product_type_id and m.units_id=u.units_id and m.sales_status_id=s.sales_status_id
+            and m.merchandise_state=0
             <if test="merchandiseId!=null and merchandiseId>0">
                  and m.merchandise_id=#{merchandiseId}
             </if>
