@@ -117,9 +117,9 @@
             </div>
             <div class="tabList">
                 <c:forEach items="${p}" var="p">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div style="display: none">${p.productTypeId}</div>
-                    ${p.productTypeName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div style="border-style: solid;border-width: 0px 100px"  >${p.productTypeName}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" id="updateproductType" onclick="updateproductType(${p.productTypeId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#productTypeUpdate"><span class="up">修改</span></button>
                     <button type="button" id="deleteproductType" onclick="deleteproductType(${p.productTypeId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
                     </br>

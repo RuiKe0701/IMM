@@ -195,13 +195,13 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 72.9505px; left: 129px;">
                                 <div class="nav-item"><h3>仓库单据</h3>
                                     <ul class="sub-nav">
-                                        <li class="" id="Requisition">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">调拨单
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                        <%--<li class="" id="Requisition">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">调拨单--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li class="" id="Count-records">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">盘点记录
@@ -220,20 +220,20 @@
                                                 </span>
                                             </a>
                                         </li>
-                                        <li class="" id="Goods-receipt-details">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">收发明细
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Send-and-receive-goods-summary">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">收发汇总
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                        <%--<li class="" id="Goods-receipt-details">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">收发明细--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li class="" id="Send-and-receive-goods-summary">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">收发汇总--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li class="" id="warehousing">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">入库记录
