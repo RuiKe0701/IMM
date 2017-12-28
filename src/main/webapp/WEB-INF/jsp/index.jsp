@@ -19,8 +19,6 @@
             src="${pageContext.request.contextPath }/js/views.js"></script>
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
     <script type="text/javascript" async="" src="${pageContext.request.contextPath }/js/vds.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery-1.10.2.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/json3.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/vue.js"></script>
     <script src="${pageContext.request.contextPath }/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/js/grid.js"></script>
@@ -32,11 +30,8 @@
     <script src="${pageContext.request.contextPath }/js/material.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
-    <script src="${pageContext.request.contextPath }/js/modules/exporting.js"></script>
-    <script src="${pageContext.request.contextPath }/js/modules/highcharts.js"></script>
-    <script type="text/javascript"></script>
-
-    <script type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath }/js/nisicheng/exporting.js"></script>
+    <script src="${pageContext.request.contextPath }/js/nisicheng/highcharts.js"></script>
 </head>
 <body>
 
@@ -584,7 +579,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index2"> </span> <a> <div class="item"> <div class="name">000111 A品牌牛仔衣</div> <div class="total" style="color: #48BFEA">¥13,994.23</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index3"> </span> <a> <div class="item"> <div class="name">T048 苹果7</div> <div class="total" style="color: #48BFEA">¥3,510.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index4">4 </span> <a> <div class="item"> <div class="name">0000001 灭菌手套</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index5">5 </span> <a> <div class="item"> <div class="name">GB006 第三代</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div></div> <div class="purchaseBarRight"><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index6">6 </span> <a> <div class="item"> <div class="name">GB004 熊大玩具</div> <div class="total" style="color: #48BFEA">¥501.93</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index7">7 </span> <a> <div class="item"> <div class="name">G_21_lishujia 牛仔裤</div> <div class="total" style="color: #48BFEA">¥280.80</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index8">8 </span> <a> <div class="item"> <div class="name">112233 demo</div> <div class="total" style="color: #48BFEA">¥100.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index9">9 </span> <a> <div class="item"> <div class="name">GB005 夏师傅的测试商品</div> <div class="total" style="color: #48BFEA">¥42.12</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index10">10 </span> <a> <div class="item"> <div class="name">GB011 酸奶 zjw 17</div> <div class="total" style="color: #48BFEA">¥23.40</div> </div> </a> </div> </div></div> </div></div>
-                                                    <div class="home-stock" style="display: none;"></div>
+                                                    <div class="home-stock" style="display: none;">
+                                                        <div id="containerss" style="min-width:400px;height:400px"></div>
+                                                    </div>
                                                     <div class="home-nothing" style="display: none;"></div>
                                                 </div>
                                             </div>
@@ -894,6 +891,56 @@
         });
     })
 </script>
+<script>
+    $(function () {
+        $('#containerss').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '2014 某网站各浏览器浏览量占比'
+            },
+            tooltip: {
+                headerFormat: '{series.name}<br>',
+                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '浏览器访问量占比',
+                data: [
+                    ['Firefox',   45.0],
+                    ['IE',       26.8],
+                    {
+                        name: 'Chrome',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['Safari',    8.5],
+                    ['Opera',     6.2],
+                    ['其他',   0.7]
+                ]
+            }]
+        });
+    });
+
+</script>
+
 <script type="text/javascript">
     Highcharts.chart('containers', {
         chart: {
