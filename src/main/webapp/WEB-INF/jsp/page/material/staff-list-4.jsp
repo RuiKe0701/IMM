@@ -115,11 +115,11 @@
 
         </div>
         <%--展示信息--%>
-        <div style="position: relative;left: 50px">
+        <div style="position: relative;left: 20px">
             <c:if test="${i==0}">
                 <form id="form" action="/employee/cooperative.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
                         <input class="ename" name="employeeName" value="${name}" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
                     </li>
@@ -388,7 +388,7 @@
             <c:if test="${i==1}">
                 <form id="form" action="/employee/noncooperation.do" method="post" >
                     <input style="display: none" name="currentPage"  value="1" />
-                    <li style="position: relative;left: 15%;top:-94px">
+                    <li style="position: relative;left: 200px;top:-94px">
                         <button type="submit" class="btn btn-info">查找</button>
                         <input class="ename" value="${nonname}" name="employeeName" placeholder ="名称/ 联系人/ 电话查询" class="input-medium search-query" type="text" />
                     </li>
@@ -653,75 +653,74 @@
 
     </div>
     <%-- 分页--%>
+ </div>
+<!-- 新增 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="addemployee">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModabel">
+                    新增员工信息
+                </h4>
+            </div>
+            <div class="modal-body" style="width: 300px;height: 350px" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">员工名称</span>
+                    <input  id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="Divname">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">职位名称</span>
+                    <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:487px;opacity:1;">
+                        <c:forEach  var="p" items="${positions}">
+                            <option value="${p.positionId}" >${p.positionName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">身份证号</span>
+                    <input name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
+                </div>
+                <span  class="reminder" id="Divpost">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">移动电话</span>
+                    <input name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
+                </div>
+                <span   class="reminder" id="Divaddress">&nbsp;</span>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
+                    <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 81px;">联络地址</span>
+                    <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
+                </div>
+                <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
+                <div class="input-group" style="display: none">
+                    <span class="input-group-addon" style="width: 81px;">是否已删除</span>
+                    <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" id="insert" class="btn btn-primary">
+                    提交新增
+                </button>
+            </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->
 
-
-    <!-- 新增 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form class="modal-content" id="addemployee">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModabel">
-                        新增员工信息
-                    </h4>
-                </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">员工名称</span>
-                        <input  id="addname" name="employeeName" type="text" placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divname">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">职位名称</span>
-                        <select id="addpersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
-                            <c:forEach  var="p" items="${positions}">
-                                <option value="${p.positionId}" >${p.positionName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <span  class="reminder" id="DivpersonInCharge">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">身份证号</span>
-                        <input name="employeeIdNumber"  id="addpost" type="text"placeholder="请输入50字以内信息" class="form-control" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="Divpost">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">移动电话</span>
-                        <input name="employeeMobilePhone"  id="addaddress" type="text" placeholder="请输入100字以内信息"class="form-control"  style="width:487px;">
-                    </div>
-                    <span   class="reminder" id="Divaddress">&nbsp;</span>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">电子邮箱</span>
-                        <input name="employeeEmail"  id="addfactoryAddress" type="text"placeholder="请输入100字以内信息" class="form-control"  style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivfactoryAddress">&nbsp;</span> <br>
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width: 81px;">联络地址</span>
-                        <input name="employeeAddress"  id="addmobilePhone" value="暂无" type="text" class="form-control" placeholder="请输入正确号码" style="width:487px;">
-                    </div>
-                    <span  class="reminder" id="DivmobilePhone">&nbsp;</span> <br>
-                    <div class="input-group" style="display: none">
-                        <span class="input-group-addon" style="width: 81px;">是否已删除</span>
-                        <input name="employeeState" id="addstate" type="text" value="0" class="form-control"  style="width:487px;">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="closeAdd" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" id="insert" class="btn btn-primary">
-                        提交新增
-                    </button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
 <!-- 修改 -->
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -732,10 +731,10 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="updateTime">
-                        修改用户信息
+                        修改员工信息
                     </h4>
                 </div>
-                <div class="modal-body" style="width: 300px;height: 500px" >
+                <div class="modal-body" style="width: 300px;height: 400px" >
                     <input id="updateid" name="employeeId" style="display: none"/>
                     <div class="input-group">
                         <span class="input-group-addon" style="width: 81px;">员工名称</span>
@@ -744,7 +743,7 @@
                     <span class="reminder" id="remindername">&nbsp;</span><br>
                     <div class="input-group" style="border: 10px; bordercolor:#000000">
                         <span class="input-group-addon" style="width: 81px;">职位信息</span>
-                            <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:300px;opacity:1;">
+                            <select id="updatepersonInCharge" name="positionId" class="form-control"   style="width:487px;opacity:1;">
                                 <c:forEach  var="p" items="${positions}">
                                 <option value="${p.positionId}" >${p.positionName}</option>
                                 </c:forEach>

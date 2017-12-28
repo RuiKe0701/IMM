@@ -37,17 +37,20 @@ public class EmployeeServiceImpl implements EmployeeService{
      */
     public Pages<Employee> getPager(Employee employee, Integer currentPage) {
         List<Employee> count=null;
-        Employee c=new Employee();
-        if(employee.getEmployeeState()==1 || employee.getEmployeeState()==0){
-            c.setEmployeeState(employee.getEmployeeState());
-            count=employeeDao.pages(c);
+        Employee e=new Employee();
+        int i=0;
+        if(employee.getEmployeeName()!=null && employee.getEmployeeName()!=""){
+            count=employeeDao.pages(employee);
+            i=employeeDao.count(employee);
         }else {
-            count=employeeDao.pages(null);
+            e.setEmployeeState(employee.getEmployeeState());
+            count=employeeDao.pages(e);
+            i=employeeDao.count(e);
         }
         Pages<Employee> pages=new Pages<Employee>();
         pages.setCurrentPage(currentPage);
         pages.setList(count);
-        pages.setTotalRecord(count.size());
+        pages.setTotalRecord(i);
         pages.setPageSize(pageSize);
         return pages;
     }

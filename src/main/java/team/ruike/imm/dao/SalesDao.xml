@@ -150,6 +150,52 @@
         insert into sales(sales_id,sales_date,client_id,employee_id,sales_accomplish) values(#{salesId},#{salesDate},#{clientId},#{employeeId},1)
     </insert>
 
+    <!--关键销售查询-->
+    <select id="selectSalesForOrder" resultMap="salesMap" parameterType="sales">
+        select * from sales s,client c,employee e,( SELECT si.*,m.merchandise_name,u.units_name,s.sales_date,p_y.product_type_name,p_y.product_type_id
+        FROM sales_information si
+        INNER JOIN sales s ON si.sales_id=s.sales_id
+        INNER JOIN merchandise m ON m.merchandise_id=si.merchandise_id
+        INNER JOIN product_type p_y on p_y.product_type_id=m.product_type_id
+        INNER JOIN units u ON u.units_id=si.units_id ) as  s_i
+        <where>
+            s.sales_accomplish=0 and s.client_id=c.client_id and s.employee_id=e.employee_id and s.sales_id = s_i.sales_id
+            <if test="salesId!=null and salesId>0">
+                and s.sales_id=#{salesId}
+            </if>
+            <if test="salesDate !=null and salesDate!=''">
+                and s.sales_date=#{salesDate}
+            </if>
+            <if test="clientId !=null and clientId>0">
+                and s.client_id =#{clientId}
+            </if>
+            <if test="employeeId!=null and employeeId>0">
+                and s.employee_id =#{employeeId}
+            </if>
+            <if test="salesAccomplish!=null and salesAccomplish>0">
+                and s.sales_accomplish =#{salesAccomplish}
+            </if>
+            <if test="eventDetailsId!=null and eventDetailsId>=0">
+                and s.event_details_id =#{eventDetailsId}
+            </if>
+            <if test="salesActivities!=null and salesActivities>=0">
+                and s.sales_activities=#{salesActivities}
+            </if>
+            <if test="salesState !=null">
+                and s.sales_state=#{salesState}
+            </if>
+            <if test="merchandiseId !=null and merchandiseId>0">
+                and s_i.merchandise_id=#{merchandiseId}
+            </if>
+            <if test="productTypeId !=null and productTypeId>0">
+                and s_i.product_type_id=#{productTypeId}
+            </if>
+        </where>
+        ORDER BY s.sales_date desc
+        <if test="currentPage!=null and pageSize!=null">
+            LIMIT #{currentPage},#{pageSize}
+        </if>
+    </select>
 
     <!--关键销售查询-->
     <select id="selectSalesForThis" resultMap="salesMap" parameterType="sales">

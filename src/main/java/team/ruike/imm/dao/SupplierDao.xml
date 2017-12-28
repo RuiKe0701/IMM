@@ -13,7 +13,6 @@
         <result property="supplierAddress" column="supplier_address" />
         <result property="supplierFactoryAddress" column="supplier_factory_address" />
         <result property="supplierState" column="supplier_state" />
-
     </resultMap>
 
     <select id="selectSuplier" resultMap="supplierMap" parameterType="supplier">
@@ -24,7 +23,7 @@
                   and supplier_id=#{supplierId}
             </if>
             <if test="supplierName !=null and supplierName!=''">
-                  and supplier_Name=#{supplierName}
+                  and supplier_Name like concat('%',#{supplierName},'%')
             </if>
             <if test="supplierPersonInCharge !=null and supplierPersonInCharge!=''">
                   and supplier_person_in_charge =#{supplierPersonInCharge}
@@ -55,17 +54,39 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
-
+    <select id="count" resultType="int"  parameterType="supplier">
+        select count(*) from supplier
+        <where>
+            <if test="supplierName!=null and  supplierName!=''">
+                  concat(supplier_name,
+                '!,(%!)#',supplier_person_in_charge,
+                '*!,(%!)#',supplier_post,
+                '*!,(%!)#',supplier_phone,
+                '*!,(%!)#',supplier_mobile_phone,
+                '*!,(%!)#',supplier_fax,
+                '*!,(%!)#',supplier_address,
+                '*!,(%!)#',supplier_factory_address
+                )
+                like CONCAT('%',#{supplierName},'%')
+            </if>
+            <if test="supplierState!=null">
+                and supplier_state=#{supplierState}
+            </if>
+        </where>
+    </select>
     <select id="pages" resultMap="supplierMap">
         select * from supplier
         <where>
             1=1
             <if test="supplierName!=null and  supplierName!=''">
                 and  concat(supplier_name,
-                '!,(%!)#',e.employee_id_number,
-                '*!,(%!)#',e.employee_mobile_phone,
-                '*!,(%!)#',e.employee_email,
-                '*!,(%!)#',e.employee_address
+                '!,(%!)#',supplier_person_in_charge,
+                '*!,(%!)#',supplier_post,
+                '*!,(%!)#',supplier_phone,
+                '*!,(%!)#',supplier_mobile_phone,
+                '*!,(%!)#',supplier_fax,
+                '*!,(%!)#',supplier_address,
+                '*!,(%!)#',supplier_factory_address
                 )
                 like CONCAT('%',#{supplierName},'%')
             </if>

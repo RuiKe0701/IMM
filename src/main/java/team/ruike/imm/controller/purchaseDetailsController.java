@@ -4,13 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.jeecgframework.poi.excel.entity.ExportParams;
+import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Procurement;
 import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.PurchaseOrderInformation;
+import team.ruike.imm.entity.SalesInformation;
 import team.ruike.imm.service.ProcurementInformationService;
 import team.ruike.imm.service.ProcurementService;
 import team.ruike.imm.service.PurchaseOrderInformationService;
@@ -18,6 +22,7 @@ import team.ruike.imm.utility.Page;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,9 +49,9 @@ public class purchaseDetailsController {
         int total = (int) new PageInfo<ProcurementInformation>(procurementInformations).getTotal();
         int len=0;
         if(total%7!=0){
-            len=(total/5)+1;
+            len=(total/7)+1;
         }else {
-            len=total/5;
+            len=total/7;
         }
         page.caculateLast(total);
         model.addAttribute("procurementInformations",procurementInformations);
@@ -66,4 +71,16 @@ public class purchaseDetailsController {
         printWriter.flush();
         printWriter.close();
     }
+    @RequestMapping(value = "/excel.do")
+    public String excel(ModelMap map){
+        List<ProcurementInformation> procurementInformations=procurementInformationService.selectAllProcureMent(null);
+        map.put(NormalExcelConstants.CLASS, ProcurementInformation.class);
+        map.put(NormalExcelConstants.FILE_NAME, "商品采购明细");
+        Date now = new Date();
+        ExportParams ep = new ExportParams("商品采购明细","创建时间" + now.toLocaleString(), "已销订购");
+        map.put(NormalExcelConstants.PARAMS, ep);
+        map.put(NormalExcelConstants.DATA_LIST, procurementInformations);
+        return NormalExcelConstants.JEECG_EXCEL_VIEW;
+    }
+
 }

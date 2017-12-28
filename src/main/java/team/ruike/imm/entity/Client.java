@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @versrion 2.0
  * 客户信息
  */
-public class Client extends Pages implements Serializable {
+public class Client extends PagerParameter implements Serializable {
     /**
      * 客户编号
      */

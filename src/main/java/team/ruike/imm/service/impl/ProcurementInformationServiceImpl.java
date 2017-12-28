@@ -48,4 +48,8 @@ public class ProcurementInformationServiceImpl implements ProcurementInformation
     public int generateUpdateProcurementInfo(List<ProcurementInformation> information) {
         return procurementInformationDao.generateUpdateProcurementInfo(information);
     }
+
+    public List<ProcurementInformation> selectProcurementByProcurementId(ProcurementInformation procurementInformation) {
+        return procurementInformationDao.selectProcurementByProcurementId(procurementInformation);
+    }
 }

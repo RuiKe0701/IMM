@@ -57,29 +57,29 @@
                 var purchaseorder=new Array();
                 var purchase=null;
                 var supplierId=$("#supplierId").val();
-                var purchaseorderId=$("#purchaseorderId").val();
-                var purchaseorderDate=$("#end").val();
-                var purchaseorderEmployeeId=$("#procurementEmployeeId").val();
+                var procurementId=$("#purchaseorderId").val();
+                var procurementDate=$("#end").val();
+                var procurementEmployeeId=$("#procurementEmployeeId").val();
                 var purchaseorderList=new Object();
                 purchaseorderList.supplierId=supplierId;
-                purchaseorderList.purchaseorderId=purchaseorderId;
-                purchaseorderList.purchaseorderDate=purchaseorderDate;
-                purchaseorderList.purchaseorderEmployeeId=purchaseorderEmployeeId;
+                purchaseorderList.procurementId=procurementId;
+                purchaseorderList.procurementDate=procurementDate;
+                purchaseorderList.procurementEmployeeId=procurementEmployeeId;
                 purchaseorder.push(purchaseorderList);
                 var procurement=JSON.stringify(purchaseorder);
                 $(".trParam").each(function (index,date) {
-                    var purchaseOrderId=$(date).find(".purchaseOrderId").val();
+                    var procurementId=$(date).find(".purchaseOrderId").val();
                     var merchandiseId=$(date).find(".merchandiseId").val();
                     var unitsId=$(date).find(".unitsId").val();
-                    var poiVolume=$(date).find(".poiVolume").val();
-                    var poiActualPrice=$(date).find(".poiActualPrice").val();
-                    var poiTotalPrice=$(date).find(".poiTotalPrice").val();
-                    var poiRemarks=$(date).find(".poiRemarks").val();
+                    var piVolume=$(date).find(".poiVolume").val();
+                    var piActualPrice=$(date).find(".poiActualPrice").val();
+                    var piTotalPrice=$(date).find(".poiTotalPrice").val();
+                    var piRemarks=$(date).find(".poiRemarks").val();
                     var obj=new Object();
-                    obj.purchaseOrderId=purchaseOrderId;obj.merchandiseId=merchandiseId;
-                    obj.unitsId=unitsId;obj.poiVolume=poiVolume;
-                    obj.poiActualPrice=poiActualPrice;obj.poiTotalPrice=poiTotalPrice;
-                    obj.poiRemarks=poiRemarks;
+                    obj.procurementId=procurementId;obj.merchandiseId=merchandiseId;
+                    obj.unitsId=unitsId;obj.piVolume=piVolume;
+                    obj.piActualPrice=piActualPrice;obj.piTotalPrice=piTotalPrice;
+                    obj.piRemarks=piRemarks;
                     procurementInformation.push(obj);
                      purchase=JSON.stringify(procurementInformation);
                 });
@@ -99,7 +99,8 @@
                     }
                 });
             });
-            $(".piActualPrice").blur(function () {
+            var tatal=0;
+            $(".poiActualPrice").blur(function () {
                 if( $(this).parent('td').prev("td").find("input").val()==""){
                     alert("请输入数量");
                     return false;
@@ -112,26 +113,29 @@
                     mun=parseInt($(this).parent('td').prev("td").find("input").val());
                     money=parseInt($(this).val());
                     totalPrice=mun*money;
+                    tatal+=totalPrice;
+                    $("#all").html(tatal);
                     $(this).parent('td').next("td").find("input").val(totalPrice);
                 }
 
-            })
+            });
+
             $("#daochu").click(function () {
                 var procurementInformation=new  Array();
                 var purchase=null;
                 $(".trParam").each(function (index,date) {
-                    var purchaseOrderId=$(date).find(".purchaseOrderId").val();
+                    var purchaseId=$(date).find(".purchaseOrderId").val();
                     var merchandiseId=$(date).find(".merchandiseId").val();
                     var unitsId=$(date).find(".unitsId").val();
-                    var poiVolume=$(date).find(".poiVolume").val();
-                    var poiActualPrice=$(date).find(".poiActualPrice").val();
-                    var poiTotalPrice=$(date).find(".poiTotalPrice").val();
-                    var poiRemarks=$(date).find(".poiRemarks").val();
+                    var piVolume=$(date).find(".poiVolume").val();
+                    var piActualPrice=$(date).find(".poiActualPrice").val();
+                    var piTotalPrice=$(date).find(".poiTotalPrice").val();
+                    var piRemarks=$(date).find(".poiRemarks").val();
                     var obj=new Object();
-                    obj.purchaseOrderId=purchaseOrderId;obj.merchandiseId=merchandiseId;
-                    obj.unitsId=unitsId;obj.poiVolume=poiVolume;
-                    obj.poiActualPrice=poiActualPrice;obj.poiTotalPrice=poiTotalPrice;
-                    obj.poiRemarks=poiRemarks;
+                    obj.purchaseId=purchaseId;obj.merchandiseId=merchandiseId;
+                    obj.unitsId=unitsId;obj.piVolume=piVolume;
+                    obj.piActualPrice=piActualPrice;obj.piTotalPrice=piTotalPrice;
+                    obj.piRemarks=piRemarks;
                     procurementInformation.push(obj);
                     purchase=JSON.stringify(procurementInformation);
                 });
@@ -246,12 +250,12 @@
                                                     </select>
                                                 </div>
                                             </td>
-                                            <td style="display: none"><input type="text"  class="purchaseOrderId" name="purchaseOrderId" value="${purId}"></td>
                                             <td >
-
                                                 <input type="text"  disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center">
                                                 <input type="text" name="unitsId" class="unitsId" style="display: none">
                                             </td>
+                                            <td style="display: none"><input type="text"  class="purchaseOrderId" name="purchaseOrderId" value="${purId}"></td>
+
                                             <td><input type="text"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" class="poiVolume" name="poiVolume" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
                                             <td><input type="text"   onchange="if(/\D/.test(this.value)){alert('只能输入数字');  this.value='';}" class="poiActualPrice" name="poiActualPrice" style="border: 0px;height: 30px;font-size: 16px;text-align: center"></td>
                                             <td style="font-size: 16px;"><input  class="poiTotalPrice" type="text" disabled="disabled" style="border: 0px;height: 30px;font-size: 16px;background-color: white;text-align: center"></td>
@@ -292,11 +296,8 @@
                                             合计：
                                         </th>
                                         <th style="width: 950px;text-align: right" id="all">
-                                            dasdsada
+
                                         </th>
-
-
-
                                         </thead>
                                     </table>
                                 </div>

@@ -52,7 +52,7 @@
         </where>
     </select>
 
-    <select id="count" resultType="int"  parameterType="employee">
+    <select id="count" resultType="int" >
         select count(*) from client
         <where>
             <if test="clientName!=null and  clientName!=''">

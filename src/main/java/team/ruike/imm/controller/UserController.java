@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.User;
+import team.ruike.imm.service.MerchandiseService;
 import team.ruike.imm.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +22,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
+    @Autowired
+    MerchandiseService merchandiseService;
     /**
      * 登录验证
      * @param user
@@ -27,51 +31,30 @@ public class UserController {
      * @return
      */
     @RequestMapping(value="/login.do")
-    public  String login(User user,HttpSession session){
+    public  String login(User user, HttpSession session, HttpServletRequest request){
             User u=userService.selectUser(user);
             if (u.getUserName()!="无"){
-            session.setAttribute("user",u);
-            return "index";
+              int stock=  merchandiseService.sumstock();
+              List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
+              session.setAttribute("user",u);
+                //获得小于商品安全存量的商品数量
+                request.setAttribute("stock",stock);
+                if (merchandiseList.size()>0) {
+                   merchandiseService.insufficient(merchandiseList);
+                }
+                return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
-        return "redirect:/user/pages.do";
+        return "login";
     }
-
-
-//    @RequestMapping(value = "/pages.do")
-//    public String pages(Model model){
-//        List<Integer> a=null;
-//        team.ruike.imm.instrument.Pages<User> pages=userService.queryOrderContract();
-//        System.out.println( pages.getPageSize());
-//        System.out.println( pages.getPageBar().length);
-//        model.addAttribute("page",pages);
-//        return "adsa";
-//    }
-
-//    @RequestMapping(value = "/page.do")
-//    public  String page(Integer currentPage,Model model){//分页显示用户信息
-//       //分页显示用户信息
-//       List<User> pages= userService.pagerUser(currentPage);
-//        Pager<User> pagerss=null;
-//        if (pages.size()!=0){
-//            model.addAttribute("pages",pages);
-//            if(currentPage==0){
-//                pagerss=userService.getPager(1);
-//            }else {
-//                pagerss=userService.getPager(currentPage);
-//            }
-//            model.addAttribute("pagesList",pagerss);
-//            return "adsa";
-//        }
-//        return "aaaa";
-//    }
 
     /**
      * 退出到登录页面
      * @return
      */
     @RequestMapping(value = "/retreat.do")
-    public String retreat(){
+    public String retreat(HttpSession session){
+        session.removeAttribute("user");
         return "login";
     }
 
@@ -81,7 +64,6 @@ public class UserController {
      */
     @RequestMapping("/doinsetadt.do")
     public void Doaddatdrecore(String stuattendancelists,PrintWriter printWriter){
-        System.out.println(stuattendancelists);
         ArrayList<User> userArrayList =  JSON.parseObject(stuattendancelists, new TypeReference<ArrayList<User>>(){});
         for (User user : userArrayList) {
             System.out.println(user.getUserName());

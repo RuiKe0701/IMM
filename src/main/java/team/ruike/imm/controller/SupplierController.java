@@ -8,6 +8,7 @@ import team.ruike.imm.entity.Supplier;
 import team.ruike.imm.service.SupplierService;
 import team.ruike.imm.utility.Pages;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,12 @@ import java.util.List;
 public class SupplierController {
     @Autowired
     SupplierService supplierService;
+
     //展示合作客户数据
     @RequestMapping(value="/cooperative.do")
-    public  String cooperative(HttpServletRequest request,Integer currentPage,Supplier supplier){
+    public  String cooperative(HttpServletRequest request, HttpSession session, Integer currentPage, Supplier supplier){
         supplier.setSupplierState(0);
+        System.out.println(supplier.getSupplierName());
         if (currentPage==null ){
             supplier.setCurrentPage(1);
             currentPage=1;
@@ -34,6 +37,7 @@ public class SupplierController {
         request.setAttribute("pages",pages);
         int i=0;
         request.setAttribute("i",i);
+        session.setAttribute("cooname",supplier.getSupplierName() );
         return "page/material/vendor-list-2";
     }
 
@@ -45,7 +49,7 @@ public class SupplierController {
      * @return
      */
     @RequestMapping(value="/noncooperation.do")
-    public  String noncooperation(HttpServletRequest request,Integer currentPage,Supplier supplier){
+    public  String noncooperation(HttpServletRequest request, HttpSession session,Integer currentPage,Supplier supplier){
         supplier.setSupplierState(1);
         if (currentPage==null ){
             supplier.setCurrentPage(1);
@@ -56,9 +60,10 @@ public class SupplierController {
         List<Supplier> supplies=supplierService.pagerSuplier(supplier);
         request.setAttribute("ss",supplies);
         Pages<Supplier> pages=supplierService.getPager(supplier,currentPage);
-        request.setAttribute("pp",pages);
+        request.setAttribute("pages",pages);
         int i=1;
         request.setAttribute("i",i);
+        session.setAttribute("noncname",supplier.getSupplierName() );
         return "page/material/vendor-list-2";
     }
     /**

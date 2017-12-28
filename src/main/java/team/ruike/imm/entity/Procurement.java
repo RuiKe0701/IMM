@@ -1,4 +1,5 @@
 package team.ruike.imm.entity;
+import org.jeecgframework.poi.excel.annotation.ExcelEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 import team.ruike.imm.utility.PagerParameter;
 
@@ -40,6 +41,7 @@ public class Procurement extends PagerParameter implements Serializable{
     /**
      * 采购人 =员工信息
      */
+    @ExcelEntity(name = "采购人")
     private Employee procurementEmployee;
     /**
      * 供应商信息
