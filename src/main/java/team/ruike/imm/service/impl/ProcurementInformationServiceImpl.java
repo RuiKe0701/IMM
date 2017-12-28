@@ -26,7 +26,9 @@ public class ProcurementInformationServiceImpl implements ProcurementInformation
     public List<ProcurementInformation> selectProcurementInformation(ProcurementInformation procurementInformation) {
         return null;
     }
-
+    public List<ProcurementInformation> rankingProcurement(){
+      return   procurementInformationDao.rankingProcurement();
+    }
     public int updateProcurementInformation(ProcurementInformation procurementInformation) {
         return 0;
     }

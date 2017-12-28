@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" class="">
@@ -34,9 +35,7 @@
     <script src="${pageContext.request.contextPath }/js/nisicheng/highcharts.js"></script>
 </head>
 <body>
-
 <script type="text/javascript"></script>
-
 <title>äºè¿éå­</title>
 <link href="${pageContext.request.contextPath }/css/app.9aa0d8c4086204eafa2caf53d7294fcb.css" rel="stylesheet">
 <div id="container" class="cf">
@@ -571,14 +570,19 @@
                                                         <div class="purchaseBarwrap">
                                                             <div style="text-align: center; font-weight: bold; margin: 35px 0 14px 0;">购货金额排名</div>
                                                             <div class="purchaseBarLeft">
-                                                                <div class="itemWrap">
-                                                                    <div class="page"></div>
-                                                                    <div id="ceshi">
-                                                                        <span class="index index1"></span>
-                                                                        <a> <div class="item"> <div class="name">007 鹿晗的应援物</div> <div class="total" style="color: #48BFEA">¥30,978.09</div> </div> </a>
+                                                                <c:forEach items="${procurlist}" var="procure" varStatus="stu">
+                                                                    <div class="itemWrap">
+                                                                        <div class="page"></div>
+                                                                        <div class="ceshi">
+                                                                            <span class="index index${stu.index+1}"></span>
+                                                                            <a> <div class="item"> <div class="name">${procure.merchandise.merchandiseName}</div> <div class="total" style="color: #48BFEA">¥${procure.piVolume}</div> </div> </a>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index2"> </span> <a> <div class="item"> <div class="name">000111 A品牌牛仔衣</div> <div class="total" style="color: #48BFEA">¥13,994.23</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index3"> </span> <a> <div class="item"> <div class="name">T048 苹果7</div> <div class="total" style="color: #48BFEA">¥3,510.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index4">4 </span> <a> <div class="item"> <div class="name">0000001 灭菌手套</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index5">5 </span> <a> <div class="item"> <div class="name">GB006 第三代</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div></div> <div class="purchaseBarRight"><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index6">6 </span> <a> <div class="item"> <div class="name">GB004 熊大玩具</div> <div class="total" style="color: #48BFEA">¥501.93</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index7">7 </span> <a> <div class="item"> <div class="name">G_21_lishujia 牛仔裤</div> <div class="total" style="color: #48BFEA">¥280.80</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index8">8 </span> <a> <div class="item"> <div class="name">112233 demo</div> <div class="total" style="color: #48BFEA">¥100.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index9">9 </span> <a> <div class="item"> <div class="name">GB005 夏师傅的测试商品</div> <div class="total" style="color: #48BFEA">¥42.12</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index10">10 </span> <a> <div class="item"> <div class="name">GB011 酸奶 zjw 17</div> <div class="total" style="color: #48BFEA">¥23.40</div> </div> </a> </div> </div></div> </div></div>
+
+                                                                </c:forEach>
+                                                             </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="home-stock" style="display: none;">
                                                         <div id="containerss" style="min-width:400px;height:400px"></div>
                                                     </div>

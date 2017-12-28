@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import team.ruike.imm.dao.ProcurementInformationDao;
 import team.ruike.imm.entity.Merchandise;
+import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.MerchandiseService;
+import team.ruike.imm.service.ProcurementInformationService;
 import team.ruike.imm.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,8 @@ public class UserController {
     UserService userService;
     @Autowired
     MerchandiseService merchandiseService;
+    @Autowired
+    ProcurementInformationService procurementInformationService;
     /**
      * 登录验证
      * @param user
@@ -31,12 +36,14 @@ public class UserController {
      * @return
      */
     @RequestMapping(value="/login.do")
-    public  String login(User user, HttpSession session, HttpServletRequest request){
+    public  String login(Model model,User user, HttpSession session, HttpServletRequest request){
             User u=userService.selectUser(user);
             if (u.getUserName()!="无"){
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
+              List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
               session.setAttribute("user",u);
+              model.addAttribute("procurlist",procurlist);
                 //获得小于商品安全存量的商品数量
                 request.setAttribute("stock",stock);
                 if (merchandiseList.size()>0) {

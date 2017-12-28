@@ -15,7 +15,7 @@ public interface ProcurementInformationService {
      */
     public List<ProcurementInformation> selectProcurementInformation(ProcurementInformation procurementInformation);
     void  insertAll(List<ProcurementInformation> procurementInformations);
-
+    List<ProcurementInformation> rankingProcurement();
     /**
      * 按指定条件修改采购订单详情
      * @param procurementInformation

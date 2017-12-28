@@ -42,5 +42,5 @@ public interface ProcurementInformationDao {
     int generateUpdateProcurementInfo(List<ProcurementInformation> information);
     //购货汇总
     List<ProcurementInformation>  selectProcurementByProcurementId(ProcurementInformation procurementInformation);
-
+    List<ProcurementInformation> rankingProcurement();
 }

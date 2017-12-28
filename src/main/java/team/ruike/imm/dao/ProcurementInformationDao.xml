@@ -182,4 +182,11 @@
         </where>
         GROUP BY pri.merchandise_id
     </select>
+    <!--根据商品查询购货金额排名-->
+    <select id="rankingProcurement" resultMap="procurementInformationMap">
+        SELECT SUM(pri.pi_volume) pi_volume,ms.merchandise_name FROM procurement_information pri
+        INNER JOIN merchandise  ms ON pri.merchandise_id=ms.merchandise_id
+        GROUP BY pri.merchandise_id
+        LIMIT 10;
+    </select>
 </mapper>
