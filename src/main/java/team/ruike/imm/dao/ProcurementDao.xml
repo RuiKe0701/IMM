@@ -60,9 +60,12 @@
             LIMIT #{currentPage},#{pageSize}
         </if>
     </select>
-<select id="selectAll" resultMap="procurementMap">
-    select * from procurement
-</select>
+    <select id="selectAll" resultMap="procurementMap">
+        SELECT * FROM procurement WHERE procurement_id LIKE "GHD%"
+    </select>
+    <select id="selectll" resultMap="procurementMap">
+        SELECT * FROM procurement WHERE procurement_id LIKE "GH2%"
+    </select>
     <!--指定条件修改采购订单-->
     <update id="updateProcurement" parameterType="procurement">
         update procurement

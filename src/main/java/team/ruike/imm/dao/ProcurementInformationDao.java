@@ -40,4 +40,7 @@ public interface ProcurementInformationDao {
     public List<ProcurementInformation> PagerProcurementInformation(ProcurementInformation procurementInformation);
     //批量修改购货详情订单
     int generateUpdateProcurementInfo(List<ProcurementInformation> information);
+    //购货汇总
+    List<ProcurementInformation>  selectProcurementByProcurementId(ProcurementInformation procurementInformation);
+
 }

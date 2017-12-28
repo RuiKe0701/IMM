@@ -17,8 +17,6 @@
     <link type="text/css" rel="stylesheet" href="${request.contextPath }/js/plugins/layer/laydate/skins/default/laydate.css" id="LayDateSkin">
     <link href="${request.contextPath }/css/ui.min.css" rel="stylesheet">
     <script type="text/javascript" async="" src="${request.contextPath }/js/vds.js"></script>
-    <script src="${request.contextPath }/js/jquery-1.10.2.min.js"></script>
-    <script src="${request.contextPath }/js/json3.min.js"></script>
     <script src="${request.contextPath }/js/vue.js"></script>
     <script src="${request.contextPath }/js/common.js"></script>
     <script src="${request.contextPath }/js/grid.js"></script>
@@ -27,7 +25,15 @@
     <script src="${request.contextPath }/js/shopping.js"></script>
     <link rel="stylesheet" type="text/css" href="${request.contextPath }/css/sweet-alert.css">
     <script src="${request.contextPath }/js/sweet-alert.min.js"></script>
+    <script language="javascript" src="${request.contextPath }/js/demo/jquery-1.4.4.min.js"></script>
+    <script language="javascript" src="${request.contextPath }/js/jquery.jqprint-0.3.js"></script>
     <link rel="stylesheet" href="${request.contextPath }/css/report.css">
+    <script language="javascript">
+
+        function aa(){
+            $("#ddd").jqprint();
+        }
+    </script>
     <style>
         .ui-icon-ellipsis {
             right: 5px;
@@ -112,13 +118,13 @@
             <div class="grid-title flex" style="position: absolute;right: 500px">商品采购明细表</div>
             <br/><br/>
             <div class="fr">
-                <a href="#" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
-                <a href="#" class="ui-btn ui-btn-print btn-sm fl" id="btn-print">打印</a>&nbsp;&nbsp;&nbsp;
+                <a href="/purchaseDetails/excel.do" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
+                <input type="button" onclick="aa()" class="ui-btn ui-btn-print btn-sm fl"  value="打印">&nbsp;&nbsp;&nbsp;
                 <button class=" ui-btn ui-btn-search btn-sm mrb f1" id="allxiugai">批量修改</button>
             </div>
         </div>
         <div class="grid-wrap" id="grid-wrap" style="height: 1200px;">
-            <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_grid" dir="ltr" style="width: 1200px;height: 450px">
+            <div id="ddd" class="ui-jqgrid ui-widget ui-widget-content ui-corner-all"  style="width: 1200px;height: 450px">
 
                     <table class="table table-bordered" style="width: 1200px">
 
@@ -224,13 +230,14 @@
         </tbody>
     </table>
 </div>
-<script src="${request.contextPath }/js/jquery.min.js?v=2.1.4"></script>
-<script src="${request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${request.contextPath }/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="${request.contextPath }/js/content.min.js?v=1.0.0"></script>
 <script src="${request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     $(function () {
+    $(".confirm").click(function () {
+        window.location.href="/purchaseDetails/login.do";
+    })
         $("#allxiugai").click(function () {
             var procure=new Array();
             var procureInfo=new Array();

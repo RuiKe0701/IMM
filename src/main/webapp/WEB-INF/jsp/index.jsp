@@ -32,8 +32,8 @@
     <script src="${pageContext.request.contextPath }/js/material.js"></script>
     <script src="${pageContext.request.contextPath }/js/plugins.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.dialog.js"></script>
-    <script type="text/javascript">
-    </script>
+    <script src="${pageContext.request.contextPath }/js/modules/exporting.js"></script>
+    <script src="${pageContext.request.contextPath }/js/modules/highcharts.js"></script>
     <script type="text/javascript"></script>
 
     <script type="text/javascript"></script>
@@ -64,8 +64,9 @@
                                                 class="hide"></span></span> <i href="javascript:void(0);">查询</i> </a>
                                         </li>
                                         <li class="" id="purchase2">
-                                            <a href="javascript:void(0);"> <span class="hasList">购货单<span
-                                                    class="hide"></span></span>
+                                            <span class="hide"></span>
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">购货单</span>
                                                 <i href="javascript:void(0);">查询</i> </a></li>
                                         <li class="" id="purchase3"><a href="javascript:void(0);"> <span>以销定购看板<span
                                                 class="hide"></span></span> <i href="javascript:void(0);">查询</i></a>
@@ -84,7 +85,7 @@
                                                 class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
 
-                                        <li class="" ><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
+                                        <li class="" id="purchase7" ><a href="#"> <span>采购付款一览表<span class="hide"></span></span>
                                             <i href="javascript:void(0);">查询</i></a></li>
                                     </ul>
                                 </div>
@@ -368,12 +369,12 @@
                             <div class="sub-nav-wrap group-nav cf" style="display: none;">
                                 <div class="nav-item"><h3></h3>
                                     <ul class="sub-nav">
-                                        <li class=""><a href="http://vip2-gd.youshang.com/cloud-pos/sale-setting.jsp"
+                                        <li class=""><a href=""
                                                         rel="pageTab" tabtxt="零售设置" tabid="cloudPos-retail"
                                                         data-right=""> <span>零售设置<span class="hide"></span></span> </a>
                                         </li>
                                         <li class=""><a
-                                                href="http://vip2-gd.youshang.com/cloud-pos/permission-setting.jsp"
+                                                href=""
                                                 rel="pageTab" tabtxt="POS权限设置" tabid="cloudPos-cashier" data-right="">
                                             <span>POS权限设置<span class="hide"></span></span> </a></li>
                                         <li class=""><a href="http://vip2-gd.youshang.com/cloud-pos/account-manage.jsp"
@@ -444,7 +445,7 @@
         <div class="default-main" style="left: 129px;">
             <div>
                 <div class="main-hd cf ">
-                    <div class="companyName left"> 瑞科科技</div>
+                    <div class="companyName left"> </div>
                     <div class="right">
                         <ul class="advanced-menu cf left">
                             <li id="userName" class="default-userName cf" style="position: relative;"><span
@@ -458,7 +459,7 @@
                                             class="triangle-bg"></span>
                                         <ul>
                                             <li class="newdisabled" style="text-align: left"><a
-                                                   target="">瑞科科技</a></li>
+                                                   target=""></a></li>
                                             <li class="newdisabled" style="text-align: left"><a
                                                    target="">zqk</a></li>
                                         </ul>
@@ -475,7 +476,7 @@
                                    class="icon-question-sign"></a>
 
                             </li>
-                            <li class=""><a href="http://service.youshang.com/myservice/list_service.do"
+                            <li class=""><a href="#"
                                             class=" icon-circle-arrow-left"></a></li>
                             <li class=""><a href="/user/retreat.do"  <%-- 退出按钮 --%>
                                             class=" icon-off"></a></li>
@@ -542,14 +543,13 @@
                                                     <div class="title left">
                                                         <div class="tab">
                                                             <ul>
-                                                                <li id="0" class="cur">销货</li>
-                                                                <li id="1">购货</li>
-                                                                <li id="2">仓库</li>
+                                                                <li id="xh" class="cur">销货</li>
+                                                                <li id="gh" >购货</li>
+                                                                <li id="ck"  >仓库</li>
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="search-time left" style="position: relative;"><span
-                                                            id="time">近七天</span> <span class="icon-bottom"></span>
+                                                    <div class="search-time left" style="position: relative;">
                                                         <div class="drop-down-wrap"
                                                              style="width: 100px; left: -19px; display: none;">
                                                             <div class="drop-down"><span class="triangle-border"></span><span
@@ -567,25 +567,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="home-myCharts" style="height: 400.021px;">
-                                                    <div class="home-sales" _echarts_instance_="ec_1511231370564"
-                                                         style="display: block; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background: transparent;">
-                                                        <div style="position: relative; overflow: hidden; width: 1120px; height: 400px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
-                                                            <canvas width="1344" height="480" data-zr-dom-id="zr_0"
-                                                                    style="position: absolute; left: 0px; top: 0px; width: 1120px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
-                                                        </div>
-                                                        <div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 14px; font-family: &quot;Microsoft YaHei&quot;; line-height: 21px; padding: 5px; left: 462.238px; top: 269px;">
-                                                            销售笔数 : 0<br>销售总额 : 0
+                                                    <div class="home-sales"  style="display: block;">
+                                                        <div style="position: relative; overflow: hidden; width: 900px; height: 400px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                                                            <div id="containers" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="home-purchase cf" style="display: none;">
+                                                    <div class="home-purchase cf" style="display: none; ">
                                                         <div class="purchaseBarwrap">
-                                                            <div style="text-align: center; font-weight: bold; margin: 35px 0 14px 0;">
-                                                                购货金额排名
-                                                            </div>
-                                                            <div class="purchaseBarLeft"></div>
-                                                            <div class="purchaseBarRight"></div>
-                                                        </div>
-                                                    </div>
+                                                            <div style="text-align: center; font-weight: bold; margin: 35px 0 14px 0;">购货金额排名</div>
+                                                            <div class="purchaseBarLeft">
+                                                                <div class="itemWrap">
+                                                                    <div class="page"></div>
+                                                                    <div id="ceshi">
+                                                                        <span class="index index1"></span>
+                                                                        <a> <div class="item"> <div class="name">007 鹿晗的应援物</div> <div class="total" style="color: #48BFEA">¥30,978.09</div> </div> </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index2"> </span> <a> <div class="item"> <div class="name">000111 A品牌牛仔衣</div> <div class="total" style="color: #48BFEA">¥13,994.23</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index3"> </span> <a> <div class="item"> <div class="name">T048 苹果7</div> <div class="total" style="color: #48BFEA">¥3,510.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index4">4 </span> <a> <div class="item"> <div class="name">0000001 灭菌手套</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index5">5 </span> <a> <div class="item"> <div class="name">GB006 第三代</div> <div class="total" style="color: #48BFEA">¥1,170.00</div> </div> </a> </div> </div></div> <div class="purchaseBarRight"><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index6">6 </span> <a> <div class="item"> <div class="name">GB004 熊大玩具</div> <div class="total" style="color: #48BFEA">¥501.93</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index7">7 </span> <a> <div class="item"> <div class="name">G_21_lishujia 牛仔裤</div> <div class="total" style="color: #48BFEA">¥280.80</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index8">8 </span> <a> <div class="item"> <div class="name">112233 demo</div> <div class="total" style="color: #48BFEA">¥100.00</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index9">9 </span> <a> <div class="item"> <div class="name">GB005 夏师傅的测试商品</div> <div class="total" style="color: #48BFEA">¥42.12</div> </div> </a> </div> </div><div class="itemWrap"> <div class="page"></div> <div id="ceshi"> <span class="index index10">10 </span> <a> <div class="item"> <div class="name">GB011 酸奶 zjw 17</div> <div class="total" style="color: #48BFEA">¥23.40</div> </div> </a> </div> </div></div> </div></div>
                                                     <div class="home-stock" style="display: none;"></div>
                                                     <div class="home-nothing" style="display: none;"></div>
                                                 </div>
@@ -597,16 +595,15 @@
                                             <div><!-- <div style="" -->
                                                 <ul class="home-noticeWrap"> <!--  -->
                                                     <li class="islink "
-                                                        data-link="/service/service.jsp?newsId=20000000261">1.
-                                                        云进销存4迭代更新功能&gt;&gt;
+                                                        data-link="">1.
+                                                        恒辉进销存更新功能&gt;&gt;
                                                     </li>
                                                     <li class="islink "
-                                                        data-link="/service/service.jsp?newsId=20000000257">2. 精斗云APP
-                                                        4.1全面支持辅助属性管理&gt;&gt;
+                                                        data-link="">2.支持智能生成订单&gt;&gt;
                                                     </li>
                                                     <li class="islink "
-                                                        data-link="/service/service.jsp?newsId=20000000238">3.
-                                                        云进销存视频教程已上线，欢迎大家学习！！
+                                                        data-link="">3.
+                                                        进销存视频教程已上线，欢迎大家学习！！
                                                     </li>
                                                     <li class="hide">zqk,欢迎使用</li>
                                                 </ul>
@@ -722,17 +719,13 @@
                                         style="height: 800px"></iframe>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/vendor.0a7be9f.dll.js"></script>
-<script type="text/javascript" src="js/vendor.501f514.dll.js"></script>
-<script type="text/javascript" src="js/app.ea26dd00a5823b52da4f.js"></script>
+
 <script type="text/javascript"></script>
 <div class="l-menu" style="display: none; top: 0px; left: 0px; width: 100px;" ligeruiid="Menu1001">
     <div class="l-menu-yline"></div>
@@ -872,4 +865,87 @@
     </table>
 </div>
 </body>
+<script>
+    $(function () {
+        $("#xh").click(function () {
+            $(".home-purchase").css("display","none");
+            $(".home-stock").css("display","none");
+            $(".home-sales").css("display","block");
+            $("#gh").removeClass("cur");
+            $("#ck").removeClass("cur");
+            $("#xh").addClass("cur");
+        });
+        $("#gh").click(function () {
+            $(".home-sales").css("display","none");
+            $(".home-stock").css("display","none");
+            $(".home-purchase").css("display","block");
+            $("#xh").removeClass("cur");
+            $("#ck").removeClass("cur");
+            $("#gh").addClass("cur");
+
+        });
+        $("#ck").click(function () {
+            $(".home-purchase").css("display","none");
+            $(".home-sales").css("display","none");
+            $(".home-stock").css("display","block");
+            $("#xh").removeClass("cur");
+            $("#gh").removeClass("cur");
+            $("#ck").addClass("cur");
+        });
+    })
+</script>
+<script type="text/javascript">
+    Highcharts.chart('containers', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '销售对比分析'
+        },
+
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            title: {
+                text: '销售数据'
+            }
+
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} $</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Berlin',
+            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+        }]
+    });
+</script>
+
 </html>

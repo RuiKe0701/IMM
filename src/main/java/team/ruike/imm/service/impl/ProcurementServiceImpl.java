@@ -28,11 +28,19 @@ public class ProcurementServiceImpl implements ProcurementService {
         List<Procurement> list = procurementDao.selectAll(procurement);
         return list;
     }
-
+    public List<Procurement> selectll(Procurement procurement) {
+        List<Procurement> list = procurementDao.selectll(procurement);
+        return list;
+    }
     //生成购货订单ID
     public String purchaseId(String param) {
+        List<Procurement> list=null;
         String aa = param;
-        List<Procurement> list = selectProcurement(null);
+        if(aa.equals("GHDD")){
+            list = selectProcurement(null);
+        }else {
+            list=selectll(null);
+        }
         aa += RandomUtil.getRandomFileName();
         String size = String.valueOf(list.size() + 1);
         if (size.length() == 1) {

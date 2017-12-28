@@ -47,6 +47,9 @@
             <if test="merchandiseId!=null and merchandiseId>0">
              m.merchandise_id=#{merchandiseId}
             </if>
+            <if test="merchandiseName!=null and merchandiseName!=''">
+                and  m.merchandise_name  like '${merchandiseName}%'
+            </if>
         </where>
     </select>
     <!--查询当前库存小于安全库存-->

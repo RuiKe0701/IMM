@@ -62,7 +62,12 @@ $(function () {
         $("#showiframe").css("display","block");
     });
     $("#purchase7").click(function () {
-        document.getElementById("iff").src="page/purchase/purchasePayment.html";
+        $("#iff").attr("src","/purchasePayment/login.do");
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#ons").css("display","none");
+        $("#showiframe").css("display","block");
     });
 
     $("body").on("click","#aaa",function(){

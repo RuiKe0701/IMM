@@ -113,14 +113,12 @@
             </div>
             <div class="fr">
                 <a class="ui-btn-bill ui-btn-add ml10" id="toPo">生成购货订单</a>
-                <a href="/replenishMent/excel.do"
-                   class="ui-btn-bill ui-btn-hl ml10" id="export">导出</a>
+                <a href="/replenishMent/excel.do" class="ui-btn-bill ui-btn-hl ml10" id="export">导出</a>
             </div>
         </div>
     </div>
-    <div>
+    <div >
         <table class="table table-bordered" style="width: 1250px">
-
             <thead>
             <tr>
                 <th style="width: 25px;"><input type="checkbox" class="checkAll"></th>
