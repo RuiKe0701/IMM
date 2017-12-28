@@ -128,6 +128,14 @@
                                     <ul class="sub-nav">
 
 
+                                        <li class="" id="Sales-order-details">
+                                            <a href="javascript:void(0);">
+                                                <span class="hasList">销售订单明细表
+                                                 <span class="hide"></span>
+                                                </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
                                         <li class="" id="Sales-details">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">销售明细表
