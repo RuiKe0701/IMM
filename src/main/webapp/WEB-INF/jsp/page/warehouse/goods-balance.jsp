@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017-12-07
-  Time: 10:16
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -22,7 +15,7 @@
           id="LayDateSkin">
     <link href="../../css/ui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/report.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/select/dist/css/bootstrap-select.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/select/dist/css/bootstrap-select.css">
     <script src="${pageContext.request.contextPath }/js/warehousing/warehouse.js"></script>
     <style>
         .ui-icon-ellipsis {
@@ -54,8 +47,6 @@
     </style>
 </head>
 <body style="">
-
-
 <div class="wrapper">
     <!-- header -->
     <form action="/merchandise/merchandisemenu.do" method="post">
@@ -63,10 +54,10 @@
             <div class="l" id="filter-menu">
                 <ul class="ul-inline fix" id="filterItems">
                     <li id="merchandiseForName" style="display: list-item;"><label>商品关键字</label>
-                        <input type="text"  name="about" placeholder="请输入查询关键字">
+                        <input type="text" id="merchandise" name="about" placeholder="请输入查询关键字">
                     </li>
                     <li id="product" style="display: list-item;"><label>商品类型</label>
-                        <select  name="productTypeId" style="width:115px;height: 32px">
+                        <select  name="productTypeId" style="width:115px;height: 32px" id="type">
                             <option value="0">请选择</option>
                             <c:forEach items="${prod}" var="p">
                                 <option value="${p.productTypeId}">${p.productTypeName}</option>
@@ -137,6 +128,7 @@
         </tbody>
     </table>
 </div>
+
 <!--修改-->
 <div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -335,7 +327,7 @@
                 dataType: "json",
                 success: function (data) {
                         alert("商品信息删除成功")
-                        window.location.href="/merchandise/smerchandise.do";
+                        window.location.href="/merchandise/smerchandise.do/";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");

@@ -168,7 +168,17 @@ $(function () {
 
     });
 
+    //14.单位和商品类型的管理
+    $("#unitsAndType").click(function () {
+        $("#tabManage").remove();
+        $("li").removeClass("l-selected");
+        $("div").removeClass("l-tab-links-item-close");
+        $("#iff").attr("src", "/unitsandtype/units.do");
 
+        $("#ons").css("display", "none");
+        $("#showiframe").css("display", "block");
+
+    });
 
 
 

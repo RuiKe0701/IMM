@@ -11,7 +11,7 @@
     <select id="selectSalesStatus" resultMap="salesStatusMap" parameterType="salesStatus">
         select * from sales_status
         <where>
-             1=1
+             1=1 and sales_status_state=0
             <if test="salesStatusId!=null and salesStatusId>0">
                    and sales_status_id=#{salesStatusId}
             </if>
@@ -28,7 +28,7 @@
     </select>
 
     <update id="updateSalesStatus" parameterType="salesStatus">
-        update supplier
+        update sales_status
         <set>
             <if test="salesStatusName !=null and salesStatusName!=''">
                  sales_status_name=#{salesStatusName},

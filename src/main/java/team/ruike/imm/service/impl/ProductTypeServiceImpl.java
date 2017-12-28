@@ -21,9 +21,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         this.productTypeDao = productTypeDao;
     }
 
-    public List<ProductType> selectProductType(ProductType productType) {
-        return productTypeDao.selectProductType(productType);
-    }
+    public List<ProductType> selectProductType(ProductType productType) { return productTypeDao.selectProductType(productType); }
 
     public int updateProductType(ProductType productType) {
         return productTypeDao.updateProductType(productType);

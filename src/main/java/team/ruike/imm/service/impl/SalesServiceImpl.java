@@ -26,7 +26,6 @@ public class SalesServiceImpl implements SalesService{
         return salesDao.selectSales(sales);
     }
 
-
     public String salesId() {
         String aa="XS";
         List<Sales> list= selectSales(null);
@@ -41,10 +40,6 @@ public class SalesServiceImpl implements SalesService{
         return aa;
     }
 
-
-
-
-
     public int updateSales(Sales sales) {
         return salesDao.updateSales(sales);
     }
@@ -54,6 +49,8 @@ public class SalesServiceImpl implements SalesService{
     }
 
     public int insertSalesForPu(Sales sales) { return salesDao.insertSalesForPu(sales); }
+
+    public List<Sales> selectSalesForOrder(Sales sales) { return salesDao.selectSalesForOrder(sales); }
 
     public List<Sales> selectSalesForThis(Sales sales) {
         return salesDao.selectSalesForThis(sales);

@@ -30,9 +30,16 @@ public interface SalesService {
 
     String salesId();
 
+    /**
+     * 指定条件查询销售订单-Guoxu-勿动
+     * @param sales 销售订单
+     * @return
+     */
+    public List<Sales> selectSalesForOrder(Sales sales);
+
 
     /**
-     * 按指定条件查询销售订单-郭旭-勿动
+     * 按指定条件查询销售单-郭旭-勿动
      * @param sales
      * @return
      */

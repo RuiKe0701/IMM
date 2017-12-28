@@ -57,6 +57,7 @@ public class SalesInformation extends PagerParameter implements Serializable{
     /**
      * 单位
      */
+    @ExcelEntity(name = "单位")
     private Units units;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
