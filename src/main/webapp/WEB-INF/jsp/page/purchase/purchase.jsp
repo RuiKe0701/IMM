@@ -99,6 +99,7 @@
                     }
                 });
             });
+            var tatal=0;
             $(".poiActualPrice").blur(function () {
                 if( $(this).parent('td').prev("td").find("input").val()==""){
                     alert("请输入数量");
@@ -112,6 +113,8 @@
                     mun=parseInt($(this).parent('td').prev("td").find("input").val());
                     money=parseInt($(this).val());
                     totalPrice=mun*money;
+                    tatal+=totalPrice;
+                    $("#all").html(tatal);
                     $(this).parent('td').next("td").find("input").val(totalPrice);
                 }
 
@@ -293,11 +296,8 @@
                                             合计：
                                         </th>
                                         <th style="width: 950px;text-align: right" id="all">
-                                            dasdsada
+
                                         </th>
-
-
-
                                         </thead>
                                     </table>
                                 </div>

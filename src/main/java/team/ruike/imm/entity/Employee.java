@@ -1,5 +1,6 @@
 package team.ruike.imm.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
 import team.ruike.imm.utility.PagerParameter;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Employee extends PagerParameter implements Serializable{
     /**
      * 员工名称
      */
+    @Excel(name = "采购人" , needMerge = true)
     private String employeeName;
     /**
      * 职位编号

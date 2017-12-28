@@ -118,7 +118,7 @@
             <div class="grid-title flex" style="position: absolute;right: 500px">商品采购明细表</div>
             <br/><br/>
             <div class="fr">
-                <a href="#" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
+                <a href="/purchaseDetails/excel.do" class="ui-btn ui-btn-export btn-sm mrb fl" id="btn-export">导出</a>
                 <input type="button" onclick="aa()" class="ui-btn ui-btn-print btn-sm fl"  value="打印">&nbsp;&nbsp;&nbsp;
                 <button class=" ui-btn ui-btn-search btn-sm mrb f1" id="allxiugai">批量修改</button>
             </div>
@@ -235,7 +235,9 @@
 <script src="${request.contextPath }/js/plugins/layer/laydate/laydate.js"></script>
 <script>
     $(function () {
-
+    $(".confirm").click(function () {
+        window.location.href="/purchaseDetails/login.do";
+    })
         $("#allxiugai").click(function () {
             var procure=new Array();
             var procureInfo=new Array();

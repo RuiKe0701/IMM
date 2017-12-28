@@ -62,26 +62,12 @@
                     procurementInformationList=JSON.stringify(procurementInformation);
 
                 });
-                $.ajax({
-                    type: "post",
-                    url: "/purchaseOrder/MapExportExcel.do",
-                    data:{
-                        "procurementInformationList":procurementInformationList,
-                        "procurementList":procurement
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if(data==1){
-                            alert("成功了");
-                            window.location.href="/purchases/loginPurchaseOrder.do";
-                        }
-                    }
-                });
+                window.location.href="/purchaseOrder/MapExportExcel.do?procurement"+procurement;
             });
-            var i=7;
+
             $("#btnline").click(function () {
-                $("#addtr").append("<tr><td>"+i+"</td><td><select><option>请选择</option></select></td><td></td><td></td><td></td><td></td><td></td></tr>");
-               i=i+1;
+              var tr=  $(".trParam").eq(5).clone();
+                $("#addtr").append(tr);
             });
             $(".selectpicker").change(function () {
                 var id=$(this).val();
@@ -154,6 +140,7 @@
                     }
                 });
             });
+            var tatal=0;
             $(".piActualPrice").blur(function () {
                 if( $(this).parent('td').prev("td").find("input").val()==""){
                     alert("请输入数量");
@@ -163,10 +150,14 @@
                     alert("请输入购货单价");
                     return false;
                 }
+
                 if($(this).parent('td').prev("td").find("input").val()!="" && $(this).val()!=""){
+
                     mun=parseInt($(this).parent('td').prev("td").find("input").val());
                     money=parseInt($(this).val());
                     totalPrice=mun*money;
+                    tatal+=totalPrice;
+                    $("#all").html(tatal);
                     $(this).parent('td').next("td").find("input").val(totalPrice);
                 }
 
@@ -247,9 +238,9 @@
 
 
                             <table class="table table-bordered" >
-                                <caption>
-                                    <button id="btnline" type="button" class="btn btn-primary ">添加行</button>
-                                    <button id="excel">导出</button>
+                                <caption style="height: 50px;">
+                                    <button style="float: right; position: absolute;right: 130px" id="btnline" type="button" class="btn btn-primary ">添加行</button>
+                                    <input type="text" class="btn btn-info" style="float: right; position: absolute;right: 20px;width: 80px;font-weight:800" id="excel"  value="导出"/>
                                 </caption>
                                 <thead>
                                 <tr style="text-align: center">
@@ -265,7 +256,7 @@
                                 <tbody id="addtr">
                                 <c:forEach begin="1" end="6" varStatus="status">
                                     <tr class="trParam">
-                                        <td style="width: 30px;">${status.index}</td>
+                                        <td style="width: 30px;"></td>
                                         <td>
                                             <div style="width: 150px">
                                             <select  class="selectpicker show-tick form-control"  style="width:30px;height: 20px;padding-top: 2px;padding-bottom: 2px;font-size: 12px" data-live-search="true"  name="merchandiseId">
@@ -297,7 +288,7 @@
                                             合计：
                                         </th>
                                         <th style="width: 950px;text-align: right" id="all">
-                                            dasdsada
+
                                         </th>
 
 

@@ -156,7 +156,7 @@
     </update>
     <!--根据商品查询一个月的购货-->
     <select id="selectProcurementByProcurementId" resultMap="procurementInformationMap">
-        SELECT SUM(pri.pi_volume) pi_volume,SUM(pri.pi_totalPrice) pi_totalPrice,em.employee_name,m.merchandise_id,m.merchandise_specification,pt.product_type_name,sup.supplier_name,SUM(pri.pi_actual_price) pi_actual_price,pri.procurement_id,pri.merchandise_id,m.merchandise_name,un.units_name,pri.pi_remarks,pr.procurement_date
+        SELECT SUM(pri.pi_volume) pi_volume,SUM(pri.pi_totalPrice) pi_totalPrice,em.employee_name,m.merchandise_specification,pt.product_type_name,sup.supplier_name,SUM(pri.pi_actual_price) pi_actual_price,pri.procurement_id,pri.merchandise_id,m.merchandise_name,un.units_name,pri.pi_remarks,pr.procurement_date
         FROM procurement_information  pri
         INNER JOIN merchandise m ON m.merchandise_id=pri.merchandise_id
         INNER JOIN procurement pr ON pr.procurement_id=pri.procurement_id
