@@ -5,6 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import team.ruike.imm.entity.*;
 import team.ruike.imm.service.ProductTypeService;
 import team.ruike.imm.service.SalesStatusService;
@@ -33,6 +34,12 @@ public class UnitsAndType {
         request.setAttribute("u",u);
         request.setAttribute("p",p);
         request.setAttribute("s",s);
+        for (Units u1 :u){
+            System.out.println(u1.getUnitsName());
+        }
+        for(ProductType p1:p){
+            System.out.println(productType.getProductTypeName());
+        }
         return "page/material/unitsAndType";
     }
 
@@ -69,7 +76,20 @@ public class UnitsAndType {
         printWriter.flush();
         printWriter.close();
     }
-     //被选中的销售类型名
+    //删除单位信息
+    @RequestMapping(value = "/deleteunits.do")
+    @ResponseBody
+    public void  deleteunits(Units units,PrintWriter printWriter){
+            units.setUnitsState(1);
+            unitsService.updateUnits(units);
+            String jsonString = JSON.toJSONString("1");
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+    }
+
+
+     //被选中的类型信息
     @RequestMapping(value = "/productTypeId.do")
     public void updateproductType(Integer productTypeId,PrintWriter printWriter){
             ProductType p = new ProductType();
@@ -88,7 +108,7 @@ public class UnitsAndType {
                 printWriter.close();
             }
     }
-    //更新销售类型名
+    //更新类型信息
     @RequestMapping(value = "/updateproductTypes.do")
     public void updatep(String ProductTypes,PrintWriter printWriter){
         int i =0;
@@ -102,6 +122,18 @@ public class UnitsAndType {
         printWriter.flush();
         printWriter.close();
     }
+    //删除类型信息
+    @RequestMapping(value = "/deleteproductTypes.do")
+    @ResponseBody
+    public void  deleteproduct(ProductType productType,PrintWriter printWriter){
+            productType.setProductTypeState(1);
+            productTypeService.updateProductType(productType);
+            String jsonString = JSON.toJSONString("1");
+            printWriter.write(jsonString);
+            printWriter.flush();
+            printWriter.close();
+    }
+
 
     //被选中的销售状态名
     @RequestMapping(value = "/salesStatusId.do")
@@ -136,31 +168,15 @@ public class UnitsAndType {
         printWriter.flush();
         printWriter.close();
     }
-
-
-
-
-//    @RequestMapping(value = "/deleteunits.do")
-//    @ResponseBody
-//    public void  deleteunits(Units units,PrintWriter printWriter){
-//        units.setUnitsState(1);
-//        unitsService.updateUnits(units);
-//        String jsonString = JSON.toJSONString("1");
-//        printWriter.write(jsonString);
-//        printWriter.flush();
-//        printWriter.close();
-//    }
-//
-//    /* 删除类型信息
-//    */
-//    @RequestMapping(value = "/deleteproduct.do")
-//    @ResponseBody
-//    public void  deleteproduct(ProductType productType,PrintWriter printWriter){
-//        productType.setProductTypeState(1);
-//        productTypeService.updateProductType(productType);
-//        String jsonString = JSON.toJSONString("1");
-//        printWriter.write(jsonString);
-//        printWriter.flush();
-//        printWriter.close();
-//    }
+    //删除销售状态名
+    @RequestMapping(value = "/deletesalesStatus.do")
+    @ResponseBody
+    public void  deletesales(SalesStatus salesStatus,PrintWriter printWriter){
+        salesStatus.setSalesStatusState(1);
+        salesStatusService.updateSalesStatus(salesStatus);
+        String jsonString = JSON.toJSONString("1");
+        printWriter.write(jsonString);
+        printWriter.flush();
+        printWriter.close();
+    }
 }
