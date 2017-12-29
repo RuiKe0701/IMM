@@ -10,6 +10,8 @@ import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.Sales;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.*;
+
+import java.util.Arrays;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +45,15 @@ public class UserController {
             User u=userService.selectUser(user);
             int procurementSize=procurementService.procurementSize().size();
             if (u.getUserName()!="无"){
+
+                List<Sales> salesList = salesService.selectForMonth(null);
+                Double[] doubles = new Double[12];
+                for (int i = 0; i < doubles.length; i++) {
+                    doubles[i]=salesList.get(i).getAllVolume();
+                }
+                request.setAttribute("arr", Arrays.toString(doubles));
+
+
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
               List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
