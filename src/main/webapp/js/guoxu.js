@@ -12,7 +12,7 @@ $(function () {
     });
 
     $("#sales").click(function () {
-            alert("销售订单表");
+            //alert("销售订单表");
             $("#tabManage").remove();
             $("li").removeClass("l-selected");
             $("div").removeClass("l-tab-links-item-close");
@@ -25,7 +25,7 @@ $(function () {
     });
 
     $("#salesForAbout").click(function () {
-        alert("销售单表");
+       // alert("销售单表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -38,7 +38,7 @@ $(function () {
     });
 
     $("#Original-document").click(function () {
-        alert("asd");
+       // alert("asd");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -51,7 +51,7 @@ $(function () {
     });
 
     $("#Sales-order-details").click(function () {
-        alert("商品订单明细表");
+     //   alert("商品订单明细表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -65,7 +65,7 @@ $(function () {
 
 
     $("#Sales-details").click(function () {
-        alert("商品销售明细表");
+        //alert("商品销售明细表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -78,7 +78,7 @@ $(function () {
     });
 
     $("#Sales-summary-commodity").click(function () {
-        alert("销售汇总表（按商品）");
+        //alert("销售汇总表（按商品）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -91,7 +91,7 @@ $(function () {
     });
 
     $("#Sales-summary-client").click(function () {
-        alert("销售汇总表（按客户）");
+       // alert("销售汇总表（按客户）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -104,7 +104,7 @@ $(function () {
     });
 
     $("#Sales-summary-salesperson").click(function () {
-        alert("销售汇总表（按销售人员）");
+        //alert("销售汇总表（按销售人员）");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -117,7 +117,7 @@ $(function () {
     });
 
     $("#Sales-receipt-list").click(function () {
-        alert("销售收款一览表");
+       // alert("销售收款一览表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -131,7 +131,7 @@ $(function () {
 
 
     $("#sales-profit").click(function () {
-        alert("销售利润表");
+       // alert("销售利润表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");
@@ -147,7 +147,7 @@ $(function () {
 
 
     $("#Sales-ranking").click(function () {
-        alert("销售排行表");
+      //  alert("销售排行表");
         $("#tabManage").remove();
         $("li").removeClass("l-selected");
         $("div").removeClass("l-tab-links-item-close");

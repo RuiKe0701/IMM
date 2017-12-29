@@ -16,7 +16,7 @@ public interface ProcurementDao {
     public List<Procurement> selecrProcurement(Procurement procurement);
     List<Procurement> selectAll(Procurement procurement);
     List<Procurement> selectll(Procurement procurement);
-
+    List<Procurement> procurementSize();
     //查询所有购货订单和购货详情订单
     List<Procurement> selectAllProcureMent(Procurement procurement);
     /**

@@ -6,11 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import team.ruike.imm.entity.Merchandise;
+import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.Sales;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.service.MerchandiseService;
-import team.ruike.imm.service.SalesService;
-import team.ruike.imm.service.UserService;
+import team.ruike.imm.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,9 +26,13 @@ public class UserController {
     UserService userService;
     @Autowired
     MerchandiseService merchandiseService;
-
     @Autowired
     SalesService salesService;
+    @Autowired
+    ProcurementInformationService procurementInformationService;
+    @Autowired
+    ProcurementService procurementService;
+
     /**
      * 登录验证
      * @param user
@@ -37,23 +40,30 @@ public class UserController {
      * @return
      */
     @RequestMapping(value="/login.do")
-    public  String login(User user, HttpSession session, HttpServletRequest request){
+    public  String login(Model model,User user, HttpSession session, HttpServletRequest request){
             User u=userService.selectUser(user);
             if (u.getUserName()!="无"){
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
-              session.setAttribute("user",u);
+                int procurementSize=procurementService.procurementSize().size();
+
+
+                session.setAttribute("user",u);
                 //获得小于商品安全存量的商品数量
                 request.setAttribute("stock",stock);
                 if (merchandiseList.size()>0) {
                    merchandiseService.insufficient(merchandiseList);
                 }
+                List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
+
                 List<Sales> salesList = salesService.selectForMonth(null);
                 Double[] doubles = new Double[12];
                 for (int i = 0; i < doubles.length; i++) {
                     doubles[i]=salesList.get(i).getAllVolume();
                 }
                 request.setAttribute("arr",Arrays.toString(doubles));
+                model.addAttribute("procurlist",procurlist);
+                model.addAttribute("procurementSize",procurementSize);
                 return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");

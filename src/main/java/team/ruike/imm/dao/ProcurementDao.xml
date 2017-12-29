@@ -88,6 +88,9 @@
         </set>
         where procurement_id=#{procurementId}
     </update>
+    <select id="procurementSize" resultMap="procurementMap">
+        SELECT * FROM procurement WHERE procurement_date=NOW();
+    </select>
 
     <!--添加采购订单-->
     <insert id="insertProcurement" parameterType="procurement">
