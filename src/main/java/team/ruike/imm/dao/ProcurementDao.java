@@ -25,6 +25,7 @@ public interface ProcurementDao {
      * @return
      */
     public int updateProcurement(Procurement procurement);
+    List<Procurement> procurementSize();
 
     /**
      * 添加采购订单

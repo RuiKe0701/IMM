@@ -519,7 +519,7 @@
                                                             data-id="purchase/purchaseList" right="PU_QUERY"><span
                                                                 class="name"
                                                                 style="background-color: #62ca6c">今日购货笔数</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${procurementSize}</div>
                                                         </li>
                                                         <li style="margin-left: 20px; background-color: rgb(91, 143, 212); border: 1px solid rgb(71, 121, 200); width: 220px; display: list-item;"
                                                             class="panel hide" data-color="#5b8fd4"

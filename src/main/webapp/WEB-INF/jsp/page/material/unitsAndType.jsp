@@ -111,20 +111,17 @@
                     <div style="display: none">${u.unitsId}</div>
                     ${u.unitsName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" id="updateunits" onclick="updateunits(${u.unitsId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#unitsUpdate"><span class="up">修改</span></button>
-                    <button type="button" id="deleteunits" onclick="deleteunits(${u.unitsId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
+                    <button type="button" id="deleteunits" onclick="deleteunits(${u.unitsId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#unitsDelete"><span class="up">删除</span></button>
                     </br>
                 </c:forEach>
             </div>
             <div class="tabList">
                 <c:forEach items="${p}" var="p">
                     <div style="display: none">${p.productTypeId}</div>
-
-                    <div style="width: 300px;float: left"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${p.productTypeName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-
+                    <div style="width: 400px;float: left"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${p.productTypeName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <div style="float: left">
-                        <button type="button" id="updateproductType" onclick="updateproductType(${p.productTypeId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#productTypeUpdate"><span class="up">修改</span></button>
-                        <button type="button" id="deleteproductType" onclick="deleteproductType(${p.productTypeId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
-                    </div>
+                    <button type="button" id="updateproductType" onclick="updateproductType(${p.productTypeId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#productTypeUpdate"><span class="up">修改</span></button>
+                    <button type="button" id="deleteproductType" onclick="deleteproductType(${p.productTypeId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#productTypeDelete"><span class="up">删除</span></button></div>
                     </br>
                 </c:forEach>
             </div>
@@ -135,7 +132,7 @@
                          ${s.salesStatusName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div style="display: none">${s.salesStatusState}</div>
                         <button type="button" id="updatesalesStatus" onclick="updatesalesStatus(${s.salesStatusId})" class="btn btn-info btn-sm" data-toggle="modal" data-target="#salesStatusUpdate"><span class="up">修改</span></button>
-                        <button type="button" id="deletesalesStatus" onclick="deletesalesStatus(${s.salesStatusId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myDelete"><span class="up">删除</span></button>
+                        <button type="button" id="deletesalesStatus" onclick="deletesalesStatus(${s.salesStatusId})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#salesStatusDelete"><span class="up">删除</span></button>
                         </br>
                 </c:forEach>
             </div>
@@ -177,6 +174,28 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<%--删除单位--%>
+<div  class="modal fade" id="unitsDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="as"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteu" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 
 <%--修改商品种类--%>
 <div class="modal fade" id="productTypeUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -211,6 +230,27 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<%--删除商品种类--%>
+<div  class="modal fade" id="productTypeDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="asas"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deletep" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 <%--修改销售类型--%>
 <div class="modal fade" id="salesStatusUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -230,7 +270,7 @@
                 <div class="input-group">
                     <input id="updatesalesStatusId" type="text" style="display:none;">
                     <span class="input-group-addon" style="width: 81px;">销售状态名称</span>
-                    <input maxlength='3' id="updatesalesStatusName" type="text" class="form-control" style="width:400px;">
+                    <input maxlength='2' id="updatesalesStatusName" type="text" class="form-control" style="width:400px;">
                 </div>
                 <br>
             </div>
@@ -245,6 +285,29 @@
         </div>
     </div>
 </div>
+<%--删除销售类型--%>
+<div  class="modal fade" id="salesStatusDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="asasas"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deletes" class="btn btn-danger" data-dismiss="modal">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
 
 <script charset="utf-8">
     window.onload = function () {
@@ -386,7 +449,6 @@
 </script>
 <!-- 代码部分end -->
 </body>
-
 <script>
     //获取要修改的单位名
     function updateunits(val) {
@@ -434,6 +496,40 @@
             })
         })
     }
+    //获取删除的单位
+    function deleteunits(val) {
+        $.ajax({
+            type: "post",
+            url: "/unitsandtype/unitsId.do?",
+            data:{"unitsId":val},
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#as").html("是否删除单位【"+item.unitsName+"】");
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deleteu").click(function () {
+            var unitsId=val;
+            $.ajax({
+                type: "post",
+                url: "/unitsandtype/deleteunits.do?",
+                data:{"unitsId":val},
+                dataType: "json",
+                success: function (data) {
+                    alert("商品信息删除成功")
+                    window.location.href="/unitsandtype/units.do";
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
     //获取要修改的商品类型名
     function updateproductType(val) {
         $.ajax({
@@ -453,7 +549,7 @@
             }
         })
         //修改商品类型名
-        $("#updatep").click(function () {
+        $("#deletep").click(function () {
             var productTypes = new Array();
             var object = new Object();
             object.productTypeId = $("#updateproductTypeId").val();
@@ -473,6 +569,40 @@
                         alert("商品信息修改成功")
                         window.location.href="/unitsandtype/units.do";
                     }
+                },
+                error: function () {
+                    alert("系统异常，请稍后重试！");
+                }
+            })
+        })
+    }
+    //获取删除的商品类型名
+    function deleteproductType(val) {
+        $.ajax({
+            type: "post",
+            url: "/unitsandtype/productTypeId.do?",
+            data:{"productTypeId":val},
+            dataType: "json",
+            success: function (item) {
+                if(item!=0){
+                    $("#asas").html("是否删除单位【"+item.productTypeName+"】");
+                }
+            },
+            error: function () {
+                alert("系统异常，请稍后重试！");
+            }
+        })
+        //删除商品信息
+        $("#deletep").click(function () {
+            var unitsId=val;
+            $.ajax({
+                type: "post",
+                url: "/unitsandtype/deleteproductTypes.do?",
+                data:{"productTypeId":val},
+                dataType: "json",
+                success: function (data) {
+                    alert("商品信息删除成功")
+                    window.location.href="/unitsandtype/units.do";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
@@ -526,82 +656,16 @@
             })
         })
     }
-    //获取删除的单位名
-    function deletemerchandise(val) {
-        $.ajax({
-            type: "post",
-            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
-            dataType: "json",
-            success: function (item) {
-                if(item!=0){
-                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
-
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
-        //删除商品信息
-        $("#deletes").click(function () {
-            var merchandiseId=val;
-            $.ajax({
-                type: "post",
-                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
-                dataType: "json",
-                success: function (data) {
-                    alert("商品信息删除成功")
-                    window.location.href="/merchandise/smerchandise.do/";
-                },
-                error: function () {
-                    alert("系统异常，请稍后重试！");
-                }
-            })
-        })
-    }
-    //获取删除的商品类型名
-    function deletemerchandise(val) {
-        $.ajax({
-            type: "post",
-            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
-            dataType: "json",
-            success: function (item) {
-                if(item!=0){
-                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
-
-                }
-            },
-            error: function () {
-                alert("系统异常，请稍后重试！");
-            }
-        })
-        //删除商品信息
-        $("#deletes").click(function () {
-            var merchandiseId=val;
-            $.ajax({
-                type: "post",
-                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
-                dataType: "json",
-                success: function (data) {
-                    alert("商品信息删除成功")
-                    window.location.href="/merchandise/smerchandise.do/";
-                },
-                error: function () {
-                    alert("系统异常，请稍后重试！");
-                }
-            })
-        })
-    }
     //获取删除的销售状态名
-    function deletemerchandise(val) {
+    function deletesalesStatus(val) {
         $.ajax({
             type: "post",
-            url: "/merchandise/merchandiseId.do?merchandiseId="+val,
+            url: "/unitsandtype/salesStatusId.do?",
+            data:{"salesStatusId":val},
             dataType: "json",
             success: function (item) {
                 if(item!=0){
-                    $("#as").html("是否删除【"+item.merchandiseName+"】"+item.merchandiseCode+"？");
-
+                    $("#asasas").html("是否删除单位【"+item.salesStatusName+"】");
                 }
             },
             error: function () {
@@ -610,14 +674,15 @@
         })
         //删除商品信息
         $("#deletes").click(function () {
-            var merchandiseId=val;
+            var unitsId=val;
             $.ajax({
                 type: "post",
-                url: "/merchandise/deleteMerchandise.do?merchandiseId="+merchandiseId,
+                url: "/unitsandtype/deletesalesStatus.do?",
+                data:{"salesStatusId":val},
                 dataType: "json",
                 success: function (data) {
                     alert("商品信息删除成功")
-                    window.location.href="/merchandise/smerchandise.do/";
+                    window.location.href="/unitsandtype/units.do";
                 },
                 error: function () {
                     alert("系统异常，请稍后重试！");
