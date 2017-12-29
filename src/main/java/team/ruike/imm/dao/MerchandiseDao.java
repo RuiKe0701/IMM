@@ -18,17 +18,17 @@ public interface MerchandiseDao {
     /**
      * 按关键字查询出多个
      */
-     List<Merchandise> sanMerchandise(Merchandise merchandise);
+    List<Merchandise> sanMerchandise(Merchandise merchandise);
 
     /**
      *指定条件修改商品信息
      */
-     int updateMerchandise(Merchandise merchandise);
+    int updateMerchandise(Merchandise merchandise);
 
     /**
      *增加商品信息
      */
-     int insertMerchandise(Merchandise merchandise);
+    int insertMerchandise(Merchandise merchandise);
 
 
     List<Merchandise> selecrMerchandise(Merchandise merchandise);

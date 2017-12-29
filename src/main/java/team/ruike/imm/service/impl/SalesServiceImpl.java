@@ -10,7 +10,7 @@ import team.ruike.imm.service.SalesService;
 import java.util.List;
 
 @Service("salesService")
-public class SalesServiceImpl implements SalesService{
+public class SalesServiceImpl  implements SalesService{
     @Autowired
     SalesDao salesDao;
 
@@ -62,4 +62,8 @@ public class SalesServiceImpl implements SalesService{
 
 
     public List<Sales> selectForMonth(Sales sales) { return salesDao.selectForMonth(sales); }
+
+    public int selectSalses(Sales sales) {
+        return salesDao.selectSalses(sales);
+    }
 }

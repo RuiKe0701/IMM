@@ -19,7 +19,7 @@ public interface MerchandiseService {
      * @param merchandise
      * @return
      */
-     List<Merchandise> selectMerchandise(Merchandise merchandise);
+    List<Merchandise> selectMerchandise(Merchandise merchandise);
     List<Merchandise> selectAll(Merchandise merchandise);
 
     /**
@@ -27,27 +27,27 @@ public interface MerchandiseService {
      * @param merchandise
      * @return
      */
-     Merchandise selectOne(Merchandise merchandise);
+    Merchandise selectOne(Merchandise merchandise);
 
     /**
      * 按关键字查询
      * @param merchandise
      * @return
      */
-     List<Merchandise> sanMerchandise(Merchandise merchandise);
+    List<Merchandise> sanMerchandise(Merchandise merchandise);
     /**
      * 按指定条件修改商品信息
      * @param merchandise
      * @return
      */
-     int updateMerchandise(Merchandise merchandise);
+    int updateMerchandise(Merchandise merchandise);
 
     /**
      * 新增商品信息
      * @param merchandise
      * @return
      */
-     int insertMerchandise(Merchandise merchandise);
+    int insertMerchandise(Merchandise merchandise);
     //查询当前库存小于安全库存
     List<Merchandise> selectRelenish(Merchandise merchandise);
 

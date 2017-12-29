@@ -512,7 +512,7 @@
                                                             data-id="sales/salesOrderList" right="SO_QUERY"><span
                                                                 class="name"
                                                                 style="background-color: #f9c650">未发货销货订单</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${i}</div>
                                                         </li>
                                                         <li style="margin-left: 20px; background-color: rgb(71, 192, 86); border: 1px solid rgb(46, 177, 60); width: 220px; display: list-item;"
                                                             class="panel hide" data-color="#47c056"
@@ -526,7 +526,7 @@
                                                             data-id="sales/salesList" right="SA_QUERY"><span
                                                                 class="name"
                                                                 style="background-color: #779cdb">今日销货笔数</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${ii}</div>
                                                         </li>
 
                                                     </ul>
@@ -942,9 +942,7 @@
             }]
         });
     });
-
 </script>
-
 <script type="text/javascript">
     var ar = ${requestScope.arr};
     Highcharts.chart('containers', {
@@ -999,5 +997,4 @@
         }]
     });
 </script>
-
 </html>

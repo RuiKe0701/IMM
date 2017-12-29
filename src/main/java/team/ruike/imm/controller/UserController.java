@@ -10,12 +10,12 @@ import team.ruike.imm.entity.ProcurementInformation;
 import team.ruike.imm.entity.Sales;
 import team.ruike.imm.entity.User;
 import team.ruike.imm.service.*;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping(value = "/user")
@@ -27,12 +27,11 @@ public class UserController {
     @Autowired
     MerchandiseService merchandiseService;
     @Autowired
-    SalesService salesService;
-    @Autowired
     ProcurementInformationService procurementInformationService;
     @Autowired
     ProcurementService procurementService;
-
+    @Autowired
+    SalesService salesService;
     /**
      * 登录验证
      * @param user
@@ -42,28 +41,32 @@ public class UserController {
     @RequestMapping(value="/login.do")
     public  String login(Model model,User user, HttpSession session, HttpServletRequest request){
             User u=userService.selectUser(user);
+            int procurementSize=procurementService.procurementSize().size();
             if (u.getUserName()!="无"){
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
-                int procurementSize=procurementService.procurementSize().size();
-
-
-                session.setAttribute("user",u);
+              List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
+              Sales sales=new Sales();
+              sales.setSalesAccomplish(0);
+              sales.setSalesState(0);
+              //未发货销售订单
+              int i= salesService.selectSalses(sales);
+                Sales sa=new Sales();
+                sa.setSalesAccomplish(1);
+                sa.setSalesState(0);
+                sa.setSalesDate(new Date());
+                //未发货销售订单
+                int ii= salesService.selectSalses(sa);
+              session.setAttribute("user",u);
+                model.addAttribute("i",i);
+                model.addAttribute("ii",ii);
+              model.addAttribute("procurlist",procurlist);
+              model.addAttribute("procurementSize",procurementSize);
                 //获得小于商品安全存量的商品数量
                 request.setAttribute("stock",stock);
                 if (merchandiseList.size()>0) {
                    merchandiseService.insufficient(merchandiseList);
                 }
-                List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
-
-                List<Sales> salesList = salesService.selectForMonth(null);
-                Double[] doubles = new Double[12];
-                for (int i = 0; i < doubles.length; i++) {
-                    doubles[i]=salesList.get(i).getAllVolume();
-                }
-                request.setAttribute("arr",Arrays.toString(doubles));
-                model.addAttribute("procurlist",procurlist);
-                model.addAttribute("procurementSize",procurementSize);
                 return "index";
             }
             session.setAttribute("hint","请输入正确的用户名和密码");
