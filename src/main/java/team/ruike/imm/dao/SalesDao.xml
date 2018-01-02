@@ -308,6 +308,22 @@
     </select>
 
 
+
+    <select id="selectSalses" resultType="int">
+        select count(*)  from sales
+        <where>
+            <if test="salesAccomplish!=null">
+                and sales_accomplish =#{salesAccomplish}
+            </if>
+            <if test="salesDate !=null and salesDate!=''">
+                and sales_date=#{salesDate}
+            </if>
+            <if test="salesState !=null">
+                and sales_state=#{salesState}
+            </if>
+        </where>
+    </select>
+
 </mapper>
 <!---->
 

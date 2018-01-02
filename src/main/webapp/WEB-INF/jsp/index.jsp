@@ -188,24 +188,24 @@
                                 class="menu-pic storage left"></span> <span class="text">仓库</span> </a> <span
                                 class="arrow" style="top: 229.451px; left: 121px; display: none;"></span>
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 72.9505px; left: 129px;">
-                                <div class="nav-item"><h3>仓库单据</h3>
-                                    <ul class="sub-nav">
-                                        <li class="" id="Requisition">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">调拨单
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Count-records">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">盘点记录
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <%--<div class="nav-item"><h3>仓库单据</h3>--%>
+                                    <%--<ul class="sub-nav">--%>
+                                        <%--<li class="" id="Requisition">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">调拨单--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li class="" id="Count-records">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">盘点记录--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
+                                    <%--</ul>--%>
+                                <%--</div>--%>
                                 <div class="nav-item"><h3>仓库报表</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Goods-inventory-balance">
@@ -215,20 +215,20 @@
                                                 </span>
                                             </a>
                                         </li>
-                                        <li class="" id="Goods-receipt-details">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">收发明细
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="" id="Send-and-receive-goods-summary">
-                                            <a href="javascript:void(0);">
-                                                <span class="hasList">收发汇总
-                                                 <span class="hide"></span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                        <%--<li class="" id="Goods-receipt-details">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">收发明细--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li class="" id="Send-and-receive-goods-summary">--%>
+                                            <%--<a href="javascript:void(0);">--%>
+                                                <%--<span class="hasList">收发汇总--%>
+                                                 <%--<span class="hide"></span>--%>
+                                                <%--</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li class="" id="warehousing">
                                             <a href="javascript:void(0);">
                                                 <span class="hasList">入库记录
@@ -349,6 +349,14 @@
                                                 <span class="hasList">商品管理
                                                  <span class="hide"></span>
                                                 </span>
+                                                <i href="javascript:void(0);">查询</i>
+                                            </a>
+                                        </li>
+                                        <li class="" id="unitsAndType">
+                                            <a href="javascript:void(0);">
+                                                    <span class="hasList">单位与商品类别
+                                                     <span class="hide"></span>
+                                                    </span>
                                                 <i href="javascript:void(0);">查询</i>
                                             </a>
                                         </li>
@@ -512,7 +520,7 @@
                                                             data-id="sales/salesOrderList" right="SO_QUERY"><span
                                                                 class="name"
                                                                 style="background-color: #f9c650">未发货销货订单</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${i}</div>
                                                         </li>
                                                         <li style="margin-left: 20px; background-color: rgb(71, 192, 86); border: 1px solid rgb(46, 177, 60); width: 220px; display: list-item;"
                                                             class="panel hide" data-color="#47c056"
@@ -526,7 +534,7 @@
                                                             data-id="sales/salesList" right="SA_QUERY"><span
                                                                 class="name"
                                                                 style="background-color: #779cdb">今日销货笔数</span>
-                                                            <div class="number" data-number="0">0</div>
+                                                            <div class="number" data-number="0">${ii}</div>
                                                         </li>
 
                                                     </ul>
@@ -904,7 +912,7 @@
                 plotShadow: false
             },
             title: {
-                text: '2014 某网站各浏览器浏览量占比'
+                text: '商品库存'
             },
             tooltip: {
                 headerFormat: '{series.name}<br>',
@@ -942,9 +950,7 @@
             }]
         });
     });
-
 </script>
-
 <script type="text/javascript">
     var ar = ${requestScope.arr};
     Highcharts.chart('containers', {
@@ -999,5 +1005,4 @@
         }]
     });
 </script>
-
 </html>

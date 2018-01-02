@@ -11,8 +11,6 @@ import java.util.List;
 
 @Service("ProcurementService")
 public class ProcurementServiceImpl implements ProcurementService {
-
-
     @Autowired
     ProcurementDao procurementDao;
 
@@ -66,4 +64,5 @@ public class ProcurementServiceImpl implements ProcurementService {
     public List<Procurement> procurementSize(){
         return procurementDao.procurementSize();
     }
+
 }

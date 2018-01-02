@@ -83,4 +83,10 @@ public interface SalesDao {
     public List<Sales> selectForMonth(Sales sales);
 
 
+    /**
+     * 统计有多少没有发货的单子和今日销售量
+     * @param sales
+     * @return
+     */
+    int selectSalses(Sales sales);
 }

@@ -45,7 +45,7 @@
         INNER JOIN units u on m.units_id=u.units_id
         <where>
             <if test="merchandiseId!=null and merchandiseId>0">
-             m.merchandise_id=#{merchandiseId}
+                m.merchandise_id=#{merchandiseId}
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
                 and  m.merchandise_name  like '${merchandiseName}%'
@@ -72,12 +72,12 @@
         inner join units u on m.units_id=u.units_id
         inner join sales_status s on m.sales_status_id=s.sales_status_id
         <where>
-        concat(m.merchandise_name,
-            m.merchandise_code,
-            ')(*)*(!,(%!)#', m.merchandise_specification,
+            concat(m.merchandise_name,
+            '!,(%!)#',m.merchandise_code,
+            '!,(%!)#', m.merchandise_specification,
             '*!,(%!)#',merchandise_place_of_origin,
             '*!,(%!)#',merchandise_salse_price)
-        like CONCAT('%',#{about},'%')
+            like CONCAT('%',#{about},'%')
             <if test="merchandiseId!=null and merchandiseId>0">
                 and m.merchandise_id=#{merchandiseId}
             </if>
@@ -85,7 +85,7 @@
                 and m.merchandise_code=#{merchandiseCode}
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
-                and m.merchandise_name = #{merchandiseName}
+                and m.merchandise_name like concat('%',#{merchandiseName},'%')
             </if>
             <if test="merchandiseSpecification!=null and merchandiseSpecification!=''">
                 and m.merchandise_specification=#{merchandiseSpecification}
@@ -124,49 +124,48 @@
     <select id="selecrMerchandise" resultMap="merchandiseMap">
         select * from merchandise m,product_type p,units u,sales_status s
         <where>
-             m.product_type_id=p.product_type_id and m.units_id=u.units_id and m.sales_status_id=s.sales_status_id
-            and m.merchandise_state=0
+            m.product_type_id=p.product_type_id and m.units_id=u.units_id and m.sales_status_id=s.sales_status_id
             <if test="merchandiseId!=null and merchandiseId>0">
-                 and m.merchandise_id=#{merchandiseId}
+                and m.merchandise_id=#{merchandiseId}
             </if>
             <if test="merchandiseCode!=null and merchandiseCode!=''">
-                 and m.merchandise_code=#{merchandiseCode}
+                and m.merchandise_code=#{merchandiseCode}
             </if>
             <if test="merchandiseName!=null and merchandiseName!=''">
-                  and m.merchandise_name like concat('%',#{merchandiseName},'%')
+                and m.merchandise_name like concat('%',#{merchandiseName},'%')
             </if>
             <if test="merchandiseSpecification!=null and merchandiseSpecification!=''">
-                 and m.merchandise_specification=#{merchandiseSpecification}
+                and m.merchandise_specification=#{merchandiseSpecification}
             </if>
             <if test="productTypeId!=null and productTypeId>0">
-                 and m.product_type_id=#{productTypeId}
+                and m.product_type_id=#{productTypeId}
             </if>
             <if test="unitsId!=null and unitsId>0">
-                 and m.units_id=#{unitsId}
+                and m.units_id=#{unitsId}
             </if>
             <if test="merchandisePlaceOfOrigin!=null and merchandisePlaceOfOrigin!=''">
-                 and m.merchandise_place_of_origin=#{merchandisePlaceOfOrigin}
+                and m.merchandise_place_of_origin=#{merchandisePlaceOfOrigin}
             </if>
             <if test="merchandiseSafetyStock!=null and merchandiseSafetyStock>0">
-                 and m.merchandise_safety_stock=#{merchandiseSafetyStock}
+                and m.merchandise_safety_stock=#{merchandiseSafetyStock}
             </if>
             <if test="merchandiseActualQuntity!=null and merchandiseActualQuntity>0">
-                 and m.merchandise_actual_quntity=#{merchandiseActualQuntity}
+                and m.merchandise_actual_quntity=#{merchandiseActualQuntity}
             </if>
             <if test="merchandiseSalsePrice!=null and merchandiseSalsePrice>0">
-                 and m.merchandise_salse_price=#{merchandiseSalsePrice}
+                and m.merchandise_salse_price=#{merchandiseSalsePrice}
             </if>
             <if test="salesStatusId!=null and salesStatusId>0">
-                  and m.sales_status_id=#{salesStatusId}
+                and m.sales_status_id=#{salesStatusId}
             </if>
             <if test="merchandiseState!=null">
-                 and m.merchandise_state=#{merchandiseState}
+                and m.merchandise_state=#{merchandiseState}
             </if>
         </where>
         <if test="currentPage!=null and pageSize!=null">
-             LIMIT #{currentPage},#{pageSize}
+            LIMIT #{currentPage},#{pageSize}
         </if>
-         order by m.merchandise_id asc
+        order by m.merchandise_id asc
     </select>
     <!--指定条件修改商品信息-->
     <update id="updateMerchandise" parameterType="merchandise">
@@ -232,7 +231,7 @@
                 like CONCAT('%',#{merchandiseName},'%')
             </if>
             <if test="productTypeId!=null and  productTypeId>0">
-              and  product_type_id=#{productTypeId}
+                and  product_type_id=#{productTypeId}
             </if>
             <if test="salesStatusId!=null and salesStatusId>0">
                 and sales_status_id=#{salesStatusId}

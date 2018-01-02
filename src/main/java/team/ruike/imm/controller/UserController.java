@@ -5,15 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import team.ruike.imm.dao.ProcurementInformationDao;
 import team.ruike.imm.entity.Merchandise;
 import team.ruike.imm.entity.ProcurementInformation;
+import team.ruike.imm.entity.Sales;
 import team.ruike.imm.entity.User;
-import team.ruike.imm.service.MerchandiseService;
-import team.ruike.imm.service.ProcurementInformationService;
-import team.ruike.imm.service.ProcurementService;
-import team.ruike.imm.service.UserService;
+import team.ruike.imm.service.*;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -32,6 +32,8 @@ public class UserController {
     ProcurementInformationService procurementInformationService;
     @Autowired
     ProcurementService procurementService;
+    @Autowired
+    SalesService salesService;
     /**
      * 登录验证
      * @param user
@@ -43,10 +45,32 @@ public class UserController {
             User u=userService.selectUser(user);
             int procurementSize=procurementService.procurementSize().size();
             if (u.getUserName()!="无"){
+
+                List<Sales> salesList = salesService.selectForMonth(null);
+                Double[] doubles = new Double[12];
+                for (int i = 0; i < doubles.length; i++) {
+                    doubles[i]=salesList.get(i).getAllVolume();
+                }
+                request.setAttribute("arr", Arrays.toString(doubles));
+
+
               int stock=  merchandiseService.sumstock();
               List<Merchandise> merchandiseList=merchandiseService.insufficientMerchandise(null);
               List<ProcurementInformation> procurlist=procurementInformationService.rankingProcurement();
+              Sales sales=new Sales();
+              sales.setSalesAccomplish(0);
+              sales.setSalesState(0);
+              //未发货销售订单
+              int i= salesService.selectSalses(sales);
+                Sales sa=new Sales();
+                sa.setSalesAccomplish(1);
+                sa.setSalesState(0);
+                sa.setSalesDate(new Date());
+                //未发货销售订单
+                int ii= salesService.selectSalses(sa);
               session.setAttribute("user",u);
+                model.addAttribute("i",i);
+                model.addAttribute("ii",ii);
               model.addAttribute("procurlist",procurlist);
               model.addAttribute("procurementSize",procurementSize);
                 //获得小于商品安全存量的商品数量

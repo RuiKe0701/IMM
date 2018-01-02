@@ -168,7 +168,7 @@
 
 
         </table>
-        <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 370px;">
+        <div class="ads" id="dsa" style="position: absolute;right: 100px;top: 420px;">
             <ul class="pagination" >
                 <li><a href="?start=0">首页</a></li>
                 <%--<c:if test="${pages.currentPage >1}">--%>
