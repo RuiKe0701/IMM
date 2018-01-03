@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.ApplyDao">
+    <resultMap id="applyMap" type="apply">
+        <result column="apply_id" property="applyId" />
+        <result column="apply_title" property="applyTitle" />
+        <result column="apply_Invoice_no" property="applyInvoiceNo" />
+        <result column="apply_remarks" property="applyRemarks" />
+        <result column="apply_initiator" property="applyInitiator" />
+        <result column="apply_received" property="applyReceived" />
+        <result column="apply_date" property="applyDate" />
+        <result column="apply_look" property="applyLook" />
+    </resultMap>
+    <!--指定条件查询购货售货申请表-->
+    <select id="selectApply" resultMap="applyMap">
+        select * from apply
+        <where>
+            1=1
+            <if test="applyId!=null and applyId>0">
+                and apply_id=#{applyId}
+            </if>
+            <if test="applyTitle!=null and  applyTitle!=''">
+                and apply_title=#{applyTitle}
+            </if>
+            <if test="applyInvoiceNo!=null and  applyInvoiceNo!=''">
+                and apply_Invoice_no=#{applyInvoiceNo}
+            </if>
+            <if test="applyRemarks!=null and  applyRemarks!=''">
+                and apply_remarks=#{applyRemarks}
+            </if>
+            <if test="applyInitiator!=null and  applyInitiator!=''">
+                and apply_initiator=#{applyInitiator}
+            </if>
+            <if test="applyDate!=null and  applyDate!=''">
+                and apply_date=#{applyDate}
+            </if>
+            <if test="applyLook!=null and  applyLook!=''">
+                and apply_look=#{applyLook}
+            </if>
+        </where>
+    </select>
+
+    <!--指定条件修改购货售货申请表-->
+    <update id="updateApply" parameterType="apply">
+        update client
+        <set>
+            <if test="applyTitle!=null and  applyTitle!=''">
+                and apply_title=#{applyTitle}
+            </if>
+            <if test="applyInvoiceNo!=null and  applyInvoiceNo!=''">
+                and apply_Invoice_no=#{applyInvoiceNo}
+            </if>
+            <if test="applyRemarks!=null and  applyRemarks!=''">
+                and apply_remarks=#{applyRemarks}
+            </if>
+            <if test="applyInitiator!=null and  applyInitiator!=''">
+                and apply_initiator=#{applyInitiator}
+            </if>
+            <if test="applyDate!=null and  applyDate!=''">
+                and apply_date=#{applyDate}
+            </if>
+            <if test="applyLook!=null and  applyLook!=''">
+            and apply_look=#{applyLook}
+        </set>
+               where apply_id=#{applyId}
+    </update>
+    <!--新增购货售货申请表-->
+    <insert id="insertApply">
+        insert into apply(apply_title,apply_Invoice_no,apply_remarks,apply_initiator,apply_received,
+        apply_look,apply_date)
+        values
+            (#{applyTitle},#{applyInvoice_no},#{applyRemarks},#{applyInitiator},#{applyReceived},
+            #{applyLook},#{applyDate})
+    </insert>
+</mapper>

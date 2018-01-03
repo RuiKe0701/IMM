@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -77,6 +76,9 @@
                             </c:forEach>
                         </select><br>
                     </li>
+                    <li id="warehousingId" style="display: list-item;"><label>采购单号</label>
+                        <input type="text"  name="warehousingId" class="">
+                    </li>
                     <li id="date" style="display: list-item;"><label>入库日期</label>
                         <input id="end"  name="warehousingDate" class="">
                     </li>
@@ -109,7 +111,7 @@
                 <td>${w.warehousingBatchNumber}</td>
                 <td>${w.employee.employeeName}</td>
                 <td>${w.procurement.procurementId}</td>
-                <td>  </td>
+                <td><fmt:formatDate type="date" value="${w.warehousingDate}" /></td>
                 <td>${w.warehousingRemarks}</td>
                 <td>${w.user.userName}</td>
                 <td style="display: none">${w.warehousingState}</td>

@@ -38,15 +38,15 @@ public class MerchandiseController {
      * 查询商品信息
      */
     @RequestMapping(value = "/smerchandise.do")
-    public String select(Merchandise merchandise, HttpSession session){
-        List<Merchandise> merchandises = merchandiseService.selectMerchandise(merchandise);
-        ; List<Units> unitses = unitsService.selectUnits(null);
+    public String select(HttpServletRequest request){
+        List<Merchandise> merchandises = merchandiseService.selectMerchandise(null);
+        List<Units> unitses = unitsService.selectUnits(null);
         List<ProductType> productTypes = productTypeService.selectProductType(null);
         List<SalesStatus> salesStatuses=salesStatusService.selectSalesStatus(null);
-        session.setAttribute("merc", merchandises);
-        session.setAttribute("unis",unitses);
-        session.setAttribute("prod",productTypes);
-        session.setAttribute("sale",salesStatuses);
+        request.setAttribute("merc", merchandises);
+        request.setAttribute("unis",unitses);
+        request.setAttribute("prod",productTypes);
+        request.setAttribute("sale",salesStatuses);
         return "page/warehouse/goods-balance";
     }
 
