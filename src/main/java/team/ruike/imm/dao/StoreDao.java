@@ -6,7 +6,7 @@ import team.ruike.imm.entity.Store;
 import java.util.List;
 
 /**
- * @author 郭旭
+ * @author 郭旭s
  * @version 2.0
  *商品详情信息表
  */
