@@ -188,24 +188,24 @@
                                 class="menu-pic storage left"></span> <span class="text">仓库</span> </a> <span
                                 class="arrow" style="top: 229.451px; left: 121px; display: none;"></span>
                             <div class="sub-nav-wrap group-nav cf" style="display: none; top: 72.9505px; left: 129px;">
-                                <%--<div class="nav-item"><h3>仓库单据</h3>--%>
-                                    <%--<ul class="sub-nav">--%>
-                                        <%--<li class="" id="Requisition">--%>
-                                            <%--<a href="javascript:void(0);">--%>
-                                                <%--<span class="hasList">调拨单--%>
-                                                 <%--<span class="hide"></span>--%>
-                                                <%--</span>--%>
-                                            <%--</a>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="" id="Count-records">--%>
-                                            <%--<a href="javascript:void(0);">--%>
-                                                <%--<span class="hasList">盘点记录--%>
-                                                 <%--<span class="hide"></span>--%>
-                                                <%--</span>--%>
-                                            <%--</a>--%>
-                                        <%--</li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
+                                <div class="nav-item"><h3>仓库单据</h3>
+                                    <ul class="sub-nav">
+                                        <li class="" id="Requisition">
+                                        <a href="javascript:void(0);">
+                                        <span class="hasList">仓库盘点
+                                        <span class="hide"></span>
+                                        </span>
+                                        </a>
+                                        </li>
+                                        <li class="" id="           ">
+                                        <a href="javascript:void(0);">
+                                        <span class="hasList">盘点记录
+                                        <span class="hide"></span>
+                                        </span>
+                                        </a>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div class="nav-item"><h3>仓库报表</h3>
                                     <ul class="sub-nav">
                                         <li class="" id="Goods-inventory-balance">
