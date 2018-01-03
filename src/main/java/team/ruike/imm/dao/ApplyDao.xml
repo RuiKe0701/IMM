@@ -62,6 +62,7 @@
             </if>
             <if test="applyLook!=null and  applyLook!=''">
             and apply_look=#{applyLook}
+            </if>
         </set>
                where apply_id=#{applyId}
     </update>
