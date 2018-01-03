@@ -48,6 +48,12 @@ public class Store {
      */
     private Integer storeDamaged;
 
+
+
+
+
+    private Merchandise merchandise;
+
     public Integer getStoreId() {
         return storeId;
     }

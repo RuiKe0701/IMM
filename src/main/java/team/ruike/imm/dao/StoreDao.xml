@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.StoreDao">
+    <resultMap id="storeMap" type="store">
+        <result column="store_id" property="salesId"/>
+        <result column="warehousing_id" property="warehousingId"/>
+        <result column="merchandise_id" property="merchandiseId"/>
+        <result column="store_number" property="storeNumber"/>
+        <result column="purchasing_price" property="purchasingPrice"/>
+        <result column="store_birthday" property="storeBirthday"/>
+        <result column="store_life" property="storeLife"/>
+        <result column="store_damaged" property="storeDamaged"/>
+
+        <collection property="merchandise" ofType="merchandise">
+            <result column="merchandise_id" property="merchandiseId"/>
+            <result column="merchandise_code" property="merchandiseCode"/>
+            <result column="merchandise_name" property="merchandiseName"/>
+            <result column="merchandise_specification" property="merchandiseSpecification"/>
+            <result column="merchandise_place_of_origin" property="merchandisePlaceOfOrigin"/>
+            <result column="merchandise_safety_stock" property="merchandiseSafetyStock"/>
+            <result column="merchandise_actual_quntity" property="merchandiseActualQuntity"/>
+            <result column="merchandise_salse_price" property="merchandiseSalsePrice"/>
+            <result column="merchandise_state" property="merchandiseState"/>
+            <result column="units_id" property="unitsId"/>
+            <result column="sales_status_id" property="salesStatusId"/>
+            <result column="product_type_id" property="productTypeId"/>
+            <result column="sumstock" property="sumStock"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectStore" resultMap="storeMap" parameterType="store">
+        select
+        s.store_id,s.warehousing_id,s.merchandise_id,s.store_number,s.purchasing_price,s.store_birthday,s.store_life,s.store_damaged
+        from store s
+        INNER JOIN warehousing w ON s.warehousing_id=w.warehousing_id
+        <where>
+            1=1
+            <if test="storeId!=null and storeId>0">
+                and s.store_id=#{storeId}
+            </if>
+            <if test="warehousingId !=null and warehousingId!=''">
+                and s.warehousing_id=#{warehousingId}
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                and s.merchandise_id=#{merchandiseId}
+            </if>
+            <if test="storeNumber!=null and storeNumber>0">
+                and s.store_number=#{storeNumber}
+            </if>
+            <if test="purchasingPrice !=null and purchasingPrice!=''">
+                and s.purchasing_price=#{purchasingPrice}
+            </if>
+            <if test="storeBirthday !=null and storeBirthday!=''">
+                and s.store_birthday=#{storeBirthday}
+            </if>
+            <if test="storeLife !=null and storeLife!=''">
+                and s.store_life=#{storeLife}
+            </if>
+            <if test="storeDamaged!=null and storeDamaged>0">
+                and s.store_damaged=#{storeDamaged}
+            </if>
+        </where>
+    </select>
+
+
+    <update id="updateStore" parameterType="store">
+        update store
+        <set>
+            <if test="warehousingId !=null and warehousingId!=''">
+                warehousing_id=#{warehousingId}
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                merchandise_id=#{merchandiseId}
+            </if>
+            <if test="storeNumber!=null and storeNumber>0">
+                store_number=#{storeNumber}
+            </if>
+            <if test="purchasingPrice !=null and purchasingPrice!=''">
+                purchasing_price=#{purchasingPrice}
+            </if>
+            <if test="storeBirthday !=null and storeBirthday!=''">
+                store_birthday=#{storeBirthday}
+            </if>
+            <if test="storeLife !=null and storeLife!=''">
+                store_life=#{storeLife}
+            </if>
+            <if test="storeDamaged!=null and storeDamaged>0">
+                store_damaged=#{storeDamaged}
+            </if>
+            <where>
+                store_id=#{storeId}
+            </where>
+        </set>
+    </update>
+
+    <insert id="insertStore" parameterType="store">
+        insert into
+        store(warehousing_id,merchandise_id,store_number,purchasing_price,store_birthday,store_life,store_damaged)
+        values(#{warehousingId},#{merchandiseId},#{storeNumber},#{purchasingPrice},#{storeBirthday},#{storeLife},0)
+    </insert>
+
+</mapper>
