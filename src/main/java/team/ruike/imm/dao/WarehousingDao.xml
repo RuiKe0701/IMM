@@ -5,6 +5,7 @@
         <resultMap id="WarehousingMap" type="warehousing">
             <result property="warehousingId" column="warehousing_id" />
             <result property="warehousingBatchNumber" column="warehousing_batch_number" />
+            <result property="warehousingBuyer" column="warehousing_buyer" />
             <result property="procurementId" column="procurement_id"/>
             <result property="warehousingDate" column="warehousing_date" />
             <result property="warehousingRemarks" column="warehousing_remarks" />

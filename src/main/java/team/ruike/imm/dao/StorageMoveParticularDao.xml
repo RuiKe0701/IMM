@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="team.ruike.imm.dao.StorageMoveParticularDao">
+    <resultMap id="MoveParticularMap" type="StorageMoveParticular">
+    <result column="smp_id" property="smpId"/>
+    <result column="sm_id" property="smId"/>
+    <result column="merchandise_id" property="merchandiseId"/>
+    <result column="smp_number" property="smpNumber"/>
+    <result column="smp_damage_number" property="smpDamageNumber"/>
+
+        <collection property="storageMove" ofType="storageMove">
+            <result property="smId" column="sm_id" />
+            <result property="smBuyer" column="sm_buyer" />
+            <result property="salesId" column="sales_id"/>
+            <result property="smDate" column="sm_date"/>
+            <result property="smRemarks" column="sm_remarks"/>
+            <result property="smUserId" column="sm_user_id"/>
+            <result property="smState" column="sm_state"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectMoveParticular" resultMap="MoveParticularMap" parameterType="StorageMoveParticular">
+        select s_m_p.smp_id,s_m_p.sm_id,s_m_p.merchandise_id,s_m_p.smp_number,s_m_p.smp_damage_number
+        from storage_move_particular s_m_p
+        <where>
+            1=1
+            <if test="smpId!=null and smpId>0">
+                and s_m_p.smp_id=#{smpId}
+            </if>
+            <if test="smId !=null and smId!=''">
+                and s_m_p.sm_id=#{smId}
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                and s_m_p.merchandise_id=#{merchandiseId}
+            </if>
+            <if test="smpNumber!=null and smpNumber>0">
+                and s_m_p.smp_number=#{smpNumber}
+            </if>
+            <if test="smpDamageNumber!=null and smpDamageNumber>0">
+                and s_m_p.smp_damage_number=#{smpDamageNumber}
+            </if>
+        </where>
+    </select>
+
+
+    <update id="updateMoveParticular" parameterType="StorageMoveParticular">
+        update storage_move_particular
+        <set>
+            <if test="smId !=null and smId!=''">
+                sm_id=#{smId}
+            </if>
+            <if test="merchandiseId!=null and merchandiseId>0">
+                merchandise_id=#{merchandiseId}
+            </if>
+            <if test="smpNumber!=null and smpNumber>0">
+                smp_number=#{smpNumber}
+            </if>
+            <if test="smpDamageNumber!=null and smpDamageNumber>0">
+                smp_damage_number=#{smpDamageNumber}
+            </if>
+            <where>
+                  smp_id=#{smpId}
+            </where>
+        </set>
+    </update>
+
+    <insert id="insertMoveParticular" parameterType="StorageMoveParticular">
+        insert into
+        storage_move_particular(sm_id,merchandise_id,smp_number,smp_damage_number)
+        values(#{smId},#{merchandiseId},#{smpNumber},#{smpDamageNumber})
+    </insert>
+
+</mapper>
