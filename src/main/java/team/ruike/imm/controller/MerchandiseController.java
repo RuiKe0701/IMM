@@ -56,7 +56,13 @@ public class MerchandiseController {
     @RequestMapping(value = "merchandisemenu.do")
     public String merchandisemenu(Merchandise merchandise,HttpSession session){
         List<Merchandise> ab = merchandiseService.sanMerchandise(merchandise);
+        List<Units> unitses = unitsService.selectUnits(null);
+        List<ProductType> productTypes = productTypeService.selectProductType(null);
+        List<SalesStatus> salesStatuses=salesStatusService.selectSalesStatus(null);
         session.setAttribute("merc",ab);
+        session.setAttribute("unis",unitses);
+        session.setAttribute("prod",productTypes);
+        session.setAttribute("sale",salesStatuses);
         return  "page/warehouse/goods-balance";
     }
 
@@ -168,6 +174,11 @@ public class MerchandiseController {
         session.setAttribute("sale",salesStatuses);
         request.setAttribute("i",0);
         session.setAttribute("cooname",merchandises.getMerchandiseName());
+
+        request.setAttribute("UnitsId",merchandises.getUnitsId());
+        request.setAttribute("ProductTypeId",merchandises.getProductTypeId());
+        request.setAttribute("SalesStatusId",merchandises.getSalesStatusId());
+
         return "page/material/goods-list-3";
     }
 

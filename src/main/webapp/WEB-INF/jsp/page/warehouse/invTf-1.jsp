@@ -107,7 +107,7 @@
             </td>
         </tr>
     </div>
-    <table class="table table-striped" style="width: 1380px">
+    <table class="table table-striped" style="width: 1220px">
         <thead>
             <tr>
                 <th style="display: none">商品id</th>

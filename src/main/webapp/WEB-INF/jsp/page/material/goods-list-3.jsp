@@ -133,7 +133,7 @@
                         <select id="selectsalesStatusId" name="salesStatusId" class="form-control" style="width:90px;">
                             <option value="0">请选择</option>
                             <c:forEach  var="p" items="${sale}">
-                                <option value="${p.salesStatusId}" >${p.salesStatusName}</option>
+                                <option value="${p.salesStatusId}" <c:if test="${SalesStatusId==p.salesStatusId}">selected="selected"</c:if> >${p.salesStatusName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -143,7 +143,7 @@
                         <select  id="selectproductTypeId" name="productTypeId" class="form-control"   style="width:110px;">
                             <option value="0">请选择</option>
                             <c:forEach  var="p" items="${prod}">
-                                <option value="${p.productTypeId}" >${p.productTypeName}</option>
+                                <option value="${p.productTypeId}"<c:if test="${ProductTypeId==p.productTypeId}">selected="selected"</c:if> >${p.productTypeName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -153,7 +153,7 @@
                         <select id="selectunitsId" name="unitsId" class="form-control"   style="width:90px;">
                             <option value="0">请选择</option>
                             <c:forEach  var="p" items="${unis}">
-                                <option value="${p.unitsId}" >${p.unitsName}</option>
+                                <option value="${p.unitsId}" <c:if test="${UnitsId==p.unitsId}">selected="selected"</c:if>  >${p.unitsName}</option>
                             </c:forEach>
                         </select>
                     </div>

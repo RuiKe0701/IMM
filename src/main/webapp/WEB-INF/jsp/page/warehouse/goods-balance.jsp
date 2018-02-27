@@ -77,15 +77,22 @@
                             <c:forEach items="${sale}" var="s">
                                 <option value="${s.salesStatusId}" >${s.salesStatusName}</option>
                             </c:forEach>
-                        </select><br>
+                        </select>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </li>
-                    <div class="btns"><input class="ui-btn mrb ui-btn-search" id="filter-submit" type="submit"value="查询"></div>
+
+                        <div class="btns"><input class="ui-btn mrb ui-btn-search" id="filter-submit" type="submit"value="查询"/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="btns"><input class="ui-btn mrb ui-btn-clear" id="filter-clear" id="cl" onclick="clear" type="button"value="清空"></div>
                 </ul>
             </div>
         </div>
     </form>
 
-    <table class="table table-striped" style="width: 1200px">
+    <table class="table table-striped" style="width: 1220px">
         <thead>
         <tr>
             <th></th>
@@ -104,7 +111,7 @@
             <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
         </tr>
         </thead>
-        <tbody id="tbody">
+            <tbody id="tbody">
         <c:forEach items="${merc}" var="m">
             <tr id="${m.merchandiseId}">
                 <td><input type="checkbox" style="display: none"/></td>
@@ -128,7 +135,6 @@
         </tbody>
     </table>
 </div>
-
 <!--修改-->
 <div class="modal fade" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -333,6 +339,13 @@
                     alert("系统异常，请稍后重试！");
                 }
             })
+        })
+    }
+    function cl() {
+        $("#clear").click(function () {
+            merchandiseForName.html('请输入查询关键字')
+            productTypeId.option(0)
+
         })
     }
 </script>
